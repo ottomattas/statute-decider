@@ -97,16 +97,22 @@ Outputs: `experiments/results/*.jsonl` and generated markdown tables
 
 ## Smoke results
 
-*(filled after the overnight run)*
-
-**SMOKE — UNVALIDATED.** Operator has not audited `gold_confidence: low` rows
-or claim alignments.
+**SMOKE — UNVALIDATED** (generated 2026-08-20T19:52Z). Operator has not
+audited `gold_confidence: low` rows or claim alignments. **Do not quote as
+results.** Tool commit after this run is pinned in `article.tex`.
 
 | Cell | n | Notes |
 |---|---|---|
-| runtime 3-way | — | — |
-| LLM-only 3-way | — | — |
-| missing-fact P/R runtime | — | — |
-| missing-fact P/R LLM-only | — | — |
-| synthesis alignment F1 | — | — |
-| spend EUR | — | — |
+| runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21; all classes 1.000 |
+| LLM-only 3-way | 0 | no API keys in env or repo `.env`; providers skipped |
+| missing-fact P/R runtime | mean 0.936 / 1.000 | P<1 only on three `*_allow_via_db` (gold ∅, solver listed premises; `gold_confidence: low`) |
+| missing-fact P/R LLM-only | — | not run |
+| synthesis alignment F1 | — | not run (same key gap) |
+| spend EUR | 0.00 / 10.00 | cap unused; Tue 25 €100 still intact |
+
+Low-confidence gold (operator audit before Tue 25):
+`consumer_withdrawal_allow_via_db`, `land_tax_allow_via_db`,
+`building_permit_allow_via_db`, `section_120_demo/prompt-swap`.
+
+Full tables: `experiments/results/SMOKE-UNVALIDATED.md` and
+`experiments/results/experiment_ii_runtime.md`.
