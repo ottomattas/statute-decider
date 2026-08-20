@@ -13,6 +13,14 @@
   },
   "expected_outcome": "NEED_DB_INFO",
   "expected_reason_code": "needs_db_info",
-  "tags": ["needs-info", "u5"],
+  "expected_missing_facts": [
+    "is_consumer"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "needs-info",
+    "u5"
+  ],
   "provenance": "ART-65 Wave 3a Stream X v2"
 }

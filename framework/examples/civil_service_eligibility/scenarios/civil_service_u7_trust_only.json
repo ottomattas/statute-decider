@@ -10,6 +10,18 @@
   "mock_db_overrides": {},
   "expected_outcome": "UNVERIFIABLE_CLAIM",
   "expected_reason_code": "trust_only",
-  "tags": ["uncertainty", "u7"],
+  "expected_missing_facts": [
+    "ee_citizen",
+    "eu_citizen",
+    "full_capacity",
+    "secondary_education",
+    "speaks_estonian"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "uncertainty",
+    "u7"
+  ],
   "provenance": "ART-65 Wave 3a Stream X v2"
 }

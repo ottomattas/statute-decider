@@ -26,13 +26,15 @@ from scenario_suite import (  # noqa: E402
 from schemas import BlockReasonCode, SolverOutcome  # noqa: E402
 
 
-FIVE_CASES = [
+SUITE_CASES = [
     "civil_service_eligibility",
     "consumer_withdrawal",
     "land_tax_exemption",
     "personal_data_journalism",
     "building_permit",
+    "section_120_demo",
 ]
+FIVE_CASES = SUITE_CASES  # backward-compatible alias; now includes section_120_demo
 
 
 class TestSuiteScenarioDiscovery(unittest.TestCase):
@@ -41,7 +43,7 @@ class TestSuiteScenarioDiscovery(unittest.TestCase):
         self.assertGreaterEqual(len(files), 15, "Expected at least 15 suite scenario files.")
 
     def test_each_target_case_has_at_least_3_scenarios(self) -> None:
-        for case in FIVE_CASES:
+        for case in SUITE_CASES:
             files = discover_suite_scenario_files_for_case(case)
             self.assertGreaterEqual(
                 len(files),
@@ -71,13 +73,59 @@ class TestSuiteScenarioLoad(unittest.TestCase):
         self.assertIsNone(sc.mock_db_overrides["ee_citizen"])
 
     def test_all_seeded_scenarios_have_expected_outcome(self) -> None:
-        for case in FIVE_CASES:
+        for case in SUITE_CASES:
             for f in discover_suite_scenario_files_for_case(case):
                 sc = load_suite_scenario(f)
                 self.assertIsNotNone(
                     sc.expected_outcome,
                     f"Scenario {f.name!r} in {case!r} is missing expected_outcome.",
                 )
+
+    def test_all_seeded_scenarios_have_gold_missing_fact_fields(self) -> None:
+        for case in SUITE_CASES:
+            for f in discover_suite_scenario_files_for_case(case):
+                sc = load_suite_scenario(f)
+                self.assertIsInstance(
+                    sc.expected_missing_facts,
+                    list,
+                    f"Scenario {f.name!r} in {case!r} is missing expected_missing_facts.",
+                )
+                self.assertIn(
+                    sc.gold_confidence,
+                    ("high", "low"),
+                    f"Scenario {f.name!r} in {case!r} has invalid gold_confidence.",
+                )
+
+    def test_allow_and_deny_gold_missing_facts_are_empty(self) -> None:
+        for case in SUITE_CASES:
+            for f in discover_suite_scenario_files_for_case(case):
+                sc = load_suite_scenario(f)
+                if sc.expected_outcome in (SolverOutcome.ALLOW, SolverOutcome.DENY):
+                    self.assertEqual(
+                        sc.expected_missing_facts,
+                        [],
+                        f"{case}/{sc.name} is {sc.expected_outcome} but gold missing facts are {sc.expected_missing_facts}",
+                    )
+
+    def test_section_120_demo_has_seven_gold_scenarios(self) -> None:
+        files = discover_suite_scenario_files_for_case("section_120_demo")
+        self.assertEqual(len(files), 7)
+        names = {load_suite_scenario(f).name for f in files}
+        self.assertEqual(
+            names,
+            {"allow", "deny", "need-db", "need-user", "db-then-user", "prompt-swap", "unrelated-law"},
+        )
+
+    def test_via_db_allow_keeps_empty_gold_and_low_confidence(self) -> None:
+        path = (
+            FRAMEWORK_ROOT
+            / "examples/building_permit/scenarios/building_permit_allow_via_db.json"
+        )
+        sc = load_suite_scenario(path)
+        self.assertEqual(sc.expected_outcome, SolverOutcome.ALLOW)
+        self.assertEqual(sc.expected_missing_facts, [])
+        self.assertEqual(sc.gold_confidence, "low")
+        self.assertIn("solver emitted missing facts", sc.gold_notes)
 
 
 class TestRunSuiteScenario(unittest.TestCase):
@@ -95,10 +143,18 @@ class TestRunSuiteScenario(unittest.TestCase):
         self.assertEqual(result.actual_outcome, SolverOutcome.DENY)
         self.assertTrue(result.outcome_match)
 
-    def test_civil_service_need_db_passes(self) -> None:
+    def test_civil_service_need_db_records_missing_facts(self) -> None:
         result = self._run("civil_service_eligibility", "civil_service_need_db")
         self.assertEqual(result.actual_outcome, SolverOutcome.NEED_DB_INFO)
+        self.assertIsInstance(result.actual_missing_facts, list)
+        self.assertEqual(set(result.expected_missing_facts), set(result.actual_missing_facts))
+        self.assertTrue(result.fact_set_match)
+
+    def test_section_120_allow_passes(self) -> None:
+        result = self._run("section_120_demo", "allow")
+        self.assertEqual(result.actual_outcome, SolverOutcome.ALLOW)
         self.assertTrue(result.outcome_match)
+        self.assertEqual(result.expected_missing_facts, [])
 
     def test_consumer_withdrawal_allow_passes(self) -> None:
         result = self._run("consumer_withdrawal", "consumer_withdrawal_allow")
@@ -189,6 +245,7 @@ class TestMarkdownTable(unittest.TestCase):
         self.assertIn("| expected |", table)
         self.assertIn("| actual |", table)
         self.assertIn("| match |", table)
+        self.assertIn("| missing |", table)
 
     def test_table_shows_yes_for_match(self) -> None:
         results = [self._make_result("s1", SolverOutcome.ALLOW, SolverOutcome.ALLOW)]
@@ -200,6 +257,14 @@ class TestMarkdownTable(unittest.TestCase):
         results = [self._make_result("s1", SolverOutcome.ALLOW, SolverOutcome.DENY)]
         table = build_markdown_table(results)
         self.assertIn("NO", table)
+
+    def test_table_shows_compact_missing_mismatch(self) -> None:
+        result = self._make_result("s1", SolverOutcome.ALLOW, SolverOutcome.ALLOW)
+        result.expected_missing_facts = []
+        result.actual_missing_facts = ["fee_paid"]
+        result.fact_set_match = False
+        table = build_markdown_table([result])
+        self.assertIn("—→fee_paid", table)
 
 
 class TestCaseSuiteReport(unittest.TestCase):
@@ -214,6 +279,7 @@ class TestCaseSuiteReport(unittest.TestCase):
         self.assertTrue(report.table_path.exists())
         content = report.table_path.read_text(encoding="utf-8")
         self.assertIn("| id |", content)
+        self.assertIn("| missing |", content)
         self.assertIn("civil_service_allow", content)
 
     def test_mismatch_count_is_accurate(self) -> None:
@@ -225,7 +291,7 @@ class TestCaseSuiteReport(unittest.TestCase):
 class TestFullSuite(unittest.TestCase):
     def test_full_suite_all_cases_pass(self) -> None:
         reports = run_full_suite()
-        self.assertEqual(len(reports), 5, f"Expected 5 case reports, got {len(reports)}.")
+        self.assertEqual(len(reports), 6, f"Expected 6 case reports, got {len(reports)}.")
         total_mismatches = sum(r.mismatches for r in reports)
         self.assertEqual(
             total_mismatches,

@@ -11,6 +11,12 @@
   "mock_db_overrides": {},
   "expected_outcome": "ALLOW",
   "expected_reason_code": null,
-  "tags": ["positive", "db-resolved"],
+  "expected_missing_facts": [],
+  "gold_confidence": "low",
+  "gold_notes": "solver emitted missing facts on ALLOW: distance_contract, is_consumer; gold records empty set",
+  "tags": [
+    "positive",
+    "db-resolved"
+  ],
   "provenance": "ART-65 Wave 3a Stream X v2"
 }

@@ -9,5 +9,10 @@
     "applicant_is_not_parent": false,
     "emergency": true,
     "one_parent_unreachable": true
-  }
+  },
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "expected_missing_facts": [],
+  "gold_confidence": "high",
+  "gold_notes": ""
 }

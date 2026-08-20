@@ -11,6 +11,15 @@
   "mock_db_overrides": {},
   "expected_outcome": "UNVERIFIABLE_CLAIM",
   "expected_reason_code": "no_register",
-  "tags": ["uncertainty", "u3"],
+  "expected_missing_facts": [
+    "distance_contract",
+    "is_consumer"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "uncertainty",
+    "u3"
+  ],
   "provenance": "ART-65 Wave 3a Stream X v2"
 }

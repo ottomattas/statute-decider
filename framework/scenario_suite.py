@@ -11,13 +11,14 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
 from logic_levels import build_domain_artifact, build_intent_artifact
 from metadata import utc_timestamp
 from mock_db import load_mock_db
+from paper_outcomes import missing_facts_from_solution
 from reasoner import solve_case_bundle
 from schemas import (
     BlockReasonCode,
@@ -58,6 +59,9 @@ class SuiteScenario(BaseModel):
     mock_db_overrides: dict[str, bool | None] = Field(default_factory=dict)
     expected_outcome: SolverOutcome | None = None
     expected_reason_code: BlockReasonCode | None = None
+    expected_missing_facts: list[str] = Field(default_factory=list)
+    gold_confidence: Literal["high", "low"] = "high"
+    gold_notes: str = ""
     tags: list[str] = Field(default_factory=list)
     provenance: str = ""
 
@@ -81,6 +85,10 @@ class SuiteResult:
     outcome_match: bool
     reason_code_match: bool
     notes: str = ""
+    actual_missing_facts: list[str] = field(default_factory=list)
+    expected_missing_facts: list[str] = field(default_factory=list)
+    fact_set_match: bool = True
+    gold_confidence: str = "high"
 
 
 # ---------------------------------------------------------------------------
@@ -206,6 +214,11 @@ def run_suite_scenario(scenario_path: Path) -> SuiteResult:
 
     actual_outcome = solution.final_outcome
     actual_reason_code = solution.block_reason_code
+    actual_missing_facts = missing_facts_from_solution(solution)
+    expected_missing_facts = list(suite_sc.expected_missing_facts)
+    # Empty expected is gold-empty (ALLOW/DENY) or a legitimate empty NEED_*/UN*
+    # set; never a skip. Compare as sets either way.
+    fact_set_match = set(expected_missing_facts) == set(actual_missing_facts)
 
     outcome_match = (suite_sc.expected_outcome is None) or (actual_outcome == suite_sc.expected_outcome)
     reason_code_match = (suite_sc.expected_reason_code is None) or (
@@ -234,6 +247,10 @@ def run_suite_scenario(scenario_path: Path) -> SuiteResult:
         outcome_match=outcome_match,
         reason_code_match=reason_code_match,
         notes=notes,
+        actual_missing_facts=actual_missing_facts,
+        expected_missing_facts=expected_missing_facts,
+        fact_set_match=fact_set_match,
+        gold_confidence=suite_sc.gold_confidence,
     )
 
 
@@ -254,17 +271,29 @@ def _match_str(match: bool) -> str:
     return "YES" if match else "NO"
 
 
+def _compact_facts(ids: list[str]) -> str:
+    return ",".join(ids) if ids else "—"
+
+
+def _missing_facts_cell(result: SuiteResult) -> str:
+    """Compact missing-facts column: actual set, or expected→actual on mismatch."""
+    if result.fact_set_match:
+        return _compact_facts(result.actual_missing_facts)
+    return f"{_compact_facts(result.expected_missing_facts)}→{_compact_facts(result.actual_missing_facts)}"
+
+
 def build_markdown_table(results: list[SuiteResult]) -> str:
     """Render a Markdown table of expected-vs-actual results."""
-    header = "| id | description | expected | actual | match | notes |"
-    separator = "|----|-------------|----------|--------|-------|-------|"
+    header = "| id | description | expected | actual | match | missing | notes |"
+    separator = "|----|-------------|----------|--------|-------|---------|-------|"
     rows = [header, separator]
     for r in results:
         expected = _outcome_str(r.expected_outcome)
         actual = _outcome_str(r.actual_outcome)
         overall_match = r.outcome_match and r.reason_code_match
         rows.append(
-            f"| {r.scenario_name} | {r.description} | {expected} | {actual} | {_match_str(overall_match)} | {r.notes} |"
+            f"| {r.scenario_name} | {r.description} | {expected} | {actual} | "
+            f"{_match_str(overall_match)} | {_missing_facts_cell(r)} | {r.notes} |"
         )
     return "\n".join(rows) + "\n"
 
@@ -319,13 +348,14 @@ def run_case_suite(case_name: str, scenario_filter: str | None = None) -> CaseSu
 
 
 def run_full_suite(scenario_filter: str | None = None) -> list[CaseSuiteReport]:
-    """Run the suite across all five target domains."""
+    """Run the suite across the five target domains plus section_120_demo."""
     target_cases = [
         "civil_service_eligibility",
         "consumer_withdrawal",
         "land_tax_exemption",
         "personal_data_journalism",
         "building_permit",
+        "section_120_demo",
     ]
     reports: list[CaseSuiteReport] = []
     for case_name in target_cases:

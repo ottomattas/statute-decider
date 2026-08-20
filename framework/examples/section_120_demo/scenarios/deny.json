@@ -9,5 +9,10 @@
     "applicant_is_not_parent": true,
     "delegated_decision_right": false,
     "both_parents_consent": false
-  }
+  },
+  "expected_outcome": "DENY",
+  "expected_reason_code": "no_applicable_rules",
+  "expected_missing_facts": [],
+  "gold_confidence": "high",
+  "gold_notes": ""
 }

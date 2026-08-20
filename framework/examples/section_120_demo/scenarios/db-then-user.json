@@ -6,5 +6,12 @@
   "mock_db_file": "mock_db.json",
   "intent_assignments": {
     "emergency": null
-  }
+  },
+  "expected_outcome": "NEED_USER_INFO",
+  "expected_reason_code": "needs_user_info",
+  "expected_missing_facts": [
+    "emergency"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": ""
 }

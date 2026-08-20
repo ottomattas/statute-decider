@@ -14,6 +14,11 @@
   "mock_db_overrides": {},
   "expected_outcome": "ALLOW",
   "expected_reason_code": null,
-  "tags": ["positive"],
+  "expected_missing_facts": [],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "positive"
+  ],
   "provenance": "Supervisor meeting 2026-04-17"
 }

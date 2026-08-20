@@ -8,6 +8,14 @@
   "mock_db_overrides": {},
   "expected_outcome": "NEED_USER_INFO",
   "expected_reason_code": "needs_user_info",
-  "tags": ["needs-info"],
+  "expected_missing_facts": [
+    "journalism_ethics",
+    "public_interest"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "needs-info"
+  ],
   "provenance": "Supervisor meeting 2026-04-17"
 }

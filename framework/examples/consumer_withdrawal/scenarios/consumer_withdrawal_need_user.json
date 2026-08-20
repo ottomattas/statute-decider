@@ -14,6 +14,14 @@
   "mock_db_overrides": {},
   "expected_outcome": "NEED_USER_INFO",
   "expected_reason_code": "needs_user_info",
-  "tags": ["needs-info"],
+  "expected_missing_facts": [
+    "notice_sent_in_time",
+    "within_14_days"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "needs-info"
+  ],
   "provenance": "Supervisor meeting 2026-04-17"
 }

@@ -12,6 +12,13 @@
   },
   "expected_outcome": "NEED_DB_INFO",
   "expected_reason_code": "needs_db_info",
-  "tags": ["needs-info"],
+  "expected_missing_facts": [
+    "ee_citizen"
+  ],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "needs-info"
+  ],
   "provenance": "Supervisor meeting 2026-04-17"
 }

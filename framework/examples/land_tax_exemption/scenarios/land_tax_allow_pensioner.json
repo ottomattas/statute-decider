@@ -15,6 +15,12 @@
   "mock_db_overrides": {},
   "expected_outcome": "ALLOW",
   "expected_reason_code": null,
-  "tags": ["positive", "pensioner"],
+  "expected_missing_facts": [],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "positive",
+    "pensioner"
+  ],
   "provenance": "ART-65 Wave 3a Stream X v2"
 }

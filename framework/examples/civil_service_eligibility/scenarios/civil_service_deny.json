@@ -16,6 +16,11 @@
   "mock_db_overrides": {},
   "expected_outcome": "DENY",
   "expected_reason_code": "no_applicable_rules",
-  "tags": ["negative"],
+  "expected_missing_facts": [],
+  "gold_confidence": "high",
+  "gold_notes": "",
+  "tags": [
+    "negative"
+  ],
   "provenance": "Supervisor meeting 2026-04-17"
 }
