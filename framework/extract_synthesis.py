@@ -334,18 +334,30 @@ def synthesize_domain(
     Invalid rules are skipped; pass ``stats`` to recover ``dropped_rules``.
     """
     system_instruction, user_content = render_synthesis_prompts(law_text)
-    raw = complete_fn(
-        system_instruction=system_instruction,
-        user_content=user_content,
-        response_model=SynthesisResponse,
-        model=model,
-    )
-    if isinstance(raw, SynthesisResponse):
-        response = raw
-    elif isinstance(raw, Mapping):
-        response = SynthesisResponse.model_validate(raw)
+    try:
+        from providers import invoke_structured
+    except ImportError:
+        invoke_structured = None
+    if invoke_structured is not None:
+        response = invoke_structured(
+            complete_fn,
+            system=system_instruction,
+            user=user_content,
+            response_model=SynthesisResponse,
+        )
     else:
-        response = SynthesisResponse.model_validate(raw)
+        raw = complete_fn(
+            system_instruction=system_instruction,
+            user_content=user_content,
+            response_model=SynthesisResponse,
+            model=model,
+        )
+        if isinstance(raw, SynthesisResponse):
+            response = raw
+        elif isinstance(raw, Mapping):
+            response = SynthesisResponse.model_validate(raw)
+        else:
+            response = SynthesisResponse.model_validate(raw)
 
     run_metadata = ExtractionRunMetadata(
         generated_at_utc=utc_timestamp(),

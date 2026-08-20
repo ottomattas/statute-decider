@@ -469,3 +469,53 @@ def get_provider(name: str) -> Provider:
 
 def list_available_providers() -> list[str]:
     return [name for name in _PROVIDER_NAMES if get_provider(name).available()]
+
+
+def invoke_structured(
+    complete_fn,
+    *,
+    system: str,
+    user: str,
+    response_model: type[T],
+    temperature: float = 0.0,
+) -> T:
+    """Call a providers-style or Gemini-style complete() and return the parsed model.
+
+    Accepts ``complete(system=, user=)`` (possibly returning ``ProviderResult``)
+    or ``complete(system_instruction=, user_content=)`` returning a pydantic
+    instance. Extra kwargs such as ``model=`` are not forwarded: live adapters
+    pin the model on the provider instance.
+    """
+    try:
+        result = complete_fn(
+            system=system,
+            user=user,
+            response_model=response_model,
+            temperature=temperature,
+        )
+    except TypeError:
+        try:
+            result = complete_fn(
+                system_instruction=system,
+                user_content=user,
+                response_model=response_model,
+                temperature=temperature,
+            )
+        except TypeError:
+            result = complete_fn(
+                system_instruction=system,
+                user_content=user,
+                response_model=response_model,
+            )
+    if getattr(result, "skipped", False):
+        raise RuntimeError(getattr(result, "skip_reason", "") or "provider skipped")
+    parsed = getattr(result, "parsed", None)
+    if parsed is not None:
+        if isinstance(parsed, response_model):
+            return parsed
+        return response_model.model_validate(parsed)
+    if isinstance(result, response_model):
+        return result
+    if isinstance(result, dict):
+        return response_model.model_validate(result)
+    return response_model.model_validate(result)

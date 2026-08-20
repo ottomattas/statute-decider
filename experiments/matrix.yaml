@@ -1,0 +1,24 @@
+# Overnight smoke matrix (21 Aug morning). Cap is EUR.
+# Cheap models only. Missing API keys skip that provider.
+# Results are SMOKE — UNVALIDATED.
+
+label: smoke-2026-08-20
+budget_eur: 10
+repeats: 1
+providers:
+  - gemini
+  - openai
+  - anthropic
+  - deepseek
+
+experiment_ii:
+  enabled: true
+  all_gold: true
+
+experiment_i:
+  enabled: true
+  condition: synthesis
+  cases:
+    - consumer_withdrawal
+    - civil_service_eligibility
+    - section_120_demo

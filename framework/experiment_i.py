@@ -16,32 +16,93 @@ from encoding_scorer import (
     semantic_equivalence,
 )
 from extract_synthesis import resolve_complete_fn, synthesize_domain
+from llm import extract_domain_artifact
 from logic_levels import build_domain_artifact
 from use_case_files import load_use_case_from_dir
 
 CompleteFn = Callable[..., Any]
 
 
+def _id_set_prf(gold: set[str], pred: set[str]) -> tuple[float, float, float]:
+    """Precision, recall, F1 over identifier sets. Empty/empty = 1."""
+    if not gold and not pred:
+        return 1.0, 1.0, 1.0
+    tp = len(gold & pred)
+    precision = (tp / len(pred)) if pred else 1.0
+    recall = (tp / len(gold)) if gold else 1.0
+    f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0
+    return precision, recall, f1
+
+
 def run_selection_condition(
     case_dir: str | Path,
-    complete_fn: CompleteFn | None = None,
+    complete_fn: CompleteFn,
 ) -> dict[str, Any]:
-    """Ablation stub: catalog ID selection via ``llm.extract_domain_artifact``.
+    """Ablation: catalog ID selection via ``llm.extract_domain_artifact``.
 
-    Does not call a live model. The overnight runner should invoke
-    ``extract_domain_artifact(..., generator=complete_fn)`` itself. Kept here
-    so the two experiment-(i) conditions share a module without mixing
-    catalog-held-out synthesis into the existing extractor.
+    The model sees the gold catalogs (existing step-02 prompts) and returns
+    claim/rule ids. Score is id-set P/R/F1 against ``use_case.json``.
     """
-    del complete_fn  # injectable at the live call site, not here
+    case_path = Path(case_dir).resolve()
+    use_case = load_use_case_from_dir(case_path)
+    law_path = case_path / "law.txt"
+    law_text = law_path.read_text(encoding="utf-8")
+
+    def generator(*, system_instruction, user_content, response_model, **kwargs):
+        try:
+            from providers import invoke_structured
+        except ImportError:
+            return complete_fn(
+                system_instruction=system_instruction,
+                user_content=user_content,
+                response_model=response_model,
+                **kwargs,
+            )
+        return invoke_structured(
+            complete_fn,
+            system=system_instruction,
+            user=user_content,
+            response_model=response_model,
+            temperature=float(kwargs.get("temperature") or 0.0),
+        )
+
+    artifact = extract_domain_artifact(
+        use_case_dir=case_path,
+        law_text=law_text,
+        logic_level=use_case.default_logic_level,
+        generator=generator,
+        source_path=law_path,
+    )
+    gold_claims = {claim.claim_id for claim in use_case.claims}
+    gold_rules = {rule.rule_id for rule in use_case.rules}
+    pred_claims = {claim.claim_id for claim in artifact.claims}
+    pred_rules = {rule.rule_id for rule in artifact.rules}
+    claim_p, claim_r, claim_f1 = _id_set_prf(gold_claims, pred_claims)
+    rule_p, rule_r, rule_f1 = _id_set_prf(gold_rules, pred_rules)
     return {
         "condition": "selection",
-        "case_dir": str(Path(case_dir)),
-        "status": "stub",
-        "note": (
-            "Uses existing llm.extract_domain_artifact (gold catalog ids). "
-            "Not invoked live from this module."
-        ),
+        "case_dir": str(case_path),
+        "case_title": use_case.title,
+        "n_gold_claims": len(gold_claims),
+        "n_pred_claims": len(pred_claims),
+        "n_gold_rules": len(gold_rules),
+        "n_pred_rules": len(pred_rules),
+        "claim_precision": claim_p,
+        "claim_recall": claim_r,
+        "claim_f1": claim_f1,
+        "rule_precision": rule_p,
+        "rule_recall": rule_r,
+        "rule_f1": rule_f1,
+        "alignment_f1": (claim_f1 + rule_f1) / 2.0,
+        "equivalent": None,
+        "skipped": False,
+        "n_agree": 0,
+        "n_rows": 0,
+        "equivalence_rate": None,
+        "needs_audit": False,
+        "unmatched_gold": sorted(gold_claims - pred_claims | gold_rules - pred_rules),
+        "unmatched_pred": sorted(pred_claims - gold_claims | pred_rules - gold_rules),
+        "dropped_rules": 0,
     }
 
 
@@ -128,20 +189,25 @@ def render_markdown(scores: Mapping[str, Any] | Sequence[Mapping[str, Any]]) -> 
         "",
         "Catalog-held-out boolean synthesis scored by lexical claim alignment "
         "and truth-table paper-outcome equivalence. Selection-mode ablation "
-        "uses existing `llm.extract_domain_artifact` (not run from this table).",
+        "scores catalog-id F1 via existing `llm.extract_domain_artifact`.",
         "",
         "| case | condition | align F1 | equivalent | rate | n_agree/n_rows | audit | dropped rules |",
         "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in rows:
         case = Path(str(row.get("case_dir") or row.get("case_title") or "")).name
-        if row.get("status") == "stub":
-            lines.append(
-                f"| {case or '—'} | selection | — | — | — | — | — | — |"
-            )
-            continue
         f1 = row.get("alignment_f1")
         f1_cell = f"{f1:.2f}" if isinstance(f1, float) else str(f1 or "—")
+        if row.get("condition") == "selection":
+            claim_f1 = row.get("claim_f1")
+            rule_f1 = row.get("rule_f1")
+            claim_cell = f"{claim_f1:.2f}" if isinstance(claim_f1, float) else "—"
+            rule_cell = f"{rule_f1:.2f}" if isinstance(rule_f1, float) else "—"
+            lines.append(
+                f"| {case or '—'} | selection | {f1_cell} | id-set "
+                f"(claim F1 {claim_cell}, rule F1 {rule_cell}) | — | — | — | — |"
+            )
+            continue
         skipped = bool(row.get("skipped"))
         equivalent = "skipped" if skipped else ("yes" if row.get("equivalent") else "no")
         rate = row.get("equivalence_rate")

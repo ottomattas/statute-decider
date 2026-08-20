@@ -134,6 +134,34 @@ Alternative law files:
 - `framework/examples/alternative_laws/118032026007.txt`
 - `framework/examples/alternative_laws/121112025003.txt`
 
+## Experiment harness
+
+Matrix config: `experiments/matrix.yaml`. Overnight cap: `FRAMEWORK_BUDGET_EUR` (default 10).
+
+```bash
+# Plan only: which providers have keys, how many gold scenarios
+framework/venv/bin/python framework/run_experiments.py --config experiments/matrix.yaml --dry-run
+
+# Solver runtime rows only (no API)
+framework/venv/bin/python framework/run_experiments.py --config experiments/matrix.yaml --runtime-only
+
+# Full smoke: runtime + LLM-only + synthesis extraction, halt at the EUR cap
+framework/venv/bin/python framework/run_experiments.py --config experiments/matrix.yaml
+```
+
+Markdown summaries land in `experiments/results/` (committed). JSONL rows are gitignored. Label every overnight table **SMOKE — UNVALIDATED**.
+
+Step 2 catalog-held-out synthesis:
+
+```bash
+python framework/02_extract_domain.py \
+  --use-case-dir framework/examples/section_120_demo \
+  --law-file framework/examples/section_120_demo/law.txt \
+  --condition synthesis \
+  --provider gemini \
+  --out /tmp/synthesized.domain.json
+```
+
 ## Test
 
 ```bash
