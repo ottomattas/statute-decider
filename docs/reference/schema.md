@@ -67,8 +67,7 @@ Trace rendering (`framework/logic_levels.py`) prefixes any uncertainty-specific 
 ### Transcript provenance
 
 Each shipped U-code traces to a specific moment in the 2026-04-10, 14, or 17 supervision
-transcripts. Timestamps reference `wip/supervision_meeting_transcripts/*.vtt`
-(kept out of the public tree per `.cursor/rules/public_repo_hygiene.mdc`).
+transcripts (kept out of this repository).
 
 | Code | Transcript anchor |
 |------|-------------------|

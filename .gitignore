@@ -1,10 +1,9 @@
-# Workspace for work-in-progress files
 wip/
 
-# Generated experiment runs (supervisor_demo.py)
+# Generated experiment runs
 experiments/output/
 
-# Project venvs
+# Virtualenvs
 venv/
 framework/venv/
 
@@ -17,5 +16,6 @@ __pycache__/
 # macOS
 .DS_Store
 
-# Local secrets (LLM API keys, etc.); use poc/.env.example as a template
+# Local secrets (see .env.example)
 .env
+framework/.env

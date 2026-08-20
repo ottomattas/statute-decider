@@ -4,10 +4,8 @@
 
 Step 00 turns short natural-language utterances from the applicant (or an
 intake officer) into a structured `UserInputSession` that feeds the rest
-of the `framework` pipeline. It is the entry point for Track C of the
-post-17 Apr plan (Linear ART-66, parent ART-60): a separate workstream
-from "law → rules", matching Priit's 17 Apr ask to start deterministic
-and layer LLMs on top.
+of the `framework` pipeline. It is a separate workstream
+from "law → rules": start deterministic, then layer LLMs on top.
 
 The deterministic path is authoritative and must not silently deny: any
 claim the utterances do not ground is left unresolved, which the reasoner

@@ -92,10 +92,10 @@ The following are explicitly out of scope for the current phase:
 | Exclusion | Justification |
 |---|---|
 | Full non-monotonic reasoning (defeasible logic, well-founded semantics) | Priit's 2026-04-14 decision: assume monotonic first; a non-monotonic extension would require a substantially different logic treatment (~25:28–26:35). Locked in plan §7. |
-| Court-decision modelling | The pipeline targets administrative eligibility and consent decisions, not adversarial judicial proceedings. No citation base for court-decision modelling exists in `paper/bibliography.bib`. |
+| Court-decision modelling | The pipeline targets administrative eligibility and consent decisions, not adversarial judicial proceedings. |
 | Building a machine-readable law model from scratch | The pipeline extracts from existing statutory text via LLM; it does not author a new formal legal ontology. |
 | End-to-end evaluation over a production statutory corpus | The current scenario suite (~50 cases) is a research-grade harness; deployment claims are explicitly disclaimed. |
-| LLM-as-final-decision-maker | Architectural invariant per `project_knowledge.mdc`; the solver retains final authority unconditionally. |
+| LLM-as-final-decision-maker | Architectural invariant: the solver retains final authority unconditionally. |
 
 ---
 
@@ -114,7 +114,7 @@ The following are explicitly out of scope for the current phase:
 
 ## References
 
-Plan: `.cursor/plans/post-17apr-research-push_a0104936.plan.md` §1, §7. ADR
-0003: `docs/adr/0003-poc3-proposition-first-staging.md`. ADR 0004:
-`docs/adr/0004-reasoner-reselection.md` (pending). Rules:
-`.cursor/rules/project_knowledge.mdc`. Paper: `paper/main.tex` §3.4.
+Plan: post-17 Apr research push. ADR 0003:
+`docs/adr/0003-poc3-proposition-first-staging.md`. ADR 0004:
+`docs/adr/0004-reasoner-reselection.md`. Manuscript (separate repo):
+`MattasJarvTammet-2026-NeSy-Statute-Logic`.

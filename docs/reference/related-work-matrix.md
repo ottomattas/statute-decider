@@ -12,8 +12,8 @@ current `framework` CLI pipeline. The four steps are:
 - **Step 4 — Trace / explanation:** produce an auditable, human-readable account of
   how the verdict was reached.
 
-Bibliography keys reference `paper/bibliography.bib`. Use `\citet{key}` /
-`\citep{key}` (natbib) in the manuscript.
+Bibliography keys for the current manuscript live in the paper repository
+`MattasJarvTammet-2026-NeSy-Statute-Logic` (`bibliography.bib`).
 
 ---
 

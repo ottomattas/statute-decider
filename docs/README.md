@@ -8,14 +8,13 @@ This directory is the canonical home for project documentation.
 2. `reference/schema.md` for the public object model.
 3. `reference/reasoner.md` for staged evaluation semantics.
 4. `guides/development.md` for local setup and validation.
-5. `guides/linear_workflow.md` for tracker-facing delivery workflow.
-6. `adr/` for durable architecture decisions.
+5. `adr/` for durable architecture decisions.
 
 ## Canonical structure
 
 - `architecture/` — system structure, data flow, and design rationale
 - `reference/` — public schema and reasoner semantics; see also `reference/nl-extraction.md` for the step-00 user-input extractor
-- `guides/` — development and workflow guides
+- `guides/` — local setup and validation
 - `adr/` — architecture decision records
 
 ## Maintenance rules
