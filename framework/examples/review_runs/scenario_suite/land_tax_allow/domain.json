@@ -1,0 +1,182 @@
+{
+  "artifact_type": "domain",
+  "logic_level": "propositional",
+  "title": "Maamaksuseadus § 11 demo",
+  "law_text": "§ 11. Maksusoodustused\n\n(1) Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada käesoleva paragrahvi lõikes 1^1 sätestatud tingimustel kodualuse maa maksusoodustuse kuni 1000 eurot hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks.\n\n(1^1) Kodualuse maana käsitatakse maa omaniku omandis olevat või käesoleva seaduse §-s 10 nimetatud maa kasutaja kasutuses olevat maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa, või maatulundusmaa õuemaa kõlvikut, kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.\n\n(5) Kohaliku omavalitsuse üksuse volikogu võib hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks käesoleva paragrahvi lõikes 1^1 nimetatud tingimustel määrata täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele:\n1) riikliku pensionikindlustuse seaduse alusel pensioni saajad;\n2) isikud, kellel on töövõimetoetuse seaduse alusel tuvastatud osaline või puuduv töövõime.\n\n(7) Käesoleva paragrahvi lõikes 5 või 6 nimetatud täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "allow_outcome_id": "exemption_allowed",
+  "deny_outcome_id": "exemption_denied",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "residential_land",
+      "lowered_atom": "RESIDENTIAL_LAND",
+      "label": "Land's intended use is residential (elamumaa)",
+      "description": "The cadastre records the land's intended use as residential.",
+      "source_type": "db",
+      "formal_text": "RESIDENTIAL_LAND",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "clause_text": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa ...",
+          "note": "Residential land-use category for home-land exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "primary_residence_registered",
+      "lowered_atom": "PRIMARY_RESIDENCE",
+      "label": "Owner's primary residence is registered on the parcel",
+      "description": "The population registry lists the applicant's primary residence on the parcel.",
+      "source_type": "db",
+      "formal_text": "PRIMARY_RESIDENCE",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "clause_text": "... kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.",
+          "note": "Population-registry residence condition."
+        }
+      ]
+    },
+    {
+      "claim_id": "applicant_is_owner",
+      "lowered_atom": "OWNER",
+      "label": "Applicant owns the parcel",
+      "description": "The land registry shows the applicant as the current owner.",
+      "source_type": "db",
+      "formal_text": "OWNER",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "clause_text": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad ...",
+          "note": "Ownership precondition for home-land exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "receives_pension",
+      "lowered_atom": "PENSIONER",
+      "label": "Applicant receives a state pension",
+      "description": "The social-insurance registry records the applicant as a state-pension recipient.",
+      "source_type": "db",
+      "formal_text": "PENSIONER",
+      "law_references": [
+        {
+          "clause_id": "mms_11_5_1",
+          "clause_title": "§ 11 lg 5 p 1",
+          "clause_text": "... täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele: 1) riikliku pensionikindlustuse seaduse alusel pensioni saajad;",
+          "note": "Pensioner target group for the supplementary exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "municipality_exemption_set",
+      "lowered_atom": "EXEMPTION_SET",
+      "label": "Municipality has set the exemption",
+      "description": "The land-tax information system records a § 11(1)/(5) exemption set by the local council.",
+      "source_type": "db",
+      "formal_text": "EXEMPTION_SET",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1",
+          "clause_title": "§ 11 lg 1",
+          "clause_text": "Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada ... kodualuse maa maksusoodustuse ...",
+          "note": "Local-council act is required to activate the exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "application_submitted",
+      "lowered_atom": "APPLICATION",
+      "label": "Supplementary-exemption application has been submitted",
+      "description": "Applicant confirms that the § 11(7) application has been submitted in the required form.",
+      "source_type": "user",
+      "formal_text": "APPLICATION",
+      "law_references": [
+        {
+          "clause_id": "mms_11_7",
+          "clause_title": "§ 11 lg 7",
+          "clause_text": "Täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.",
+          "note": "User-provided confirmation of submitted application."
+        }
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "exemption_allowed",
+      "lowered_atom": "ALLOW_EXEMPTION",
+      "label": "Exemption is granted",
+      "formal_text": "ALLOW_EXEMPTION"
+    },
+    {
+      "outcome_id": "exemption_denied",
+      "lowered_atom": "DENY_EXEMPTION",
+      "label": "Exemption is refused",
+      "formal_text": "DENY_EXEMPTION"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_home_land_exemption",
+      "kind": "allow_if_all",
+      "label": "Home-land exemption under § 11 lg 1.",
+      "when_claim_ids": [
+        "residential_land",
+        "primary_residence_registered",
+        "applicant_is_owner",
+        "municipality_exemption_set"
+      ],
+      "formal_text": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION",
+      "lowered_formula": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION",
+      "target_outcome_id": "exemption_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "mms_11_1",
+          "clause_title": "§ 11 lg 1",
+          "clause_text": "Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada käesoleva paragrahvi lõikes 1^1 sätestatud tingimustel kodualuse maa maksusoodustuse kuni 1000 eurot hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks.",
+          "note": "Baseline home-land exemption path."
+        }
+      ]
+    },
+    {
+      "rule_id": "allow_pensioner_supplement",
+      "kind": "allow_if_all",
+      "label": "Pensioner supplementary exemption under § 11 lg 5 p 1.",
+      "when_claim_ids": [
+        "residential_land",
+        "primary_residence_registered",
+        "applicant_is_owner",
+        "receives_pension",
+        "municipality_exemption_set",
+        "application_submitted"
+      ],
+      "formal_text": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION",
+      "lowered_formula": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION",
+      "target_outcome_id": "exemption_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "mms_11_5_1",
+          "clause_title": "§ 11 lg 5 p 1",
+          "clause_text": "Kohaliku omavalitsuse üksuse volikogu võib ... määrata täiendava maksusoodustuse ... pensioni saajad;",
+          "note": "Supplementary pensioner path."
+        }
+      ]
+    }
+  ]
+}

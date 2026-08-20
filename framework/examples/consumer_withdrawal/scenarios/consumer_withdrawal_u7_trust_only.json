@@ -1,0 +1,16 @@
+{
+  "name": "consumer_withdrawal_u7_trust_only",
+  "description": "Consumer status and distance-contract flag come from a trust-only trader self-report; allow_distance_withdrawal fires but the facts are unverifiable -> U7 UNVERIFIABLE_CLAIM (trust_only).",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db_u7_trust_only.json",
+  "intent_assignments": {
+    "within_14_days": true,
+    "notice_sent_in_time": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "UNVERIFIABLE_CLAIM",
+  "expected_reason_code": "trust_only",
+  "tags": ["uncertainty", "u7"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

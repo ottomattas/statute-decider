@@ -1,0 +1,16 @@
+{
+  "name": "consumer_withdrawal_allow_via_db",
+  "description": "Consumer status and distance-contract flag resolve via DB; user timely-dispatch facts are pinned true, so ALLOW fires via DB lookup.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "within_14_days": true,
+    "notice_sent_in_time": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive", "db-resolved"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

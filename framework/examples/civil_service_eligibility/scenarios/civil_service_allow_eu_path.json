@@ -1,0 +1,21 @@
+{
+  "name": "civil_service_allow_eu_path",
+  "description": "EU-citizen applicant (not Estonian) with secondary education and language proficiency resolves to ALLOW via § 14 lg 2.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "ee_citizen": false,
+    "eu_citizen": true,
+    "secondary_education": true,
+    "speaks_estonian": true,
+    "full_capacity": true,
+    "criminal_conviction": false,
+    "no_conflict_declared": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive", "eu-path"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

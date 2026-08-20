@@ -1,0 +1,13 @@
+{
+  "name": "journalism_need_user",
+  "description": "CMS confirms journalistic purpose; public_interest and ethics_ok are editorial judgements not yet provided -> NEED_USER_INFO.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {},
+  "mock_db_overrides": {},
+  "expected_outcome": "NEED_USER_INFO",
+  "expected_reason_code": "needs_user_info",
+  "tags": ["needs-info"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

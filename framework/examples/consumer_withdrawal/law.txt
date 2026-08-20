@@ -1,0 +1,16 @@
+§ 53. Sidevahendi abil sõlmitud lepingu tähendus
+
+(4) Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on:
+1) teenuse osutamine või muu kestva soorituse tegemine, kui ettevõtja lepingust tulenevad kohustused on täielikult täidetud ...;
+2) sellise asja üleandmine, mis on valmistatud, arvestades lepingupooleks oleva tarbija isiklikke vajadusi;
+3) sellise asja üleandmine, mis on valmistatud tarbija esitatud tingimuste kohaselt;
+4) sellise asja üleandmine, mis rikneb või vananeb kiiresti;
+4^1) sellise suletud pakendis asja üleandmine, mis ei ole kõlblik tagasisaatmiseks tervisekaitse või hügieenilistel põhjustel ning kui see on pärast kohaletoimetamist avatud.
+
+§ 56. Õigus lepingust taganeda
+
+(1) Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.
+
+(2^1) Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.
+
+(2^2) Tarbija võib lepingust taganeda, kasutades taganemisavalduse tüüpvormi või esitades muu ühemõttelise taganemisavalduse.

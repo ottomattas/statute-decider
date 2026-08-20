@@ -1,0 +1,99 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "I bought a laptop from the e-pood 5 days ago and it's a standard catalogue model (not a tellimustöö). I am a private tarbija, the lepingu sõlmiti sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:51+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/request_allow.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "is_consumer",
+      "lowered_atom": "IS_CONSUMER",
+      "label": "Applicant is a consumer",
+      "description": "The trader's CRM records the counter-party as a consumer (non-professional).",
+      "source_type": "db",
+      "formal_text": "IS_CONSUMER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I bought a laptop from the e-pood 5 days ago and it's a standard catalogue model (not a tellimustöö). I am a private tarbija, the lepingu sõlmiti sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "distance_contract",
+      "lowered_atom": "DISTANCE_CONTRACT",
+      "label": "Contract was concluded by means of distance communication",
+      "description": "The order form stored by the trader marks the contract as a distance sale (e-shop, phone, etc.).",
+      "source_type": "db",
+      "formal_text": "DISTANCE_CONTRACT",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I bought a laptop from the e-pood 5 days ago and it's a standard catalogue model (not a tellimustöö). I am a private tarbija, the lepingu sõlmiti sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "excluded_category",
+      "lowered_atom": "EXCLUDED_CATEGORY",
+      "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+      "description": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
+      "source_type": "db",
+      "formal_text": "EXCLUDED_CATEGORY",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": [
+        {
+          "snippet": "I bought a laptop from the e-pood 5 days ago and it's a standard catalogue model (not a tellimustöö). I am a private tarbija, the lepingu sõlmiti sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "within_14_days",
+      "lowered_atom": "WITHIN_14_DAYS",
+      "label": "The 14-day withdrawal period is still running",
+      "description": "Consumer confirms that fewer than 14 days have elapsed since receipt of the goods / conclusion of the contract.",
+      "source_type": "user",
+      "formal_text": "WITHIN_14_DAYS",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I bought a laptop from the e-pood 5 days ago and it's a standard catalogue model (not a tellimustöö). I am a private tarbija, the lepingu sõlmiti sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "notice_sent_in_time",
+      "lowered_atom": "NOTICE_SENT",
+      "label": "Withdrawal notice has been sent in time",
+      "description": "Consumer confirms that the withdrawal notice was dispatched to the trader before the 14-day period expired.",
+      "source_type": "user",
+      "formal_text": "NOTICE_SENT",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I bought a laptop from the e-pood 5 days ago and it's a standard catalogue model (not a tellimustöö). I am a private tarbija, the lepingu sõlmiti sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ]
+}

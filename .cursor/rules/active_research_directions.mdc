@@ -1,0 +1,14 @@
+---
+description: Active research directions and framing for the PhD project.
+alwaysApply: true
+---
+# Active research directions
+
+- Keep the repo, schemas, and core code use-case agnostic. The current worked example is replaceable and must not define the architecture.
+- Treat intent detection as part of a broader neurosymbolic perception and scenario-extraction step, not as standalone label classification.
+- Prioritize provenance and contextual grounding for extracted intents and facts.
+- One central research question is whether explicit rule representations adapt better to changing laws and processes than hardcoded scripts.
+- Another central research question is whether realistic decision problems contain useful Horn-like substructures, connecting this project to prior Horn-vs-Non-Horn SAT results.
+- Process simplification or step compression is an applied usefulness angle, not the main scientific focus.
+- When designing extraction workflows, prefer staged rule discovery, normalization, and validation rather than one-shot formalization.
+- For framing, prefer scoped terms like domain model or dynamic knowledge representation unless broader world-model claims are specifically justified.

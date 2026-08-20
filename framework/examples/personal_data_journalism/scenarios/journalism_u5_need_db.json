@@ -1,0 +1,20 @@
+{
+  "name": "journalism_u5_need_db",
+  "description": "DB override removes journalistic_purpose; both allow rules stall waiting for DB information with no source-unavailable flag -> U5 NEED_DB_INFO.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "public_interest": true,
+    "journalism_ethics": true,
+    "excessive_harm": false
+  },
+  "mock_db_overrides": {
+    "journalistic_purpose": null,
+    "subject_consent": null
+  },
+  "expected_outcome": "NEED_DB_INFO",
+  "expected_reason_code": "needs_db_info",
+  "tags": ["needs-info", "u5"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

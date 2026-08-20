@@ -1,0 +1,94 @@
+# Linear and WIP workflow
+
+## Tracker usage
+
+- Treat the connected issue tracker (typically Linear) as the single source of truth for hierarchy, labels, states, and issue structure.
+- Do not store private tracker project names, issue IDs, team keys, or status snapshots in committed repo files.
+- When planning or syncing from a transcript, fetch the current structure from the tracker instead of relying on copied identifiers in the repo.
+
+## Lane ordering (mirror POC-first in Linear)
+
+- **Repo intent (current phase):** the active implementation now lives directly in **`framework/`**, with examples and runnable demos under `framework/examples/`. Sequence implementation work there before wider paper-writing work unless a named issue overrides (see root **`AGENTS.md`** and **`session_priorities.mdc`**).
+- **Mirror that order in Linear** without embedding private metadata in the repo:
+- Use **labels** such as `lane:framework`, `lane:paper`, and `lane:workflow` (or one team-specific equivalent) so boards and filters show lane at a glance.
+- Split work into **separate issues** for implementation, docs, and paper tasks so priority is visible without widening a single issue.
+- Prefer **Todo / In Progress** to emphasize **`lane:framework`** issues for the runnable implementation; park later paper work in **Backlog** or later cycles unless explicitly parallel.
+
+## Guardrails (keeping everything in sync)
+
+- The tracker is authoritative for issue hierarchy, labels, states, and which issues exist.
+- This rule file should stay public-safe: keep it focused on reusable workflow guidance, not private tracker metadata.
+- Repo and docs stay in sync by: (1) scoping work to tracker issues the user names, (2) updating those issues when work is done, (3) updating canonical docs under `docs/` in the same work unit when schema, reasoner, or workflow semantics change.
+- When the runtime vocabulary changes, update the relevant project/issue descriptions so the tracker uses the same executable terms as the repo (for example `World`, `Case`, `Agent`, `Decision`, `Rule`).
+
+## Keeping the tracker in sync
+
+1. **When starting a task:** If the user or context mentions a tracker issue, treat that issue as the scope. List issues for the relevant project when planning; move the issue to the appropriate active state when work begins.
+2. **When finishing work:** Update the issue: move it to the appropriate next state and optionally add a short comment or link (e.g. commit, file path).
+3. **Before/after supervision meetings:** Move 3–5 issues to **Todo** or **In Progress** for the next meeting; remove **next-meeting** from done items and add it to what you will discuss next.
+
+## Keeping issues executable
+
+- Prefer issues that map cleanly to one layer of the runtime: world-model extraction, case-state extraction, decision execution, evaluation/docs, or research framing.
+- When a new conceptual boundary appears, create a separate issue instead of silently widening an active one. Example: treat world-evolution mechanics separately from current decision-time execution.
+- Keep the active queue small enough to steer work: normally 3–5 issues in **Todo** or **In Progress**.
+
+## Delivery hygiene (not roadmap backlog)
+
+- Treat recurring execution standards such as **venv use**, **testing**, **docs updates**, and **signed commits when requested** as a working agreement, not as the main PhD roadmap.
+- For framework code work: use `framework/venv`, run the repo-root validation commands (`python -m unittest discover -s framework/tests -v` and targeted scenario runs as needed), update docs when schema/reasoner/layout changes, and only create a commit when the user explicitly asks after validation or has requested phase commits for the current rewrite.
+- Create a dedicated tracker issue only when the workflow itself needs improvement (tooling, automation, rule changes), not for every routine hygiene step.
+
+## Automation contract
+
+- For autonomous or cloud-agent execution, prefer issues that follow the tracker-side issue contract and the local template `.cursor/templates/AGENT_READY_ISSUE_TEMPLATE.md`.
+- A task should not be labeled `agent-ready` until it has: objective, allowed scope, out-of-scope boundaries, acceptance criteria, validation commands, stop conditions, and a clear handoff format.
+- Use `.cursor/runbooks/CLOUD_AGENT_RUNBOOK.md` for repo-specific cloud-agent policy (secrets, branch naming, validation, review, and red lines).
+
+## Automation taxonomy
+
+- `agent-ready`: concretely specified and safe for bounded autonomous execution.
+- `safe-autonomy`: low-risk task suitable for cloud agents or similar automation.
+- `needs-human-decision`: must stop for a human checkpoint before semantics, framing, or scope change.
+- `research-open-ended`: novelty-heavy or underspecified research work; do not delegate without strong guidance.
+- `ci-required`: handoff is not complete until standardized validation passes.
+
+## Idea capture and resurfacing
+
+- Keep one tracker document as an **idea inbox / parking lot** for thoughts that are not yet ready to become issues.
+- For each idea, record: **area** (`code`, `paper`, `workflow`, `ux/reasoning-trace`), **why it matters**, **trigger for revisit**, and the likely next artefact (`issue`, `doc`, `paper section`, `experiment`).
+- Review that idea document when planning a new session and before/after supervision meetings; promote ripe items into issues or repo docs at that point.
+- Keep the portable assistant context in `.cursor/context/PHD_CONTEXT_PACK.md`. Treat it as a compact public-safe summary for agents; keep detailed state in the tracker.
+
+## WIP and supervision transcripts
+
+- **Location:** a gitignored supervision transcript folder under `wip/`. Transcripts are typically `.docx` files.
+- **When the user adds new transcripts or asks to “check wip” or “sync from transcripts”:**
+  1. List the transcript folder and identify new or updated files (by name or mtime if available).
+  2. If possible, extract or summarise content (e.g. unzip .docx and read `word/document.xml` for text, or ask the user for a short summary).
+  3. In the tracker: create or update a document with a short summary of decisions, action items, and affected issues.
+  4. Create or update **issues** as needed: new tasks from the meeting → new issues under the right epic; changes to scope or priorities → update descriptions or labels (e.g. `next-meeting`).
+- **If transcript content is not readable (e.g. binary only):** Prompt the user to paste a short summary or key decisions; then create/update the tracker document and issues from that.
+
+## Workflow summary
+
+- **States:** **Backlog** → **Todo** / **next-meeting** → **In Progress** → **In Review** → **Done**.
+- **Scope:** Constrain implementation and docs to the **acceptance criteria** of the referenced tracker issue(s); suggest new issues only when something clearly out of scope is required.
+- **Two sync layers:** after supervision or planning changes, update both the active paper/project layer and the thesis-level tracker layer when the change affects paper status, thesis claims, evidence gaps, or durable research direction.
+
+### Session checklist
+
+- **Start:** User names 1–3 issues as the scope for this session; filter work to those.
+- **During:** Keep changes clearly mappable to those issues; if we discover extra work, propose new issues instead of expanding scope silently.
+- **End:** For each affected issue, update state and add a short comment with what changed and where (commit, key files) when a major phase lands.
+
+### Transcript checklist
+
+- User drops a new `.docx` into the gitignored transcript area under `wip/` and says something like “update the project based on the latest transcript”.
+- Agent reads/summarises the latest transcript and:
+  - Creates/updates a tracker document with the distilled meeting outcome.
+  - Updates existing issues (descriptions, labels, state) and creates new ones for clear new tasks.
+  - Marks 3–5 issues as `next-meeting` / moves them into **Todo** for the next supervision.
+- Then, if the meeting changed thesis-level direction:
+  - Add distilled decisions to the thesis-level decision log in the tracker.
+  - Update the public-safe context pack when durable direction changes.

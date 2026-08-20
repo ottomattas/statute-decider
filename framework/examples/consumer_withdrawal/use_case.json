@@ -1,0 +1,161 @@
+{
+  "title": "Võlaõigusseadus §§ 53 lg 4, 56 lg 1 demo",
+  "description": "Consumer right of withdrawal from a distance contract under VÕS § 56 lg 1, with § 53 lg 4 exclusions.",
+  "default_logic_level": "propositional",
+  "claims": [
+    {
+      "claim_id": "is_consumer",
+      "lowered_atom": "IS_CONSUMER",
+      "label": "Applicant is a consumer",
+      "description": "The trader's CRM records the counter-party as a consumer (non-professional).",
+      "source_type": "db",
+      "propositional": "IS_CONSUMER",
+      "predicate": "IsConsumer(party)",
+      "higher_order": "IsConsumer(party)",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "note": "Only consumers enjoy the withdrawal right."
+        }
+      ],
+      "request_cue_groups": [["tarbija", "consumer"]],
+      "law_cue_groups": [["tarbija"]]
+    },
+    {
+      "claim_id": "distance_contract",
+      "lowered_atom": "DISTANCE_CONTRACT",
+      "label": "Contract was concluded by means of distance communication",
+      "description": "The order form stored by the trader marks the contract as a distance sale (e-shop, phone, etc.).",
+      "source_type": "db",
+      "propositional": "DISTANCE_CONTRACT",
+      "predicate": "DistanceContract(contract)",
+      "higher_order": "DistanceContract(contract)",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "... sidevahendi abil sõlmitud lepingust ...",
+          "note": "Withdrawal only applies to distance contracts."
+        }
+      ],
+      "request_cue_groups": [["sidevahendi", "e-pood", "distance contract", "e-shop"]],
+      "law_cue_groups": [["sidevahendi"]]
+    },
+    {
+      "claim_id": "excluded_category",
+      "lowered_atom": "EXCLUDED_CATEGORY",
+      "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+      "description": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
+      "source_type": "db",
+      "propositional": "EXCLUDED_CATEGORY",
+      "predicate": "ExcludedCategory(goods)",
+      "higher_order": "ExcludedCategory(goods)",
+      "law_references": [
+        {
+          "clause_id": "vos_53_4",
+          "clause_title": "§ 53 lg 4",
+          "clause_text": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "note": "Category-based exclusion blocks the withdrawal right."
+        }
+      ],
+      "request_cue_groups": [["tellimustöö", "custom-made", "kiirestiriknev", "perishable", "hügieen"]],
+      "law_cue_groups": [["valmistatud", "rikneb", "hügieen"]]
+    },
+    {
+      "claim_id": "within_14_days",
+      "lowered_atom": "WITHIN_14_DAYS",
+      "label": "The 14-day withdrawal period is still running",
+      "description": "Consumer confirms that fewer than 14 days have elapsed since receipt of the goods / conclusion of the contract.",
+      "source_type": "user",
+      "propositional": "WITHIN_14_DAYS",
+      "predicate": "Within14Days(contract)",
+      "higher_order": "Within14Days(contract)",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "... 14 päeva jooksul.",
+          "note": "Statutory 14-day window."
+        }
+      ],
+      "request_cue_groups": [["14 päeva", "14 days", "tähtaeg"]],
+      "law_cue_groups": [["14 päeva"]]
+    },
+    {
+      "claim_id": "notice_sent_in_time",
+      "lowered_atom": "NOTICE_SENT",
+      "label": "Withdrawal notice has been sent in time",
+      "description": "Consumer confirms that the withdrawal notice was dispatched to the trader before the 14-day period expired.",
+      "source_type": "user",
+      "propositional": "NOTICE_SENT",
+      "predicate": "NoticeSent(consumer, trader)",
+      "higher_order": "NoticeSent(consumer)(trader)",
+      "law_references": [
+        {
+          "clause_id": "vos_56_21",
+          "clause_title": "§ 56 lg 2^1",
+          "clause_text": "Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.",
+          "note": "Timely dispatch satisfies the deadline."
+        }
+      ],
+      "request_cue_groups": [["taganemisavaldus", "withdrawal notice", "teade"]],
+      "law_cue_groups": [["teate", "taganemis"]]
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "withdrawal_allowed",
+      "lowered_atom": "ALLOW_WITHDRAWAL",
+      "label": "Right of withdrawal is available",
+      "propositional": "ALLOW_WITHDRAWAL",
+      "predicate": "AllowWithdrawal(consumer, contract)",
+      "higher_order": "AllowWithdrawal(consumer)(contract)",
+      "administrative_role": "allow"
+    },
+    {
+      "outcome_id": "withdrawal_denied",
+      "lowered_atom": "DENY_WITHDRAWAL",
+      "label": "Right of withdrawal is excluded",
+      "propositional": "DENY_WITHDRAWAL",
+      "predicate": "DenyWithdrawal(consumer, contract)",
+      "higher_order": "DenyWithdrawal(consumer)(contract)",
+      "administrative_role": "deny"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_distance_withdrawal",
+      "kind": "allow_if_all",
+      "label": "Consumer may withdraw from a timely distance contract under § 56 lg 1.",
+      "when_claim_ids": ["is_consumer", "distance_contract", "within_14_days", "notice_sent_in_time"],
+      "target_outcome_id": "withdrawal_allowed",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "note": "Positive path for withdrawal."
+        }
+      ],
+      "law_cue_groups": [["tarbija"], ["sidevahendi"], ["14 päeva"]]
+    },
+    {
+      "rule_id": "deny_excluded_category",
+      "kind": "deny_if_all",
+      "label": "Withdrawal is excluded for § 53 lg 4 goods (custom-made, perishable, hygiene-sealed, ...).",
+      "when_claim_ids": ["excluded_category"],
+      "target_outcome_id": "withdrawal_denied",
+      "law_references": [
+        {
+          "clause_id": "vos_53_4",
+          "clause_title": "§ 53 lg 4",
+          "clause_text": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "note": "Category-based exclusion."
+        }
+      ],
+      "law_cue_groups": [["valmistatud", "rikneb", "hügieen"]]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "civil_service_u3_no_register",
+  "description": "Population registry is unavailable, so citizenship and capacity claims cannot be resolved -> U3 UNVERIFIABLE_CLAIM (no_register).",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db_u3_no_register.json",
+  "intent_assignments": {
+    "no_conflict_declared": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "UNVERIFIABLE_CLAIM",
+  "expected_reason_code": "no_register",
+  "tags": ["uncertainty", "u3"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

@@ -1,0 +1,353 @@
+# framework pipeline examples
+
+Working directory for the commands below: `framework/`
+Python executable: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python
+
+Note: `GEMINI_API_KEY` / `GOOGLE_API_KEY` were not set in this shell, so the live LLM extraction steps were not runnable here. To keep the review concrete, the logs below use existing cached artifacts or locally constructed checked artifacts for the step-1 / step-2 positions, then run the real `03_solve_case.py` and `04_print_trace.py` commands.
+
+## Example 1: cached allow case
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/section_120_demo/intent.allow.propositional.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('request_text:', data['request_text'])
+print('resolved_claims:')
+for claim in data['claims']:
+    if claim['value'] is not None:
+        print('  - {}={}'.format(claim['claim_id'], claim['value']))
+PY
+path: examples/section_120_demo/intent.allow.propositional.json
+logic_level: propositional
+request_text: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+resolved_claims:
+  - applicant_is_parent=True
+  - applicant_is_not_parent=False
+  - emergency=True
+  - one_parent_unreachable=True
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/section_120_demo/domain.propositional.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('title:', data['title'])
+print('claim_count:', len(data['claims']))
+print('rule_count:', len(data['rules']))
+print('sample_rule_ids:', ', '.join(rule['rule_id'] for rule in data['rules'][:3]))
+PY
+path: examples/section_120_demo/domain.propositional.json
+logic_level: propositional
+title: Family Law Section 120 demo
+claim_count: 7
+rule_count: 6
+sample_rule_ids: allow_sole_custody, allow_delegated_right, allow_emergency
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python 03_solve_case.py --domain examples/section_120_demo/domain.propositional.json --intent examples/section_120_demo/intent.allow.propositional.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/allow.solution.json
+[no terminal output]
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/allow.solution.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('final_outcome:', data['final_outcome'])
+print('blocked_at_step:', data['blocked_at_step'])
+print('block_reason_code:', data['block_reason_code'])
+print('extracted_claim_count:', data['extracted_claim_count'])
+print('extracted_rule_count:', data['extracted_rule_count'])
+print('unresolved_claim_ids:', data['unresolved_claim_ids'])
+print('snapshot_count:', len(data['snapshots']))
+PY
+path: examples/review_runs/allow.solution.json
+logic_level: propositional
+final_outcome: ALLOW
+blocked_at_step: None
+block_reason_code: None
+extracted_claim_count: 7
+extracted_rule_count: 6
+unresolved_claim_ids: []
+snapshot_count: 1
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python 04_print_trace.py --solution examples/review_runs/allow.solution.json
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Family Law Section 120 demo
+REQUEST: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+EXTRACTED CLAIM COUNT: 7
+EXTRACTED RULE COUNT: 6
+
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The lowered Z3 theory entails ALLOW.
+
+SNAPSHOT: initial
+  outcome: ALLOW
+  resolved_claims:
+    - PARENT [PARENT] = T (source_type=db, resolved_from=intent)
+    - NOT_PARENT [NOT_PARENT] = F (source_type=db, resolved_from=intent)
+    - SOLE_CUSTODY [SOLE_CUSTODY] = U (source_type=db, resolved_from=unknown)
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = U (source_type=db, resolved_from=unknown)
+    - EMERGENCY [EMERGENCY] = T (source_type=user, resolved_from=intent)
+    - BOTH_CONSENT [BOTH_CONSENT] = F (source_type=db, resolved_from=reasoner)
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = T (source_type=user, resolved_from=intent)
+  rule_trace:
+    - allow_sole_custody [needs_info] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=T, SOLE_CUSTODY=U
+    - allow_delegated_right [needs_info] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=T, DELEGATED_RIGHT=U
+    - allow_emergency [fires] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=T, EMERGENCY=T
+    - allow_joint_consent [blocked] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=T, BOTH_CONSENT=F
+    - block_consent_when_unreachable [fires] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=T
+    - deny_non_parent [blocked] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=F
+
+FINAL OUTCOME: ALLOW
+
+## Example 2: DB lookup then user info still needed
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+from pathlib import Path
+from logic_levels import build_intent_artifact
+from schemas import LogicLevel
+request_path = Path('examples/section_120_demo/request_db_then_user.txt')
+out_path = Path('examples/review_runs/need_db_then_user.intent.json')
+artifact = build_intent_artifact(
+    request_path.read_text(encoding='utf-8'),
+    LogicLevel.PROPOSITIONAL,
+    {'emergency': None},
+)
+out_path.write_text(artifact.model_dump_json(indent=2), encoding='utf-8')
+print('wrote:', out_path)
+print('logic_level:', artifact.logic_level.value)
+print('request_text:', artifact.request_text)
+print('non_null_claims:', sum(1 for claim in artifact.claims if claim.value is not None))
+PY
+wrote: examples/review_runs/need_db_then_user.intent.json
+logic_level: propositional
+request_text: I need access to the child's data. I do not yet know whether this is an emergency.
+
+non_null_claims: 0
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/section_120_demo/domain.propositional.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('title:', data['title'])
+print('claim_count:', len(data['claims']))
+print('rule_count:', len(data['rules']))
+print('sample_rule_ids:', ', '.join(rule['rule_id'] for rule in data['rules'][:3]))
+PY
+path: examples/section_120_demo/domain.propositional.json
+logic_level: propositional
+title: Family Law Section 120 demo
+claim_count: 7
+rule_count: 6
+sample_rule_ids: allow_sole_custody, allow_delegated_right, allow_emergency
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python 03_solve_case.py --domain examples/section_120_demo/domain.propositional.json --intent examples/review_runs/need_db_then_user.intent.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/need_db_then_user.solution.json
+[no terminal output]
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/need_db_then_user.solution.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('final_outcome:', data['final_outcome'])
+print('blocked_at_step:', data['blocked_at_step'])
+print('block_reason_code:', data['block_reason_code'])
+print('extracted_claim_count:', data['extracted_claim_count'])
+print('extracted_rule_count:', data['extracted_rule_count'])
+print('unresolved_claim_ids:', data['unresolved_claim_ids'])
+print('snapshot_count:', len(data['snapshots']))
+PY
+path: examples/review_runs/need_db_then_user.solution.json
+logic_level: propositional
+final_outcome: NEED_USER_INFO
+blocked_at_step: solve
+block_reason_code: needs_user_info
+extracted_claim_count: 7
+extracted_rule_count: 6
+unresolved_claim_ids: ['emergency']
+snapshot_count: 2
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python 04_print_trace.py --solution examples/review_runs/need_db_then_user.solution.json
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Family Law Section 120 demo
+REQUEST: I need access to the child's data. I do not yet know whether this is an emergency.
+
+EXTRACTED CLAIM COUNT: 7
+EXTRACTED RULE COUNT: 6
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: needs_user_info
+UNRESOLVED CLAIM IDS: emergency
+
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The allow path still depends on DB-backed claims.
+[db_lookup] Queried the local mock DB for: applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+[after_db_lookup] The remaining open allow path depends on user-supplied claims.
+[blockage] Blocked at `solve` with neutral reason code `needs_user_info`.
+
+DB LOOKUPS
+- Dummy parent registry (population_registry) -> [applicant_is_parent=True] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+- Dummy custody registry (custody_registry) -> [delegated_decision_right=False, sole_custody=False] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+- Dummy consent service (consent_service) -> [both_parents_consent=False] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+
+SNAPSHOT: initial
+  outcome: NEED_DB_INFO
+  missing_db: applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+  missing_user: emergency
+  resolved_claims:
+    - PARENT [PARENT] = U (source_type=db, resolved_from=unknown)
+    - NOT_PARENT [NOT_PARENT] = U (source_type=db, resolved_from=unknown)
+    - SOLE_CUSTODY [SOLE_CUSTODY] = U (source_type=db, resolved_from=unknown)
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = U (source_type=db, resolved_from=unknown)
+    - EMERGENCY [EMERGENCY] = U (source_type=user, resolved_from=unknown)
+    - BOTH_CONSENT [BOTH_CONSENT] = U (source_type=db, resolved_from=unknown)
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = U (source_type=user, resolved_from=unknown)
+  rule_trace:
+    - allow_sole_custody [needs_info] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=U, SOLE_CUSTODY=U
+    - allow_delegated_right [needs_info] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=U, DELEGATED_RIGHT=U
+    - allow_emergency [needs_info] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=U, EMERGENCY=U
+    - allow_joint_consent [needs_info] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=U, BOTH_CONSENT=U
+    - block_consent_when_unreachable [needs_info] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=U
+    - deny_non_parent [needs_info] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=U
+
+SNAPSHOT: after_db_lookup
+  outcome: NEED_USER_INFO
+  missing_user: emergency
+  resolved_claims:
+    - PARENT [PARENT] = T (source_type=db, resolved_from=db)
+    - NOT_PARENT [NOT_PARENT] = U (source_type=db, resolved_from=unknown)
+    - SOLE_CUSTODY [SOLE_CUSTODY] = F (source_type=db, resolved_from=db)
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = F (source_type=db, resolved_from=db)
+    - EMERGENCY [EMERGENCY] = U (source_type=user, resolved_from=unknown)
+    - BOTH_CONSENT [BOTH_CONSENT] = F (source_type=db, resolved_from=db)
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = U (source_type=user, resolved_from=unknown)
+  rule_trace:
+    - allow_sole_custody [blocked] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=T, SOLE_CUSTODY=F
+    - allow_delegated_right [blocked] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=T, DELEGATED_RIGHT=F
+    - allow_emergency [needs_info] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=T, EMERGENCY=U
+    - allow_joint_consent [blocked] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=T, BOTH_CONSENT=F
+    - block_consent_when_unreachable [needs_info] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=U
+    - deny_non_parent [needs_info] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=U
+
+FINAL OUTCOME: NEED_USER_INFO
+
+## Example 3: same request with unrelated law blockage
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/section_120_demo/intent.allow.propositional.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('request_text:', data['request_text'])
+print('resolved_claims:')
+for claim in data['claims']:
+    if claim['value'] is not None:
+        print('  - {}={}'.format(claim['claim_id'], claim['value']))
+PY
+path: examples/section_120_demo/intent.allow.propositional.json
+logic_level: propositional
+request_text: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+resolved_claims:
+  - applicant_is_parent=True
+  - applicant_is_not_parent=False
+  - emergency=True
+  - one_parent_unreachable=True
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+from schemas import DomainArtifact, LogicLevel
+base = json.loads(Path('examples/section_120_demo/domain.propositional.json').read_text(encoding='utf-8'))
+law_path = Path('examples/alternative_laws/121112025003.txt')
+out_path = Path('examples/review_runs/unrelated_law.domain.json')
+artifact = DomainArtifact(
+    logic_level=LogicLevel.PROPOSITIONAL,
+    title='Unrelated law demo',
+    law_text=law_path.read_text(encoding='utf-8'),
+    lowered_view_note=base['lowered_view_note'],
+    claims=[],
+    outcomes=base['outcomes'],
+    rules=[],
+)
+out_path.write_text(artifact.model_dump_json(indent=2), encoding='utf-8')
+print('wrote:', out_path)
+print('logic_level:', artifact.logic_level.value)
+print('title:', artifact.title)
+print('claim_count:', len(artifact.claims))
+print('rule_count:', len(artifact.rules))
+print('law_source:', law_path)
+PY
+wrote: examples/review_runs/unrelated_law.domain.json
+logic_level: propositional
+title: Unrelated law demo
+claim_count: 0
+rule_count: 0
+law_source: examples/alternative_laws/121112025003.txt
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python 03_solve_case.py --domain examples/review_runs/unrelated_law.domain.json --intent examples/section_120_demo/intent.allow.propositional.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/unrelated_law.solution.json
+[no terminal output]
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/unrelated_law.solution.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('final_outcome:', data['final_outcome'])
+print('blocked_at_step:', data['blocked_at_step'])
+print('block_reason_code:', data['block_reason_code'])
+print('extracted_claim_count:', data['extracted_claim_count'])
+print('extracted_rule_count:', data['extracted_rule_count'])
+print('unresolved_claim_ids:', data['unresolved_claim_ids'])
+print('snapshot_count:', len(data['snapshots']))
+PY
+path: examples/review_runs/unrelated_law.solution.json
+logic_level: propositional
+final_outcome: DENY
+blocked_at_step: domain_extraction
+block_reason_code: domain_extraction_empty
+extracted_claim_count: 0
+extracted_rule_count: 0
+unresolved_claim_ids: []
+snapshot_count: 1
+
+$ /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/venv/bin/python 04_print_trace.py --solution examples/review_runs/unrelated_law.solution.json
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Unrelated law demo
+REQUEST: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+EXTRACTED CLAIM COUNT: 0
+EXTRACTED RULE COUNT: 0
+BLOCKED AT STEP: domain_extraction
+BLOCK REASON CODE: domain_extraction_empty
+
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] No allow rule is entailed and no useful missing information remains, so the solver defaults to DENY.
+[blockage] Blocked at `domain_extraction` with neutral reason code `domain_extraction_empty`.
+
+SNAPSHOT: initial
+  outcome: DENY
+  resolved_claims:
+  rule_trace:
+
+FINAL OUTCOME: DENY
+

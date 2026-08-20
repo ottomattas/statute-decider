@@ -1,0 +1,15 @@
+{
+  "name": "prompt-swap",
+  "description": "The same allow scenario, but with strict prompt metadata paths recorded.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "applicant_is_parent": true,
+    "applicant_is_not_parent": false,
+    "emergency": true,
+    "one_parent_unreachable": true
+  },
+  "intent_user_prompt_file": "prompts/intent/user.strict.txt",
+  "domain_user_prompt_file": "prompts/domain/user.strict.txt"
+}

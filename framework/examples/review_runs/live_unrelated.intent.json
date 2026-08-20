@@ -1,0 +1,110 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "claims": [
+    {
+      "claim_id": "applicant_is_parent",
+      "lowered_atom": "PARENT",
+      "label": "Applicant is a parent",
+      "description": "The requester is the child's legal parent.",
+      "source_type": "db",
+      "formal_text": "PARENT",
+      "value": true,
+      "reason": "The applicant states they are the child's mother.",
+      "provenance": [
+        {
+          "snippet": "I am the child's mother.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "applicant_is_not_parent",
+      "lowered_atom": "NOT_PARENT",
+      "label": "Applicant is not a parent",
+      "description": "The requester is a relative or third party rather than a parent.",
+      "source_type": "db",
+      "formal_text": "NOT_PARENT",
+      "value": false,
+      "reason": "The applicant states they are the child's mother, which contradicts this claim.",
+      "provenance": [
+        {
+          "snippet": "I am the child's mother.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "sole_custody",
+      "lowered_atom": "SOLE_CUSTODY",
+      "label": "Applicant has sole custody",
+      "description": "The applicant may act alone because sole custody exists.",
+      "source_type": "db",
+      "formal_text": "SOLE_CUSTODY",
+      "value": null,
+      "reason": "The request does not mention custody arrangements.",
+      "provenance": []
+    },
+    {
+      "claim_id": "delegated_decision_right",
+      "lowered_atom": "DELEGATED_RIGHT",
+      "label": "Decision right has been delegated",
+      "description": "Authority for this decision has been delegated to the applicant.",
+      "source_type": "db",
+      "formal_text": "DELEGATED_RIGHT",
+      "value": null,
+      "reason": "The request does not mention delegation of decision rights.",
+      "provenance": []
+    },
+    {
+      "claim_id": "emergency",
+      "lowered_atom": "EMERGENCY",
+      "label": "There is an emergency",
+      "description": "Waiting would harm the child's interests.",
+      "source_type": "user",
+      "formal_text": "EMERGENCY",
+      "value": true,
+      "reason": "The user states the child is in the hospital and a doctor needs a quick decision, which indicates an emergency.",
+      "provenance": [
+        {
+          "snippet": "The child is in hospital and the doctor needs a quick decision.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "both_parents_consent",
+      "lowered_atom": "BOTH_CONSENT",
+      "label": "Both parents consent",
+      "description": "There is confirmed consent from both parents.",
+      "source_type": "db",
+      "formal_text": "BOTH_CONSENT",
+      "value": false,
+      "reason": "The applicant states the other parent is unreachable, so their consent cannot be obtained.",
+      "provenance": [
+        {
+          "snippet": "The other parent is unreachable and not answering the phone.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "one_parent_unreachable",
+      "lowered_atom": "OTHER_PARENT_UNREACHABLE",
+      "label": "One parent is unreachable",
+      "description": "The other parent cannot currently be contacted.",
+      "source_type": "user",
+      "formal_text": "OTHER_PARENT_UNREACHABLE",
+      "value": true,
+      "reason": "The applicant explicitly states that the other parent is unreachable.",
+      "provenance": [
+        {
+          "snippet": "The other parent is unreachable and not answering the phone.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ]
+}

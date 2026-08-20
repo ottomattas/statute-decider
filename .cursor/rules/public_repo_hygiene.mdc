@@ -1,0 +1,13 @@
+---
+description: Keep committed repo state public-safe and de-identified.
+alwaysApply: true
+---
+# Public Repo Hygiene
+
+- Treat committed files, especially `.cursor/`, docs, examples, and workflow configs, as potentially public.
+- Do not commit private tracker project names, issue IDs, team keys, status snapshots, personal branch prefixes, transcript filenames, or internal operating notes unless they are intentionally public research artefacts.
+- Keep detailed tracker structure, current private status, and internal workflow state in external tools; commit only stable public-safe summaries.
+- When examples are needed, prefer generic placeholders such as `tracking issue`, `active paper project`, `thesis-level tracker`, `meeting note`, or `<task-id>`.
+- For branch naming guidance, templates, and runbooks, use generic formats like `<task-id>-<scope>` instead of personal names.
+- If a `.cursor/` file starts reading like a private operations manual, compress it to reusable guidance and move private specifics out of the repo.
+- Before committing, quickly scan changed `.cursor/`, docs, and workflow files for identifiers or context that would look out of place in a public release.

@@ -1,0 +1,13 @@
+{
+  "name": "unrelated-law",
+  "description": "A strong request with an unrelated law neutral-blocks at domain extraction.",
+  "request_file": "request_allow.txt",
+  "law_file": "../laws/121112025003.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "applicant_is_parent": true,
+    "applicant_is_not_parent": false,
+    "emergency": true,
+    "one_parent_unreachable": true
+  }
+}

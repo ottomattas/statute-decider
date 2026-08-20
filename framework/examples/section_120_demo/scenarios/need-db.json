@@ -1,0 +1,8 @@
+{
+  "name": "need-db",
+  "description": "Sparse request needs DB-backed parent and custody facts.",
+  "request_file": "request_need_db.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {}
+}

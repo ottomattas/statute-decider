@@ -1,0 +1,21 @@
+{
+  "name": "civil_service_u8_need_user",
+  "description": "All DB facts resolve, but the user-sourced § 15 p 4 conflict declaration is missing -> U8 NEED_USER_INFO.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "ee_citizen": true,
+    "eu_citizen": false,
+    "secondary_education": true,
+    "speaks_estonian": true,
+    "full_capacity": true,
+    "criminal_conviction": false,
+    "no_conflict_declared": null
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "NEED_USER_INFO",
+  "expected_reason_code": "needs_user_info",
+  "tags": ["needs-info", "u8"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

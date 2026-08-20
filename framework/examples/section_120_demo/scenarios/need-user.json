@@ -1,0 +1,16 @@
+{
+  "name": "need-user",
+  "description": "DB facts are known but the emergency fact remains open.",
+  "request_file": "request_need_user.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "applicant_is_parent": true,
+    "applicant_is_not_parent": false,
+    "sole_custody": false,
+    "delegated_decision_right": false,
+    "both_parents_consent": false,
+    "one_parent_unreachable": false,
+    "emergency": null
+  }
+}

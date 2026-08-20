@@ -1,0 +1,13 @@
+{
+  "name": "deny",
+  "description": "Non-parent request resolves to DENY.",
+  "request_file": "request_deny.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "applicant_is_parent": false,
+    "applicant_is_not_parent": true,
+    "delegated_decision_right": false,
+    "both_parents_consent": false
+  }
+}

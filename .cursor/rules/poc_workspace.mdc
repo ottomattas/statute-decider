@@ -1,0 +1,13 @@
+---
+description: Scope and hygiene for the framework-hosted proof-of-concept lane
+alwaysApply: true
+---
+
+# POC workspace (`framework/`)
+
+# POC workspace (`framework/`)
+
+- When the user scopes work to the **POC**, **proof-of-concept**, **lausearvutus**, **`framework/`**, or the Family Law hand-sketch reference, **default edits to `framework/`** only. Do not change `paper/` unless the user explicitly widens scope.
+- **`framework/POC.txt`** is a **reference artefact** (rules and process sketch). Do not edit it unless the user explicitly requests changes.
+- Statute snapshots and law-text fixtures under `framework/examples/` are **reference corpus text**. Do not rewrite or truncate them casually; add tooling, code, or notes alongside if needed.
+- The active implementation now lives directly in **`framework/`**. Keep runnable examples, prompt files, and supporting fixtures there unless the user explicitly requests a different lane.

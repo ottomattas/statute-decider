@@ -1,0 +1,15 @@
+{
+  "name": "building_permit_need_db",
+  "description": "State-fee payment record absent from the payment ledger; solver cannot confirm fee_paid after DB lookup -> NEED_DB_INFO.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {},
+  "mock_db_overrides": {
+    "fee_paid": null
+  },
+  "expected_outcome": "NEED_DB_INFO",
+  "expected_reason_code": "needs_db_info",
+  "tags": ["needs-info"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

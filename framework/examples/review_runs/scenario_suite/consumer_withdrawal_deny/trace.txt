@@ -1,0 +1,105 @@
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Võlaõigusseadus §§ 53 lg 4, 56 lg 1 demo
+REQUEST: I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.
+
+EXTRACTED CLAIM COUNT: 5
+EXTRACTED RULE COUNT: 2
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: no_applicable_rules
+
+RUN METADATA
+  solve_generated_at_utc: 2026-04-17T08:10:52+00:00
+  domain_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/consumer_withdrawal_deny/domain.json
+  intent_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/consumer_withdrawal_deny/intent.json
+  mock_db_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/mock_db.json
+INTENT EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:51+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/request_deny.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/intent/system.propositional.txt [64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/intent/user.txt [bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac]
+DOMAIN EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:51+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/law.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/domain/system.propositional.txt [cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/domain/user.txt [35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b]
+
+INTENT CLAIMS
+- is_consumer [IS_CONSUMER] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.
+      note: Matched user text
+- distance_contract [DISTANCE_CONTRACT] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.
+      note: Matched user text
+- excluded_category [EXCLUDED_CATEGORY] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.
+      note: Matched user text
+- within_14_days [WITHIN_14_DAYS] = T (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to true.
+- notice_sent_in_time [NOTICE_SENT] = T (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to true.
+
+DOMAIN CLAIMS
+- is_consumer [IS_CONSUMER] (source_type=db)
+    - § 56 lg 1 [vos_56_1]
+      text: Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.
+      note: Only consumers enjoy the withdrawal right.
+- distance_contract [DISTANCE_CONTRACT] (source_type=db)
+    - § 56 lg 1 [vos_56_1]
+      text: ... sidevahendi abil sõlmitud lepingust ...
+      note: Withdrawal only applies to distance contracts.
+- excluded_category [EXCLUDED_CATEGORY] (source_type=db)
+    - § 53 lg 4 [vos_53_4]
+      text: Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...
+      note: Category-based exclusion blocks the withdrawal right.
+- within_14_days [WITHIN_14_DAYS] (source_type=user)
+    - § 56 lg 1 [vos_56_1]
+      text: ... 14 päeva jooksul.
+      note: Statutory 14-day window.
+- notice_sent_in_time [NOTICE_SENT] (source_type=user)
+    - § 56 lg 2^1 [vos_56_21]
+      text: Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.
+      note: Timely dispatch satisfies the deadline.
+
+DOMAIN RULES
+- allow_distance_withdrawal: (IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL
+  lowered: (IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL
+    - § 56 lg 1 [vos_56_1]
+      text: Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.
+      note: Positive path for withdrawal.
+- deny_excluded_category: EXCLUDED_CATEGORY -> DENY_WITHDRAWAL
+  lowered: EXCLUDED_CATEGORY -> DENY_WITHDRAWAL
+    - § 53 lg 4 [vos_53_4]
+      text: Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...
+      note: Category-based exclusion.
+
+TRACE EVENTS
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The lowered Z3 theory entails DENY.
+[blockage] Blocked at `solve` with neutral reason code `no_applicable_rules`.
+
+SNAPSHOT: initial
+  outcome: DENY
+  note: The lowered Z3 theory entails DENY.
+  resolved_claims:
+    - IS_CONSUMER [IS_CONSUMER] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - DISTANCE_CONTRACT [DISTANCE_CONTRACT] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - EXCLUDED_CATEGORY [EXCLUDED_CATEGORY] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - WITHIN_14_DAYS [WITHIN_14_DAYS] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - NOTICE_SENT [NOTICE_SENT] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+  rule_trace:
+    - allow_distance_withdrawal [fires] :: (IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL :: IS_CONSUMER=T, DISTANCE_CONTRACT=T, WITHIN_14_DAYS=T, NOTICE_SENT=T
+    - deny_excluded_category [fires] :: EXCLUDED_CATEGORY -> DENY_WITHDRAWAL :: EXCLUDED_CATEGORY=T
+
+FINAL OUTCOME: DENY

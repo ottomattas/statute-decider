@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "source_id": "applicant_selfreport",
+      "label": "Applicant self-report of parcel and residence status",
+      "description": "Stand-in for all four § 11 DB claims: values are taken on trust, triggering U7 TRUST_ONLY.",
+      "trust_only": true,
+      "values": {
+        "residential_land": true,
+        "primary_residence_registered": true,
+        "applicant_is_owner": true,
+        "municipality_exemption_set": true
+      }
+    },
+    {
+      "source_id": "social_insurance_registry",
+      "label": "Dummy social-insurance registry",
+      "description": "Holds state-pension recipient status.",
+      "values": {
+        "receives_pension": false
+      }
+    }
+  ]
+}

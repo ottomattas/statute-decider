@@ -1,0 +1,40 @@
+POC — Võlaõigusseadus §§ 56 lg 1, 53 lg 4 (Tarbija taganemisõigus)
+
+Seadus (katke):
+§ 56. Õigus lepingust taganeda
+(1) Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust
+    avaldamata 14 päeva jooksul.
+§ 53 lg 4. Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust
+    ei kohaldata lepingule, mille esemeks on:
+    2) sellise asja üleandmine, mis on valmistatud, arvestades
+       lepingupooleks oleva tarbija isiklikke vajadusi;
+    4) sellise asja üleandmine, mis rikneb või vananeb kiiresti; ...
+
+Propositional variables (sulgudes source_type):
+  "taotleja on tarbija"                            (db)
+  "leping on sõlmitud sidevahendi abil"            (db)
+  "14-päevane taganemistähtaeg kehtib veel"        (user)
+  "taganemisavaldus on tähtaegselt edastatud"      (user)
+  "lepingu ese kuulub §53(4) välistatud kategooriasse" (db)
+  "taganemisõigus on lubatud"                       (outcome: allow)
+  "taganemisõigus on välistatud"                    (outcome: deny)
+
+Reeglid:
+  R1 (§ 56 lg 1, positiivne alus):
+    "tarbija" AND "sidevahendi leping" AND "14-päev pole möödunud"
+      AND "avaldus tähtaegselt edastatud"
+      -> "taganemisõigus lubatud"
+  R2 (§ 53 lg 4, välistatud kategooriad):
+    "lepingu ese on §53(4) kategoorias"
+      -> "taganemisõigus välistatud"
+
+Protsess:
+  1. Loe ettevõtja CRM-ist tarbija-staatus ja sidevahendi-lepingu vorm.
+  2. Loe tootekataloogist, kas lepingu ese kuulub §53(4) välistatud
+     kategooriasse.
+  3. Küsi tarbijalt tähtaja jooksuseisu ja taganemisavalduse
+     edastamise kinnitus.
+  4. Solver:
+     - kui R2 eeldus TRUE -> DENY (välistatud).
+     - kui R1 kõik eeldused TRUE -> ALLOW.
+     - kui tarbija-eeldused puuduvad -> NEED_USER_INFO.

@@ -1,0 +1,177 @@
+{
+  "title": "Isikuandmete kaitse seadus § 4 demo",
+  "description": "Lawful-basis check for processing personal data for journalistic purposes without consent.",
+  "default_logic_level": "propositional",
+  "claims": [
+    {
+      "claim_id": "journalistic_purpose",
+      "lowered_atom": "JOURNALISM",
+      "label": "Processing has a journalistic purpose",
+      "description": "The controller's CMS records classify the processing as journalism.",
+      "source_type": "db",
+      "propositional": "JOURNALISM",
+      "predicate": "JournalisticPurpose(processing)",
+      "higher_order": "JournalisticPurpose(processing)",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Journalistic-purpose gateway to the consent-free processing basis."
+        }
+      ],
+      "request_cue_groups": [["ajakirjanduslik", "journalism", "reporter", "journalist"]],
+      "law_cue_groups": [["ajakirjanduslikul", "ajakirjandus"], ["töötleda", "töödelda"]]
+    },
+    {
+      "claim_id": "public_interest",
+      "lowered_atom": "PUBLIC_INTEREST",
+      "label": "There is public interest in the processing",
+      "description": "Editorial assessment confirms that there is public interest in the processing.",
+      "source_type": "user",
+      "propositional": "PUBLIC_INTEREST",
+      "predicate": "PublicInterest(processing)",
+      "higher_order": "PublicInterest(processing)",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Public-interest condition for the journalism basis."
+        }
+      ],
+      "request_cue_groups": [["avalik huvi", "public interest"]],
+      "law_cue_groups": [["avalik huvi"], ["ajakirjanduslikul", "ajakirjandus"]]
+    },
+    {
+      "claim_id": "journalism_ethics",
+      "lowered_atom": "ETHICS_OK",
+      "label": "Processing respects journalism ethics",
+      "description": "The editorial team confirms the processing is consistent with journalism ethics.",
+      "source_type": "user",
+      "propositional": "ETHICS_OK",
+      "predicate": "EthicsCompliant(processing)",
+      "higher_order": "EthicsCompliant(processing)",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Journalism-ethics condition for the journalism basis."
+        }
+      ],
+      "request_cue_groups": [["ajakirjanduseetika", "journalism ethics", "ethics code"]],
+      "law_cue_groups": [["ajakirjanduseetika"], ["kooskõlas"]]
+    },
+    {
+      "claim_id": "subject_consent",
+      "lowered_atom": "CONSENT",
+      "label": "Data subject has consented",
+      "description": "Consent records show the data subject has given valid consent.",
+      "source_type": "db",
+      "propositional": "CONSENT",
+      "predicate": "SubjectConsent(processing)",
+      "higher_order": "SubjectConsent(processing)",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 (implicit baseline)",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "note": "Consent baseline: when consent exists, the journalism basis is not needed."
+        }
+      ],
+      "request_cue_groups": [["nõusolek", "consent"]],
+      "law_cue_groups": [["nõusolek", "nõusolekuta"]]
+    },
+    {
+      "claim_id": "excessive_harm",
+      "lowered_atom": "EXCESSIVE_HARM",
+      "label": "Publication would excessively harm the subject",
+      "description": "Editorial risk assessment concludes publication would excessively harm the subject's rights.",
+      "source_type": "user",
+      "propositional": "EXCESSIVE_HARM",
+      "predicate": "ExcessiveHarm(subject)",
+      "higher_order": "ExcessiveHarm(subject)",
+      "law_references": [
+        {
+          "clause_id": "iks_4_harm",
+          "clause_title": "§ 4, teine lause",
+          "clause_text": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "note": "Proportionality limit: excessive harm defeats the journalism basis."
+        }
+      ],
+      "request_cue_groups": [["ülemäära kahjustaks", "excessive harm", "disproportionate harm"]],
+      "law_cue_groups": [["ülemäära"], ["kahjustada", "õigusi"]]
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "processing_allowed",
+      "lowered_atom": "ALLOW_PROCESSING",
+      "label": "Processing is allowed",
+      "propositional": "ALLOW_PROCESSING",
+      "predicate": "AllowProcessing(controller)",
+      "higher_order": "AllowProcessing(controller)",
+      "administrative_role": "allow"
+    },
+    {
+      "outcome_id": "processing_denied",
+      "lowered_atom": "DENY_PROCESSING",
+      "label": "Processing is denied",
+      "propositional": "DENY_PROCESSING",
+      "predicate": "DenyProcessing(controller)",
+      "higher_order": "DenyProcessing(controller)",
+      "administrative_role": "deny"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_journalism_basis",
+      "kind": "allow_if_all",
+      "label": "Journalism basis (§ 4 lause 1) without consent.",
+      "when_claim_ids": ["journalistic_purpose", "public_interest", "journalism_ethics"],
+      "target_outcome_id": "processing_allowed",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4, esimene lause",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Three-condition journalism basis."
+        }
+      ],
+      "law_cue_groups": [["ajakirjanduslikul", "ajakirjandus"], ["avalik huvi"], ["ajakirjanduseetika"]]
+    },
+    {
+      "rule_id": "allow_consent_basis",
+      "kind": "allow_if_all",
+      "label": "Consent baseline under IKS.",
+      "when_claim_ids": ["subject_consent"],
+      "target_outcome_id": "processing_allowed",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 (implicit baseline)",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "note": "Consent is the general baseline; the journalism basis is its exception."
+        }
+      ],
+      "law_cue_groups": [["nõusolek", "nõusolekuta"]]
+    },
+    {
+      "rule_id": "block_ethics_when_excessive_harm",
+      "kind": "set_false_if_all",
+      "label": "Excessive harm defeats ethics compliance (§ 4 lause 2).",
+      "when_claim_ids": ["excessive_harm"],
+      "target_claim_id": "journalism_ethics",
+      "law_references": [
+        {
+          "clause_id": "iks_4_harm",
+          "clause_title": "§ 4, teine lause",
+          "clause_text": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "note": "Proportionality override of the ethics condition."
+        }
+      ],
+      "law_cue_groups": [["ülemäära"], ["kahjustada", "õigusi"]]
+    }
+  ]
+}

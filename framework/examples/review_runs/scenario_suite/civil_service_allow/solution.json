@@ -1,0 +1,559 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Avaliku teenistuse seadus §§ 14-15 demo",
+  "request_text": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "ALLOW",
+  "intent_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/request_allow.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "domain_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "solve_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "domain_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/civil_service_allow/domain.json",
+    "intent_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/civil_service_allow/intent.json",
+    "mock_db_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/mock_db.json"
+  },
+  "blocked_at_step": null,
+  "block_reason_code": null,
+  "extracted_claim_count": 7,
+  "extracted_rule_count": 3,
+  "unresolved_claim_ids": [],
+  "intent_claims": [
+    {
+      "claim_id": "ee_citizen",
+      "lowered_atom": "EE_CITIZEN",
+      "label": "Applicant is an Estonian citizen",
+      "description": "The applicant holds Estonian citizenship per the population registry.",
+      "source_type": "db",
+      "formal_text": "EE_CITIZEN",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "eu_citizen",
+      "lowered_atom": "EU_CITIZEN",
+      "label": "Applicant is an EU member-state citizen",
+      "description": "The applicant holds citizenship of an EU member state per the population registry.",
+      "source_type": "db",
+      "formal_text": "EU_CITIZEN",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": []
+    },
+    {
+      "claim_id": "secondary_education",
+      "lowered_atom": "SECONDARY_ED",
+      "label": "Applicant has at least secondary education",
+      "description": "The applicant's recorded education is at least at secondary level.",
+      "source_type": "db",
+      "formal_text": "SECONDARY_ED",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "speaks_estonian",
+      "lowered_atom": "ESTONIAN_LANG",
+      "label": "Applicant speaks Estonian at required level",
+      "description": "The applicant meets the statutory Estonian language requirement.",
+      "source_type": "db",
+      "formal_text": "ESTONIAN_LANG",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "full_capacity",
+      "lowered_atom": "FULL_CAPACITY",
+      "label": "Applicant has full legal capacity",
+      "description": "The applicant has full active legal capacity (täielik teovõime).",
+      "source_type": "db",
+      "formal_text": "FULL_CAPACITY",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "criminal_conviction",
+      "lowered_atom": "CONVICTION",
+      "label": "Applicant has a conviction for an intentional crime",
+      "description": "Criminal records show a standing conviction for an intentional crime.",
+      "source_type": "db",
+      "formal_text": "CONVICTION",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": [
+        {
+          "snippet": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "no_conflict_declared",
+      "lowered_atom": "NO_CONFLICT",
+      "label": "Applicant declares no § 15 p 4 family conflict",
+      "description": "The applicant confirms they are not a close relative of a supervising official per § 15 p 4.",
+      "source_type": "user",
+      "formal_text": "NO_CONFLICT",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am an Estonian citizen with a completed secondary education and I valdab eesti keelt at the level required by law. I have full legal capacity. I have no prior conviction on record. I confirm I have no family conflict with any supervising official at the agency.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ],
+  "domain_claims": [
+    {
+      "claim_id": "ee_citizen",
+      "lowered_atom": "EE_CITIZEN",
+      "label": "Applicant is an Estonian citizen",
+      "description": "The applicant holds Estonian citizenship per the population registry.",
+      "source_type": "db",
+      "formal_text": "EE_CITIZEN",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Primary citizenship basis for appointment under § 14(1)."
+        }
+      ]
+    },
+    {
+      "claim_id": "eu_citizen",
+      "lowered_atom": "EU_CITIZEN",
+      "label": "Applicant is an EU member-state citizen",
+      "description": "The applicant holds citizenship of an EU member state per the population registry.",
+      "source_type": "db",
+      "formal_text": "EU_CITIZEN",
+      "law_references": [
+        {
+          "clause_id": "ats_14_2",
+          "clause_title": "§ 14 lg 2",
+          "clause_text": "Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.",
+          "note": "Alternative EU citizenship basis under § 14(2)."
+        }
+      ]
+    },
+    {
+      "claim_id": "secondary_education",
+      "lowered_atom": "SECONDARY_ED",
+      "label": "Applicant has at least secondary education",
+      "description": "The applicant's recorded education is at least at secondary level.",
+      "source_type": "db",
+      "formal_text": "SECONDARY_ED",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Secondary-education baseline required for appointment."
+        }
+      ]
+    },
+    {
+      "claim_id": "speaks_estonian",
+      "lowered_atom": "ESTONIAN_LANG",
+      "label": "Applicant speaks Estonian at required level",
+      "description": "The applicant meets the statutory Estonian language requirement.",
+      "source_type": "db",
+      "formal_text": "ESTONIAN_LANG",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Estonian-language proficiency required for appointment."
+        }
+      ]
+    },
+    {
+      "claim_id": "full_capacity",
+      "lowered_atom": "FULL_CAPACITY",
+      "label": "Applicant has full legal capacity",
+      "description": "The applicant has full active legal capacity (täielik teovõime).",
+      "source_type": "db",
+      "formal_text": "FULL_CAPACITY",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Full legal capacity is required for appointment."
+        }
+      ]
+    },
+    {
+      "claim_id": "criminal_conviction",
+      "lowered_atom": "CONVICTION",
+      "label": "Applicant has a conviction for an intentional crime",
+      "description": "Criminal records show a standing conviction for an intentional crime.",
+      "source_type": "db",
+      "formal_text": "CONVICTION",
+      "law_references": [
+        {
+          "clause_id": "ats_15_1",
+          "clause_title": "§ 15 p 1",
+          "clause_text": "Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.",
+          "note": "Bar on appointment for intentional-crime convictions."
+        }
+      ]
+    },
+    {
+      "claim_id": "no_conflict_declared",
+      "lowered_atom": "NO_CONFLICT",
+      "label": "Applicant declares no § 15 p 4 family conflict",
+      "description": "The applicant confirms they are not a close relative of a supervising official per § 15 p 4.",
+      "source_type": "user",
+      "formal_text": "NO_CONFLICT",
+      "law_references": [
+        {
+          "clause_id": "ats_15_4",
+          "clause_title": "§ 15 p 4",
+          "clause_text": "Teenistusse ei või võtta isikut, kes on vastavat ametikohta vahetult kontrolliva ametniku abikaasa, elukaaslane, vanem, vanavanem või alaneja sugulane.",
+          "note": "User-provided declaration that § 15 p 4 family-conflict bar does not apply."
+        }
+      ]
+    }
+  ],
+  "domain_rules": [
+    {
+      "rule_id": "allow_ee_citizen",
+      "kind": "allow_if_all",
+      "label": "Estonian-citizen path to appointment (§ 14 lg 1).",
+      "when_claim_ids": [
+        "ee_citizen",
+        "secondary_education",
+        "speaks_estonian",
+        "full_capacity",
+        "no_conflict_declared"
+      ],
+      "formal_text": "(EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+      "lowered_formula": "(EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+      "target_outcome_id": "appointment_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Baseline Estonian-citizen path under § 14(1)."
+        }
+      ]
+    },
+    {
+      "rule_id": "allow_eu_citizen",
+      "kind": "allow_if_all",
+      "label": "EU-citizen path to appointment (§ 14 lg 2).",
+      "when_claim_ids": [
+        "eu_citizen",
+        "secondary_education",
+        "speaks_estonian",
+        "full_capacity",
+        "no_conflict_declared"
+      ],
+      "formal_text": "(EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+      "lowered_formula": "(EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+      "target_outcome_id": "appointment_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "ats_14_2",
+          "clause_title": "§ 14 lg 2",
+          "clause_text": "Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.",
+          "note": "Alternative EU-citizen path under § 14(2)."
+        }
+      ]
+    },
+    {
+      "rule_id": "deny_conviction",
+      "kind": "deny_if_all",
+      "label": "Conviction for an intentional crime blocks appointment (§ 15 p 1).",
+      "when_claim_ids": [
+        "criminal_conviction"
+      ],
+      "formal_text": "CONVICTION -> DENY_APPOINTMENT",
+      "lowered_formula": "CONVICTION -> DENY_APPOINTMENT",
+      "target_outcome_id": "appointment_denied",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "ats_15_1",
+          "clause_title": "§ 15 p 1",
+          "clause_text": "Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.",
+          "note": "Statutory bar for intentional-crime conviction."
+        }
+      ]
+    }
+  ],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "The lowered Z3 theory entails ALLOW."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "ALLOW",
+      "resolved_claims": [
+        {
+          "claim_id": "ee_citizen",
+          "lowered_atom": "EE_CITIZEN",
+          "label": "Applicant is an Estonian citizen",
+          "source_type": "db",
+          "formal_text": "EE_CITIZEN",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "eu_citizen",
+          "lowered_atom": "EU_CITIZEN",
+          "label": "Applicant is an EU member-state citizen",
+          "source_type": "db",
+          "formal_text": "EU_CITIZEN",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to false."
+        },
+        {
+          "claim_id": "secondary_education",
+          "lowered_atom": "SECONDARY_ED",
+          "label": "Applicant has at least secondary education",
+          "source_type": "db",
+          "formal_text": "SECONDARY_ED",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "speaks_estonian",
+          "lowered_atom": "ESTONIAN_LANG",
+          "label": "Applicant speaks Estonian at required level",
+          "source_type": "db",
+          "formal_text": "ESTONIAN_LANG",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "full_capacity",
+          "lowered_atom": "FULL_CAPACITY",
+          "label": "Applicant has full legal capacity",
+          "source_type": "db",
+          "formal_text": "FULL_CAPACITY",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "criminal_conviction",
+          "lowered_atom": "CONVICTION",
+          "label": "Applicant has a conviction for an intentional crime",
+          "source_type": "db",
+          "formal_text": "CONVICTION",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to false."
+        },
+        {
+          "claim_id": "no_conflict_declared",
+          "lowered_atom": "NO_CONFLICT",
+          "label": "Applicant declares no § 15 p 4 family conflict",
+          "source_type": "user",
+          "formal_text": "NO_CONFLICT",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        }
+      ],
+      "rule_trace": [
+        {
+          "rule_id": "allow_ee_citizen",
+          "label": "Estonian-citizen path to appointment (§ 14 lg 1).",
+          "kind": "allow_if_all",
+          "status": "fires",
+          "formal_text": "(EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+          "lowered_formula": "(EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+          "premises": [
+            {
+              "claim_id": "ee_citizen",
+              "label": "Applicant is an Estonian citizen",
+              "formal_text": "EE_CITIZEN",
+              "lowered_atom": "EE_CITIZEN",
+              "value": true
+            },
+            {
+              "claim_id": "secondary_education",
+              "label": "Applicant has at least secondary education",
+              "formal_text": "SECONDARY_ED",
+              "lowered_atom": "SECONDARY_ED",
+              "value": true
+            },
+            {
+              "claim_id": "speaks_estonian",
+              "label": "Applicant speaks Estonian at required level",
+              "formal_text": "ESTONIAN_LANG",
+              "lowered_atom": "ESTONIAN_LANG",
+              "value": true
+            },
+            {
+              "claim_id": "full_capacity",
+              "label": "Applicant has full legal capacity",
+              "formal_text": "FULL_CAPACITY",
+              "lowered_atom": "FULL_CAPACITY",
+              "value": true
+            },
+            {
+              "claim_id": "no_conflict_declared",
+              "label": "Applicant declares no § 15 p 4 family conflict",
+              "formal_text": "NO_CONFLICT",
+              "lowered_atom": "NO_CONFLICT",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "ee_citizen",
+            "secondary_education",
+            "speaks_estonian",
+            "full_capacity",
+            "no_conflict_declared"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "allow_eu_citizen",
+          "label": "EU-citizen path to appointment (§ 14 lg 2).",
+          "kind": "allow_if_all",
+          "status": "blocked",
+          "formal_text": "(EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+          "lowered_formula": "(EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT",
+          "premises": [
+            {
+              "claim_id": "eu_citizen",
+              "label": "Applicant is an EU member-state citizen",
+              "formal_text": "EU_CITIZEN",
+              "lowered_atom": "EU_CITIZEN",
+              "value": false
+            },
+            {
+              "claim_id": "secondary_education",
+              "label": "Applicant has at least secondary education",
+              "formal_text": "SECONDARY_ED",
+              "lowered_atom": "SECONDARY_ED",
+              "value": true
+            },
+            {
+              "claim_id": "speaks_estonian",
+              "label": "Applicant speaks Estonian at required level",
+              "formal_text": "ESTONIAN_LANG",
+              "lowered_atom": "ESTONIAN_LANG",
+              "value": true
+            },
+            {
+              "claim_id": "full_capacity",
+              "label": "Applicant has full legal capacity",
+              "formal_text": "FULL_CAPACITY",
+              "lowered_atom": "FULL_CAPACITY",
+              "value": true
+            },
+            {
+              "claim_id": "no_conflict_declared",
+              "label": "Applicant declares no § 15 p 4 family conflict",
+              "formal_text": "NO_CONFLICT",
+              "lowered_atom": "NO_CONFLICT",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "secondary_education",
+            "speaks_estonian",
+            "full_capacity",
+            "no_conflict_declared"
+          ],
+          "false_claim_ids": [
+            "eu_citizen"
+          ],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "deny_conviction",
+          "label": "Conviction for an intentional crime blocks appointment (§ 15 p 1).",
+          "kind": "deny_if_all",
+          "status": "blocked",
+          "formal_text": "CONVICTION -> DENY_APPOINTMENT",
+          "lowered_formula": "CONVICTION -> DENY_APPOINTMENT",
+          "premises": [
+            {
+              "claim_id": "criminal_conviction",
+              "label": "Applicant has a conviction for an intentional crime",
+              "formal_text": "CONVICTION",
+              "lowered_atom": "CONVICTION",
+              "value": false
+            }
+          ],
+          "true_claim_ids": [],
+          "false_claim_ids": [
+            "criminal_conviction"
+          ],
+          "unknown_claim_ids": []
+        }
+      ],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "The lowered Z3 theory entails ALLOW."
+    }
+  ]
+}

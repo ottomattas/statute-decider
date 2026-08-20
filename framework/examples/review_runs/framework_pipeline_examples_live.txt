@@ -1,0 +1,366 @@
+# framework live pipeline examples
+
+Working directory for the commands below: `framework/`
+Python environment: `framework/venv`
+Environment file loaded: `framework/.env`
+
+## Example 1: live allow case
+
+$ python 01_extract_intent.py --text-file examples/section_120_demo/request_allow.txt --out examples/review_runs/live_allow.intent.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_allow.intent.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+resolved = [claim for claim in data['claims'] if claim['value'] is not None]
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('request_text:', data['request_text'])
+print('resolved_claim_count:', len(resolved))
+print('resolved_claims:')
+for claim in resolved:
+    print('  - {}={}'.format(claim['claim_id'], claim['value']))
+PY
+path: examples/review_runs/live_allow.intent.json
+logic_level: propositional
+request_text: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+resolved_claim_count: 5
+resolved_claims:
+  - applicant_is_parent=True
+  - applicant_is_not_parent=False
+  - emergency=True
+  - both_parents_consent=False
+  - one_parent_unreachable=True
+
+$ python 02_extract_domain.py --law-file examples/section_120_demo/law.txt --out examples/review_runs/live_allow.domain.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_allow.domain.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('title:', data['title'])
+print('claim_count:', len(data['claims']))
+print('rule_count:', len(data['rules']))
+print('claim_ids:', ', '.join(claim['claim_id'] for claim in data['claims']))
+print('rule_ids:', ', '.join(rule['rule_id'] for rule in data['rules']))
+PY
+path: examples/review_runs/live_allow.domain.json
+logic_level: propositional
+title: Estonian Family Law Act
+claim_count: 7
+rule_count: 6
+claim_ids: applicant_is_parent, applicant_is_not_parent, sole_custody, delegated_decision_right, emergency, both_parents_consent, one_parent_unreachable
+rule_ids: allow_sole_custody, allow_delegated_right, allow_emergency, allow_joint_consent, block_consent_when_unreachable, deny_non_parent
+
+$ python 03_solve_case.py --domain examples/review_runs/live_allow.domain.json --intent examples/review_runs/live_allow.intent.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/live_allow.solution.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_allow.solution.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('final_outcome:', data['final_outcome'])
+print('blocked_at_step:', data['blocked_at_step'])
+print('block_reason_code:', data['block_reason_code'])
+print('extracted_claim_count:', data['extracted_claim_count'])
+print('extracted_rule_count:', data['extracted_rule_count'])
+print('unresolved_claim_ids:', data['unresolved_claim_ids'])
+print('snapshot_count:', len(data['snapshots']))
+PY
+path: examples/review_runs/live_allow.solution.json
+logic_level: propositional
+final_outcome: ALLOW
+blocked_at_step: None
+block_reason_code: None
+extracted_claim_count: 7
+extracted_rule_count: 6
+unresolved_claim_ids: []
+snapshot_count: 1
+
+$ python 04_print_trace.py --solution examples/review_runs/live_allow.solution.json
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Estonian Family Law Act
+REQUEST: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+EXTRACTED CLAIM COUNT: 7
+EXTRACTED RULE COUNT: 6
+
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The lowered Z3 theory entails ALLOW.
+
+SNAPSHOT: initial
+  outcome: ALLOW
+  resolved_claims:
+    - PARENT [PARENT] = T (source_type=db, resolved_from=intent)
+    - NOT_PARENT [NOT_PARENT] = F (source_type=db, resolved_from=intent)
+    - SOLE_CUSTODY [SOLE_CUSTODY] = U (source_type=db, resolved_from=unknown)
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = U (source_type=db, resolved_from=unknown)
+    - EMERGENCY [EMERGENCY] = T (source_type=user, resolved_from=intent)
+    - BOTH_CONSENT [BOTH_CONSENT] = F (source_type=db, resolved_from=intent)
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = T (source_type=user, resolved_from=intent)
+  rule_trace:
+    - allow_sole_custody [needs_info] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=T, SOLE_CUSTODY=U
+    - allow_delegated_right [needs_info] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=T, DELEGATED_RIGHT=U
+    - allow_emergency [fires] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=T, EMERGENCY=T
+    - allow_joint_consent [blocked] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=T, BOTH_CONSENT=F
+    - block_consent_when_unreachable [fires] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=T
+    - deny_non_parent [blocked] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=F
+
+FINAL OUTCOME: ALLOW
+
+## Example 2: live DB-then-user path
+
+$ python 01_extract_intent.py --text-file examples/section_120_demo/request_db_then_user.txt --out examples/review_runs/live_db_then_user.intent.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_db_then_user.intent.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+resolved = [claim for claim in data['claims'] if claim['value'] is not None]
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('request_text:', data['request_text'])
+print('resolved_claim_count:', len(resolved))
+print('resolved_claims:')
+for claim in resolved:
+    print('  - {}={}'.format(claim['claim_id'], claim['value']))
+PY
+path: examples/review_runs/live_db_then_user.intent.json
+logic_level: propositional
+request_text: I need access to the child's data. I do not yet know whether this is an emergency.
+
+resolved_claim_count: 1
+resolved_claims:
+  - emergency=False
+
+$ python 02_extract_domain.py --law-file examples/section_120_demo/law.txt --out examples/review_runs/live_db_then_user.domain.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_db_then_user.domain.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('title:', data['title'])
+print('claim_count:', len(data['claims']))
+print('rule_count:', len(data['rules']))
+print('claim_ids:', ', '.join(claim['claim_id'] for claim in data['claims']))
+print('rule_ids:', ', '.join(rule['rule_id'] for rule in data['rules']))
+PY
+path: examples/review_runs/live_db_then_user.domain.json
+logic_level: propositional
+title: Parental Custody and Representation Rights under the Family Law Act
+claim_count: 7
+rule_count: 6
+claim_ids: applicant_is_parent, applicant_is_not_parent, sole_custody, delegated_decision_right, emergency, both_parents_consent, one_parent_unreachable
+rule_ids: allow_sole_custody, allow_delegated_right, allow_emergency, allow_joint_consent, block_consent_when_unreachable, deny_non_parent
+
+$ python 03_solve_case.py --domain examples/review_runs/live_db_then_user.domain.json --intent examples/review_runs/live_db_then_user.intent.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/live_db_then_user.solution.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_db_then_user.solution.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('final_outcome:', data['final_outcome'])
+print('blocked_at_step:', data['blocked_at_step'])
+print('block_reason_code:', data['block_reason_code'])
+print('extracted_claim_count:', data['extracted_claim_count'])
+print('extracted_rule_count:', data['extracted_rule_count'])
+print('unresolved_claim_ids:', data['unresolved_claim_ids'])
+print('snapshot_count:', len(data['snapshots']))
+PY
+path: examples/review_runs/live_db_then_user.solution.json
+logic_level: propositional
+final_outcome: DENY
+blocked_at_step: solve
+block_reason_code: no_applicable_rules
+extracted_claim_count: 7
+extracted_rule_count: 6
+unresolved_claim_ids: []
+snapshot_count: 2
+
+$ python 04_print_trace.py --solution examples/review_runs/live_db_then_user.solution.json
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Parental Custody and Representation Rights under the Family Law Act
+REQUEST: I need access to the child's data. I do not yet know whether this is an emergency.
+
+EXTRACTED CLAIM COUNT: 7
+EXTRACTED RULE COUNT: 6
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: no_applicable_rules
+
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The allow path still depends on DB-backed claims.
+[db_lookup] Queried the local mock DB for: applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+[after_db_lookup] No allow rule is entailed and no useful missing information remains, so the solver defaults to DENY.
+[blockage] Blocked at `solve` with neutral reason code `no_applicable_rules`.
+
+DB LOOKUPS
+- Dummy parent registry (population_registry) -> [applicant_is_parent=True] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+- Dummy custody registry (custody_registry) -> [delegated_decision_right=False, sole_custody=False] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+- Dummy consent service (consent_service) -> [both_parents_consent=False] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+
+SNAPSHOT: initial
+  outcome: NEED_DB_INFO
+  missing_db: applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+  resolved_claims:
+    - PARENT [PARENT] = U (source_type=db, resolved_from=unknown)
+    - NOT_PARENT [NOT_PARENT] = U (source_type=db, resolved_from=unknown)
+    - SOLE_CUSTODY [SOLE_CUSTODY] = U (source_type=db, resolved_from=unknown)
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = U (source_type=db, resolved_from=unknown)
+    - EMERGENCY [EMERGENCY] = F (source_type=user, resolved_from=intent)
+    - BOTH_CONSENT [BOTH_CONSENT] = U (source_type=db, resolved_from=unknown)
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = U (source_type=user, resolved_from=unknown)
+  rule_trace:
+    - allow_sole_custody [needs_info] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=U, SOLE_CUSTODY=U
+    - allow_delegated_right [needs_info] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=U, DELEGATED_RIGHT=U
+    - allow_emergency [blocked] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=U, EMERGENCY=F
+    - allow_joint_consent [needs_info] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=U, BOTH_CONSENT=U
+    - block_consent_when_unreachable [needs_info] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=U
+    - deny_non_parent [needs_info] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=U
+
+SNAPSHOT: after_db_lookup
+  outcome: DENY
+  resolved_claims:
+    - PARENT [PARENT] = T (source_type=db, resolved_from=db)
+    - NOT_PARENT [NOT_PARENT] = U (source_type=db, resolved_from=unknown)
+    - SOLE_CUSTODY [SOLE_CUSTODY] = F (source_type=db, resolved_from=db)
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = F (source_type=db, resolved_from=db)
+    - EMERGENCY [EMERGENCY] = F (source_type=user, resolved_from=intent)
+    - BOTH_CONSENT [BOTH_CONSENT] = F (source_type=db, resolved_from=db)
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = U (source_type=user, resolved_from=unknown)
+  rule_trace:
+    - allow_sole_custody [blocked] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=T, SOLE_CUSTODY=F
+    - allow_delegated_right [blocked] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=T, DELEGATED_RIGHT=F
+    - allow_emergency [blocked] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=T, EMERGENCY=F
+    - allow_joint_consent [blocked] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=T, BOTH_CONSENT=F
+    - block_consent_when_unreachable [needs_info] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=U
+    - deny_non_parent [needs_info] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=U
+
+FINAL OUTCOME: DENY
+
+## Example 3: live unrelated-law path
+
+$ python 01_extract_intent.py --text-file examples/section_120_demo/request_allow.txt --out examples/review_runs/live_unrelated.intent.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_unrelated.intent.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+resolved = [claim for claim in data['claims'] if claim['value'] is not None]
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('request_text:', data['request_text'])
+print('resolved_claim_count:', len(resolved))
+print('resolved_claims:')
+for claim in resolved:
+    print('  - {}={}'.format(claim['claim_id'], claim['value']))
+PY
+path: examples/review_runs/live_unrelated.intent.json
+logic_level: propositional
+request_text: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+resolved_claim_count: 5
+resolved_claims:
+  - applicant_is_parent=True
+  - applicant_is_not_parent=False
+  - emergency=True
+  - both_parents_consent=False
+  - one_parent_unreachable=True
+
+$ python 02_extract_domain.py --law-file examples/alternative_laws/121112025003.txt --out examples/review_runs/live_unrelated.domain.json --user-prompt-file prompts/domain/user.strict.txt
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_unrelated.domain.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('title:', data['title'])
+print('claim_count:', len(data['claims']))
+print('rule_count:', len(data['rules']))
+print('claim_ids:', ', '.join(claim['claim_id'] for claim in data['claims']))
+print('rule_ids:', ', '.join(rule['rule_id'] for rule in data['rules']))
+PY
+path: examples/review_runs/live_unrelated.domain.json
+logic_level: propositional
+title: Ehitusseadustiku ja planeerimisseaduse rakendamise seadus
+claim_count: 0
+rule_count: 0
+claim_ids: 
+rule_ids:
+
+$ python 03_solve_case.py --domain examples/review_runs/live_unrelated.domain.json --intent examples/review_runs/live_unrelated.intent.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/live_unrelated.solution.json
+[no terminal output]
+
+$ python - <<'PY'
+import json
+from pathlib import Path
+path = Path('examples/review_runs/live_unrelated.solution.json')
+data = json.loads(path.read_text(encoding='utf-8'))
+print('path:', path)
+print('logic_level:', data['logic_level'])
+print('final_outcome:', data['final_outcome'])
+print('blocked_at_step:', data['blocked_at_step'])
+print('block_reason_code:', data['block_reason_code'])
+print('extracted_claim_count:', data['extracted_claim_count'])
+print('extracted_rule_count:', data['extracted_rule_count'])
+print('unresolved_claim_ids:', data['unresolved_claim_ids'])
+print('snapshot_count:', len(data['snapshots']))
+PY
+path: examples/review_runs/live_unrelated.solution.json
+logic_level: propositional
+final_outcome: DENY
+blocked_at_step: domain_extraction
+block_reason_code: domain_extraction_empty
+extracted_claim_count: 0
+extracted_rule_count: 0
+unresolved_claim_ids: []
+snapshot_count: 1
+
+$ python 04_print_trace.py --solution examples/review_runs/live_unrelated.solution.json
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Ehitusseadustiku ja planeerimisseaduse rakendamise seadus
+REQUEST: I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.
+
+EXTRACTED CLAIM COUNT: 0
+EXTRACTED RULE COUNT: 0
+BLOCKED AT STEP: domain_extraction
+BLOCK REASON CODE: domain_extraction_empty
+
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] No allow rule is entailed and no useful missing information remains, so the solver defaults to DENY.
+[blockage] Blocked at `domain_extraction` with neutral reason code `domain_extraction_empty`.
+
+SNAPSHOT: initial
+  outcome: DENY
+  resolved_claims:
+  rule_trace:
+
+FINAL OUTCOME: DENY
+

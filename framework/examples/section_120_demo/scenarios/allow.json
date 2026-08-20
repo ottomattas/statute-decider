@@ -1,0 +1,13 @@
+{
+  "name": "allow",
+  "description": "Parent plus emergency facts resolve to ALLOW.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "applicant_is_parent": true,
+    "applicant_is_not_parent": false,
+    "emergency": true,
+    "one_parent_unreachable": true
+  }
+}

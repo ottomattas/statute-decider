@@ -1,0 +1,124 @@
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Avaliku teenistuse seadus §§ 14-15 demo
+REQUEST: I am applying for a civil-service position. I am an Estonian citizen but I was karistatud for an intentional crime two years ago and the conviction is still on record.
+
+EXTRACTED CLAIM COUNT: 7
+EXTRACTED RULE COUNT: 3
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: no_applicable_rules
+
+RUN METADATA
+  solve_generated_at_utc: 2026-04-17T08:10:51+00:00
+  domain_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/civil_service_deny/domain.json
+  intent_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/civil_service_deny/intent.json
+  mock_db_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/mock_db.json
+INTENT EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:51+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/request_deny.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/intent/system.propositional.txt [64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/intent/user.txt [bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac]
+DOMAIN EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:51+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/law.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/domain/system.propositional.txt [cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/domain/user.txt [35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b]
+
+INTENT CLAIMS
+- ee_citizen [EE_CITIZEN] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - I am applying for a civil-service position. I am an Estonian citizen but I was karistatud for an intentional crime two years ago and the conviction is still on record.
+      note: Matched user text
+- eu_citizen [EU_CITIZEN] = F (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to false.
+- secondary_education [SECONDARY_ED] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+- speaks_estonian [ESTONIAN_LANG] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+- full_capacity [FULL_CAPACITY] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+- criminal_conviction [CONVICTION] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - I am applying for a civil-service position. I am an Estonian citizen but I was karistatud for an intentional crime two years ago and the conviction is still on record.
+      note: Matched user text
+- no_conflict_declared [NO_CONFLICT] = T (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to true.
+
+DOMAIN CLAIMS
+- ee_citizen [EE_CITIZEN] (source_type=db)
+    - § 14 lg 1 [ats_14_1]
+      text: Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.
+      note: Primary citizenship basis for appointment under § 14(1).
+- eu_citizen [EU_CITIZEN] (source_type=db)
+    - § 14 lg 2 [ats_14_2]
+      text: Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.
+      note: Alternative EU citizenship basis under § 14(2).
+- secondary_education [SECONDARY_ED] (source_type=db)
+    - § 14 lg 1 [ats_14_1]
+      text: Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.
+      note: Secondary-education baseline required for appointment.
+- speaks_estonian [ESTONIAN_LANG] (source_type=db)
+    - § 14 lg 1 [ats_14_1]
+      text: Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.
+      note: Estonian-language proficiency required for appointment.
+- full_capacity [FULL_CAPACITY] (source_type=db)
+    - § 14 lg 1 [ats_14_1]
+      text: Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.
+      note: Full legal capacity is required for appointment.
+- criminal_conviction [CONVICTION] (source_type=db)
+    - § 15 p 1 [ats_15_1]
+      text: Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.
+      note: Bar on appointment for intentional-crime convictions.
+- no_conflict_declared [NO_CONFLICT] (source_type=user)
+    - § 15 p 4 [ats_15_4]
+      text: Teenistusse ei või võtta isikut, kes on vastavat ametikohta vahetult kontrolliva ametniku abikaasa, elukaaslane, vanem, vanavanem või alaneja sugulane.
+      note: User-provided declaration that § 15 p 4 family-conflict bar does not apply.
+
+DOMAIN RULES
+- allow_ee_citizen: (EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT
+  lowered: (EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT
+    - § 14 lg 1 [ats_14_1]
+      text: Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.
+      note: Baseline Estonian-citizen path under § 14(1).
+- allow_eu_citizen: (EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT
+  lowered: (EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT
+    - § 14 lg 2 [ats_14_2]
+      text: Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.
+      note: Alternative EU-citizen path under § 14(2).
+- deny_conviction: CONVICTION -> DENY_APPOINTMENT
+  lowered: CONVICTION -> DENY_APPOINTMENT
+    - § 15 p 1 [ats_15_1]
+      text: Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.
+      note: Statutory bar for intentional-crime conviction.
+
+TRACE EVENTS
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The lowered Z3 theory entails DENY.
+[blockage] Blocked at `solve` with neutral reason code `no_applicable_rules`.
+
+SNAPSHOT: initial
+  outcome: DENY
+  note: The lowered Z3 theory entails DENY.
+  resolved_claims:
+    - EE_CITIZEN [EE_CITIZEN] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - EU_CITIZEN [EU_CITIZEN] = F (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to false.
+    - SECONDARY_ED [SECONDARY_ED] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - ESTONIAN_LANG [ESTONIAN_LANG] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - FULL_CAPACITY [FULL_CAPACITY] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - CONVICTION [CONVICTION] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - NO_CONFLICT [NO_CONFLICT] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+  rule_trace:
+    - allow_ee_citizen [fires] :: (EE_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT :: EE_CITIZEN=T, SECONDARY_ED=T, ESTONIAN_LANG=T, FULL_CAPACITY=T, NO_CONFLICT=T
+    - allow_eu_citizen [blocked] :: (EU_CITIZEN AND SECONDARY_ED AND ESTONIAN_LANG AND FULL_CAPACITY AND NO_CONFLICT) -> ALLOW_APPOINTMENT :: EU_CITIZEN=F, SECONDARY_ED=T, ESTONIAN_LANG=T, FULL_CAPACITY=T, NO_CONFLICT=T
+    - deny_conviction [fires] :: CONVICTION -> DENY_APPOINTMENT :: CONVICTION=T
+
+FINAL OUTCOME: DENY

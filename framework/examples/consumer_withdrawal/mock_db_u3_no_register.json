@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "source_id": "trader_crm",
+      "label": "Dummy trader CRM (offline)",
+      "description": "Trader CRM is unreachable for this probe, simulating U3 NO_REGISTER on consumer status and distance-contract flag.",
+      "availability": "unavailable",
+      "values": {
+        "is_consumer": true,
+        "distance_contract": true
+      }
+    },
+    {
+      "source_id": "product_catalogue",
+      "label": "Dummy product catalogue",
+      "description": "Holds the § 53 lg 4 excluded-category flag for the ordered goods.",
+      "values": {
+        "excluded_category": false
+      }
+    }
+  ]
+}

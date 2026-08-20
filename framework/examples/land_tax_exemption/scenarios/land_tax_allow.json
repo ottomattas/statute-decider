@@ -1,0 +1,20 @@
+{
+  "name": "land_tax_allow",
+  "description": "Pensioner owner of registered residential land in a supporting municipality resolves to ALLOW.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "residential_land": true,
+    "primary_residence_registered": true,
+    "applicant_is_owner": true,
+    "receives_pension": true,
+    "municipality_exemption_set": true,
+    "application_submitted": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

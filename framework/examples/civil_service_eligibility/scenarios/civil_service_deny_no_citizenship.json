@@ -1,0 +1,21 @@
+{
+  "name": "civil_service_deny_no_citizenship",
+  "description": "Applicant is neither Estonian nor EU citizen; no allow rule fires and there is no deny-trigger, so § 14 falls back to DENY with no applicable rules.",
+  "request_file": "request_deny.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "ee_citizen": false,
+    "eu_citizen": false,
+    "secondary_education": true,
+    "speaks_estonian": true,
+    "full_capacity": true,
+    "criminal_conviction": false,
+    "no_conflict_declared": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "DENY",
+  "expected_reason_code": "no_applicable_rules",
+  "tags": ["negative", "no-basis"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

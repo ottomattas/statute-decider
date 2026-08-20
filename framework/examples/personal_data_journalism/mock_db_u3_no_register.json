@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {
+      "source_id": "editorial_cms",
+      "label": "Dummy editorial CMS (offline)",
+      "description": "Editorial CMS is unreachable for this probe, simulating U3 NO_REGISTER on journalistic-purpose classification.",
+      "availability": "unavailable",
+      "values": {
+        "journalistic_purpose": true
+      }
+    },
+    {
+      "source_id": "consent_registry",
+      "label": "Dummy consent registry",
+      "description": "Records whether the data subject has consented to processing.",
+      "values": {
+        "subject_consent": false
+      }
+    }
+  ]
+}

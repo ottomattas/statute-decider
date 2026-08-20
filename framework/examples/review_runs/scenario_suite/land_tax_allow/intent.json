@@ -1,0 +1,115 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/request_allow.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "residential_land",
+      "lowered_atom": "RESIDENTIAL_LAND",
+      "label": "Land's intended use is residential (elamumaa)",
+      "description": "The cadastre records the land's intended use as residential.",
+      "source_type": "db",
+      "formal_text": "RESIDENTIAL_LAND",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "primary_residence_registered",
+      "lowered_atom": "PRIMARY_RESIDENCE",
+      "label": "Owner's primary residence is registered on the parcel",
+      "description": "The population registry lists the applicant's primary residence on the parcel.",
+      "source_type": "db",
+      "formal_text": "PRIMARY_RESIDENCE",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "applicant_is_owner",
+      "lowered_atom": "OWNER",
+      "label": "Applicant owns the parcel",
+      "description": "The land registry shows the applicant as the current owner.",
+      "source_type": "db",
+      "formal_text": "OWNER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "receives_pension",
+      "lowered_atom": "PENSIONER",
+      "label": "Applicant receives a state pension",
+      "description": "The social-insurance registry records the applicant as a state-pension recipient.",
+      "source_type": "db",
+      "formal_text": "PENSIONER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "municipality_exemption_set",
+      "lowered_atom": "EXEMPTION_SET",
+      "label": "Municipality has set the exemption",
+      "description": "The land-tax information system records a § 11(1)/(5) exemption set by the local council.",
+      "source_type": "db",
+      "formal_text": "EXEMPTION_SET",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "application_submitted",
+      "lowered_atom": "APPLICATION",
+      "label": "Supplementary-exemption application has been submitted",
+      "description": "Applicant confirms that the § 11(7) application has been submitted in the required form.",
+      "source_type": "user",
+      "formal_text": "APPLICATION",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ]
+}

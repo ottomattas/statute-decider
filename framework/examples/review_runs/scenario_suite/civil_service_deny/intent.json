@@ -1,0 +1,106 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "I am applying for a civil-service position. I am an Estonian citizen but I was karistatud for an intentional crime two years ago and the conviction is still on record.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:51+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/request_deny.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/civil_service_eligibility/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "ee_citizen",
+      "lowered_atom": "EE_CITIZEN",
+      "label": "Applicant is an Estonian citizen",
+      "description": "The applicant holds Estonian citizenship per the population registry.",
+      "source_type": "db",
+      "formal_text": "EE_CITIZEN",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am applying for a civil-service position. I am an Estonian citizen but I was karistatud for an intentional crime two years ago and the conviction is still on record.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "eu_citizen",
+      "lowered_atom": "EU_CITIZEN",
+      "label": "Applicant is an EU member-state citizen",
+      "description": "The applicant holds citizenship of an EU member state per the population registry.",
+      "source_type": "db",
+      "formal_text": "EU_CITIZEN",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": []
+    },
+    {
+      "claim_id": "secondary_education",
+      "lowered_atom": "SECONDARY_ED",
+      "label": "Applicant has at least secondary education",
+      "description": "The applicant's recorded education is at least at secondary level.",
+      "source_type": "db",
+      "formal_text": "SECONDARY_ED",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "speaks_estonian",
+      "lowered_atom": "ESTONIAN_LANG",
+      "label": "Applicant speaks Estonian at required level",
+      "description": "The applicant meets the statutory Estonian language requirement.",
+      "source_type": "db",
+      "formal_text": "ESTONIAN_LANG",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "full_capacity",
+      "lowered_atom": "FULL_CAPACITY",
+      "label": "Applicant has full legal capacity",
+      "description": "The applicant has full active legal capacity (täielik teovõime).",
+      "source_type": "db",
+      "formal_text": "FULL_CAPACITY",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "criminal_conviction",
+      "lowered_atom": "CONVICTION",
+      "label": "Applicant has a conviction for an intentional crime",
+      "description": "Criminal records show a standing conviction for an intentional crime.",
+      "source_type": "db",
+      "formal_text": "CONVICTION",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am applying for a civil-service position. I am an Estonian citizen but I was karistatud for an intentional crime two years ago and the conviction is still on record.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "no_conflict_declared",
+      "lowered_atom": "NO_CONFLICT",
+      "label": "Applicant declares no § 15 p 4 family conflict",
+      "description": "The applicant confirms they are not a close relative of a supervising official per § 15 p 4.",
+      "source_type": "user",
+      "formal_text": "NO_CONFLICT",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    }
+  ]
+}

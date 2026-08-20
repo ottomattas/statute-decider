@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "source_id": "population_registry",
+      "label": "Dummy parent registry",
+      "description": "Confirms whether the requester is a parent.",
+      "values": {
+        "applicant_is_parent": true,
+        "applicant_is_not_parent": false
+      }
+    },
+    {
+      "source_id": "custody_registry",
+      "label": "Dummy custody registry",
+      "description": "Confirms sole custody or delegated decision rights.",
+      "values": {
+        "sole_custody": false,
+        "delegated_decision_right": false
+      }
+    },
+    {
+      "source_id": "consent_service",
+      "label": "Dummy consent service",
+      "description": "Confirms whether both parents' consent is recorded.",
+      "values": {
+        "both_parents_consent": false
+      }
+    }
+  ]
+}

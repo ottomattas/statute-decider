@@ -1,0 +1,10 @@
+§ 42. Ehitusloa menetlus
+
+(1) Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele. Seaduses sätestatud juhul peab ehitis vastama riigi või kohaliku omavalitsuse eriplaneeringule.
+
+§ 44. Ehitusloa andmisest keeldumine
+
+() Pädev asutus keeldub ehitusloa andmisest, kui:
+1) kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, riigi või kohaliku omavalitsuse eriplaneeringule, ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;
+2) ehitusprojekti ei ole koostanud pädev isik või pädev isik ei ole teinud ehitusprojekti ekspertiisi;
+3) ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu tulemustele või on nõutav uuring tegemata.

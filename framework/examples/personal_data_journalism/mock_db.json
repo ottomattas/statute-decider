@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "source_id": "editorial_cms",
+      "label": "Dummy editorial CMS",
+      "description": "Records the editorial classification of the processing purpose.",
+      "values": {
+        "journalistic_purpose": true
+      }
+    },
+    {
+      "source_id": "consent_registry",
+      "label": "Dummy consent registry",
+      "description": "Records whether the data subject has consented to processing.",
+      "values": {
+        "subject_consent": false
+      }
+    }
+  ]
+}

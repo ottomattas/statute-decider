@@ -1,0 +1,20 @@
+{
+  "name": "land_tax_deny_not_residential",
+  "description": "Parcel is not residential land, blocking both home-land and pensioner supplement allow rules; no deny rule exists -> DENY with no applicable rules.",
+  "request_file": "request_deny.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "residential_land": false,
+    "primary_residence_registered": true,
+    "applicant_is_owner": true,
+    "receives_pension": true,
+    "municipality_exemption_set": true,
+    "application_submitted": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "DENY",
+  "expected_reason_code": "no_applicable_rules",
+  "tags": ["negative", "no-basis"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

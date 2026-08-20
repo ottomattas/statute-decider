@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {
+      "source_id": "editorial_selfreport",
+      "label": "Editorial self-report of journalism classification and subject consent",
+      "description": "Stand-in for the CMS and consent registry: values are accepted on trust, triggering U7 TRUST_ONLY.",
+      "trust_only": true,
+      "values": {
+        "journalistic_purpose": true,
+        "subject_consent": false
+      }
+    }
+  ]
+}

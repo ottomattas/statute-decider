@@ -1,0 +1,19 @@
+{
+  "name": "journalism_deny",
+  "description": "Excessive harm defeats ethics compliance and blocks the journalism basis; no consent on record.",
+  "request_file": "request_deny.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "journalistic_purpose": true,
+    "public_interest": true,
+    "journalism_ethics": true,
+    "subject_consent": false,
+    "excessive_harm": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "DENY",
+  "expected_reason_code": "solver_inconsistent",
+  "tags": ["negative"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

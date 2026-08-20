@@ -1,0 +1,38 @@
+{
+  "sources": [
+    {
+      "source_id": "land_registry",
+      "label": "Dummy land registry",
+      "description": "Holds ownership and intended-use records for parcels.",
+      "values": {
+        "residential_land": true,
+        "applicant_is_owner": true
+      }
+    },
+    {
+      "source_id": "population_registry",
+      "label": "Dummy population registry (offline)",
+      "description": "Population registry is unreachable for this probe, simulating U3 NO_REGISTER on primary-residence registration.",
+      "availability": "unavailable",
+      "values": {
+        "primary_residence_registered": true
+      }
+    },
+    {
+      "source_id": "social_insurance_registry",
+      "label": "Dummy social-insurance registry",
+      "description": "Holds state-pension recipient status.",
+      "values": {
+        "receives_pension": true
+      }
+    },
+    {
+      "source_id": "municipality_records",
+      "label": "Dummy municipality-records registry",
+      "description": "Holds the municipality exemption flag under § 11.",
+      "values": {
+        "municipality_exemption_set": true
+      }
+    }
+  ]
+}

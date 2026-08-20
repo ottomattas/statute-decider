@@ -1,0 +1,181 @@
+{
+  "title": "Ehitusseadustik §§ 42, 44 demo",
+  "description": "Building-permit issuance check under the Building Code § 42 lg 1 and § 44 refusal grounds.",
+  "default_logic_level": "propositional",
+  "claims": [
+    {
+      "claim_id": "plan_conformant",
+      "lowered_atom": "PLAN_OK",
+      "label": "Project conforms to the detailed plan",
+      "description": "The building registry confirms the project conforms to the applicable detail plan.",
+      "source_type": "db",
+      "propositional": "PLAN_OK",
+      "predicate": "ConformsToDetailPlan(project)",
+      "higher_order": "ConformsToDetailPlan(project)",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1",
+          "clause_text": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "note": "Detail-plan conformity is the primary positive condition."
+        }
+      ],
+      "request_cue_groups": [["detailplaneering", "detail plan"]],
+      "law_cue_groups": [["detailplaneeringule"]]
+    },
+    {
+      "claim_id": "building_requirements_met",
+      "lowered_atom": "BUILD_REQS",
+      "label": "Project meets construction and safety requirements",
+      "description": "The building registry confirms the project meets statutory construction and safety requirements.",
+      "source_type": "db",
+      "propositional": "BUILD_REQS",
+      "predicate": "MeetsBuildingRequirements(project)",
+      "higher_order": "MeetsBuildingRequirements(project)",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1",
+          "clause_text": "... ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "note": "Construction-and-safety requirement condition."
+        }
+      ],
+      "request_cue_groups": [["ehitamise nõuded", "building requirements", "ehitusnõue"]],
+      "law_cue_groups": [["ehitisele", "ehitamisele"], ["nõuetele"]]
+    },
+    {
+      "claim_id": "competent_designer",
+      "lowered_atom": "COMPETENT_DESIGNER",
+      "label": "Project was prepared by a competent designer",
+      "description": "The professional-registry confirms the project was prepared by a competent designer.",
+      "source_type": "db",
+      "propositional": "COMPETENT_DESIGNER",
+      "predicate": "CompetentDesigner(project)",
+      "higher_order": "CompetentDesigner(project)",
+      "law_references": [
+        {
+          "clause_id": "es_44_2",
+          "clause_title": "§ 44 p 2",
+          "clause_text": "... ehitusprojekti ei ole koostanud pädev isik või pädev isik ei ole teinud ehitusprojekti ekspertiisi;",
+          "note": "Competent-designer requirement, stated as a refusal ground."
+        }
+      ],
+      "request_cue_groups": [["pädev isik", "competent designer"]],
+      "law_cue_groups": [["pädev"]]
+    },
+    {
+      "claim_id": "site_study_provided",
+      "lowered_atom": "SITE_STUDY",
+      "label": "Site construction study has been provided",
+      "description": "The building registry contains a valid site construction study (ehitusuuring).",
+      "source_type": "db",
+      "propositional": "SITE_STUDY",
+      "predicate": "SiteStudyProvided(project)",
+      "higher_order": "SiteStudyProvided(project)",
+      "law_references": [
+        {
+          "clause_id": "es_44_3",
+          "clause_title": "§ 44 p 3",
+          "clause_text": "... ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu tulemustele või on nõutav uuring tegemata.",
+          "note": "Site-study requirement, stated as a refusal ground."
+        }
+      ],
+      "request_cue_groups": [["ehitusuuring", "site study"]],
+      "law_cue_groups": [["ehitusuuring"]]
+    },
+    {
+      "claim_id": "fee_paid",
+      "lowered_atom": "FEE_PAID",
+      "label": "State fee has been paid",
+      "description": "The payment system confirms the building-permit state fee has been paid.",
+      "source_type": "db",
+      "propositional": "FEE_PAID",
+      "predicate": "FeePaid(application)",
+      "higher_order": "FeePaid(application)",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1 (õigusaktides sätestatud nõuded)",
+          "clause_text": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele ...",
+          "note": "State-fee obligation falls under 'õigusaktides sätestatud nõuded'."
+        }
+      ],
+      "request_cue_groups": [["riigilõiv", "state fee"]],
+      "law_cue_groups": [["õigusaktides sätestatud nõuetele"]]
+    },
+    {
+      "claim_id": "plan_violation",
+      "lowered_atom": "PLAN_VIOLATION",
+      "label": "Project violates the detailed plan",
+      "description": "The building registry records that the project violates the detail plan or equivalent planning instrument.",
+      "source_type": "db",
+      "propositional": "PLAN_VIOLATION",
+      "predicate": "ViolatesDetailPlan(project)",
+      "higher_order": "ViolatesDetailPlan(project)",
+      "law_references": [
+        {
+          "clause_id": "es_44_1",
+          "clause_title": "§ 44 p 1",
+          "clause_text": "... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;",
+          "note": "Plan-violation refusal ground."
+        }
+      ],
+      "request_cue_groups": [["detailplaneeringuga vastuolus", "violates detail plan"]],
+      "law_cue_groups": [["ei vasta detailplaneeringule"]]
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "permit_allowed",
+      "lowered_atom": "ALLOW_PERMIT",
+      "label": "Building permit is issued",
+      "propositional": "ALLOW_PERMIT",
+      "predicate": "IssuePermit(application)",
+      "higher_order": "IssuePermit(application)",
+      "administrative_role": "allow"
+    },
+    {
+      "outcome_id": "permit_denied",
+      "lowered_atom": "DENY_PERMIT",
+      "label": "Building permit is refused",
+      "propositional": "DENY_PERMIT",
+      "predicate": "RefusePermit(application)",
+      "higher_order": "RefusePermit(application)",
+      "administrative_role": "deny"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_building_permit",
+      "kind": "allow_if_all",
+      "label": "Grant permit when all positive conditions of § 42 lg 1 are met.",
+      "when_claim_ids": ["plan_conformant", "building_requirements_met", "competent_designer", "site_study_provided", "fee_paid"],
+      "target_outcome_id": "permit_allowed",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1",
+          "clause_text": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "note": "Five-claim positive path to permit issuance."
+        }
+      ],
+      "law_cue_groups": [["detailplaneeringule"], ["ehitisele", "ehitamisele"], ["õigusaktides sätestatud nõuetele"]]
+    },
+    {
+      "rule_id": "deny_plan_violation",
+      "kind": "deny_if_all",
+      "label": "Refuse permit when the project violates the detail plan (§ 44 p 1).",
+      "when_claim_ids": ["plan_violation"],
+      "target_outcome_id": "permit_denied",
+      "law_references": [
+        {
+          "clause_id": "es_44_1",
+          "clause_title": "§ 44 p 1",
+          "clause_text": "... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;",
+          "note": "Hard refusal ground based on plan violation."
+        }
+      ],
+      "law_cue_groups": [["ei vasta detailplaneeringule"]]
+    }
+  ]
+}

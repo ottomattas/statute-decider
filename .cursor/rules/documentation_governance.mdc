@@ -1,0 +1,15 @@
+---
+description: Keep project documentation canonical, synchronized, and public-safe.
+globs: "README.md,docs/**/*.md,framework/**/*.py,.cursor/rules/*.mdc"
+alwaysApply: true
+---
+# Documentation Governance
+
+- The canonical docs home is `docs/`.
+- Use `docs/architecture/` for structure and data-flow explanations.
+- Use `docs/reference/` for schema and reasoner semantics.
+- Use `docs/guides/` for development and workflow instructions.
+- Use `docs/adr/` for durable architecture decisions.
+- Do not add ad hoc Markdown files under `framework/` unless the user explicitly asks for a local implementation note.
+- When schema, reasoner, governance, or workflow semantics change, update the matching canonical doc in the same work unit.
+- Keep repo docs public-safe: no private tracker identifiers, transcript filenames, or operational snapshots in committed text.

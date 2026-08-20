@@ -1,0 +1,159 @@
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Maamaksuseadus § 11 demo
+REQUEST: I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+
+EXTRACTED CLAIM COUNT: 6
+EXTRACTED RULE COUNT: 2
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: needs_db_info
+UNRESOLVED CLAIM IDS: municipality_exemption_set
+
+RUN METADATA
+  solve_generated_at_utc: 2026-04-17T08:10:53+00:00
+  domain_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/land_tax_need_db/domain.json
+  intent_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/land_tax_need_db/intent.json
+  mock_db_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/mock_db.json
+INTENT EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:53+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/request_need_db.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/intent/system.propositional.txt [64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/intent/user.txt [bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac]
+DOMAIN EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:53+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/law.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/domain/system.propositional.txt [cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/domain/user.txt [35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b]
+
+INTENT CLAIMS
+- residential_land [RESIDENTIAL_LAND] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+  provenance:
+    - I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+      note: Matched user text
+- primary_residence_registered [PRIMARY_RESIDENCE] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+  provenance:
+    - I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+      note: Matched user text
+- applicant_is_owner [OWNER] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+  provenance:
+    - I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+      note: Matched user text
+- receives_pension [PENSIONER] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+  provenance:
+    - I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+      note: Matched user text
+- municipality_exemption_set [EXEMPTION_SET] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+  provenance:
+    - I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+      note: Matched user text
+- application_submitted [APPLICATION] = T (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - I am a pensionär and the omanik of the parcel in a rural municipality. The maa sihtotstarve is elamumaa and my elukoht is registered there. I have submitted the taotlus but I do not know whether the local omavalitsuse volikogu has set the § 11 soodustus yet.
+      note: Matched user text
+
+DOMAIN CLAIMS
+- residential_land [RESIDENTIAL_LAND] (source_type=db)
+    - § 11 lg 1^1 [mms_11_1_1]
+      text: Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa ...
+      note: Residential land-use category for home-land exemption.
+- primary_residence_registered [PRIMARY_RESIDENCE] (source_type=db)
+    - § 11 lg 1^1 [mms_11_1_1]
+      text: ... kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.
+      note: Population-registry residence condition.
+- applicant_is_owner [OWNER] (source_type=db)
+    - § 11 lg 1^1 [mms_11_1_1]
+      text: Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad ...
+      note: Ownership precondition for home-land exemption.
+- receives_pension [PENSIONER] (source_type=db)
+    - § 11 lg 5 p 1 [mms_11_5_1]
+      text: ... täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele: 1) riikliku pensionikindlustuse seaduse alusel pensioni saajad;
+      note: Pensioner target group for the supplementary exemption.
+- municipality_exemption_set [EXEMPTION_SET] (source_type=db)
+    - § 11 lg 1 [mms_11_1]
+      text: Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada ... kodualuse maa maksusoodustuse ...
+      note: Local-council act is required to activate the exemption.
+- application_submitted [APPLICATION] (source_type=user)
+    - § 11 lg 7 [mms_11_7]
+      text: Täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.
+      note: User-provided confirmation of submitted application.
+
+DOMAIN RULES
+- allow_home_land_exemption: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION
+  lowered: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION
+    - § 11 lg 1 [mms_11_1]
+      text: Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada käesoleva paragrahvi lõikes 1^1 sätestatud tingimustel kodualuse maa maksusoodustuse kuni 1000 eurot hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks.
+      note: Baseline home-land exemption path.
+- allow_pensioner_supplement: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION
+  lowered: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION
+    - § 11 lg 5 p 1 [mms_11_5_1]
+      text: Kohaliku omavalitsuse üksuse volikogu võib ... määrata täiendava maksusoodustuse ... pensioni saajad;
+      note: Supplementary pensioner path.
+
+MULTI-SNAPSHOT SUMMARY
+- initial=NEED_DB_INFO -> final=NEED_DB_INFO
+  final_note: DB-backed claims are still unresolved after the current lookup pass.
+
+TRACE EVENTS
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The allow path still depends on DB-backed claims.
+[db_lookup] Queried the local mock DB for: applicant_is_owner, municipality_exemption_set, primary_residence_registered, receives_pension, residential_land
+[after_db_lookup] DB-backed claims are still unresolved after the current lookup pass.
+[blockage] Blocked at `solve` with neutral reason code `needs_db_info`.
+
+DB LOOKUPS
+- Dummy land registry (land_registry) -> [applicant_is_owner=True, residential_land=True] for applicant_is_owner, municipality_exemption_set, primary_residence_registered, receives_pension, residential_land
+  note: Holds ownership and intended-use records for parcels.
+- Dummy population registry (population_registry) -> [primary_residence_registered=True] for applicant_is_owner, municipality_exemption_set, primary_residence_registered, receives_pension, residential_land
+  note: Holds registered-residence addresses.
+- Dummy social-insurance registry (social_insurance_registry) -> [receives_pension=True] for applicant_is_owner, municipality_exemption_set, primary_residence_registered, receives_pension, residential_land
+  note: Holds state-pension recipient status.
+
+SNAPSHOT: initial
+  outcome: NEED_DB_INFO
+  note: The allow path still depends on DB-backed claims.
+  missing_db: applicant_is_owner, municipality_exemption_set, primary_residence_registered, receives_pension, residential_land
+  resolved_claims:
+    - RESIDENTIAL_LAND [RESIDENTIAL_LAND] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - PRIMARY_RESIDENCE [PRIMARY_RESIDENCE] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - OWNER [OWNER] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - PENSIONER [PENSIONER] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - EXEMPTION_SET [EXEMPTION_SET] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - APPLICATION [APPLICATION] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+  rule_trace:
+    - allow_home_land_exemption [needs_info] :: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION :: RESIDENTIAL_LAND=U, PRIMARY_RESIDENCE=U, OWNER=U, EXEMPTION_SET=U
+    - allow_pensioner_supplement [needs_info] :: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION :: RESIDENTIAL_LAND=U, PRIMARY_RESIDENCE=U, OWNER=U, PENSIONER=U, EXEMPTION_SET=U, APPLICATION=T
+
+SNAPSHOT: after_db_lookup
+  outcome: NEED_DB_INFO
+  note: DB-backed claims are still unresolved after the current lookup pass.
+  missing_db: municipality_exemption_set
+  resolved_claims:
+    - RESIDENTIAL_LAND [RESIDENTIAL_LAND] = T (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - PRIMARY_RESIDENCE [PRIMARY_RESIDENCE] = T (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - OWNER [OWNER] = T (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - PENSIONER [PENSIONER] = T (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - EXEMPTION_SET [EXEMPTION_SET] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - APPLICATION [APPLICATION] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+  rule_trace:
+    - allow_home_land_exemption [needs_info] :: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION :: RESIDENTIAL_LAND=T, PRIMARY_RESIDENCE=T, OWNER=T, EXEMPTION_SET=U
+    - allow_pensioner_supplement [needs_info] :: (RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION :: RESIDENTIAL_LAND=T, PRIMARY_RESIDENCE=T, OWNER=T, PENSIONER=T, EXEMPTION_SET=U, APPLICATION=T
+
+FINAL OUTCOME: NEED_DB_INFO

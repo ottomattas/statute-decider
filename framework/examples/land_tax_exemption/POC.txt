@@ -1,0 +1,51 @@
+POC — Maamaksuseadus § 11 (Kodualuse maa maksusoodustus + pensionär)
+
+Seadus (katke):
+§ 11. Maksusoodustused
+(1)  Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada
+     lõikes 1^1 sätestatud tingimustel kodualuse maa maksusoodustuse
+     kuni 1000 eurot hiljemalt maksustamisperioodile eelneva aasta
+     1. oktoobriks.
+(1^1) Kodualuse maana käsitatakse maa omaniku omandis olevat maad,
+     mille sihtotstarve on elamumaa, kui sellel maal asuvas hoones on
+     maa omaniku elukoht rahvastikuregistrisse kantud elukoha andmete
+     järgi.
+(5)  Kohaliku omavalitsuse üksuse volikogu võib kehtestada
+     täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele:
+     1) riikliku pensionikindlustuse seaduse alusel pensioni saajad; ...
+(7)  Täiendava maksusoodustuse saamiseks esitab tingimustele vastav isik
+     taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud
+     korra järgi.
+
+Propositional variables (sulgudes source_type):
+  "maa sihtotstarve on elamumaa"                  (db)
+  "omaniku elukoht on rahvastikuregistris sellel maal" (db)
+  "taotleja on maa omanik"                        (db)
+  "taotleja saab riiklikku pensioni"              (db)
+  "kohalik omavalitsus on soodustuse kehtestanud" (db)
+  "taotlus täiendava soodustuse saamiseks esitatud" (user)
+  "maksusoodustus on antud"                        (outcome: allow)
+  "maksusoodustus on keeldutud"                    (outcome: deny)
+
+Reeglid:
+  R1 (§ 11(1) + 1^1, kodualuse maa baasi-soodustus):
+    "elamumaa" AND "rahvastikuregistri elukoht" AND "omanik"
+      AND "KOV on soodustuse kehtestanud"
+      -> "maksusoodustus antud"
+  R2 (§ 11(5) p1 + (7), pensionäri lisa-soodustus):
+    "elamumaa" AND "rahvastikuregistri elukoht" AND "omanik"
+      AND "pensioni saaja" AND "KOV on soodustuse kehtestanud"
+      AND "taotlus esitatud"
+      -> "maksusoodustus antud"
+
+Protsess:
+  1. Loe kinnistusregistrist omandi- ja sihtotstarbe andmed.
+  2. Loe rahvastikuregistrist elukohaandmed.
+  3. Loe maamaksu infosüsteemist, kas KOV on kehtestanud §11(1)/(5)
+     soodustuse.
+  4. Küsi kasutajalt taotluse esitamise fakti (§11(7)).
+  5. Solver:
+     - kui KOV-infosüsteem ei sisalda soodustuse kehtestamise andmeid
+       -> NEED_DB_INFO.
+     - kui kõik eeldused TRUE -> ALLOW.
+     - kui mõni baasi-eeldus FALSE -> DENY (default).

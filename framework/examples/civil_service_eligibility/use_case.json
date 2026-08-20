@@ -1,0 +1,217 @@
+{
+  "title": "Avaliku teenistuse seadus §§ 14-15 demo",
+  "description": "Civil-servant appointment eligibility check under the Estonian Civil Service Act.",
+  "default_logic_level": "propositional",
+  "claims": [
+    {
+      "claim_id": "ee_citizen",
+      "lowered_atom": "EE_CITIZEN",
+      "label": "Applicant is an Estonian citizen",
+      "description": "The applicant holds Estonian citizenship per the population registry.",
+      "source_type": "db",
+      "propositional": "EE_CITIZEN",
+      "predicate": "EstonianCitizen(applicant)",
+      "higher_order": "EstonianCitizen(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Primary citizenship basis for appointment under § 14(1)."
+        }
+      ],
+      "request_cue_groups": [["eesti kodanik", "estonian citizen"]],
+      "law_cue_groups": [["kodanik", "kodaniku"], ["Eesti Vabariigi"]]
+    },
+    {
+      "claim_id": "eu_citizen",
+      "lowered_atom": "EU_CITIZEN",
+      "label": "Applicant is an EU member-state citizen",
+      "description": "The applicant holds citizenship of an EU member state per the population registry.",
+      "source_type": "db",
+      "propositional": "EU_CITIZEN",
+      "predicate": "EuCitizen(applicant)",
+      "higher_order": "EuCitizen(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_14_2",
+          "clause_title": "§ 14 lg 2",
+          "clause_text": "Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.",
+          "note": "Alternative EU citizenship basis under § 14(2)."
+        }
+      ],
+      "request_cue_groups": [["eu citizen", "euroopa liidu kodanik"]],
+      "law_cue_groups": [["Euroopa Liidu", "liikmesriigi"], ["kodanik", "kodaniku"]]
+    },
+    {
+      "claim_id": "secondary_education",
+      "lowered_atom": "SECONDARY_ED",
+      "label": "Applicant has at least secondary education",
+      "description": "The applicant's recorded education is at least at secondary level.",
+      "source_type": "db",
+      "propositional": "SECONDARY_ED",
+      "predicate": "HasSecondaryEducation(applicant)",
+      "higher_order": "HasSecondaryEducation(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Secondary-education baseline required for appointment."
+        }
+      ],
+      "request_cue_groups": [["keskharidus", "secondary education", "high school"]],
+      "law_cue_groups": [["keskharidus"]]
+    },
+    {
+      "claim_id": "speaks_estonian",
+      "lowered_atom": "ESTONIAN_LANG",
+      "label": "Applicant speaks Estonian at required level",
+      "description": "The applicant meets the statutory Estonian language requirement.",
+      "source_type": "db",
+      "propositional": "ESTONIAN_LANG",
+      "predicate": "SpeaksEstonian(applicant)",
+      "higher_order": "SpeaksEstonian(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Estonian-language proficiency required for appointment."
+        }
+      ],
+      "request_cue_groups": [["eesti keel", "estonian language", "valdab eesti"]],
+      "law_cue_groups": [["eesti keelt", "eesti keele"]]
+    },
+    {
+      "claim_id": "full_capacity",
+      "lowered_atom": "FULL_CAPACITY",
+      "label": "Applicant has full legal capacity",
+      "description": "The applicant has full active legal capacity (täielik teovõime).",
+      "source_type": "db",
+      "propositional": "FULL_CAPACITY",
+      "predicate": "HasFullCapacity(applicant)",
+      "higher_order": "HasFullCapacity(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Full legal capacity is required for appointment."
+        }
+      ],
+      "request_cue_groups": [["täielik teovõime", "full legal capacity"]],
+      "law_cue_groups": [["teovõimega", "teovõime"]]
+    },
+    {
+      "claim_id": "criminal_conviction",
+      "lowered_atom": "CONVICTION",
+      "label": "Applicant has a conviction for an intentional crime",
+      "description": "Criminal records show a standing conviction for an intentional crime.",
+      "source_type": "db",
+      "propositional": "CONVICTION",
+      "predicate": "HasIntentionalConviction(applicant)",
+      "higher_order": "HasIntentionalConviction(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_15_1",
+          "clause_title": "§ 15 p 1",
+          "clause_text": "Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.",
+          "note": "Bar on appointment for intentional-crime convictions."
+        }
+      ],
+      "request_cue_groups": [["karistus", "conviction", "karistatud"]],
+      "law_cue_groups": [["karistatus", "karistatud"], ["tahtlikult", "tahtliku"]]
+    },
+    {
+      "claim_id": "no_conflict_declared",
+      "lowered_atom": "NO_CONFLICT",
+      "label": "Applicant declares no § 15 p 4 family conflict",
+      "description": "The applicant confirms they are not a close relative of a supervising official per § 15 p 4.",
+      "source_type": "user",
+      "propositional": "NO_CONFLICT",
+      "predicate": "DeclaresNoConflict(applicant)",
+      "higher_order": "DeclaresNoConflict(applicant)",
+      "law_references": [
+        {
+          "clause_id": "ats_15_4",
+          "clause_title": "§ 15 p 4",
+          "clause_text": "Teenistusse ei või võtta isikut, kes on vastavat ametikohta vahetult kontrolliva ametniku abikaasa, elukaaslane, vanem, vanavanem või alaneja sugulane.",
+          "note": "User-provided declaration that § 15 p 4 family-conflict bar does not apply."
+        }
+      ],
+      "request_cue_groups": [["ei ole sugulane", "no conflict", "huvide konflikt", "no family conflict"]],
+      "law_cue_groups": [["abikaasa", "elukaaslane", "sugulane"]]
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "appointment_allowed",
+      "lowered_atom": "ALLOW_APPOINTMENT",
+      "label": "Appointment is allowed",
+      "propositional": "ALLOW_APPOINTMENT",
+      "predicate": "AllowAppointment(applicant)",
+      "higher_order": "AllowAppointment(applicant)",
+      "administrative_role": "allow"
+    },
+    {
+      "outcome_id": "appointment_denied",
+      "lowered_atom": "DENY_APPOINTMENT",
+      "label": "Appointment is denied",
+      "propositional": "DENY_APPOINTMENT",
+      "predicate": "DenyAppointment(applicant)",
+      "higher_order": "DenyAppointment(applicant)",
+      "administrative_role": "deny"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_ee_citizen",
+      "kind": "allow_if_all",
+      "label": "Estonian-citizen path to appointment (§ 14 lg 1).",
+      "when_claim_ids": ["ee_citizen", "secondary_education", "speaks_estonian", "full_capacity", "no_conflict_declared"],
+      "target_outcome_id": "appointment_allowed",
+      "law_references": [
+        {
+          "clause_id": "ats_14_1",
+          "clause_title": "§ 14 lg 1",
+          "clause_text": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "note": "Baseline Estonian-citizen path under § 14(1)."
+        }
+      ],
+      "law_cue_groups": [["kodanik", "kodaniku"], ["Eesti Vabariigi"]]
+    },
+    {
+      "rule_id": "allow_eu_citizen",
+      "kind": "allow_if_all",
+      "label": "EU-citizen path to appointment (§ 14 lg 2).",
+      "when_claim_ids": ["eu_citizen", "secondary_education", "speaks_estonian", "full_capacity", "no_conflict_declared"],
+      "target_outcome_id": "appointment_allowed",
+      "law_references": [
+        {
+          "clause_id": "ats_14_2",
+          "clause_title": "§ 14 lg 2",
+          "clause_text": "Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.",
+          "note": "Alternative EU-citizen path under § 14(2)."
+        }
+      ],
+      "law_cue_groups": [["Euroopa Liidu", "liikmesriigi"], ["kodanik", "kodaniku"]]
+    },
+    {
+      "rule_id": "deny_conviction",
+      "kind": "deny_if_all",
+      "label": "Conviction for an intentional crime blocks appointment (§ 15 p 1).",
+      "when_claim_ids": ["criminal_conviction"],
+      "target_outcome_id": "appointment_denied",
+      "law_references": [
+        {
+          "clause_id": "ats_15_1",
+          "clause_title": "§ 15 p 1",
+          "clause_text": "Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.",
+          "note": "Statutory bar for intentional-crime conviction."
+        }
+      ],
+      "law_cue_groups": [["karistatus", "karistatud"], ["tahtlikult", "tahtliku"]]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+---
+description: Use the framework venv for all Python installs and runs.
+globs: "framework/**/*.py,framework/pyproject.toml,framework/tests/**"
+alwaysApply: true
+---
+# Environment: framework venv
+
+- **Always use the virtual environment at `framework/venv`** when installing dependencies or running Python tests.
+- **Prefer repo-root execution:** create the venv with `python3 -m venv framework/venv`, activate it with `source framework/venv/bin/activate` (Windows: `framework\\venv\\Scripts\\activate`), and install dependencies with `pip install -q -r framework/requirements.txt`.
+- Keep Python commands rooted at the repository top level unless a task specifically needs `framework/` as the current working directory. The canonical CLI shape is `python framework/<script>.py ...`.
+- For consistent validation and cloud-agent handoff, prefer the standardized commands:
+  - `source framework/venv/bin/activate`
+  - `python -m unittest discover -s framework/tests -v`
+  - `python framework/run_scenarios.py --scenario allow --mode deterministic`
+- Full details: `framework/README.md` and `docs/guides/development.md`.

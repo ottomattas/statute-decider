@@ -1,0 +1,438 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Ehitusseadustik §§ 42, 44 demo",
+  "request_text": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "DENY",
+  "intent_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/request_deny.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "domain_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "solve_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "domain_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/building_permit_deny/domain.json",
+    "intent_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/building_permit_deny/intent.json",
+    "mock_db_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/mock_db.json"
+  },
+  "blocked_at_step": "solve",
+  "block_reason_code": "no_applicable_rules",
+  "extracted_claim_count": 6,
+  "extracted_rule_count": 2,
+  "unresolved_claim_ids": [],
+  "intent_claims": [
+    {
+      "claim_id": "plan_conformant",
+      "lowered_atom": "PLAN_OK",
+      "label": "Project conforms to the detailed plan",
+      "description": "The building registry confirms the project conforms to the applicable detail plan.",
+      "source_type": "db",
+      "formal_text": "PLAN_OK",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "building_requirements_met",
+      "lowered_atom": "BUILD_REQS",
+      "label": "Project meets construction and safety requirements",
+      "description": "The building registry confirms the project meets statutory construction and safety requirements.",
+      "source_type": "db",
+      "formal_text": "BUILD_REQS",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "competent_designer",
+      "lowered_atom": "COMPETENT_DESIGNER",
+      "label": "Project was prepared by a competent designer",
+      "description": "The professional-registry confirms the project was prepared by a competent designer.",
+      "source_type": "db",
+      "formal_text": "COMPETENT_DESIGNER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "site_study_provided",
+      "lowered_atom": "SITE_STUDY",
+      "label": "Site construction study has been provided",
+      "description": "The building registry contains a valid site construction study (ehitusuuring).",
+      "source_type": "db",
+      "formal_text": "SITE_STUDY",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "fee_paid",
+      "lowered_atom": "FEE_PAID",
+      "label": "State fee has been paid",
+      "description": "The payment system confirms the building-permit state fee has been paid.",
+      "source_type": "db",
+      "formal_text": "FEE_PAID",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "plan_violation",
+      "lowered_atom": "PLAN_VIOLATION",
+      "label": "Project violates the detailed plan",
+      "description": "The building registry records that the project violates the detail plan or equivalent planning instrument.",
+      "source_type": "db",
+      "formal_text": "PLAN_VIOLATION",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ],
+  "domain_claims": [
+    {
+      "claim_id": "plan_conformant",
+      "lowered_atom": "PLAN_OK",
+      "label": "Project conforms to the detailed plan",
+      "description": "The building registry confirms the project conforms to the applicable detail plan.",
+      "source_type": "db",
+      "formal_text": "PLAN_OK",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1",
+          "clause_text": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "note": "Detail-plan conformity is the primary positive condition."
+        }
+      ]
+    },
+    {
+      "claim_id": "building_requirements_met",
+      "lowered_atom": "BUILD_REQS",
+      "label": "Project meets construction and safety requirements",
+      "description": "The building registry confirms the project meets statutory construction and safety requirements.",
+      "source_type": "db",
+      "formal_text": "BUILD_REQS",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1",
+          "clause_text": "... ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "note": "Construction-and-safety requirement condition."
+        }
+      ]
+    },
+    {
+      "claim_id": "competent_designer",
+      "lowered_atom": "COMPETENT_DESIGNER",
+      "label": "Project was prepared by a competent designer",
+      "description": "The professional-registry confirms the project was prepared by a competent designer.",
+      "source_type": "db",
+      "formal_text": "COMPETENT_DESIGNER",
+      "law_references": [
+        {
+          "clause_id": "es_44_2",
+          "clause_title": "§ 44 p 2",
+          "clause_text": "... ehitusprojekti ei ole koostanud pädev isik või pädev isik ei ole teinud ehitusprojekti ekspertiisi;",
+          "note": "Competent-designer requirement, stated as a refusal ground."
+        }
+      ]
+    },
+    {
+      "claim_id": "site_study_provided",
+      "lowered_atom": "SITE_STUDY",
+      "label": "Site construction study has been provided",
+      "description": "The building registry contains a valid site construction study (ehitusuuring).",
+      "source_type": "db",
+      "formal_text": "SITE_STUDY",
+      "law_references": [
+        {
+          "clause_id": "es_44_3",
+          "clause_title": "§ 44 p 3",
+          "clause_text": "... ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu tulemustele või on nõutav uuring tegemata.",
+          "note": "Site-study requirement, stated as a refusal ground."
+        }
+      ]
+    },
+    {
+      "claim_id": "fee_paid",
+      "lowered_atom": "FEE_PAID",
+      "label": "State fee has been paid",
+      "description": "The payment system confirms the building-permit state fee has been paid.",
+      "source_type": "db",
+      "formal_text": "FEE_PAID",
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1 (õigusaktides sätestatud nõuded)",
+          "clause_text": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele ...",
+          "note": "State-fee obligation falls under 'õigusaktides sätestatud nõuded'."
+        }
+      ]
+    },
+    {
+      "claim_id": "plan_violation",
+      "lowered_atom": "PLAN_VIOLATION",
+      "label": "Project violates the detailed plan",
+      "description": "The building registry records that the project violates the detail plan or equivalent planning instrument.",
+      "source_type": "db",
+      "formal_text": "PLAN_VIOLATION",
+      "law_references": [
+        {
+          "clause_id": "es_44_1",
+          "clause_title": "§ 44 p 1",
+          "clause_text": "... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;",
+          "note": "Plan-violation refusal ground."
+        }
+      ]
+    }
+  ],
+  "domain_rules": [
+    {
+      "rule_id": "allow_building_permit",
+      "kind": "allow_if_all",
+      "label": "Grant permit when all positive conditions of § 42 lg 1 are met.",
+      "when_claim_ids": [
+        "plan_conformant",
+        "building_requirements_met",
+        "competent_designer",
+        "site_study_provided",
+        "fee_paid"
+      ],
+      "formal_text": "(PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT",
+      "lowered_formula": "(PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT",
+      "target_outcome_id": "permit_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "es_42_1",
+          "clause_title": "§ 42 lg 1",
+          "clause_text": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "note": "Five-claim positive path to permit issuance."
+        }
+      ]
+    },
+    {
+      "rule_id": "deny_plan_violation",
+      "kind": "deny_if_all",
+      "label": "Refuse permit when the project violates the detail plan (§ 44 p 1).",
+      "when_claim_ids": [
+        "plan_violation"
+      ],
+      "formal_text": "PLAN_VIOLATION -> DENY_PERMIT",
+      "lowered_formula": "PLAN_VIOLATION -> DENY_PERMIT",
+      "target_outcome_id": "permit_denied",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "es_44_1",
+          "clause_title": "§ 44 p 1",
+          "clause_text": "... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;",
+          "note": "Hard refusal ground based on plan violation."
+        }
+      ]
+    }
+  ],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "The lowered Z3 theory entails DENY."
+    },
+    {
+      "stage": "blockage",
+      "message": "Blocked at `solve` with neutral reason code `no_applicable_rules`."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "DENY",
+      "resolved_claims": [
+        {
+          "claim_id": "plan_conformant",
+          "lowered_atom": "PLAN_OK",
+          "label": "Project conforms to the detailed plan",
+          "source_type": "db",
+          "formal_text": "PLAN_OK",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to false."
+        },
+        {
+          "claim_id": "building_requirements_met",
+          "lowered_atom": "BUILD_REQS",
+          "label": "Project meets construction and safety requirements",
+          "source_type": "db",
+          "formal_text": "BUILD_REQS",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "competent_designer",
+          "lowered_atom": "COMPETENT_DESIGNER",
+          "label": "Project was prepared by a competent designer",
+          "source_type": "db",
+          "formal_text": "COMPETENT_DESIGNER",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "site_study_provided",
+          "lowered_atom": "SITE_STUDY",
+          "label": "Site construction study has been provided",
+          "source_type": "db",
+          "formal_text": "SITE_STUDY",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "fee_paid",
+          "lowered_atom": "FEE_PAID",
+          "label": "State fee has been paid",
+          "source_type": "db",
+          "formal_text": "FEE_PAID",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "plan_violation",
+          "lowered_atom": "PLAN_VIOLATION",
+          "label": "Project violates the detailed plan",
+          "source_type": "db",
+          "formal_text": "PLAN_VIOLATION",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        }
+      ],
+      "rule_trace": [
+        {
+          "rule_id": "allow_building_permit",
+          "label": "Grant permit when all positive conditions of § 42 lg 1 are met.",
+          "kind": "allow_if_all",
+          "status": "blocked",
+          "formal_text": "(PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT",
+          "lowered_formula": "(PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT",
+          "premises": [
+            {
+              "claim_id": "plan_conformant",
+              "label": "Project conforms to the detailed plan",
+              "formal_text": "PLAN_OK",
+              "lowered_atom": "PLAN_OK",
+              "value": false
+            },
+            {
+              "claim_id": "building_requirements_met",
+              "label": "Project meets construction and safety requirements",
+              "formal_text": "BUILD_REQS",
+              "lowered_atom": "BUILD_REQS",
+              "value": true
+            },
+            {
+              "claim_id": "competent_designer",
+              "label": "Project was prepared by a competent designer",
+              "formal_text": "COMPETENT_DESIGNER",
+              "lowered_atom": "COMPETENT_DESIGNER",
+              "value": true
+            },
+            {
+              "claim_id": "site_study_provided",
+              "label": "Site construction study has been provided",
+              "formal_text": "SITE_STUDY",
+              "lowered_atom": "SITE_STUDY",
+              "value": true
+            },
+            {
+              "claim_id": "fee_paid",
+              "label": "State fee has been paid",
+              "formal_text": "FEE_PAID",
+              "lowered_atom": "FEE_PAID",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "building_requirements_met",
+            "competent_designer",
+            "site_study_provided",
+            "fee_paid"
+          ],
+          "false_claim_ids": [
+            "plan_conformant"
+          ],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "deny_plan_violation",
+          "label": "Refuse permit when the project violates the detail plan (§ 44 p 1).",
+          "kind": "deny_if_all",
+          "status": "fires",
+          "formal_text": "PLAN_VIOLATION -> DENY_PERMIT",
+          "lowered_formula": "PLAN_VIOLATION -> DENY_PERMIT",
+          "premises": [
+            {
+              "claim_id": "plan_violation",
+              "label": "Project violates the detailed plan",
+              "formal_text": "PLAN_VIOLATION",
+              "lowered_atom": "PLAN_VIOLATION",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "plan_violation"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        }
+      ],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "The lowered Z3 theory entails DENY."
+    }
+  ]
+}

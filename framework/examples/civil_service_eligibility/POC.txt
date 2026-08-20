@@ -1,0 +1,49 @@
+POC — Avaliku teenistuse seadus §§ 14-15 (Ametniku teenistusse võtmine)
+
+Seadus (katke):
+§ 14. Teenistusse võtmiseks esitatavad nõuded
+(1) Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku
+    teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses
+    või seaduse alusel sätestatud ulatuses.
+(2) Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi
+    kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.
+§ 15. Isikud, keda ei või võtta teenistusse
+() Teenistusse ei või võtta isikut:
+  1) kellel on karistatus tahtlikult toimepandud kuriteo eest;
+  4) kes on vastavat ametikohta vahetult kontrolliva ametniku abikaasa,
+     elukaaslane või muu §-s loetletud lähisugulane.
+
+Propositional variables (sulgudes source_type):
+  "taotleja on Eesti kodanik"                     (db)
+  "taotleja on EL liikmesriigi kodanik"           (db)
+  "taotlejal on vähemalt keskharidus"             (db)
+  "taotleja valdab eesti keelt nõutud ulatuses"   (db)
+  "taotleja on täieliku teovõimega"               (db)
+  "taotlejal on karistatus tahtliku kuriteo eest" (db)
+  "taotleja kinnitab huvide konflikti puudumist"  (user)
+  "ametisse nimetamine on lubatud"                (outcome: allow)
+  "ametisse nimetamine on keelatud"               (outcome: deny)
+
+Reeglid:
+  R1 (§14(1)):
+    "Eesti kodanik" AND "keskharidus" AND "eesti keele oskus"
+      AND "täieliku teovõimega" AND "huvide konflikt puudub"
+      -> "ametisse nimetamine lubatud"
+  R2 (§14(2)):
+    "EL kodanik" AND "keskharidus" AND "eesti keele oskus"
+      AND "täieliku teovõimega" AND "huvide konflikt puudub"
+      -> "ametisse nimetamine lubatud"
+  R3 (§15 p1):
+    "karistatus tahtliku kuriteo eest"
+      -> "ametisse nimetamine keelatud"
+
+Protsess:
+  1. Loe rahvastikuregistrist kodakondsus, haridus- ja karistusandmed,
+     töökogemuse registrist kvalifikatsioon, keeleoskus.
+  2. Küsi kasutajalt §15 p4 huvide konflikti puudumise kinnitust.
+  3. Solver:
+     - kui R3 eeldus TRUE -> DENY (keelatud > lubatud).
+     - muidu kui R1 või R2 eeldused TRUE -> ALLOW.
+     - kui mõni DB-eeldus puudub -> NEED_DB_INFO.
+     - kui §15 p4 kasutaja-kinnitus puudub -> NEED_USER_INFO.
+

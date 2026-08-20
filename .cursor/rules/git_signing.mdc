@@ -1,0 +1,10 @@
+---
+description: Preserve signed commits when sandboxed git cannot reach GPG
+alwaysApply: true
+---
+# Signed commit handling
+
+- Keep signed commits enabled when the user requests commits.
+- If `git commit` fails in the sandbox with GPG or keybox access errors, retry the same commit outside the sandbox so the local signing setup can run normally.
+- Do not work around this by using `--no-gpg-sign`, disabling signing, or changing git config.
+- Prefer a broader-permission retry only for the commit step that actually needs local GPG access.

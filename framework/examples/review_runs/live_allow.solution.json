@@ -1,0 +1,274 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Estonian Family Law Act",
+  "request_text": "I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "ALLOW",
+  "blocked_at_step": null,
+  "block_reason_code": null,
+  "extracted_claim_count": 7,
+  "extracted_rule_count": 6,
+  "unresolved_claim_ids": [],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "The lowered Z3 theory entails ALLOW."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "ALLOW",
+      "resolved_claims": [
+        {
+          "claim_id": "applicant_is_parent",
+          "lowered_atom": "PARENT",
+          "label": "Applicant is a parent",
+          "source_type": "db",
+          "formal_text": "PARENT",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "The applicant states they are the child's mother."
+        },
+        {
+          "claim_id": "applicant_is_not_parent",
+          "lowered_atom": "NOT_PARENT",
+          "label": "Applicant is not a parent",
+          "source_type": "db",
+          "formal_text": "NOT_PARENT",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "The applicant states they are the child's mother, which contradicts this claim."
+        },
+        {
+          "claim_id": "sole_custody",
+          "lowered_atom": "SOLE_CUSTODY",
+          "label": "Applicant has sole custody",
+          "source_type": "db",
+          "formal_text": "SOLE_CUSTODY",
+          "value": null,
+          "resolved_from": "unknown",
+          "reason": "The request text does not mention custody arrangements."
+        },
+        {
+          "claim_id": "delegated_decision_right",
+          "lowered_atom": "DELEGATED_RIGHT",
+          "label": "Decision right has been delegated",
+          "source_type": "db",
+          "formal_text": "DELEGATED_RIGHT",
+          "value": null,
+          "resolved_from": "unknown",
+          "reason": "The request text does not mention delegation of decision rights."
+        },
+        {
+          "claim_id": "emergency",
+          "lowered_atom": "EMERGENCY",
+          "label": "There is an emergency",
+          "source_type": "user",
+          "formal_text": "EMERGENCY",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "The user states the child is in the hospital and a doctor needs a quick decision, which indicates an emergency."
+        },
+        {
+          "claim_id": "both_parents_consent",
+          "lowered_atom": "BOTH_CONSENT",
+          "label": "Both parents consent",
+          "source_type": "db",
+          "formal_text": "BOTH_CONSENT",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "The user states the other parent is unreachable, so their consent cannot be obtained."
+        },
+        {
+          "claim_id": "one_parent_unreachable",
+          "lowered_atom": "OTHER_PARENT_UNREACHABLE",
+          "label": "One parent is unreachable",
+          "source_type": "user",
+          "formal_text": "OTHER_PARENT_UNREACHABLE",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "The user explicitly states that the other parent is unreachable and not answering their phone."
+        }
+      ],
+      "rule_trace": [
+        {
+          "rule_id": "allow_sole_custody",
+          "label": "A parent with sole custody may act alone.",
+          "kind": "allow_if_all",
+          "status": "needs_info",
+          "formal_text": "(PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS",
+          "lowered_formula": "(PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS",
+          "premises": [
+            {
+              "claim_id": "applicant_is_parent",
+              "label": "Applicant is a parent",
+              "formal_text": "PARENT",
+              "lowered_atom": "PARENT",
+              "value": true
+            },
+            {
+              "claim_id": "sole_custody",
+              "label": "Applicant has sole custody",
+              "formal_text": "SOLE_CUSTODY",
+              "lowered_atom": "SOLE_CUSTODY",
+              "value": null
+            }
+          ],
+          "true_claim_ids": [
+            "applicant_is_parent"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": [
+            "sole_custody"
+          ]
+        },
+        {
+          "rule_id": "allow_delegated_right",
+          "label": "A parent with delegated decision right may act alone.",
+          "kind": "allow_if_all",
+          "status": "needs_info",
+          "formal_text": "(PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS",
+          "lowered_formula": "(PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS",
+          "premises": [
+            {
+              "claim_id": "applicant_is_parent",
+              "label": "Applicant is a parent",
+              "formal_text": "PARENT",
+              "lowered_atom": "PARENT",
+              "value": true
+            },
+            {
+              "claim_id": "delegated_decision_right",
+              "label": "Decision right has been delegated",
+              "formal_text": "DELEGATED_RIGHT",
+              "lowered_atom": "DELEGATED_RIGHT",
+              "value": null
+            }
+          ],
+          "true_claim_ids": [
+            "applicant_is_parent"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": [
+            "delegated_decision_right"
+          ]
+        },
+        {
+          "rule_id": "allow_emergency",
+          "label": "A parent may act alone in an emergency.",
+          "kind": "allow_if_all",
+          "status": "fires",
+          "formal_text": "(PARENT AND EMERGENCY) -> ALLOW_ACCESS",
+          "lowered_formula": "(PARENT AND EMERGENCY) -> ALLOW_ACCESS",
+          "premises": [
+            {
+              "claim_id": "applicant_is_parent",
+              "label": "Applicant is a parent",
+              "formal_text": "PARENT",
+              "lowered_atom": "PARENT",
+              "value": true
+            },
+            {
+              "claim_id": "emergency",
+              "label": "There is an emergency",
+              "formal_text": "EMERGENCY",
+              "lowered_atom": "EMERGENCY",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "applicant_is_parent",
+            "emergency"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "allow_joint_consent",
+          "label": "A parent may act with both parents' consent.",
+          "kind": "allow_if_all",
+          "status": "blocked",
+          "formal_text": "(PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS",
+          "lowered_formula": "(PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS",
+          "premises": [
+            {
+              "claim_id": "applicant_is_parent",
+              "label": "Applicant is a parent",
+              "formal_text": "PARENT",
+              "lowered_atom": "PARENT",
+              "value": true
+            },
+            {
+              "claim_id": "both_parents_consent",
+              "label": "Both parents consent",
+              "formal_text": "BOTH_CONSENT",
+              "lowered_atom": "BOTH_CONSENT",
+              "value": false
+            }
+          ],
+          "true_claim_ids": [
+            "applicant_is_parent"
+          ],
+          "false_claim_ids": [
+            "both_parents_consent"
+          ],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "block_consent_when_unreachable",
+          "label": "If one parent is unreachable, confirmed joint consent is unavailable.",
+          "kind": "set_false_if_all",
+          "status": "fires",
+          "formal_text": "OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT",
+          "lowered_formula": "OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT",
+          "premises": [
+            {
+              "claim_id": "one_parent_unreachable",
+              "label": "One parent is unreachable",
+              "formal_text": "OTHER_PARENT_UNREACHABLE",
+              "lowered_atom": "OTHER_PARENT_UNREACHABLE",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "one_parent_unreachable"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "deny_non_parent",
+          "label": "A non-parent cannot give the permission.",
+          "kind": "deny_if_all",
+          "status": "blocked",
+          "formal_text": "NOT_PARENT -> DENY_ACCESS",
+          "lowered_formula": "NOT_PARENT -> DENY_ACCESS",
+          "premises": [
+            {
+              "claim_id": "applicant_is_not_parent",
+              "label": "Applicant is not a parent",
+              "formal_text": "NOT_PARENT",
+              "lowered_atom": "NOT_PARENT",
+              "value": false
+            }
+          ],
+          "true_claim_ids": [],
+          "false_claim_ids": [
+            "applicant_is_not_parent"
+          ],
+          "unknown_claim_ids": []
+        }
+      ],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "The lowered Z3 theory entails ALLOW."
+    }
+  ]
+}

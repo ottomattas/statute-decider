@@ -1,0 +1,420 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Isikuandmete kaitse seadus § 4 demo",
+  "request_text": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "ALLOW",
+  "intent_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:53+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/request_allow.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "domain_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:53+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "solve_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:54+00:00",
+    "domain_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/journalism_allow/domain.json",
+    "intent_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/journalism_allow/intent.json",
+    "mock_db_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/mock_db.json"
+  },
+  "blocked_at_step": null,
+  "block_reason_code": null,
+  "extracted_claim_count": 5,
+  "extracted_rule_count": 3,
+  "unresolved_claim_ids": [],
+  "intent_claims": [
+    {
+      "claim_id": "journalistic_purpose",
+      "lowered_atom": "JOURNALISM",
+      "label": "Processing has a journalistic purpose",
+      "description": "The controller's CMS records classify the processing as journalism.",
+      "source_type": "db",
+      "formal_text": "JOURNALISM",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "public_interest",
+      "lowered_atom": "PUBLIC_INTEREST",
+      "label": "There is public interest in the processing",
+      "description": "Editorial assessment confirms that there is public interest in the processing.",
+      "source_type": "user",
+      "formal_text": "PUBLIC_INTEREST",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "journalism_ethics",
+      "lowered_atom": "ETHICS_OK",
+      "label": "Processing respects journalism ethics",
+      "description": "The editorial team confirms the processing is consistent with journalism ethics.",
+      "source_type": "user",
+      "formal_text": "ETHICS_OK",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "subject_consent",
+      "lowered_atom": "CONSENT",
+      "label": "Data subject has consented",
+      "description": "Consent records show the data subject has given valid consent.",
+      "source_type": "db",
+      "formal_text": "CONSENT",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "excessive_harm",
+      "lowered_atom": "EXCESSIVE_HARM",
+      "label": "Publication would excessively harm the subject",
+      "description": "Editorial risk assessment concludes publication would excessively harm the subject's rights.",
+      "source_type": "user",
+      "formal_text": "EXCESSIVE_HARM",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": []
+    }
+  ],
+  "domain_claims": [
+    {
+      "claim_id": "journalistic_purpose",
+      "lowered_atom": "JOURNALISM",
+      "label": "Processing has a journalistic purpose",
+      "description": "The controller's CMS records classify the processing as journalism.",
+      "source_type": "db",
+      "formal_text": "JOURNALISM",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Journalistic-purpose gateway to the consent-free processing basis."
+        }
+      ]
+    },
+    {
+      "claim_id": "public_interest",
+      "lowered_atom": "PUBLIC_INTEREST",
+      "label": "There is public interest in the processing",
+      "description": "Editorial assessment confirms that there is public interest in the processing.",
+      "source_type": "user",
+      "formal_text": "PUBLIC_INTEREST",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Public-interest condition for the journalism basis."
+        }
+      ]
+    },
+    {
+      "claim_id": "journalism_ethics",
+      "lowered_atom": "ETHICS_OK",
+      "label": "Processing respects journalism ethics",
+      "description": "The editorial team confirms the processing is consistent with journalism ethics.",
+      "source_type": "user",
+      "formal_text": "ETHICS_OK",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Journalism-ethics condition for the journalism basis."
+        }
+      ]
+    },
+    {
+      "claim_id": "subject_consent",
+      "lowered_atom": "CONSENT",
+      "label": "Data subject has consented",
+      "description": "Consent records show the data subject has given valid consent.",
+      "source_type": "db",
+      "formal_text": "CONSENT",
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 (implicit baseline)",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "note": "Consent baseline: when consent exists, the journalism basis is not needed."
+        }
+      ]
+    },
+    {
+      "claim_id": "excessive_harm",
+      "lowered_atom": "EXCESSIVE_HARM",
+      "label": "Publication would excessively harm the subject",
+      "description": "Editorial risk assessment concludes publication would excessively harm the subject's rights.",
+      "source_type": "user",
+      "formal_text": "EXCESSIVE_HARM",
+      "law_references": [
+        {
+          "clause_id": "iks_4_harm",
+          "clause_title": "§ 4, teine lause",
+          "clause_text": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "note": "Proportionality limit: excessive harm defeats the journalism basis."
+        }
+      ]
+    }
+  ],
+  "domain_rules": [
+    {
+      "rule_id": "allow_journalism_basis",
+      "kind": "allow_if_all",
+      "label": "Journalism basis (§ 4 lause 1) without consent.",
+      "when_claim_ids": [
+        "journalistic_purpose",
+        "public_interest",
+        "journalism_ethics"
+      ],
+      "formal_text": "(JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING",
+      "lowered_formula": "(JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING",
+      "target_outcome_id": "processing_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4, esimene lause",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Three-condition journalism basis."
+        }
+      ]
+    },
+    {
+      "rule_id": "allow_consent_basis",
+      "kind": "allow_if_all",
+      "label": "Consent baseline under IKS.",
+      "when_claim_ids": [
+        "subject_consent"
+      ],
+      "formal_text": "CONSENT -> ALLOW_PROCESSING",
+      "lowered_formula": "CONSENT -> ALLOW_PROCESSING",
+      "target_outcome_id": "processing_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 (implicit baseline)",
+          "clause_text": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "note": "Consent is the general baseline; the journalism basis is its exception."
+        }
+      ]
+    },
+    {
+      "rule_id": "block_ethics_when_excessive_harm",
+      "kind": "set_false_if_all",
+      "label": "Excessive harm defeats ethics compliance (§ 4 lause 2).",
+      "when_claim_ids": [
+        "excessive_harm"
+      ],
+      "formal_text": "EXCESSIVE_HARM -> NOT ETHICS_OK",
+      "lowered_formula": "EXCESSIVE_HARM -> NOT ETHICS_OK",
+      "target_outcome_id": null,
+      "target_claim_id": "journalism_ethics",
+      "law_references": [
+        {
+          "clause_id": "iks_4_harm",
+          "clause_title": "§ 4, teine lause",
+          "clause_text": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "note": "Proportionality override of the ethics condition."
+        }
+      ]
+    }
+  ],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "The lowered Z3 theory entails ALLOW."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "ALLOW",
+      "resolved_claims": [
+        {
+          "claim_id": "journalistic_purpose",
+          "lowered_atom": "JOURNALISM",
+          "label": "Processing has a journalistic purpose",
+          "source_type": "db",
+          "formal_text": "JOURNALISM",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "public_interest",
+          "lowered_atom": "PUBLIC_INTEREST",
+          "label": "There is public interest in the processing",
+          "source_type": "user",
+          "formal_text": "PUBLIC_INTEREST",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "journalism_ethics",
+          "lowered_atom": "ETHICS_OK",
+          "label": "Processing respects journalism ethics",
+          "source_type": "user",
+          "formal_text": "ETHICS_OK",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "subject_consent",
+          "lowered_atom": "CONSENT",
+          "label": "Data subject has consented",
+          "source_type": "db",
+          "formal_text": "CONSENT",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to false."
+        },
+        {
+          "claim_id": "excessive_harm",
+          "lowered_atom": "EXCESSIVE_HARM",
+          "label": "Publication would excessively harm the subject",
+          "source_type": "user",
+          "formal_text": "EXCESSIVE_HARM",
+          "value": false,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to false."
+        }
+      ],
+      "rule_trace": [
+        {
+          "rule_id": "allow_journalism_basis",
+          "label": "Journalism basis (§ 4 lause 1) without consent.",
+          "kind": "allow_if_all",
+          "status": "fires",
+          "formal_text": "(JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING",
+          "lowered_formula": "(JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING",
+          "premises": [
+            {
+              "claim_id": "journalistic_purpose",
+              "label": "Processing has a journalistic purpose",
+              "formal_text": "JOURNALISM",
+              "lowered_atom": "JOURNALISM",
+              "value": true
+            },
+            {
+              "claim_id": "public_interest",
+              "label": "There is public interest in the processing",
+              "formal_text": "PUBLIC_INTEREST",
+              "lowered_atom": "PUBLIC_INTEREST",
+              "value": true
+            },
+            {
+              "claim_id": "journalism_ethics",
+              "label": "Processing respects journalism ethics",
+              "formal_text": "ETHICS_OK",
+              "lowered_atom": "ETHICS_OK",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "journalistic_purpose",
+            "public_interest",
+            "journalism_ethics"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "allow_consent_basis",
+          "label": "Consent baseline under IKS.",
+          "kind": "allow_if_all",
+          "status": "blocked",
+          "formal_text": "CONSENT -> ALLOW_PROCESSING",
+          "lowered_formula": "CONSENT -> ALLOW_PROCESSING",
+          "premises": [
+            {
+              "claim_id": "subject_consent",
+              "label": "Data subject has consented",
+              "formal_text": "CONSENT",
+              "lowered_atom": "CONSENT",
+              "value": false
+            }
+          ],
+          "true_claim_ids": [],
+          "false_claim_ids": [
+            "subject_consent"
+          ],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "block_ethics_when_excessive_harm",
+          "label": "Excessive harm defeats ethics compliance (§ 4 lause 2).",
+          "kind": "set_false_if_all",
+          "status": "blocked",
+          "formal_text": "EXCESSIVE_HARM -> NOT ETHICS_OK",
+          "lowered_formula": "EXCESSIVE_HARM -> NOT ETHICS_OK",
+          "premises": [
+            {
+              "claim_id": "excessive_harm",
+              "label": "Publication would excessively harm the subject",
+              "formal_text": "EXCESSIVE_HARM",
+              "lowered_atom": "EXCESSIVE_HARM",
+              "value": false
+            }
+          ],
+          "true_claim_ids": [],
+          "false_claim_ids": [
+            "excessive_harm"
+          ],
+          "unknown_claim_ids": []
+        }
+      ],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "The lowered Z3 theory entails ALLOW."
+    }
+  ]
+}

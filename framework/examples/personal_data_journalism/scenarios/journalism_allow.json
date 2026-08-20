@@ -1,0 +1,19 @@
+{
+  "name": "journalism_allow",
+  "description": "Journalistic purpose with editorial public-interest and ethics assessment resolves to ALLOW.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "journalistic_purpose": true,
+    "public_interest": true,
+    "journalism_ethics": true,
+    "subject_consent": false,
+    "excessive_harm": false
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

@@ -1,0 +1,386 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Võlaõigusseadus §§ 53 lg 4, 56 lg 1 demo",
+  "request_text": "I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "DENY",
+  "intent_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:51+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/request_deny.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "domain_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:51+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "solve_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "domain_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/consumer_withdrawal_deny/domain.json",
+    "intent_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/consumer_withdrawal_deny/intent.json",
+    "mock_db_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/mock_db.json"
+  },
+  "blocked_at_step": "solve",
+  "block_reason_code": "no_applicable_rules",
+  "extracted_claim_count": 5,
+  "extracted_rule_count": 2,
+  "unresolved_claim_ids": [],
+  "intent_claims": [
+    {
+      "claim_id": "is_consumer",
+      "lowered_atom": "IS_CONSUMER",
+      "label": "Applicant is a consumer",
+      "description": "The trader's CRM records the counter-party as a consumer (non-professional).",
+      "source_type": "db",
+      "formal_text": "IS_CONSUMER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "distance_contract",
+      "lowered_atom": "DISTANCE_CONTRACT",
+      "label": "Contract was concluded by means of distance communication",
+      "description": "The order form stored by the trader marks the contract as a distance sale (e-shop, phone, etc.).",
+      "source_type": "db",
+      "formal_text": "DISTANCE_CONTRACT",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "excluded_category",
+      "lowered_atom": "EXCLUDED_CATEGORY",
+      "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+      "description": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
+      "source_type": "db",
+      "formal_text": "EXCLUDED_CATEGORY",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija and the 14-day deadline has not expired.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "within_14_days",
+      "lowered_atom": "WITHIN_14_DAYS",
+      "label": "The 14-day withdrawal period is still running",
+      "description": "Consumer confirms that fewer than 14 days have elapsed since receipt of the goods / conclusion of the contract.",
+      "source_type": "user",
+      "formal_text": "WITHIN_14_DAYS",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "notice_sent_in_time",
+      "lowered_atom": "NOTICE_SENT",
+      "label": "Withdrawal notice has been sent in time",
+      "description": "Consumer confirms that the withdrawal notice was dispatched to the trader before the 14-day period expired.",
+      "source_type": "user",
+      "formal_text": "NOTICE_SENT",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    }
+  ],
+  "domain_claims": [
+    {
+      "claim_id": "is_consumer",
+      "lowered_atom": "IS_CONSUMER",
+      "label": "Applicant is a consumer",
+      "description": "The trader's CRM records the counter-party as a consumer (non-professional).",
+      "source_type": "db",
+      "formal_text": "IS_CONSUMER",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "note": "Only consumers enjoy the withdrawal right."
+        }
+      ]
+    },
+    {
+      "claim_id": "distance_contract",
+      "lowered_atom": "DISTANCE_CONTRACT",
+      "label": "Contract was concluded by means of distance communication",
+      "description": "The order form stored by the trader marks the contract as a distance sale (e-shop, phone, etc.).",
+      "source_type": "db",
+      "formal_text": "DISTANCE_CONTRACT",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "... sidevahendi abil sõlmitud lepingust ...",
+          "note": "Withdrawal only applies to distance contracts."
+        }
+      ]
+    },
+    {
+      "claim_id": "excluded_category",
+      "lowered_atom": "EXCLUDED_CATEGORY",
+      "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+      "description": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
+      "source_type": "db",
+      "formal_text": "EXCLUDED_CATEGORY",
+      "law_references": [
+        {
+          "clause_id": "vos_53_4",
+          "clause_title": "§ 53 lg 4",
+          "clause_text": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "note": "Category-based exclusion blocks the withdrawal right."
+        }
+      ]
+    },
+    {
+      "claim_id": "within_14_days",
+      "lowered_atom": "WITHIN_14_DAYS",
+      "label": "The 14-day withdrawal period is still running",
+      "description": "Consumer confirms that fewer than 14 days have elapsed since receipt of the goods / conclusion of the contract.",
+      "source_type": "user",
+      "formal_text": "WITHIN_14_DAYS",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "... 14 päeva jooksul.",
+          "note": "Statutory 14-day window."
+        }
+      ]
+    },
+    {
+      "claim_id": "notice_sent_in_time",
+      "lowered_atom": "NOTICE_SENT",
+      "label": "Withdrawal notice has been sent in time",
+      "description": "Consumer confirms that the withdrawal notice was dispatched to the trader before the 14-day period expired.",
+      "source_type": "user",
+      "formal_text": "NOTICE_SENT",
+      "law_references": [
+        {
+          "clause_id": "vos_56_21",
+          "clause_title": "§ 56 lg 2^1",
+          "clause_text": "Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.",
+          "note": "Timely dispatch satisfies the deadline."
+        }
+      ]
+    }
+  ],
+  "domain_rules": [
+    {
+      "rule_id": "allow_distance_withdrawal",
+      "kind": "allow_if_all",
+      "label": "Consumer may withdraw from a timely distance contract under § 56 lg 1.",
+      "when_claim_ids": [
+        "is_consumer",
+        "distance_contract",
+        "within_14_days",
+        "notice_sent_in_time"
+      ],
+      "formal_text": "(IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL",
+      "lowered_formula": "(IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL",
+      "target_outcome_id": "withdrawal_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "note": "Positive path for withdrawal."
+        }
+      ]
+    },
+    {
+      "rule_id": "deny_excluded_category",
+      "kind": "deny_if_all",
+      "label": "Withdrawal is excluded for § 53 lg 4 goods (custom-made, perishable, hygiene-sealed, ...).",
+      "when_claim_ids": [
+        "excluded_category"
+      ],
+      "formal_text": "EXCLUDED_CATEGORY -> DENY_WITHDRAWAL",
+      "lowered_formula": "EXCLUDED_CATEGORY -> DENY_WITHDRAWAL",
+      "target_outcome_id": "withdrawal_denied",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "vos_53_4",
+          "clause_title": "§ 53 lg 4",
+          "clause_text": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "note": "Category-based exclusion."
+        }
+      ]
+    }
+  ],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "The lowered Z3 theory entails DENY."
+    },
+    {
+      "stage": "blockage",
+      "message": "Blocked at `solve` with neutral reason code `no_applicable_rules`."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "DENY",
+      "resolved_claims": [
+        {
+          "claim_id": "is_consumer",
+          "lowered_atom": "IS_CONSUMER",
+          "label": "Applicant is a consumer",
+          "source_type": "db",
+          "formal_text": "IS_CONSUMER",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "distance_contract",
+          "lowered_atom": "DISTANCE_CONTRACT",
+          "label": "Contract was concluded by means of distance communication",
+          "source_type": "db",
+          "formal_text": "DISTANCE_CONTRACT",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "excluded_category",
+          "lowered_atom": "EXCLUDED_CATEGORY",
+          "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+          "source_type": "db",
+          "formal_text": "EXCLUDED_CATEGORY",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "within_14_days",
+          "lowered_atom": "WITHIN_14_DAYS",
+          "label": "The 14-day withdrawal period is still running",
+          "source_type": "user",
+          "formal_text": "WITHIN_14_DAYS",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "notice_sent_in_time",
+          "lowered_atom": "NOTICE_SENT",
+          "label": "Withdrawal notice has been sent in time",
+          "source_type": "user",
+          "formal_text": "NOTICE_SENT",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        }
+      ],
+      "rule_trace": [
+        {
+          "rule_id": "allow_distance_withdrawal",
+          "label": "Consumer may withdraw from a timely distance contract under § 56 lg 1.",
+          "kind": "allow_if_all",
+          "status": "fires",
+          "formal_text": "(IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL",
+          "lowered_formula": "(IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL",
+          "premises": [
+            {
+              "claim_id": "is_consumer",
+              "label": "Applicant is a consumer",
+              "formal_text": "IS_CONSUMER",
+              "lowered_atom": "IS_CONSUMER",
+              "value": true
+            },
+            {
+              "claim_id": "distance_contract",
+              "label": "Contract was concluded by means of distance communication",
+              "formal_text": "DISTANCE_CONTRACT",
+              "lowered_atom": "DISTANCE_CONTRACT",
+              "value": true
+            },
+            {
+              "claim_id": "within_14_days",
+              "label": "The 14-day withdrawal period is still running",
+              "formal_text": "WITHIN_14_DAYS",
+              "lowered_atom": "WITHIN_14_DAYS",
+              "value": true
+            },
+            {
+              "claim_id": "notice_sent_in_time",
+              "label": "Withdrawal notice has been sent in time",
+              "formal_text": "NOTICE_SENT",
+              "lowered_atom": "NOTICE_SENT",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "is_consumer",
+            "distance_contract",
+            "within_14_days",
+            "notice_sent_in_time"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "deny_excluded_category",
+          "label": "Withdrawal is excluded for § 53 lg 4 goods (custom-made, perishable, hygiene-sealed, ...).",
+          "kind": "deny_if_all",
+          "status": "fires",
+          "formal_text": "EXCLUDED_CATEGORY -> DENY_WITHDRAWAL",
+          "lowered_formula": "EXCLUDED_CATEGORY -> DENY_WITHDRAWAL",
+          "premises": [
+            {
+              "claim_id": "excluded_category",
+              "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+              "formal_text": "EXCLUDED_CATEGORY",
+              "lowered_atom": "EXCLUDED_CATEGORY",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "excluded_category"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        }
+      ],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "The lowered Z3 theory entails DENY."
+    }
+  ]
+}

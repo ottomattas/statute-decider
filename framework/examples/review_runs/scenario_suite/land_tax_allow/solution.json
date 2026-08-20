@@ -1,0 +1,479 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Maamaksuseadus § 11 demo",
+  "request_text": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "ALLOW",
+  "intent_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/request_allow.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "domain_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "solve_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "domain_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/land_tax_allow/domain.json",
+    "intent_artifact_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/land_tax_allow/intent.json",
+    "mock_db_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/land_tax_exemption/mock_db.json"
+  },
+  "blocked_at_step": null,
+  "block_reason_code": null,
+  "extracted_claim_count": 6,
+  "extracted_rule_count": 2,
+  "unresolved_claim_ids": [],
+  "intent_claims": [
+    {
+      "claim_id": "residential_land",
+      "lowered_atom": "RESIDENTIAL_LAND",
+      "label": "Land's intended use is residential (elamumaa)",
+      "description": "The cadastre records the land's intended use as residential.",
+      "source_type": "db",
+      "formal_text": "RESIDENTIAL_LAND",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "primary_residence_registered",
+      "lowered_atom": "PRIMARY_RESIDENCE",
+      "label": "Owner's primary residence is registered on the parcel",
+      "description": "The population registry lists the applicant's primary residence on the parcel.",
+      "source_type": "db",
+      "formal_text": "PRIMARY_RESIDENCE",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "applicant_is_owner",
+      "lowered_atom": "OWNER",
+      "label": "Applicant owns the parcel",
+      "description": "The land registry shows the applicant as the current owner.",
+      "source_type": "db",
+      "formal_text": "OWNER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "receives_pension",
+      "lowered_atom": "PENSIONER",
+      "label": "Applicant receives a state pension",
+      "description": "The social-insurance registry records the applicant as a state-pension recipient.",
+      "source_type": "db",
+      "formal_text": "PENSIONER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "municipality_exemption_set",
+      "lowered_atom": "EXEMPTION_SET",
+      "label": "Municipality has set the exemption",
+      "description": "The land-tax information system records a § 11(1)/(5) exemption set by the local council.",
+      "source_type": "db",
+      "formal_text": "EXEMPTION_SET",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "application_submitted",
+      "lowered_atom": "APPLICATION",
+      "label": "Supplementary-exemption application has been submitted",
+      "description": "Applicant confirms that the § 11(7) application has been submitted in the required form.",
+      "source_type": "user",
+      "formal_text": "APPLICATION",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "I am a pensionär and the omanik of the parcel in Tartu. The cadastre lists the maa sihtotstarve as elamumaa and the rahvastikuregister has my elukoht at that address. The local omavalitsuse volikogu has set the home-land exemption and I have submitted the taotlus for the supplementary pensioner exemption.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ],
+  "domain_claims": [
+    {
+      "claim_id": "residential_land",
+      "lowered_atom": "RESIDENTIAL_LAND",
+      "label": "Land's intended use is residential (elamumaa)",
+      "description": "The cadastre records the land's intended use as residential.",
+      "source_type": "db",
+      "formal_text": "RESIDENTIAL_LAND",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "clause_text": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa ...",
+          "note": "Residential land-use category for home-land exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "primary_residence_registered",
+      "lowered_atom": "PRIMARY_RESIDENCE",
+      "label": "Owner's primary residence is registered on the parcel",
+      "description": "The population registry lists the applicant's primary residence on the parcel.",
+      "source_type": "db",
+      "formal_text": "PRIMARY_RESIDENCE",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "clause_text": "... kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.",
+          "note": "Population-registry residence condition."
+        }
+      ]
+    },
+    {
+      "claim_id": "applicant_is_owner",
+      "lowered_atom": "OWNER",
+      "label": "Applicant owns the parcel",
+      "description": "The land registry shows the applicant as the current owner.",
+      "source_type": "db",
+      "formal_text": "OWNER",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "clause_text": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad ...",
+          "note": "Ownership precondition for home-land exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "receives_pension",
+      "lowered_atom": "PENSIONER",
+      "label": "Applicant receives a state pension",
+      "description": "The social-insurance registry records the applicant as a state-pension recipient.",
+      "source_type": "db",
+      "formal_text": "PENSIONER",
+      "law_references": [
+        {
+          "clause_id": "mms_11_5_1",
+          "clause_title": "§ 11 lg 5 p 1",
+          "clause_text": "... täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele: 1) riikliku pensionikindlustuse seaduse alusel pensioni saajad;",
+          "note": "Pensioner target group for the supplementary exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "municipality_exemption_set",
+      "lowered_atom": "EXEMPTION_SET",
+      "label": "Municipality has set the exemption",
+      "description": "The land-tax information system records a § 11(1)/(5) exemption set by the local council.",
+      "source_type": "db",
+      "formal_text": "EXEMPTION_SET",
+      "law_references": [
+        {
+          "clause_id": "mms_11_1",
+          "clause_title": "§ 11 lg 1",
+          "clause_text": "Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada ... kodualuse maa maksusoodustuse ...",
+          "note": "Local-council act is required to activate the exemption."
+        }
+      ]
+    },
+    {
+      "claim_id": "application_submitted",
+      "lowered_atom": "APPLICATION",
+      "label": "Supplementary-exemption application has been submitted",
+      "description": "Applicant confirms that the § 11(7) application has been submitted in the required form.",
+      "source_type": "user",
+      "formal_text": "APPLICATION",
+      "law_references": [
+        {
+          "clause_id": "mms_11_7",
+          "clause_title": "§ 11 lg 7",
+          "clause_text": "Täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.",
+          "note": "User-provided confirmation of submitted application."
+        }
+      ]
+    }
+  ],
+  "domain_rules": [
+    {
+      "rule_id": "allow_home_land_exemption",
+      "kind": "allow_if_all",
+      "label": "Home-land exemption under § 11 lg 1.",
+      "when_claim_ids": [
+        "residential_land",
+        "primary_residence_registered",
+        "applicant_is_owner",
+        "municipality_exemption_set"
+      ],
+      "formal_text": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION",
+      "lowered_formula": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION",
+      "target_outcome_id": "exemption_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "mms_11_1",
+          "clause_title": "§ 11 lg 1",
+          "clause_text": "Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada käesoleva paragrahvi lõikes 1^1 sätestatud tingimustel kodualuse maa maksusoodustuse kuni 1000 eurot hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks.",
+          "note": "Baseline home-land exemption path."
+        }
+      ]
+    },
+    {
+      "rule_id": "allow_pensioner_supplement",
+      "kind": "allow_if_all",
+      "label": "Pensioner supplementary exemption under § 11 lg 5 p 1.",
+      "when_claim_ids": [
+        "residential_land",
+        "primary_residence_registered",
+        "applicant_is_owner",
+        "receives_pension",
+        "municipality_exemption_set",
+        "application_submitted"
+      ],
+      "formal_text": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION",
+      "lowered_formula": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION",
+      "target_outcome_id": "exemption_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "mms_11_5_1",
+          "clause_title": "§ 11 lg 5 p 1",
+          "clause_text": "Kohaliku omavalitsuse üksuse volikogu võib ... määrata täiendava maksusoodustuse ... pensioni saajad;",
+          "note": "Supplementary pensioner path."
+        }
+      ]
+    }
+  ],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "The lowered Z3 theory entails ALLOW."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "ALLOW",
+      "resolved_claims": [
+        {
+          "claim_id": "residential_land",
+          "lowered_atom": "RESIDENTIAL_LAND",
+          "label": "Land's intended use is residential (elamumaa)",
+          "source_type": "db",
+          "formal_text": "RESIDENTIAL_LAND",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "primary_residence_registered",
+          "lowered_atom": "PRIMARY_RESIDENCE",
+          "label": "Owner's primary residence is registered on the parcel",
+          "source_type": "db",
+          "formal_text": "PRIMARY_RESIDENCE",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "applicant_is_owner",
+          "lowered_atom": "OWNER",
+          "label": "Applicant owns the parcel",
+          "source_type": "db",
+          "formal_text": "OWNER",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "receives_pension",
+          "lowered_atom": "PENSIONER",
+          "label": "Applicant receives a state pension",
+          "source_type": "db",
+          "formal_text": "PENSIONER",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "municipality_exemption_set",
+          "lowered_atom": "EXEMPTION_SET",
+          "label": "Municipality has set the exemption",
+          "source_type": "db",
+          "formal_text": "EXEMPTION_SET",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        },
+        {
+          "claim_id": "application_submitted",
+          "lowered_atom": "APPLICATION",
+          "label": "Supplementary-exemption application has been submitted",
+          "source_type": "user",
+          "formal_text": "APPLICATION",
+          "value": true,
+          "resolved_from": "intent",
+          "reason": "Deterministic scenario fixture sets this claim to true."
+        }
+      ],
+      "rule_trace": [
+        {
+          "rule_id": "allow_home_land_exemption",
+          "label": "Home-land exemption under § 11 lg 1.",
+          "kind": "allow_if_all",
+          "status": "fires",
+          "formal_text": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION",
+          "lowered_formula": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND EXEMPTION_SET) -> ALLOW_EXEMPTION",
+          "premises": [
+            {
+              "claim_id": "residential_land",
+              "label": "Land's intended use is residential (elamumaa)",
+              "formal_text": "RESIDENTIAL_LAND",
+              "lowered_atom": "RESIDENTIAL_LAND",
+              "value": true
+            },
+            {
+              "claim_id": "primary_residence_registered",
+              "label": "Owner's primary residence is registered on the parcel",
+              "formal_text": "PRIMARY_RESIDENCE",
+              "lowered_atom": "PRIMARY_RESIDENCE",
+              "value": true
+            },
+            {
+              "claim_id": "applicant_is_owner",
+              "label": "Applicant owns the parcel",
+              "formal_text": "OWNER",
+              "lowered_atom": "OWNER",
+              "value": true
+            },
+            {
+              "claim_id": "municipality_exemption_set",
+              "label": "Municipality has set the exemption",
+              "formal_text": "EXEMPTION_SET",
+              "lowered_atom": "EXEMPTION_SET",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "residential_land",
+            "primary_residence_registered",
+            "applicant_is_owner",
+            "municipality_exemption_set"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        },
+        {
+          "rule_id": "allow_pensioner_supplement",
+          "label": "Pensioner supplementary exemption under § 11 lg 5 p 1.",
+          "kind": "allow_if_all",
+          "status": "fires",
+          "formal_text": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION",
+          "lowered_formula": "(RESIDENTIAL_LAND AND PRIMARY_RESIDENCE AND OWNER AND PENSIONER AND EXEMPTION_SET AND APPLICATION) -> ALLOW_EXEMPTION",
+          "premises": [
+            {
+              "claim_id": "residential_land",
+              "label": "Land's intended use is residential (elamumaa)",
+              "formal_text": "RESIDENTIAL_LAND",
+              "lowered_atom": "RESIDENTIAL_LAND",
+              "value": true
+            },
+            {
+              "claim_id": "primary_residence_registered",
+              "label": "Owner's primary residence is registered on the parcel",
+              "formal_text": "PRIMARY_RESIDENCE",
+              "lowered_atom": "PRIMARY_RESIDENCE",
+              "value": true
+            },
+            {
+              "claim_id": "applicant_is_owner",
+              "label": "Applicant owns the parcel",
+              "formal_text": "OWNER",
+              "lowered_atom": "OWNER",
+              "value": true
+            },
+            {
+              "claim_id": "receives_pension",
+              "label": "Applicant receives a state pension",
+              "formal_text": "PENSIONER",
+              "lowered_atom": "PENSIONER",
+              "value": true
+            },
+            {
+              "claim_id": "municipality_exemption_set",
+              "label": "Municipality has set the exemption",
+              "formal_text": "EXEMPTION_SET",
+              "lowered_atom": "EXEMPTION_SET",
+              "value": true
+            },
+            {
+              "claim_id": "application_submitted",
+              "label": "Supplementary-exemption application has been submitted",
+              "formal_text": "APPLICATION",
+              "lowered_atom": "APPLICATION",
+              "value": true
+            }
+          ],
+          "true_claim_ids": [
+            "residential_land",
+            "primary_residence_registered",
+            "applicant_is_owner",
+            "receives_pension",
+            "municipality_exemption_set",
+            "application_submitted"
+          ],
+          "false_claim_ids": [],
+          "unknown_claim_ids": []
+        }
+      ],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "The lowered Z3 theory entails ALLOW."
+    }
+  ]
+}

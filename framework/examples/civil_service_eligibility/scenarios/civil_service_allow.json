@@ -1,0 +1,21 @@
+{
+  "name": "civil_service_allow",
+  "description": "Estonian-citizen applicant with clean record and confirmed non-conflict resolves to ALLOW.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "ee_citizen": true,
+    "eu_citizen": false,
+    "secondary_education": true,
+    "speaks_estonian": true,
+    "full_capacity": true,
+    "criminal_conviction": false,
+    "no_conflict_declared": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

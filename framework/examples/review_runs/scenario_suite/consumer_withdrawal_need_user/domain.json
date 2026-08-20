@@ -1,0 +1,161 @@
+{
+  "artifact_type": "domain",
+  "logic_level": "propositional",
+  "title": "Võlaõigusseadus §§ 53 lg 4, 56 lg 1 demo",
+  "law_text": "§ 53. Sidevahendi abil sõlmitud lepingu tähendus\n\n(4) Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on:\n1) teenuse osutamine või muu kestva soorituse tegemine, kui ettevõtja lepingust tulenevad kohustused on täielikult täidetud ...;\n2) sellise asja üleandmine, mis on valmistatud, arvestades lepingupooleks oleva tarbija isiklikke vajadusi;\n3) sellise asja üleandmine, mis on valmistatud tarbija esitatud tingimuste kohaselt;\n4) sellise asja üleandmine, mis rikneb või vananeb kiiresti;\n4^1) sellise suletud pakendis asja üleandmine, mis ei ole kõlblik tagasisaatmiseks tervisekaitse või hügieenilistel põhjustel ning kui see on pärast kohaletoimetamist avatud.\n\n§ 56. Õigus lepingust taganeda\n\n(1) Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.\n\n(2^1) Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.\n\n(2^2) Tarbija võib lepingust taganeda, kasutades taganemisavalduse tüüpvormi või esitades muu ühemõttelise taganemisavalduse.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "allow_outcome_id": "withdrawal_allowed",
+  "deny_outcome_id": "withdrawal_denied",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:52+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/law.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/domain/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/consumer_withdrawal/prompts/domain/user.txt",
+      "system_prompt_sha256": "cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d",
+      "user_prompt_sha256": "35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "is_consumer",
+      "lowered_atom": "IS_CONSUMER",
+      "label": "Applicant is a consumer",
+      "description": "The trader's CRM records the counter-party as a consumer (non-professional).",
+      "source_type": "db",
+      "formal_text": "IS_CONSUMER",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "note": "Only consumers enjoy the withdrawal right."
+        }
+      ]
+    },
+    {
+      "claim_id": "distance_contract",
+      "lowered_atom": "DISTANCE_CONTRACT",
+      "label": "Contract was concluded by means of distance communication",
+      "description": "The order form stored by the trader marks the contract as a distance sale (e-shop, phone, etc.).",
+      "source_type": "db",
+      "formal_text": "DISTANCE_CONTRACT",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "... sidevahendi abil sõlmitud lepingust ...",
+          "note": "Withdrawal only applies to distance contracts."
+        }
+      ]
+    },
+    {
+      "claim_id": "excluded_category",
+      "lowered_atom": "EXCLUDED_CATEGORY",
+      "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+      "description": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
+      "source_type": "db",
+      "formal_text": "EXCLUDED_CATEGORY",
+      "law_references": [
+        {
+          "clause_id": "vos_53_4",
+          "clause_title": "§ 53 lg 4",
+          "clause_text": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "note": "Category-based exclusion blocks the withdrawal right."
+        }
+      ]
+    },
+    {
+      "claim_id": "within_14_days",
+      "lowered_atom": "WITHIN_14_DAYS",
+      "label": "The 14-day withdrawal period is still running",
+      "description": "Consumer confirms that fewer than 14 days have elapsed since receipt of the goods / conclusion of the contract.",
+      "source_type": "user",
+      "formal_text": "WITHIN_14_DAYS",
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "... 14 päeva jooksul.",
+          "note": "Statutory 14-day window."
+        }
+      ]
+    },
+    {
+      "claim_id": "notice_sent_in_time",
+      "lowered_atom": "NOTICE_SENT",
+      "label": "Withdrawal notice has been sent in time",
+      "description": "Consumer confirms that the withdrawal notice was dispatched to the trader before the 14-day period expired.",
+      "source_type": "user",
+      "formal_text": "NOTICE_SENT",
+      "law_references": [
+        {
+          "clause_id": "vos_56_21",
+          "clause_title": "§ 56 lg 2^1",
+          "clause_text": "Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.",
+          "note": "Timely dispatch satisfies the deadline."
+        }
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "withdrawal_allowed",
+      "lowered_atom": "ALLOW_WITHDRAWAL",
+      "label": "Right of withdrawal is available",
+      "formal_text": "ALLOW_WITHDRAWAL"
+    },
+    {
+      "outcome_id": "withdrawal_denied",
+      "lowered_atom": "DENY_WITHDRAWAL",
+      "label": "Right of withdrawal is excluded",
+      "formal_text": "DENY_WITHDRAWAL"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_distance_withdrawal",
+      "kind": "allow_if_all",
+      "label": "Consumer may withdraw from a timely distance contract under § 56 lg 1.",
+      "when_claim_ids": [
+        "is_consumer",
+        "distance_contract",
+        "within_14_days",
+        "notice_sent_in_time"
+      ],
+      "formal_text": "(IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL",
+      "lowered_formula": "(IS_CONSUMER AND DISTANCE_CONTRACT AND WITHIN_14_DAYS AND NOTICE_SENT) -> ALLOW_WITHDRAWAL",
+      "target_outcome_id": "withdrawal_allowed",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "vos_56_1",
+          "clause_title": "§ 56 lg 1",
+          "clause_text": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "note": "Positive path for withdrawal."
+        }
+      ]
+    },
+    {
+      "rule_id": "deny_excluded_category",
+      "kind": "deny_if_all",
+      "label": "Withdrawal is excluded for § 53 lg 4 goods (custom-made, perishable, hygiene-sealed, ...).",
+      "when_claim_ids": [
+        "excluded_category"
+      ],
+      "formal_text": "EXCLUDED_CATEGORY -> DENY_WITHDRAWAL",
+      "lowered_formula": "EXCLUDED_CATEGORY -> DENY_WITHDRAWAL",
+      "target_outcome_id": "withdrawal_denied",
+      "target_claim_id": null,
+      "law_references": [
+        {
+          "clause_id": "vos_53_4",
+          "clause_title": "§ 53 lg 4",
+          "clause_text": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "note": "Category-based exclusion."
+        }
+      ]
+    }
+  ]
+}

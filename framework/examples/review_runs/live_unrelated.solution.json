@@ -1,0 +1,39 @@
+{
+  "artifact_type": "solution",
+  "logic_level": "propositional",
+  "domain_title": "Ehitusseadustiku ja planeerimisseaduse rakendamise seadus",
+  "request_text": "I am the child's mother. The child is in hospital and the doctor needs a quick decision. The other parent is unreachable and not answering the phone.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "final_outcome": "DENY",
+  "blocked_at_step": "domain_extraction",
+  "block_reason_code": "domain_extraction_empty",
+  "extracted_claim_count": 0,
+  "extracted_rule_count": 0,
+  "unresolved_claim_ids": [],
+  "trace_events": [
+    {
+      "stage": "setup",
+      "message": "Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core."
+    },
+    {
+      "stage": "initial",
+      "message": "No allow rule is entailed and no useful missing information remains, so the solver defaults to DENY."
+    },
+    {
+      "stage": "blockage",
+      "message": "Blocked at `domain_extraction` with neutral reason code `domain_extraction_empty`."
+    }
+  ],
+  "lookup_events": [],
+  "snapshots": [
+    {
+      "stage": "initial",
+      "outcome": "DENY",
+      "resolved_claims": [],
+      "rule_trace": [],
+      "missing_db_claim_ids": [],
+      "missing_user_claim_ids": [],
+      "note": "No allow rule is entailed and no useful missing information remains, so the solver defaults to DENY."
+    }
+  ]
+}

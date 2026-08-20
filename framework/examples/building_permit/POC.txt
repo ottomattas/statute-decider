@@ -1,0 +1,47 @@
+POC — Ehitusseadustik §§ 42, 44 (Ehitusloa andmine)
+
+Seadus (katke):
+§ 42. Ehitusloa menetlus
+(1) Ehitusluba antakse, kui esitatud ehitusprojekt vastab
+    õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule
+    või projekteerimistingimustele ning ehitisele ja ehitamisele
+    esitatud nõuetele.
+
+§ 44. Ehitusloa andmisest keeldumine
+() Pädev asutus keeldub ehitusloa andmisest, kui:
+   1) kavandatav ehitis ei vasta detailplaneeringule, ...
+      muudele avalik-õiguslikele kitsendustele;
+   2) ehitusprojekti ei ole koostanud pädev isik või pädev isik ei
+      ole teinud ehitusprojekti ekspertiisi;
+   3) ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu
+      tulemustele või on nõutav uuring tegemata; ...
+
+Propositional variables (sulgudes source_type):
+  "projekt vastab detailplaneeringule"            (db)
+  "projekt vastab ehitus- ja ohutusnõuetele"      (db)
+  "projekt on koostanud pädev isik"               (db)
+  "ehitusuuring on tehtud ja esitatud"            (db)
+  "riigilõiv on tasutud"                          (db)
+  "projekt on detailplaneeringuga vastuolus"      (db)
+  "ehitusluba antakse"                             (outcome: allow)
+  "ehitusluba ei anta"                             (outcome: deny)
+
+Reeglid:
+  R1 (§ 42 lg 1, positiivne koosseis):
+    "vastab detailplaneeringule" AND "vastab ehitusnõuetele"
+      AND "pädev isik koostas" AND "uuring tehtud"
+      AND "riigilõiv tasutud"
+      -> "ehitusluba antakse"
+  R2 (§ 44 lg 1 p 1, blokeeriv alus):
+    "projekt on detailplaneeringuga vastuolus"
+      -> "ehitusluba ei anta"
+
+Protsess:
+  1. Loe ehitisregistrist detailplaneeringu kooskõla ja ehitusnõuete
+     vastavuse kontrollid.
+  2. Loe projekti-koostaja pädevus riiklikust registrist.
+  3. Loe uuringute ja riigilõivu andmed ehitisregistrist.
+  4. Solver:
+     - kui R2 eeldus TRUE -> DENY.
+     - muidu kui R1 kõik eeldused TRUE -> ALLOW.
+     - kui mõni DB-eeldus puudub -> NEED_DB_INFO.

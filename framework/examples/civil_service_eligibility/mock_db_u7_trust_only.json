@@ -1,0 +1,39 @@
+{
+  "sources": [
+    {
+      "source_id": "population_registry_selfreport",
+      "label": "Applicant self-report of citizenship and capacity",
+      "description": "Stand-in for the population registry: values are taken on trust, triggering U7 TRUST_ONLY resolution.",
+      "trust_only": true,
+      "values": {
+        "ee_citizen": true,
+        "eu_citizen": false,
+        "full_capacity": true
+      }
+    },
+    {
+      "source_id": "education_registry",
+      "label": "Dummy education registry",
+      "description": "Holds education-level records.",
+      "values": {
+        "secondary_education": true
+      }
+    },
+    {
+      "source_id": "language_registry",
+      "label": "Dummy language-proficiency registry",
+      "description": "Holds certified language-proficiency levels.",
+      "values": {
+        "speaks_estonian": true
+      }
+    },
+    {
+      "source_id": "criminal_records_registry",
+      "label": "Dummy criminal-records registry",
+      "description": "Holds standing-conviction status for intentional crimes.",
+      "values": {
+        "criminal_conviction": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "sources": [
+    {
+      "source_id": "designer_selfreport",
+      "label": "Designer self-report of competence and fee payment",
+      "description": "Stand-in for the designer registry and payment ledger: values are taken on trust, triggering U7 TRUST_ONLY.",
+      "trust_only": true,
+      "values": {
+        "competent_designer": true,
+        "fee_paid": true
+      }
+    },
+    {
+      "source_id": "building_registry",
+      "label": "Dummy building registry",
+      "description": "Holds project-conformity and plan-violation records.",
+      "values": {
+        "plan_conformant": true,
+        "building_requirements_met": true,
+        "site_study_provided": true,
+        "plan_violation": false
+      }
+    }
+  ]
+}

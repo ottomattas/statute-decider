@@ -1,0 +1,19 @@
+{
+  "name": "consumer_withdrawal_allow",
+  "description": "Consumer, distance contract, within 14 days, notice sent in time, non-excluded goods -> ALLOW under § 56 lg 1.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "is_consumer": true,
+    "distance_contract": true,
+    "excluded_category": false,
+    "within_14_days": true,
+    "notice_sent_in_time": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive"],
+  "provenance": "Supervisor meeting 2026-04-17"
+}

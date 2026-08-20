@@ -1,0 +1,126 @@
+SCENARIO: building_permit_deny
+DESCRIPTION: Detail-plan violation under § 44 p 1 fires the deny rule, yielding DENY.
+# deterministic intent artifact -> examples/review_runs/scenario_suite/building_permit_deny/intent.json
+# deterministic domain artifact -> examples/review_runs/scenario_suite/building_permit_deny/domain.json
+# use case dir: examples/building_permit
+# request file: examples/building_permit/request_deny.txt
+# law file: examples/building_permit/law.txt
+$ python 03_solve_case.py --domain examples/review_runs/scenario_suite/building_permit_deny/domain.json --intent examples/review_runs/scenario_suite/building_permit_deny/intent.json --db examples/building_permit/mock_db.json --out examples/review_runs/scenario_suite/building_permit_deny/solution.json
+(no output)
+$ python 04_print_trace.py --solution examples/review_runs/scenario_suite/building_permit_deny/solution.json --out examples/review_runs/scenario_suite/building_permit_deny/trace.txt
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Ehitusseadustik §§ 42, 44 demo
+REQUEST: The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.
+
+EXTRACTED CLAIM COUNT: 6
+EXTRACTED RULE COUNT: 2
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: no_applicable_rules
+
+RUN METADATA
+  solve_generated_at_utc: 2026-04-17T08:10:50+00:00
+  domain_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/building_permit_deny/domain.json
+  intent_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/building_permit_deny/intent.json
+  mock_db_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/mock_db.json
+INTENT EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:50+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/request_deny.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/intent/system.propositional.txt [64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/intent/user.txt [bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac]
+DOMAIN EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:50+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/law.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/domain/system.propositional.txt [cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/domain/user.txt [35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b]
+
+INTENT CLAIMS
+- plan_conformant [PLAN_OK] = F (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to false.
+  provenance:
+    - The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.
+      note: Matched user text
+- building_requirements_met [BUILD_REQS] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+- competent_designer [COMPETENT_DESIGNER] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.
+      note: Matched user text
+- site_study_provided [SITE_STUDY] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+- fee_paid [FEE_PAID] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.
+      note: Matched user text
+- plan_violation [PLAN_VIOLATION] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.
+      note: Matched user text
+
+DOMAIN CLAIMS
+- plan_conformant [PLAN_OK] (source_type=db)
+    - § 42 lg 1 [es_42_1]
+      text: Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.
+      note: Detail-plan conformity is the primary positive condition.
+- building_requirements_met [BUILD_REQS] (source_type=db)
+    - § 42 lg 1 [es_42_1]
+      text: ... ning ehitisele ja ehitamisele esitatud nõuetele.
+      note: Construction-and-safety requirement condition.
+- competent_designer [COMPETENT_DESIGNER] (source_type=db)
+    - § 44 p 2 [es_44_2]
+      text: ... ehitusprojekti ei ole koostanud pädev isik või pädev isik ei ole teinud ehitusprojekti ekspertiisi;
+      note: Competent-designer requirement, stated as a refusal ground.
+- site_study_provided [SITE_STUDY] (source_type=db)
+    - § 44 p 3 [es_44_3]
+      text: ... ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu tulemustele või on nõutav uuring tegemata.
+      note: Site-study requirement, stated as a refusal ground.
+- fee_paid [FEE_PAID] (source_type=db)
+    - § 42 lg 1 (õigusaktides sätestatud nõuded) [es_42_1]
+      text: Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele ...
+      note: State-fee obligation falls under 'õigusaktides sätestatud nõuded'.
+- plan_violation [PLAN_VIOLATION] (source_type=db)
+    - § 44 p 1 [es_44_1]
+      text: ... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;
+      note: Plan-violation refusal ground.
+
+DOMAIN RULES
+- allow_building_permit: (PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT
+  lowered: (PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT
+    - § 42 lg 1 [es_42_1]
+      text: Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.
+      note: Five-claim positive path to permit issuance.
+- deny_plan_violation: PLAN_VIOLATION -> DENY_PERMIT
+  lowered: PLAN_VIOLATION -> DENY_PERMIT
+    - § 44 p 1 [es_44_1]
+      text: ... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;
+      note: Hard refusal ground based on plan violation.
+
+TRACE EVENTS
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The lowered Z3 theory entails DENY.
+[blockage] Blocked at `solve` with neutral reason code `no_applicable_rules`.
+
+SNAPSHOT: initial
+  outcome: DENY
+  note: The lowered Z3 theory entails DENY.
+  resolved_claims:
+    - PLAN_OK [PLAN_OK] = F (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to false.
+    - BUILD_REQS [BUILD_REQS] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - COMPETENT_DESIGNER [COMPETENT_DESIGNER] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - SITE_STUDY [SITE_STUDY] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - FEE_PAID [FEE_PAID] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - PLAN_VIOLATION [PLAN_VIOLATION] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+  rule_trace:
+    - allow_building_permit [blocked] :: (PLAN_OK AND BUILD_REQS AND COMPETENT_DESIGNER AND SITE_STUDY AND FEE_PAID) -> ALLOW_PERMIT :: PLAN_OK=F, BUILD_REQS=T, COMPETENT_DESIGNER=T, SITE_STUDY=T, FEE_PAID=T
+    - deny_plan_violation [fires] :: PLAN_VIOLATION -> DENY_PERMIT :: PLAN_VIOLATION=T
+
+FINAL OUTCOME: DENY

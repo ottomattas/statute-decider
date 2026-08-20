@@ -1,0 +1,39 @@
+POC — Isikuandmete kaitse seadus § 4 (Töötlemine ajakirjanduslikul eesmärgil)
+
+Seadus (katke):
+§ 4. Isikuandmete töötlemine ajakirjanduslikul eesmärgil
+() Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul
+   eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi
+   ja see on kooskõlas ajakirjanduseetika põhimõtetega. Isikuandmete
+   avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.
+
+Propositional variables (sulgudes source_type):
+  "töötlemine toimub ajakirjanduslikul eesmärgil"   (db)
+  "töötlemiseks on avalik huvi"                      (user)
+  "töötlemine on kooskõlas ajakirjanduseetikaga"     (user)
+  "andmesubjekt on andnud nõusoleku"                 (db)
+  "avalikustamine kahjustaks ülemäära andmesubjekti" (user)
+  "töötlemine on lubatud"                            (outcome: allow)
+  "töötlemine on keelatud"                           (outcome: deny)
+
+Reeglid:
+  R1 (§ 4 lause 1, positiivne alus):
+    "ajakirjanduslik eesmärk" AND "avalik huvi" AND "ajakirjanduseetika"
+      -> "töötlemine lubatud"
+  R2 (üldine nõusoleku alus – baseline):
+    "andmesubjekti nõusolek"
+      -> "töötlemine lubatud"
+  R3 (§ 4 lause 2, defeasible override):
+    "avalikustamine kahjustaks ülemäära andmesubjekti õigusi"
+      -> NOT "töötlemine on kooskõlas ajakirjanduseetikaga"
+
+Protsess:
+  1. Loe ettevõtja CMSist, kas tegevus on ajakirjanduslik.
+  2. Kontrolli nõusoleku andmebaasist, kas subjekt on nõustunud.
+  3. Küsi toimetuselt avaliku huvi hinnangut ja eetika kooskõla
+     hinnangut ning kahju proportsionaalsuse hinnangut.
+  4. Solver:
+     - kui R3 eeldus TRUE -> eetika kooskõla muutub FALSE,
+       seega R1 ei saa ALLOW anda; kui R2 samuti ei kata, -> DENY.
+     - kui R1 või R2 eeldused TRUE ja R3 ei fire -> ALLOW.
+     - kui mõni kasutaja-eeldus puudub -> NEED_USER_INFO.

@@ -1,0 +1,16 @@
+{
+  "name": "land_tax_allow_via_db",
+  "description": "Residential status, ownership and residence resolve via DB lookup; user pins municipality exemption and application -> ALLOW via home-land rule.",
+  "request_file": "request_allow.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "municipality_exemption_set": true,
+    "application_submitted": true
+  },
+  "mock_db_overrides": {},
+  "expected_outcome": "ALLOW",
+  "expected_reason_code": null,
+  "tags": ["positive", "db-resolved"],
+  "provenance": "ART-65 Wave 3a Stream X v2"
+}

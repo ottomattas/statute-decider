@@ -1,0 +1,10 @@
+{
+  "name": "db-then-user",
+  "description": "The solver first needs DB facts and then still needs user input.",
+  "request_file": "request_db_then_user.txt",
+  "law_file": "law.txt",
+  "mock_db_file": "mock_db.json",
+  "intent_assignments": {
+    "emergency": null
+  }
+}

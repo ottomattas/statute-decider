@@ -1,0 +1,105 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:50+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/request_deny.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/building_permit/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "plan_conformant",
+      "lowered_atom": "PLAN_OK",
+      "label": "Project conforms to the detailed plan",
+      "description": "The building registry confirms the project conforms to the applicable detail plan.",
+      "source_type": "db",
+      "formal_text": "PLAN_OK",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "building_requirements_met",
+      "lowered_atom": "BUILD_REQS",
+      "label": "Project meets construction and safety requirements",
+      "description": "The building registry confirms the project meets statutory construction and safety requirements.",
+      "source_type": "db",
+      "formal_text": "BUILD_REQS",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "competent_designer",
+      "lowered_atom": "COMPETENT_DESIGNER",
+      "label": "Project was prepared by a competent designer",
+      "description": "The professional-registry confirms the project was prepared by a competent designer.",
+      "source_type": "db",
+      "formal_text": "COMPETENT_DESIGNER",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "site_study_provided",
+      "lowered_atom": "SITE_STUDY",
+      "label": "Site construction study has been provided",
+      "description": "The building registry contains a valid site construction study (ehitusuuring).",
+      "source_type": "db",
+      "formal_text": "SITE_STUDY",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": []
+    },
+    {
+      "claim_id": "fee_paid",
+      "lowered_atom": "FEE_PAID",
+      "label": "State fee has been paid",
+      "description": "The payment system confirms the building-permit state fee has been paid.",
+      "source_type": "db",
+      "formal_text": "FEE_PAID",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "plan_violation",
+      "lowered_atom": "PLAN_VIOLATION",
+      "label": "Project violates the detailed plan",
+      "description": "The building registry records that the project violates the detail plan or equivalent planning instrument.",
+      "source_type": "db",
+      "formal_text": "PLAN_VIOLATION",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "The local planning authority has confirmed that the project is detailplaneeringuga vastuolus - it exceeds the permitted building footprint and height. Although riigilõiv has been paid and a pädev isik designed it, the plan violation blocks the permit.",
+          "note": "Matched user text"
+        }
+      ]
+    }
+  ]
+}

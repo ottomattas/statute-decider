@@ -1,0 +1,121 @@
+SCENARIO: journalism_allow
+DESCRIPTION: Journalistic purpose with editorial public-interest and ethics assessment resolves to ALLOW.
+# deterministic intent artifact -> examples/review_runs/scenario_suite/journalism_allow/intent.json
+# deterministic domain artifact -> examples/review_runs/scenario_suite/journalism_allow/domain.json
+# use case dir: examples/personal_data_journalism
+# request file: examples/personal_data_journalism/request_allow.txt
+# law file: examples/personal_data_journalism/law.txt
+$ python 03_solve_case.py --domain examples/review_runs/scenario_suite/journalism_allow/domain.json --intent examples/review_runs/scenario_suite/journalism_allow/intent.json --db examples/personal_data_journalism/mock_db.json --out examples/review_runs/scenario_suite/journalism_allow/solution.json
+(no output)
+$ python 04_print_trace.py --solution examples/review_runs/scenario_suite/journalism_allow/solution.json --out examples/review_runs/scenario_suite/journalism_allow/trace.txt
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Isikuandmete kaitse seadus § 4 demo
+REQUEST: Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.
+
+EXTRACTED CLAIM COUNT: 5
+EXTRACTED RULE COUNT: 3
+
+RUN METADATA
+  solve_generated_at_utc: 2026-04-17T08:10:54+00:00
+  domain_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/journalism_allow/domain.json
+  intent_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/journalism_allow/intent.json
+  mock_db_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/mock_db.json
+INTENT EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:53+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/request_allow.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/intent/system.propositional.txt [64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/intent/user.txt [bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac]
+DOMAIN EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:53+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/law.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/domain/system.propositional.txt [cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/domain/user.txt [35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b]
+
+INTENT CLAIMS
+- journalistic_purpose [JOURNALISM] = T (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.
+      note: Matched user text
+- public_interest [PUBLIC_INTEREST] = T (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.
+      note: Matched user text
+- journalism_ethics [ETHICS_OK] = T (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to true.
+  provenance:
+    - Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.
+      note: Matched user text
+- subject_consent [CONSENT] = F (source_type=db)
+  reason: Deterministic scenario fixture sets this claim to false.
+  provenance:
+    - Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.
+      note: Matched user text
+- excessive_harm [EXCESSIVE_HARM] = F (source_type=user)
+  reason: Deterministic scenario fixture sets this claim to false.
+
+DOMAIN CLAIMS
+- journalistic_purpose [JOURNALISM] (source_type=db)
+    - § 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil [iks_4]
+      text: Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.
+      note: Journalistic-purpose gateway to the consent-free processing basis.
+- public_interest [PUBLIC_INTEREST] (source_type=user)
+    - § 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil [iks_4]
+      text: Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.
+      note: Public-interest condition for the journalism basis.
+- journalism_ethics [ETHICS_OK] (source_type=user)
+    - § 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil [iks_4]
+      text: Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.
+      note: Journalism-ethics condition for the journalism basis.
+- subject_consent [CONSENT] (source_type=db)
+    - § 4 (implicit baseline) [iks_4]
+      text: Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...
+      note: Consent baseline: when consent exists, the journalism basis is not needed.
+- excessive_harm [EXCESSIVE_HARM] (source_type=user)
+    - § 4, teine lause [iks_4_harm]
+      text: Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.
+      note: Proportionality limit: excessive harm defeats the journalism basis.
+
+DOMAIN RULES
+- allow_journalism_basis: (JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING
+  lowered: (JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING
+    - § 4, esimene lause [iks_4]
+      text: Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.
+      note: Three-condition journalism basis.
+- allow_consent_basis: CONSENT -> ALLOW_PROCESSING
+  lowered: CONSENT -> ALLOW_PROCESSING
+    - § 4 (implicit baseline) [iks_4]
+      text: Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...
+      note: Consent is the general baseline; the journalism basis is its exception.
+- block_ethics_when_excessive_harm: EXCESSIVE_HARM -> NOT ETHICS_OK
+  lowered: EXCESSIVE_HARM -> NOT ETHICS_OK
+    - § 4, teine lause [iks_4_harm]
+      text: Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.
+      note: Proportionality override of the ethics condition.
+
+TRACE EVENTS
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The lowered Z3 theory entails ALLOW.
+
+SNAPSHOT: initial
+  outcome: ALLOW
+  note: The lowered Z3 theory entails ALLOW.
+  resolved_claims:
+    - JOURNALISM [JOURNALISM] = T (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - PUBLIC_INTEREST [PUBLIC_INTEREST] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - ETHICS_OK [ETHICS_OK] = T (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to true.
+    - CONSENT [CONSENT] = F (source_type=db, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to false.
+    - EXCESSIVE_HARM [EXCESSIVE_HARM] = F (source_type=user, resolved_from=intent)
+      reason: Deterministic scenario fixture sets this claim to false.
+  rule_trace:
+    - allow_journalism_basis [fires] :: (JOURNALISM AND PUBLIC_INTEREST AND ETHICS_OK) -> ALLOW_PROCESSING :: JOURNALISM=T, PUBLIC_INTEREST=T, ETHICS_OK=T
+    - allow_consent_basis [blocked] :: CONSENT -> ALLOW_PROCESSING :: CONSENT=F
+    - block_ethics_when_excessive_harm [blocked] :: EXCESSIVE_HARM -> NOT ETHICS_OK :: EXCESSIVE_HARM=F
+
+FINAL OUTCOME: ALLOW

@@ -1,0 +1,85 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "I need access to the child's data. I do not yet know whether this is an emergency.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "claims": [
+    {
+      "claim_id": "applicant_is_parent",
+      "lowered_atom": "PARENT",
+      "label": "Applicant is a parent",
+      "description": "The requester is the child's legal parent.",
+      "source_type": "db",
+      "formal_text": "PARENT",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    },
+    {
+      "claim_id": "applicant_is_not_parent",
+      "lowered_atom": "NOT_PARENT",
+      "label": "Applicant is not a parent",
+      "description": "The requester is a relative or third party rather than a parent.",
+      "source_type": "db",
+      "formal_text": "NOT_PARENT",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    },
+    {
+      "claim_id": "sole_custody",
+      "lowered_atom": "SOLE_CUSTODY",
+      "label": "Applicant has sole custody",
+      "description": "The applicant may act alone because sole custody exists.",
+      "source_type": "db",
+      "formal_text": "SOLE_CUSTODY",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    },
+    {
+      "claim_id": "delegated_decision_right",
+      "lowered_atom": "DELEGATED_RIGHT",
+      "label": "Decision right has been delegated",
+      "description": "Authority for this decision has been delegated to the applicant.",
+      "source_type": "db",
+      "formal_text": "DELEGATED_RIGHT",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    },
+    {
+      "claim_id": "emergency",
+      "lowered_atom": "EMERGENCY",
+      "label": "There is an emergency",
+      "description": "Waiting would harm the child's interests.",
+      "source_type": "user",
+      "formal_text": "EMERGENCY",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    },
+    {
+      "claim_id": "both_parents_consent",
+      "lowered_atom": "BOTH_CONSENT",
+      "label": "Both parents consent",
+      "description": "There is confirmed consent from both parents.",
+      "source_type": "db",
+      "formal_text": "BOTH_CONSENT",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    },
+    {
+      "claim_id": "one_parent_unreachable",
+      "lowered_atom": "OTHER_PARENT_UNREACHABLE",
+      "label": "One parent is unreachable",
+      "description": "The other parent cannot currently be contacted.",
+      "source_type": "user",
+      "formal_text": "OTHER_PARENT_UNREACHABLE",
+      "value": null,
+      "reason": "",
+      "provenance": []
+    }
+  ]
+}

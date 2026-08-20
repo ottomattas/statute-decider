@@ -1,0 +1,32 @@
+{
+  "sources": [
+    {
+      "source_id": "building_registry",
+      "label": "Dummy building registry",
+      "description": "Holds project-conformity and plan-violation records.",
+      "values": {
+        "plan_conformant": true,
+        "building_requirements_met": true,
+        "site_study_provided": true,
+        "plan_violation": false
+      }
+    },
+    {
+      "source_id": "designer_registry",
+      "label": "Dummy designer competence registry",
+      "description": "Holds designer-competence status.",
+      "values": {
+        "competent_designer": true
+      }
+    },
+    {
+      "source_id": "payment_ledger",
+      "label": "Dummy state-fee payment ledger (offline)",
+      "description": "Payment ledger is unreachable for this probe, simulating U3 NO_REGISTER on state-fee confirmation.",
+      "availability": "unavailable",
+      "values": {
+        "fee_paid": true
+      }
+    }
+  ]
+}

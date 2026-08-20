@@ -1,0 +1,94 @@
+{
+  "artifact_type": "intent",
+  "logic_level": "propositional",
+  "request_text": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.\n",
+  "lowered_view_note": "The selected logic level already matches the Boolean Z3 core.",
+  "run_metadata": {
+    "generated_at_utc": "2026-04-17T08:10:53+00:00",
+    "model_name": "deterministic-fixture",
+    "source_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/request_allow.txt",
+    "prompt": {
+      "system_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/intent/system.propositional.txt",
+      "user_prompt_path": "/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/personal_data_journalism/prompts/intent/user.txt",
+      "system_prompt_sha256": "64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454",
+      "user_prompt_sha256": "bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "journalistic_purpose",
+      "lowered_atom": "JOURNALISM",
+      "label": "Processing has a journalistic purpose",
+      "description": "The controller's CMS records classify the processing as journalism.",
+      "source_type": "db",
+      "formal_text": "JOURNALISM",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "public_interest",
+      "lowered_atom": "PUBLIC_INTEREST",
+      "label": "There is public interest in the processing",
+      "description": "Editorial assessment confirms that there is public interest in the processing.",
+      "source_type": "user",
+      "formal_text": "PUBLIC_INTEREST",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "journalism_ethics",
+      "lowered_atom": "ETHICS_OK",
+      "label": "Processing respects journalism ethics",
+      "description": "The editorial team confirms the processing is consistent with journalism ethics.",
+      "source_type": "user",
+      "formal_text": "ETHICS_OK",
+      "value": true,
+      "reason": "Deterministic scenario fixture sets this claim to true.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "subject_consent",
+      "lowered_atom": "CONSENT",
+      "label": "Data subject has consented",
+      "description": "Consent records show the data subject has given valid consent.",
+      "source_type": "db",
+      "formal_text": "CONSENT",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": [
+        {
+          "snippet": "Our newsroom is preparing an investigative article. The processing is ajakirjanduslik in purpose. The editor confirms there is avalik huvi in the story and the reporting follows the code of ajakirjanduseetika. The data subject has not granted a separate nõusolek but the reporting is proportionate.",
+          "note": "Matched user text"
+        }
+      ]
+    },
+    {
+      "claim_id": "excessive_harm",
+      "lowered_atom": "EXCESSIVE_HARM",
+      "label": "Publication would excessively harm the subject",
+      "description": "Editorial risk assessment concludes publication would excessively harm the subject's rights.",
+      "source_type": "user",
+      "formal_text": "EXCESSIVE_HARM",
+      "value": false,
+      "reason": "Deterministic scenario fixture sets this claim to false.",
+      "provenance": []
+    }
+  ]
+}

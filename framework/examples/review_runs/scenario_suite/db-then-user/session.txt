@@ -1,0 +1,193 @@
+SCENARIO: db-then-user
+DESCRIPTION: The solver first needs DB facts and then still needs user input.
+# deterministic intent artifact -> examples/review_runs/scenario_suite/db-then-user/intent.json
+# deterministic domain artifact -> examples/review_runs/scenario_suite/db-then-user/domain.json
+# use case dir: examples/section_120_demo
+# request file: examples/section_120_demo/request_db_then_user.txt
+# law file: examples/section_120_demo/law.txt
+$ python 03_solve_case.py --domain examples/review_runs/scenario_suite/db-then-user/domain.json --intent examples/review_runs/scenario_suite/db-then-user/intent.json --db examples/section_120_demo/mock_db.json --out examples/review_runs/scenario_suite/db-then-user/solution.json
+(no output)
+$ python 04_print_trace.py --solution examples/review_runs/scenario_suite/db-then-user/solution.json --out examples/review_runs/scenario_suite/db-then-user/trace.txt
+LOGIC LEVEL: Propositional logic (propositional)
+LOWERING NOTE: The selected logic level already matches the Boolean Z3 core.
+DOMAIN: Family Law Section 120 demo
+REQUEST: I need access to the child's data. I do not yet know whether this is an emergency.
+
+EXTRACTED CLAIM COUNT: 7
+EXTRACTED RULE COUNT: 6
+BLOCKED AT STEP: solve
+BLOCK REASON CODE: needs_user_info
+UNRESOLVED CLAIM IDS: emergency
+
+RUN METADATA
+  solve_generated_at_utc: 2026-04-17T08:10:55+00:00
+  domain_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/db-then-user/domain.json
+  intent_artifact_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/review_runs/scenario_suite/db-then-user/intent.json
+  mock_db_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/mock_db.json
+INTENT EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:55+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/request_db_then_user.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/prompts/intent/system.propositional.txt [64d64730c57c9972fe9fdfdbf5699cf9f8b2edbb39b20bd41fe273a03409d454], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/prompts/intent/user.txt [bb158aa60d6ad83c46051a4de7f77a1016c5e0fdc73169e6b00e5707334782ac]
+DOMAIN EXTRACTION METADATA
+  generated_at_utc: 2026-04-17T08:10:55+00:00
+  model_name: deterministic-fixture
+  source_path: /Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/law.txt
+  prompts: system=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/prompts/domain/system.propositional.txt [cd7f211293a0c68e4a7eb185ddf599b86450c59e245d03e47da5f3509c00fc1d], user=/Users/ottomattas/Downloads/repos/PhD-3-Language_to_Logic/framework/examples/section_120_demo/prompts/domain/user.txt [35b16ff7cf0d57d4e11ac9d56684a5d4b6234880bb6cd81f4983d20e7017e14b]
+
+INTENT CLAIMS
+- applicant_is_parent [PARENT] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+- applicant_is_not_parent [NOT_PARENT] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+- sole_custody [SOLE_CUSTODY] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+- delegated_decision_right [DELEGATED_RIGHT] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+- emergency [EMERGENCY] = U (source_type=user)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+  provenance:
+    - I need access to the child's data. I do not yet know whether this is an emergency.
+      note: Matched user text
+- both_parents_consent [BOTH_CONSENT] = U (source_type=db)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+- one_parent_unreachable [OTHER_PARENT_UNREACHABLE] = U (source_type=user)
+  reason: Deterministic scenario fixture leaves this claim unresolved.
+
+DOMAIN CLAIMS
+- applicant_is_parent [PARENT] (source_type=db)
+    - § 120(1) Lapse esindamine [representation_parent]
+      text: Hooldusõiguslik vanem on lapse seaduslik esindaja. Ühist hooldusõigust omavatel vanematel on ühine esindusõigus.
+      note: The demo treats parent status as the normal gateway claim.
+- applicant_is_not_parent [NOT_PARENT] (source_type=db)
+    - § 120(1) Lapse esindamine [representation_parent]
+      text: Hooldusõiguslik vanem on lapse seaduslik esindaja. Ühist hooldusõigust omavatel vanematel on ühine esindusõigus.
+      note: Used as the simple negative counterpart of parent status.
+- sole_custody [SOLE_CUSTODY] (source_type=db)
+    - § 120(2) Lapse esindamine [single_action_authority]
+      text: Vanem esindab last üksinda, kui tal on lapse suhtes ainuhooldusõigus või talle on selles asjas käesoleva seaduse § 119 kohaselt otsustusõigus üle antud.
+      note: One explicit basis for acting alone.
+- delegated_decision_right [DELEGATED_RIGHT] (source_type=db)
+    - § 120(2) Lapse esindamine [single_action_authority]
+      text: Vanem esindab last üksinda, kui tal on lapse suhtes ainuhooldusõigus või talle on selles asjas käesoleva seaduse § 119 kohaselt otsustusõigus üle antud.
+      note: The other explicit basis for acting alone.
+- emergency [EMERGENCY] (source_type=user)
+    - § 120(3) Lapse esindamine [emergency_exception]
+      text: Kui vanemate ühise tahteavalduse tegemine põhjustaks lapse huvidega vastuolus oleva viivituse, on ühel vanemal lapse huvides õigus teha vajalikke tehinguid ja toiminguid ka üksinda.
+      note: Operationalized as the urgent case visible in the request text.
+- both_parents_consent [BOTH_CONSENT] (source_type=db)
+    - § 118(1) ja § 120(1) Lapse esindamine [joint_consent]
+      text: Vanemad teostavad lapse suhtes ühist hooldusõigust ja täidavad hoolduskohustust omal vastutusel ja üksmeeles. Ühist hooldusõigust omavatel vanematel on ühine esindusõigus.
+      note: Represents the joint-action baseline.
+- one_parent_unreachable [OTHER_PARENT_UNREACHABLE] (source_type=user)
+    - § 120(3) Lapse esindamine [emergency_exception]
+      text: Kui vanemate ühise tahteavalduse tegemine põhjustaks lapse huvidega vastuolus oleva viivituse, on ühel vanemal lapse huvides õigus teha vajalikke tehinguid ja toiminguid ka üksinda.
+      note: Used as a simple observable sign that delay may be harmful.
+
+DOMAIN RULES
+- allow_sole_custody: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS
+  lowered: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS
+    - § 120(2) Lapse esindamine [single_action_authority]
+      text: Vanem esindab last üksinda, kui tal on lapse suhtes ainuhooldusõigus või talle on selles asjas käesoleva seaduse § 119 kohaselt otsustusõigus üle antud.
+      note: This is the first explicit single-parent basis.
+- allow_delegated_right: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS
+  lowered: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS
+    - § 120(2) Lapse esindamine [single_action_authority]
+      text: Vanem esindab last üksinda, kui tal on lapse suhtes ainuhooldusõigus või talle on selles asjas käesoleva seaduse § 119 kohaselt otsustusõigus üle antud.
+      note: This is the second explicit single-parent basis.
+- allow_emergency: (PARENT AND EMERGENCY) -> ALLOW_ACCESS
+  lowered: (PARENT AND EMERGENCY) -> ALLOW_ACCESS
+    - § 120(3) Lapse esindamine [emergency_exception]
+      text: Kui vanemate ühise tahteavalduse tegemine põhjustaks lapse huvidega vastuolus oleva viivituse, on ühel vanemal lapse huvides õigus teha vajalikke tehinguid ja toiminguid ka üksinda.
+      note: The urgent scenario is the user-facing demonstration rule.
+- allow_joint_consent: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS
+  lowered: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS
+    - § 118(1) ja § 120(1) Lapse esindamine [joint_consent]
+      text: Vanemad teostavad lapse suhtes ühist hooldusõigust ja täidavad hoolduskohustust omal vastutusel ja üksmeeles. Ühist hooldusõigust omavatel vanematel on ühine esindusõigus.
+      note: This captures the joint representation baseline.
+- block_consent_when_unreachable: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT
+  lowered: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT
+    - § 120(3) Lapse esindamine [emergency_exception]
+      text: Kui vanemate ühise tahteavalduse tegemine põhjustaks lapse huvidega vastuolus oleva viivituse, on ühel vanemal lapse huvides õigus teha vajalikke tehinguid ja toiminguid ka üksinda.
+      note: A small demo simplification used to keep the trace readable.
+- deny_non_parent: NOT_PARENT -> DENY_ACCESS
+  lowered: NOT_PARENT -> DENY_ACCESS
+    - § 120(1) Lapse esindamine [representation_parent]
+      text: Hooldusõiguslik vanem on lapse seaduslik esindaja. Ühist hooldusõigust omavatel vanematel on ühine esindusõigus.
+      note: This guards the demo against third-party requests.
+
+MULTI-SNAPSHOT SUMMARY
+- initial=NEED_DB_INFO -> final=NEED_USER_INFO
+  final_note: The remaining open allow path depends on user-supplied claims.
+
+TRACE EVENTS
+[setup] Starting solve in propositional mode. The selected logic level already matches the Boolean Z3 core.
+[initial] The allow path still depends on DB-backed claims.
+[db_lookup] Queried the local mock DB for: applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+[after_db_lookup] The remaining open allow path depends on user-supplied claims.
+[blockage] Blocked at `solve` with neutral reason code `needs_user_info`.
+
+DB LOOKUPS
+- Dummy parent registry (population_registry) -> [applicant_is_parent=True] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+  note: Confirms whether the requester is a parent.
+- Dummy custody registry (custody_registry) -> [delegated_decision_right=False, sole_custody=False] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+  note: Confirms sole custody or delegated decision rights.
+- Dummy consent service (consent_service) -> [both_parents_consent=False] for applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+  note: Confirms whether both parents' consent is recorded.
+
+SNAPSHOT: initial
+  outcome: NEED_DB_INFO
+  note: The allow path still depends on DB-backed claims.
+  missing_db: applicant_is_parent, both_parents_consent, delegated_decision_right, sole_custody
+  missing_user: emergency
+  resolved_claims:
+    - PARENT [PARENT] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - NOT_PARENT [NOT_PARENT] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - SOLE_CUSTODY [SOLE_CUSTODY] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - EMERGENCY [EMERGENCY] = U (source_type=user, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - BOTH_CONSENT [BOTH_CONSENT] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = U (source_type=user, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+  rule_trace:
+    - allow_sole_custody [needs_info] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=U, SOLE_CUSTODY=U
+    - allow_delegated_right [needs_info] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=U, DELEGATED_RIGHT=U
+    - allow_emergency [needs_info] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=U, EMERGENCY=U
+    - allow_joint_consent [needs_info] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=U, BOTH_CONSENT=U
+    - block_consent_when_unreachable [needs_info] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=U
+    - deny_non_parent [needs_info] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=U
+
+SNAPSHOT: after_db_lookup
+  outcome: NEED_USER_INFO
+  note: The remaining open allow path depends on user-supplied claims.
+  missing_user: emergency
+  resolved_claims:
+    - PARENT [PARENT] = T (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - NOT_PARENT [NOT_PARENT] = U (source_type=db, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - SOLE_CUSTODY [SOLE_CUSTODY] = F (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - DELEGATED_RIGHT [DELEGATED_RIGHT] = F (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - EMERGENCY [EMERGENCY] = U (source_type=user, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+    - BOTH_CONSENT [BOTH_CONSENT] = F (source_type=db, resolved_from=db)
+      reason: Resolved from the local mock DB.
+    - OTHER_PARENT_UNREACHABLE [OTHER_PARENT_UNREACHABLE] = U (source_type=user, resolved_from=unknown)
+      reason: Deterministic scenario fixture leaves this claim unresolved.
+  rule_trace:
+    - allow_sole_custody [blocked] :: (PARENT AND SOLE_CUSTODY) -> ALLOW_ACCESS :: PARENT=T, SOLE_CUSTODY=F
+    - allow_delegated_right [blocked] :: (PARENT AND DELEGATED_RIGHT) -> ALLOW_ACCESS :: PARENT=T, DELEGATED_RIGHT=F
+    - allow_emergency [needs_info] :: (PARENT AND EMERGENCY) -> ALLOW_ACCESS :: PARENT=T, EMERGENCY=U
+    - allow_joint_consent [blocked] :: (PARENT AND BOTH_CONSENT) -> ALLOW_ACCESS :: PARENT=T, BOTH_CONSENT=F
+    - block_consent_when_unreachable [needs_info] :: OTHER_PARENT_UNREACHABLE -> NOT BOTH_CONSENT :: OTHER_PARENT_UNREACHABLE=U
+    - deny_non_parent [needs_info] :: NOT_PARENT -> DENY_ACCESS :: NOT_PARENT=U
+
+FINAL OUTCOME: NEED_USER_INFO

@@ -1,0 +1,14 @@
+Utterances:
+{utterances_block}
+
+Logic level:
+{logic_level}
+
+Supported claim catalog:
+{claim_catalog}
+
+Return one JSON object with key `claims` whose items mirror the schema.
+- Include every claim id you can ground; leave the rest out.
+- Use `true`, `false`, or `null` for `value`.
+- Set `needs_user_confirmation=true` for hedged mentions.
+- Do not invent new claim ids and do not decide ALLOW/DENY.

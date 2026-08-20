@@ -1,0 +1,23 @@
+Law text:
+{law_text}
+
+Logic level:
+{logic_level}
+
+Supported claim catalog:
+{claim_catalog}
+
+Supported rule catalog:
+{rule_catalog}
+
+Supported outcome catalog:
+{outcome_catalog}
+
+Return one JSON object with keys `title`, `claim_ids`, `rule_ids`, and `summary`.
+- Select only ids directly supported by the law text.
+- If support is unclear or only loosely analogous, omit the id rather than guessing.
+- Prefer an empty or sparse result over an over-broad result.
+- If the provided vocabulary is not supported by the law text, return empty `claim_ids` and `rule_ids`.
+- Do not invent new ids.
+- Keep `summary` short and neutral.
+- Do not decide `ALLOW` or `DENY`.

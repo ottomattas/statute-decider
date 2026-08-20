@@ -1,0 +1,17 @@
+---
+description: Rules for drafting and editing the LaTeX manuscript.
+globs: paper/*.tex
+alwaysApply: true
+---
+# Academic Writing Guidelines
+
+## Tone and Register
+- **Objective and Precise:** Write in a highly formal, academic register suitable for top-tier computer science conferences.
+- **No Fluff:** DO NOT use adjectives like "amazing," "revolutionary," "groundbreaking," or AI-isms like "delves into" or "a testament to." Use precise quantitative language (e.g., "reduces hallucination rates by X%").
+- **Clarity:** Explain complex neurosymbolic concepts simply. Use passive voice sparingly but appropriately.
+
+## LaTeX Formatting
+- Use `\autoref{fig:label}` for referencing figures and tables.
+- Use `\citep{}` for parenthetical citations and `\citet{}` for inline textual citations (natbib format).
+- When referencing code variables in the text, wrap them in `\texttt{VariableName}`.
+- ALWAYS search the `paper/bibliography.bib` file for the exact citekey before generating a citation. NEVER hallucinate a citation.

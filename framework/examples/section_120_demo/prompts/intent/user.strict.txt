@@ -1,0 +1,22 @@
+Request text:
+{request_text}
+
+Logic level:
+{logic_level}
+
+Supported claim catalog:
+{claim_catalog}
+
+Supported outcome catalog:
+{outcome_catalog}
+
+Return one JSON object with key `claims`.
+- Include every supported claim id exactly once.
+- Use `null` unless the request text directly supports `true` or `false`.
+- If the request says the speaker does not know, is not sure, or has not confirmed a fact yet, use `null`.
+- Explicit uncertainty is not `false`.
+- Use `false` only for direct negation in the request text.
+- Keep provenance snippets minimal and copied verbatim when present.
+- Do not invent new ids.
+- Do not infer unstated facts.
+- Do not decide `ALLOW` or `DENY`.
