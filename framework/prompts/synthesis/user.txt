@@ -1,0 +1,17 @@
+Law text:
+{law_text}
+
+Paper-level administrative outcomes the downstream solver reports:
+{paper_outcomes}
+
+Invent boolean claims and allow_if_all / deny_if_all rules (set_false_if_all
+only if a statute-stated exception forces a claim false). Do not use any
+pre-supplied claim or rule catalog — there is none.
+
+Return one JSON object with keys `title`, `claims`, `rules`,
+`allow_outcome_id`, and `deny_outcome_id`.
+- Every rule's `when_claim_ids` must be claim ids defined in `claims`.
+- `allow_if_all` rules target `allow_outcome_id`.
+- `deny_if_all` rules target `deny_outcome_id`.
+- Keep `summary` short and neutral if you include it.
+- Do not decide ALLOW or DENY for a particular applicant.
