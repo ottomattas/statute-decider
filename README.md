@@ -15,7 +15,9 @@ Cite this repository at a pinned commit from any paper that depends on it.
 
 - Python ≥ 3.10 (3.12 recommended; `uv` or a system interpreter both work)
 - No API key for the deterministic suite and unit tests
-- `GEMINI_API_KEY` or `GOOGLE_API_KEY` only for live extraction (steps 1–2)
+- `GEMINI_API_KEY` or `GOOGLE_API_KEY` for live extraction (steps 1–2)
+- Optional `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `DEEPSEEK_API_KEY` for the multi-provider harness; a missing key skips that provider
+- Overnight halt: `FRAMEWORK_BUDGET_EUR` (default 10)
 
 Copy `.env.example` to `.env` (gitignored) if you will run live extraction.
 

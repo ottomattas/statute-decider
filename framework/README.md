@@ -35,9 +35,13 @@ If `framework/venv` already exists, just activate it and reinstall requirements 
 
 Run the CLI from the repo root by executing the scripts via their `framework/` paths. When you pass explicit files, use repo-root-relative paths such as `framework/examples/section_120_demo/law.txt`.
 
-Step 1 and step 2 use structured Gemini output. Set `GEMINI_API_KEY` or `GOOGLE_API_KEY` first. Optional model override env vars:
+Step 1 and step 2 use structured Gemini output. Set `GEMINI_API_KEY` or `GOOGLE_API_KEY` first. The experiment harness also reads `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, and `DEEPSEEK_API_KEY` (a missing key skips that provider). Optional model override env vars:
 
 - `FRAMEWORK_GEMINI_MODEL`
+- `FRAMEWORK_OPENAI_MODEL` (default `gpt-5-mini`)
+- `FRAMEWORK_ANTHROPIC_MODEL` (default `claude-haiku-4-5-20251001`)
+- `FRAMEWORK_DEEPSEEK_MODEL` (default `deepseek-v4-flash`)
+- `FRAMEWORK_BUDGET_EUR` (default `10`; overnight halt)
 
 ## Fast Deterministic Run
 

@@ -1,0 +1,47 @@
+# USD per 1 million tokens. Looked up 2026-08-20.
+# EUR conversion lives in framework/experiments/budget.py (1 USD = 0.92 EUR);
+# the overnight cap is EUR, not USD.
+#
+# When a model has tiers (context length, peak hours, cache hits), this file
+# stores the conservative (higher or explicitly requested) working rate.
+
+models:
+  gemini-2.5-flash:
+    input_usd_per_million: 0.30
+    output_usd_per_million: 2.50
+    source: https://ai.google.dev/gemini-api/docs/pricing
+    note: paid-tier text/image/video input; output includes thinking tokens
+
+  gemini-2.5-pro:
+    input_usd_per_million: 1.25
+    output_usd_per_million: 10.00
+    source: https://ai.google.dev/gemini-api/docs/pricing
+    note: paid tier, prompts <= 200k; prompts > 200k are $2.50 / $15.00
+
+  gpt-5-mini:
+    input_usd_per_million: 0.25
+    output_usd_per_million: 2.00
+    source: https://developers.openai.com/api/docs/models/gpt-5-mini
+    note: alias gpt-5-mini; snapshot gpt-5-mini-2025-08-07
+
+  claude-haiku-4-5-20251001:
+    input_usd_per_million: 1.00
+    output_usd_per_million: 5.00
+    source: https://www.anthropic.com/claude/haiku
+    note: standard API, prompts <= 200k; cache/batch discounts ignored (conservative)
+
+  deepseek-v4-flash:
+    input_usd_per_million: 0.22
+    output_usd_per_million: 0.66
+    source: https://api-docs.deepseek.com/quick_start/pricing
+    note: off-peak cache-miss ballpark; peak is 2x ($0.44 / $1.32)
+
+  ollama:
+    input_usd_per_million: 0.0
+    output_usd_per_million: 0.0
+    source: local stub
+    note: no API billing; complete() is not implemented
+
+aliases:
+  gpt-5-mini-2025-08-07: gpt-5-mini
+  claude-haiku-4-5: claude-haiku-4-5-20251001
