@@ -1,8 +1,8 @@
 # JURIX 2026 experiment matrix
 
-Locked with Priit 2026-08-18 (`es/meetings/archive/20260818 PhD-Otto_Priit_Tanel2.md`).
-This file is the table he can argue with. Smoke numbers from the overnight
-build are labeled **SMOKE — UNVALIDATED** and must not be quoted as results.
+Locked with Priit 2026-08-18. This file is the table he can argue with.
+Smoke numbers from the overnight build are labeled **SMOKE — UNVALIDATED**
+and must not be quoted as results.
 
 Paper: `MattasJarvTammet-2026-NeSy-Statute-Logic`.
 Tool commit is pinned in `article.tex` after a run.
@@ -99,7 +99,7 @@ Outputs: `experiments/results/*.jsonl` and generated markdown tables
 
 **SMOKE — UNVALIDATED** (generated 2026-08-20T19:52Z). Operator has not
 audited `gold_confidence: low` rows or claim alignments. **Do not quote as
-results.** Tool commit after this run is pinned in `article.tex`.
+results.** Tool commit: `statute-decider` `97ee6e8`, pinned in `article.tex`.
 
 | Cell | n | Notes |
 |---|---|---|
