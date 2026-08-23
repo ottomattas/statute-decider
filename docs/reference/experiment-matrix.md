@@ -97,22 +97,26 @@ Outputs: `experiments/results/*.jsonl` and generated markdown tables
 
 ## Smoke results
 
-**SMOKE — UNVALIDATED** (generated 2026-08-20T19:52Z). Operator has not
+**SMOKE — UNVALIDATED** (generated 2026-08-21T08:18Z). Operator has not
 audited `gold_confidence: low` rows or claim alignments. **Do not quote as
-results.** Tool commit: `statute-decider` `97ee6e8`, pinned in `article.tex`.
+results.**
 
 | Cell | n | Notes |
 |---|---|---|
-| runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21; all classes 1.000 |
-| LLM-only 3-way | 0 | no API keys in env or repo `.env`; providers skipped |
-| missing-fact P/R runtime | mean 0.936 / 1.000 | P<1 only on three `*_allow_via_db` (gold ∅, solver listed premises; `gold_confidence: low`) |
-| missing-fact P/R LLM-only | — | not run |
-| synthesis alignment F1 | — | not run (same key gap) |
-| spend EUR | 0.00 / 10.00 | cap unused; Tue 25 €100 still intact |
+| runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21 |
+| LLM-only 3-way | 188 = 47×4 | pooled acc **0.734**; NEED_MORE_INFO 0.536 is the miss; DENY 0.938 |
+| LLM-only by provider | 47 each | deepseek 0.787, anthropic 0.745, openai 0.723, gemini 0.681 |
+| missing-fact P/R runtime | 0.936 / 1.000 | P gap = three low-confidence `*_allow_via_db` |
+| missing-fact P/R LLM-only | 0.970 / 0.785 | high precision, under-recall (they omit required facts) |
+| synthesis alignment F1 | mean **0.263** (n=11) | civil ~0.48–0.56 (audit); withdrawal 0.13–0.31; §120 ~0 |
+| spend EUR | **0.95 / 10.00** | no halt; Tue 25 €100 still almost intact |
 
-Low-confidence gold (operator audit before Tue 25):
+Gemini `section_120_demo` synthesis returned truncated JSON (1 failed row).
+`civil_service` alignments need hand audit (near-duplicate / negated labels).
+
+Low-confidence gold (audit before Tue 25):
 `consumer_withdrawal_allow_via_db`, `land_tax_allow_via_db`,
 `building_permit_allow_via_db`, `section_120_demo/prompt-swap`.
 
-Full tables: `experiments/results/SMOKE-UNVALIDATED.md` and
-`experiments/results/experiment_ii_runtime.md`.
+Full tables: `experiments/results/SMOKE-UNVALIDATED.md`,
+`experiment_ii_llm.md`, `experiment_i.md`.
