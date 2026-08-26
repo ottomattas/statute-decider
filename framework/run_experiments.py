@@ -11,7 +11,9 @@ import argparse
 import json
 import logging
 import os
+import random
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -167,6 +169,38 @@ class HaltState:
     error: BudgetExceeded | None = None
 
 
+# Transport-level flakes (capacity, rate limits, gateway errors) are retried;
+# model-produced garbage (invalid JSON, schema misses) is NOT — that is a
+# finding, not an infrastructure problem.
+_TRANSIENT_MARKERS = (
+    "503",
+    "unavailable",
+    "429",
+    "rate limit",
+    "rate_limit",
+    "overloaded",
+    "high demand",
+    "500",
+    "502",
+    "504",
+    "timeout",
+    "timed out",
+    "connection error",
+)
+_MAX_TRANSIENT_RETRIES = 5
+
+
+def _is_transient(exc: Exception) -> bool:
+    # Timeout exception classes (httpx.ReadTimeout, openai.APITimeoutError, …)
+    # can carry an empty message, so check the type as well as the text.
+    if isinstance(exc, TimeoutError):
+        return True
+    if "timeout" in type(exc).__name__.lower():
+        return True
+    text = str(exc).lower()
+    return any(marker in text for marker in _TRANSIENT_MARKERS)
+
+
 def make_tracked_complete(
     provider: Any,
     *,
@@ -194,12 +228,28 @@ def make_tracked_complete(
         user_txt = user if user is not None else (user_content or "")
         worst = estimate_worst_case_usd(provider.model)
         guard.check_or_raise(usd_to_eur(worst))
-        result = provider.complete(
-            system=sys_txt,
-            user=user_txt,
-            response_model=response_model,
-            temperature=temperature,
-        )
+        for attempt in range(_MAX_TRANSIENT_RETRIES + 1):
+            try:
+                result = provider.complete(
+                    system=sys_txt,
+                    user=user_txt,
+                    response_model=response_model,
+                    temperature=temperature,
+                )
+                break
+            except Exception as exc:  # noqa: BLE001 — retry transport flakes only
+                if attempt >= _MAX_TRANSIENT_RETRIES or not _is_transient(exc):
+                    raise
+                delay = min(60.0, (2.0**attempt) * 2.0) + random.uniform(0.0, 1.0)
+                log.warning(
+                    "Transient %s error (attempt %d/%d), retrying in %.1fs: %s",
+                    provider.name,
+                    attempt + 1,
+                    _MAX_TRANSIENT_RETRIES,
+                    delay,
+                    exc,
+                )
+                time.sleep(delay)
         if getattr(result, "skipped", False):
             raise RuntimeError(getattr(result, "skip_reason", "") or f"{provider.name} skipped")
         usage = result.usage
@@ -227,6 +277,92 @@ def _write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     with path.open("w", encoding="utf-8") as handle:
         for row in rows:
             handle.write(json.dumps(row, ensure_ascii=True, default=str) + "\n")
+
+
+def _append_jsonl_row(path: Path, row: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(row, ensure_ascii=True, default=str) + "\n")
+
+
+def _load_jsonl(path: Path) -> list[dict[str, Any]]:
+    if not path.is_file():
+        return []
+    rows: list[dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if stripped:
+            rows.append(json.loads(stripped))
+    return rows
+
+
+# --- Resume-from-state (operator policy 2026-08-25) -------------------------
+# Experiment records are append-only. A row identified by
+# (experiment, scenario label incl. repeat tag, provider, model) that already
+# has a successful record is SKIPPED on relaunch — no re-spend, no overwrite.
+# Error rows are re-attempted. Two sources of truth:
+#   1. the leg's append-only results JSONL (rows written as they complete);
+#   2. the cost ledger at/after --resume-since (covers rows whose process
+#      died between the ledger append and any results write).
+
+RowKey = tuple[str, str, str, str]
+
+
+def _result_row_key(experiment: str, row: dict[str, Any]) -> RowKey | None:
+    label = row.get("scenario_label")
+    provider = row.get("provider")
+    model = row.get("model")
+    if not (label and provider and model):
+        return None
+    return (experiment, str(label), str(provider), str(model))
+
+
+def load_completed_keys(
+    *,
+    experiment: str,
+    results_path: Path,
+    resume_since: str | None,
+) -> set[RowKey]:
+    done: set[RowKey] = set()
+    for row in _load_jsonl(results_path):
+        if row.get("error"):
+            continue
+        key = _result_row_key(experiment, row)
+        if key is not None:
+            done.add(key)
+    if resume_since:
+        from experiments.ledger import iter_ledger
+
+        for row in iter_ledger():
+            if str(row.get("experiment")) != experiment:
+                continue
+            if str(row.get("ts") or "") < resume_since:
+                continue
+            done.add(
+                (
+                    experiment,
+                    str(row.get("scenario")),
+                    str(row.get("provider")),
+                    str(row.get("model")),
+                )
+            )
+    return done
+
+
+def _dedupe_result_rows(
+    experiment: str, rows: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Collapse retried keys: a success supersedes errors; later wins otherwise."""
+    by_key: dict[RowKey | int, dict[str, Any]] = {}
+    order: list[RowKey | int] = []
+    for index, row in enumerate(rows):
+        key: RowKey | int = _result_row_key(experiment, row) or index
+        if key not in by_key:
+            by_key[key] = row
+            order.append(key)
+        elif by_key[key].get("error") or not row.get("error"):
+            by_key[key] = row
+    return [by_key[key] for key in order]
 
 
 def _write_text(path: Path, text: str) -> None:
@@ -286,8 +422,17 @@ def run_llm_phase(
     guard: BudgetGuard,
     halt: HaltState,
     complete_factory: Callable[..., Any] | None = None,
+    completed: set[RowKey] | None = None,
+    results_path: Path | None = None,
 ) -> list[dict[str, Any]]:
+    completed = completed or set()
     rows: list[dict[str, Any]] = []
+
+    def emit(row: dict[str, Any]) -> None:
+        rows.append(row)
+        if results_path is not None:
+            _append_jsonl_row(results_path, row)
+
     for provider_name in providers:
         if halt.error is not None:
             break
@@ -307,6 +452,7 @@ def run_llm_phase(
                 provider, experiment="ii", label=label, guard=guard, halt=halt
             )
         )
+        model = getattr(provider, "model", provider_name)
         for repeat in range(repeats):
             if halt.error is not None:
                 break
@@ -315,6 +461,14 @@ def run_llm_phase(
                     log.warning("Budget halt before %s / %s", provider_name, path.stem)
                     break
                 label.value = f"{path.stem}#r{repeat}"
+                if ("ii", label.value, provider_name, model) in completed:
+                    log.info(
+                        "resume-skip %s/%s %s (already recorded)",
+                        provider_name,
+                        model,
+                        label.value,
+                    )
+                    continue
                 try:
                     row = run_llm_row(path, provider_name, complete)
                 except BudgetExceeded as exc:
@@ -323,12 +477,15 @@ def run_llm_phase(
                     break
                 except Exception as exc:  # noqa: BLE001 — keep the matrix moving
                     log.warning("LLM row failed %s / %s: %s", provider_name, path.stem, exc)
-                    rows.append(
+                    emit(
                         {
                             "scenario": path.stem,
                             "scenario_path": str(path),
+                            "scenario_label": label.value,
                             "condition": "llm",
                             "provider": provider_name,
+                            "model": model,
+                            "repeat": repeat,
                             "error": str(exc),
                             "outcome_match": None,
                             "precision": None,
@@ -337,7 +494,9 @@ def run_llm_phase(
                     )
                     continue
                 row["repeat"] = repeat
-                rows.append(row)
+                row["scenario_label"] = label.value
+                row["model"] = model
+                emit(row)
     return rows
 
 
@@ -350,9 +509,18 @@ def run_extraction_phase(
     guard: BudgetGuard,
     halt: HaltState,
     complete_factory: Callable[..., Any] | None = None,
+    completed: set[RowKey] | None = None,
+    results_path: Path | None = None,
 ) -> list[dict[str, Any]]:
     runner = run_synthesis_condition if condition == "synthesis" else run_selection_condition
+    completed = completed or set()
     rows: list[dict[str, Any]] = []
+
+    def emit(row: dict[str, Any]) -> None:
+        rows.append(row)
+        if results_path is not None:
+            _append_jsonl_row(results_path, row)
+
     for provider_name in providers:
         if halt.error is not None:
             break
@@ -372,6 +540,7 @@ def run_extraction_phase(
                 provider, experiment="i", label=label, guard=guard, halt=halt
             )
         )
+        model = getattr(provider, "model", provider_name)
         for repeat in range(repeats):
             if halt.error is not None:
                 break
@@ -383,6 +552,14 @@ def run_extraction_phase(
                     log.warning("Missing case dir %s", case_dir)
                     continue
                 label.value = f"{case_name}#{condition}#r{repeat}"
+                if ("i", label.value, provider_name, model) in completed:
+                    log.info(
+                        "resume-skip %s/%s %s (already recorded)",
+                        provider_name,
+                        model,
+                        label.value,
+                    )
+                    continue
                 log.info("experiment (i) %s %s %s", condition, provider_name, case_name)
                 try:
                     row = runner(case_dir, complete)
@@ -392,11 +569,14 @@ def run_extraction_phase(
                     break
                 except Exception as exc:  # noqa: BLE001
                     log.warning("Extraction row failed %s / %s: %s", provider_name, case_name, exc)
-                    rows.append(
+                    emit(
                         {
                             "condition": condition,
                             "case_dir": str(case_dir),
+                            "scenario_label": label.value,
                             "provider": provider_name,
+                            "model": model,
+                            "repeat": repeat,
                             "error": str(exc),
                             "skipped": True,
                         }
@@ -404,7 +584,9 @@ def run_extraction_phase(
                     continue
                 row["provider"] = provider_name
                 row["repeat"] = repeat
-                rows.append(row)
+                row["scenario_label"] = label.value
+                row["model"] = model
+                emit(row)
     return rows
 
 
@@ -475,8 +657,15 @@ def run_matrix(
     runtime_only: bool = False,
     complete_factory: Callable[..., Any] | None = None,
     ingest_ledger: bool = True,
+    resume_since: str | None = None,
 ) -> dict[str, Any]:
-    """Execute the matrix. Returns a JSON-serializable report dict."""
+    """Execute the matrix. Returns a JSON-serializable report dict.
+
+    ``resume_since`` (ISO-8601 UTC, e.g. ``2026-08-25T00:00:00Z``) additionally
+    treats ledger rows at/after that timestamp as completed, so a relaunched
+    run skips rows it already paid for even when the previous process died
+    before writing its results JSONL.
+    """
     results_dir.mkdir(parents=True, exist_ok=True)
     cap = float(config.get("budget_eur") or os.environ.get("FRAMEWORK_BUDGET_EUR") or 10)
     os.environ.setdefault("FRAMEWORK_BUDGET_EUR", str(cap))
@@ -500,12 +689,23 @@ def run_matrix(
     llm_rows: list[dict[str, Any]] = []
     extraction_rows: list[dict[str, Any]] = []
 
+    # Append-only result files: never truncated, rows written as they finish.
+    llm_results_path = results_dir / "experiment_ii_llm.jsonl"
+    extraction_results_path = results_dir / "experiment_i.jsonl"
+
     exp_ii = config.get("experiment_ii") or {}
     if exp_ii.get("enabled", True):
         runtime_rows = run_runtime_phase(scenario_files)
 
     if not runtime_only:
         if exp_ii.get("enabled", True) and present:
+            completed_ii = load_completed_keys(
+                experiment="ii",
+                results_path=llm_results_path,
+                resume_since=resume_since,
+            )
+            if completed_ii:
+                log.info("resume: %d experiment-ii keys already recorded", len(completed_ii))
             llm_rows = run_llm_phase(
                 scenario_files=scenario_files,
                 providers=present,
@@ -513,11 +713,20 @@ def run_matrix(
                 guard=guard,
                 halt=halt,
                 complete_factory=complete_factory,
+                completed=completed_ii,
+                results_path=llm_results_path,
             )
         exp_i = config.get("experiment_i") or {}
         if exp_i.get("enabled", True) and present and halt.error is None:
             cases = [str(item) for item in (exp_i.get("cases") or [])]
             condition = str(exp_i.get("condition") or "synthesis")
+            completed_i = load_completed_keys(
+                experiment="i",
+                results_path=extraction_results_path,
+                resume_since=resume_since,
+            )
+            if completed_i:
+                log.info("resume: %d experiment-i keys already recorded", len(completed_i))
             extraction_rows = run_extraction_phase(
                 cases=cases,
                 condition=condition,
@@ -526,13 +735,18 @@ def run_matrix(
                 guard=guard,
                 halt=halt,
                 complete_factory=complete_factory,
+                completed=completed_i,
+                results_path=extraction_results_path,
             )
     else:
         log.info("runtime-only: skipping LLM phases")
 
+    # Runtime rows are free and deterministic; regenerating the file is safe.
     _write_jsonl(results_dir / "experiment_ii_runtime.jsonl", runtime_rows)
-    _write_jsonl(results_dir / "experiment_ii_llm.jsonl", llm_rows)
-    _write_jsonl(results_dir / "experiment_i.jsonl", extraction_rows)
+    # LLM/extraction rows: read the append-only files back so summaries and
+    # markdown cover the whole run (prior resumed rows + this process's rows).
+    llm_rows = _dedupe_result_rows("ii", _load_jsonl(llm_results_path))
+    extraction_rows = _dedupe_result_rows("i", _load_jsonl(extraction_results_path))
     _write_text(
         results_dir / "experiment_ii_runtime.md",
         f"# Experiment (ii) runtime — {SMOKE_BANNER}\n\n"
@@ -613,6 +827,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Skip all LLM calls (still writes runtime gold rows).",
     )
     parser.add_argument(
+        "--resume-since",
+        default=None,
+        help=(
+            "ISO-8601 UTC timestamp (e.g. 2026-08-25T00:00:00Z): also skip "
+            "rows the cost ledger recorded at/after this time. Rows in the "
+            "results JSONL are always skipped."
+        ),
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Print the plan and available providers; do not run.",
@@ -640,6 +863,7 @@ def main(argv: list[str] | None = None) -> int:
         config,
         results_dir=Path(args.results_dir),
         runtime_only=args.runtime_only,
+        resume_since=args.resume_since,
     )
     print(json.dumps({k: v for k, v in report.items() if k != "runtime_stats"}, indent=2, default=str))
     if report.get("budget_halt"):

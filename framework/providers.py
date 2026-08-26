@@ -70,6 +70,20 @@ def _env(name: str, default: str = "") -> str:
     return os.environ.get(name, default).strip()
 
 
+def _call_timeout_s() -> float:
+    """Hard per-call timeout (operator policy 2026-08-25).
+
+    No provider call may hang a run indefinitely; the 25 Aug scale run stalled
+    ~95 min inside a bare SSL read because the SDK clients had no timeout.
+    Retries with backoff live in run_experiments.make_tracked_complete.
+    """
+    raw = _env("FRAMEWORK_LLM_TIMEOUT_S", "120") or "120"
+    try:
+        return float(raw)
+    except ValueError:
+        return 120.0
+
+
 def _skipped(provider: str, model: str, reason: str) -> ProviderResult:
     log.warning("Skipping provider %s (%s): %s", provider, model, reason)
     return ProviderResult(
@@ -135,25 +149,35 @@ def _schema_name(response_model: type[BaseModel]) -> str:
 def _gemini_client(api_key: str):
     from google import genai
 
-    return genai.Client(api_key=api_key)
+    # google-genai has no default request timeout; without one a dropped
+    # connection hangs the whole harness (observed 2026-08-25, ~2h stall).
+    # HttpOptions.timeout is in milliseconds.
+    return genai.Client(
+        api_key=api_key,
+        http_options={"timeout": int(_call_timeout_s() * 1000)},
+    )
 
 
 def _openai_client(api_key: str):
     from openai import OpenAI
 
-    return OpenAI(api_key=api_key)
+    return OpenAI(api_key=api_key, timeout=_call_timeout_s())
 
 
 def _anthropic_client(api_key: str):
     import anthropic
 
-    return anthropic.Anthropic(api_key=api_key)
+    return anthropic.Anthropic(api_key=api_key, timeout=_call_timeout_s())
 
 
 def _deepseek_client(api_key: str):
     from openai import OpenAI
 
-    return OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+    return OpenAI(
+        api_key=api_key,
+        base_url="https://api.deepseek.com",
+        timeout=_call_timeout_s(),
+    )
 
 
 class GeminiProvider:
@@ -298,6 +322,10 @@ class AnthropicProvider:
             "system": system,
             "messages": [{"role": "user", "content": user}],
         }
+        # Fable/Mythos-generation models use always-on adaptive thinking and
+        # reject `temperature` with a 400 ("deprecated for this model").
+        if self.model.startswith(("claude-fable", "claude-mythos")):
+            kwargs.pop("temperature")
         try:
             message = client.messages.create(
                 **kwargs,
