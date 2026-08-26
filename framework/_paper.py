@@ -24,16 +24,26 @@ def to_paper_outcome(outcome: SolverOutcome | str) -> str:
 
 
 def missing_facts_from_solution(solution: SolutionArtifact) -> list[str]:
-    """Sorted unique missing DB + user claim ids from the last informative snapshot."""
+    """Sorted unique missing DB + user claim ids, outcome-aware.
+
+    A decided case (paper ALLOW/DENY) has an empty missing set by definition:
+    facts that earlier snapshots listed as missing but a later stage (e.g. DB
+    lookup) resolved are not missing. An undecided case takes the last snapshot
+    that lists any ids, because some terminal outcomes (e.g. UNVERIFIABLE_CLAIM)
+    end with empty lists in the final snapshot even though facts remain
+    unresolved. (Gold audit 2026-08-26: the previous unconditional walk-back
+    inflated the missing set on decided-via-DB cases.)
+    """
+    if to_paper_outcome(solution.final_outcome) != "NEED_MORE_INFO":
+        return []
     snapshots = solution.snapshots or []
     if not snapshots:
         return sorted(set(solution.unresolved_claim_ids))
-    chosen = snapshots[-1]
     for snap in reversed(snapshots):
-        if snap.missing_db_claim_ids or snap.missing_user_claim_ids:
-            chosen = snap
-            break
-    return sorted(set(chosen.missing_db_claim_ids).union(chosen.missing_user_claim_ids))
+        ids = set(snap.missing_db_claim_ids).union(snap.missing_user_claim_ids)
+        if ids:
+            return sorted(ids)
+    return []
 
 
 def fact_set_precision_recall(expected: Iterable[str], actual: Iterable[str]) -> tuple[float, float]:

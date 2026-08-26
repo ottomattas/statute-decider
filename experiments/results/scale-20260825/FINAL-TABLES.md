@@ -1,12 +1,16 @@
-# SCALE results — 25 Aug 2026 run — GOLD AUDIT PENDING
+# SCALE results — 25 Aug 2026 run — GOLD AUDITED, FINAL
 
-**Status: SCALE (not smoke). Numbers are final for the 25 Aug matrix, but four
-gold rows are `gold_confidence: low` and still need operator audit:**
-`consumer_withdrawal_allow_via_db`, `land_tax_allow_via_db`,
-`building_permit_allow_via_db`, `section_120_demo/prompt-swap`.
-Audit exposure is low: across all 4 cheap models × 10 repeats, every model
-agreed with the proposed gold on all four rows (40/40 outcome matches, perfect
-fact sets), so an audit flip would *reduce* reported LLM accuracy, not inflate it.
+**Status: SCALE, final. Gold audit completed 2026-08-26 by the operator:** all
+four previously low-confidence rows (`consumer_withdrawal_allow_via_db`,
+`land_tax_allow_via_db`, `building_permit_allow_via_db`,
+`section_120_demo/prompt-swap`) confirmed as gold ALLOW with empty missing-fact
+sets. The flags traced to a scoring-layer artifact, not a gold error:
+`missing_facts_from_solution` walked back to the last snapshot with any missing
+ids, so decided-via-DB cases reported their *pre-lookup* facts as missing. The
+helper is now outcome-aware (decided ⇒ empty set; undecided ⇒ last snapshot
+with ids, covering UNVERIFIABLE_CLAIM terminals). Runtime leg re-scored
+deterministically at zero API cost; the only number that changed anywhere is
+runtime MF precision 0.936 → 1.000. All LLM rows are untouched.
 
 Generated 2026-08-26 by `experiments/render_final_tables.py` (tables) and
 `experiments/render_drilldown.py` (failure detail) from
@@ -35,7 +39,7 @@ cost/case is the per-call ledger mean for the run window.
 
 | model | condition | n | outcome acc | acc ALLOW | acc DENY | acc NEED_MORE_INFO | MF precision | MF recall | mean cost/case (EUR) |
 |---|---|---|---|---|---|---|---|---|---|
-| z3 (solver) | runtime | 47 | 1.000 | 1.000 | 1.000 | 1.000 | 0.936 | 1.000 | 0.0000 |
+| z3 (solver) | runtime | 47 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 0.0000 |
 | claude-haiku-4-5-20251001 | llm_only | 470 | 0.762 ± 0.009 | 0.786 ± 0.000 | 0.917 ± 0.000 | 0.657 ± 0.020 | 0.950 | 0.831 | 0.0096 |
 | deepseek-v4-flash | llm_only | 470 | 0.787 ± 0.000 | 0.857 ± 0.000 | 0.917 ± 0.000 | 0.667 ± 0.000 | 0.950 | 0.844 | 0.0019 |
 | gemini-2.5-flash | llm_only | 470 | 0.677 ± 0.030 | 0.843 ± 0.045 | 1.000 ± 0.000 | 0.381 ± 0.045 | 0.994 | 0.723 | 0.0022 |
@@ -44,7 +48,7 @@ cost/case is the per-call ledger mean for the run window.
 LaTeX body:
 
 ```latex
-z3 (solver) & runtime & 47 & 1.000 & 1.000 & 1.000 & 1.000 & 0.936 & 1.000 & 0.0000 \\
+z3 (solver) & runtime & 47 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 0.0000 \\
 claude-haiku-4-5 & llm\_only & 470 & 0.762 $\pm$ 0.009 & 0.786 $\pm$ 0.000 & 0.917 $\pm$ 0.000 & 0.657 $\pm$ 0.020 & 0.950 & 0.831 & 0.0096 \\
 deepseek-v4-flash & llm\_only & 470 & 0.787 $\pm$ 0.000 & 0.857 $\pm$ 0.000 & 0.917 $\pm$ 0.000 & 0.667 $\pm$ 0.000 & 0.950 & 0.844 & 0.0019 \\
 gemini-2.5-flash & llm\_only & 470 & 0.677 $\pm$ 0.030 & 0.843 $\pm$ 0.045 & 1.000 $\pm$ 0.000 & 0.381 $\pm$ 0.045 & 0.994 & 0.723 & 0.0022 \\
@@ -53,9 +57,9 @@ gpt-5-mini & llm\_only & 470 & 0.749 $\pm$ 0.042 & 0.957 $\pm$ 0.037 & 0.950 $\p
 
 Notes:
 
-- Runtime MF precision 0.936 < 1 is a property of the gold/solver fact-set
-  convention (solver enumerates every open claim; four gold rows expect a
-  subset), not a solver bug; recall is 1.000.
+- Runtime MF precision is 1.000 after the 2026-08-26 gold audit: the earlier
+  0.936 was a scoring artifact (pre-DB-lookup snapshot leaked into the missing
+  set on decided cases), fixed in `paper_outcomes.missing_facts_from_solution`.
 - The z3 runtime is deterministic; no repeats needed.
 
 ## Experiment (i) — synthesis vs selection (claim-alignment F1)

@@ -117,11 +117,23 @@ class TestMissingFactsFromSolution(unittest.TestCase):
         self.assertEqual(missing_facts_from_solution(solution), ["emergency"])
 
     def test_walks_back_when_last_snapshot_is_empty(self) -> None:
+        # Undecided outcome: the solver ended without restating the missing
+        # ids (e.g. UNVERIFIABLE_CLAIM), so recover them from an earlier pass.
         solution = _solution(
             _snap("first", missing_db=["ee_citizen"]),
             _snap("last"),
         )
         self.assertEqual(missing_facts_from_solution(solution), ["ee_citizen"])
+
+    def test_decided_outcome_has_empty_missing_set(self) -> None:
+        # Facts missing in an earlier snapshot but resolved before the decision
+        # (e.g. via DB lookup) must not be reported as missing.
+        solution = _solution(
+            _snap("first", missing_db=["ee_citizen"]),
+            _snap("last"),
+            outcome=SolverOutcome.ALLOW,
+        )
+        self.assertEqual(missing_facts_from_solution(solution), [])
 
     def test_all_empty_uses_last_snapshot(self) -> None:
         solution = _solution(_snap("first"), _snap("last"))

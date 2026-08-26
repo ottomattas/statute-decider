@@ -1,7 +1,7 @@
 | id | description | expected | actual | match | missing | notes |
 |----|-------------|----------|--------|-------|---------|-------|
 | consumer_withdrawal_allow | Consumer, distance contract, within 14 days, notice sent in time, non-excluded goods -> ALLOW under § 56 lg 1. | ALLOW | ALLOW | YES | — |  |
-| consumer_withdrawal_allow_via_db | Consumer status and distance-contract flag resolve via DB; user timely-dispatch facts are pinned true, so ALLOW fires via DB lookup. | ALLOW | ALLOW | YES | —→distance_contract,is_consumer |  |
+| consumer_withdrawal_allow_via_db | Consumer status and distance-contract flag resolve via DB; user timely-dispatch facts are pinned true, so ALLOW fires via DB lookup. | ALLOW | ALLOW | YES | — |  |
 | consumer_withdrawal_deny | Goods fall into § 53 lg 4 excluded category (custom-made), so withdrawal is blocked regardless of other facts. | DENY | DENY | YES | — |  |
 | consumer_withdrawal_deny_not_consumer | Counter-party is not a consumer; allow_distance_withdrawal is blocked and no § 53 lg 4 exclusion applies -> DENY with no applicable rules. | DENY | DENY | YES | — |  |
 | consumer_withdrawal_need_user | DB confirms consumer + distance-contract + non-excluded goods, but the user-sourced 14-day/notice facts are missing -> NEED_USER_INFO halt. | NEED_USER_INFO | NEED_USER_INFO | YES | notice_sent_in_time,within_14_days |  |

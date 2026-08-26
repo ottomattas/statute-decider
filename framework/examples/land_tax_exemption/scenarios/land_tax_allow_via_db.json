@@ -12,8 +12,8 @@
   "expected_outcome": "ALLOW",
   "expected_reason_code": null,
   "expected_missing_facts": [],
-  "gold_confidence": "low",
-  "gold_notes": "solver emitted missing facts on ALLOW: applicant_is_owner, primary_residence_registered, receives_pension, residential_land; gold records empty set",
+  "gold_confidence": "high",
+  "gold_notes": "audited 2026-08-26: ALLOW/empty confirmed; earlier solver-emitted missing facts were a scoring artifact (pre-DB-lookup snapshot), fixed in paper_outcomes.missing_facts_from_solution",
   "tags": [
     "positive",
     "db-resolved"

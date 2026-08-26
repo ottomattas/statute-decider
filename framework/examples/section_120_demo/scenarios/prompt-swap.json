@@ -13,8 +13,8 @@
   "expected_outcome": "ALLOW",
   "expected_reason_code": null,
   "expected_missing_facts": [],
-  "gold_confidence": "low",
-  "gold_notes": "prompt-swap duplicate of allow; shares allow gold",
+  "gold_confidence": "high",
+  "gold_notes": "audited 2026-08-26: duplicate of the high-confidence allow scenario (strict prompt paths only); ALLOW/empty confirmed",
   "intent_user_prompt_file": "prompts/intent/user.strict.txt",
   "domain_user_prompt_file": "prompts/domain/user.strict.txt"
 }

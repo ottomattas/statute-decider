@@ -1,6 +1,6 @@
 # SMOKE — UNVALIDATED
 
-Generated 2026-08-26T06:15:30Z. Overnight cap EUR 100.00; spent EUR 13.3658; remaining EUR 86.6342.
+Generated 2026-08-26T06:15:52Z. Overnight cap EUR 100.00; spent EUR 13.3658; remaining EUR 86.6342.
 Do not quote these numbers as results. Gold `low` rows and claim alignments still need operator audit.
 
 Matrix label: `scale-2026-08-25-sota`.

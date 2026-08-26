@@ -35,22 +35,24 @@ def _snapshot_missing_ids(snapshot: SolveSnapshot) -> list[str]:
     return sorted(set(snapshot.missing_db_claim_ids) | set(snapshot.missing_user_claim_ids))
 
 
-def _last_informative_snapshot(solution: SolutionArtifact) -> SolveSnapshot | None:
-    """Prefer the last snapshot that lists any missing ids; else the last snapshot."""
-    if not solution.snapshots:
-        return None
-    for snapshot in reversed(solution.snapshots):
-        if snapshot.missing_db_claim_ids or snapshot.missing_user_claim_ids:
-            return snapshot
-    return solution.snapshots[-1]
-
-
 def missing_facts_from_solution(solution: SolutionArtifact) -> list[str]:
-    """Sorted unique missing_db_claim_ids + missing_user_claim_ids from the last informative snapshot."""
-    snapshot = _last_informative_snapshot(solution)
-    if snapshot is None:
+    """Sorted unique missing_db_claim_ids + missing_user_claim_ids, outcome-aware.
+
+    A decided case (paper ALLOW/DENY) has an empty missing set by definition:
+    facts that earlier snapshots listed as missing but a later stage (e.g. DB
+    lookup) resolved are not missing. An undecided case takes the last snapshot
+    that lists any ids, because some terminal outcomes (e.g. UNVERIFIABLE_CLAIM)
+    end with empty lists in the final snapshot even though facts remain
+    unresolved. (Gold audit 2026-08-26: the previous unconditional walk-back
+    inflated the missing set on decided-via-DB cases.)
+    """
+    if to_paper_outcome(solution.final_outcome) != _NEED_MORE_INFO:
         return []
-    return _snapshot_missing_ids(snapshot)
+    for snapshot in reversed(solution.snapshots or []):
+        ids = _snapshot_missing_ids(snapshot)
+        if ids:
+            return ids
+    return []
 
 
 def fact_set_precision_recall(expected: Iterable[str], actual: Iterable[str]) -> tuple[float, float]:
