@@ -4,6 +4,7 @@ wip/
 experiments/output/
 experiments/ledger.jsonl
 experiments/results/*.jsonl
+experiments/results/**/*.jsonl
 
 # Virtualenvs
 venv/
