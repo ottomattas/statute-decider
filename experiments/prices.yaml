@@ -42,6 +42,32 @@ models:
     source: local stub
     note: no API billing; complete() is not implemented
 
+  # --- SOTA slice models, verified 2026-08-25 against official pages ---
+
+  gemini-3.1-pro-preview:
+    input_usd_per_million: 2.00
+    output_usd_per_million: 12.00
+    source: https://ai.google.dev/gemini-api/docs/gemini-3
+    note: prompts <= 200k; > 200k is $4.00 / $18.00; thinking billed as output
+
+  gpt-5.6-sol:
+    input_usd_per_million: 4.00
+    output_usd_per_million: 20.00
+    source: https://developers.openai.com/api/docs/pricing
+    note: short context (<= 272k); promotional rate through at least 2026-11-21
+
+  claude-fable-5:
+    input_usd_per_million: 10.00
+    output_usd_per_million: 50.00
+    source: https://platform.claude.com/docs/en/about-claude/pricing
+    note: always-on adaptive thinking billed as output tokens; 1M context
+
+  deepseek-v4-pro:
+    input_usd_per_million: 1.32
+    output_usd_per_million: 3.96
+    source: https://api-docs.deepseek.com/quick_start/pricing
+    note: peak cache-miss rate (conservative); off-peak is $0.66 / $1.98
+
 aliases:
   gpt-5-mini-2025-08-07: gpt-5-mini
   claude-haiku-4-5: claude-haiku-4-5-20251001
