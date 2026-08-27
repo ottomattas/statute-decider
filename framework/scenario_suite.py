@@ -23,6 +23,7 @@ from reasoner import solve_case_bundle
 from schemas import (
     BlockReasonCode,
     CaseBundle,
+    DomainArtifact,
     ExtractionRunMetadata,
     LookupSource,
     MockDbArtifact,
@@ -169,8 +170,13 @@ def _apply_db_overrides(mock_db: MockDbArtifact, overrides: dict[str, bool | Non
 # ---------------------------------------------------------------------------
 
 
-def run_suite_scenario(scenario_path: Path) -> SuiteResult:
-    """Execute one suite scenario and return a SuiteResult."""
+def run_suite_scenario(scenario_path: Path, *, domain: DomainArtifact | None = None) -> SuiteResult:
+    """Execute one suite scenario and return a SuiteResult.
+
+    When ``domain`` is provided (e.g. an LLM-composed encoding), it replaces
+    the gold-built DomainArtifact; intent, mock DB, and scoring inputs are
+    unchanged. When omitted, behavior is identical to the original gold path.
+    """
     suite_sc = load_suite_scenario(scenario_path)
     case_dir = scenario_path.resolve().parents[1]
 
@@ -182,12 +188,13 @@ def run_suite_scenario(scenario_path: Path) -> SuiteResult:
         generated_at_utc=utc_timestamp(),
         model_name="deterministic-fixture",
     )
-    domain = build_domain_artifact(
-        use_case,
-        use_case.default_logic_level,
-        law_text,
-        run_metadata=run_meta,
-    )
+    if domain is None:
+        domain = build_domain_artifact(
+            use_case,
+            use_case.default_logic_level,
+            law_text,
+            run_metadata=run_meta,
+        )
     intent = build_intent_artifact(
         use_case,
         "",
