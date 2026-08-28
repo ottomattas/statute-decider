@@ -140,6 +140,9 @@ def run_synthesis_condition(
         "condition": "synthesis",
         "case_dir": str(case_path),
         "case_title": use_case.title,
+        # Persist the full synthesized encoding so downstream analyses (e.g.
+        # composing it into the solver) do not need to re-pay the call.
+        "synthesized_domain": pred_domain.model_dump(mode="json"),
         "n_gold_claims": len(gold_domain.claims),
         "n_pred_claims": len(pred_domain.claims),
         "n_gold_rules": len(gold_domain.rules),

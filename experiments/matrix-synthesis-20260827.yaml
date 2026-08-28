@@ -1,0 +1,28 @@
+# Synthesis re-run 27/28 Aug: identical to matrix-scale-i-synthesis.yaml but
+# persists the synthesized DomainArtifact per row (framework/experiment_i.py)
+# so the synthesis -> solver cell can be composed offline.
+# Budget guard is cumulative over the ledger (EUR 13.3658 spent before this
+# run); cap allows ~EUR 5 of new spend for a ~EUR 1 leg.
+
+label: synthesis-2026-08-27-persisted
+budget_eur: 18.36
+repeats: 5
+providers:
+  - gemini
+  - openai
+  - anthropic
+  - deepseek
+
+experiment_ii:
+  enabled: false
+
+experiment_i:
+  enabled: true
+  condition: synthesis
+  cases:
+    - civil_service_eligibility
+    - consumer_withdrawal
+    - land_tax_exemption
+    - personal_data_journalism
+    - building_permit
+    - section_120_demo
