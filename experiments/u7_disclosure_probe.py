@@ -74,15 +74,27 @@ def main() -> int:
             trust_ids = trust_only_claim_ids_for_scenario(ctx.scenario, ctx.use_case, ctx.mock_db)
             unverified = {fid: ctx.known_facts[fid] for fid in trust_ids if fid in ctx.known_facts}
             known = {k: v for k, v in ctx.known_facts.items() if k not in unverified}
-            decision = decide_llm_only(
-                law_text=ctx.law_text,
-                request_text=ctx.request_text,
-                known_facts=known,
-                unknown_claim_ids=ctx.unknown_claim_ids,
-                claim_catalog_text=ctx.catalog_text,
-                provider_complete=complete,
-                unverified_facts=unverified,
-            )
+            try:
+                decision = decide_llm_only(
+                    law_text=ctx.law_text,
+                    request_text=ctx.request_text,
+                    known_facts=known,
+                    unknown_claim_ids=ctx.unknown_claim_ids,
+                    claim_catalog_text=ctx.catalog_text,
+                    provider_complete=complete,
+                    unverified_facts=unverified,
+                )
+            except Exception as exc:  # noqa: BLE001 — provider outages must not sink the probe
+                print(f"ERROR {model} {path.stem}: {type(exc).__name__}: {exc}")
+                rows.append(
+                    {
+                        "scenario": path.stem,
+                        "provider": provider_name,
+                        "model": model,
+                        "error": f"{type(exc).__name__}: {exc}",
+                    }
+                )
+                continue
             expected_raw, expected_facts = load_gold(path)
             expected_paper = to_paper_outcome(expected_raw)
             scored = score_row(expected_paper, expected_facts, decision.outcome, decision.missing_facts)
@@ -122,18 +134,22 @@ def main() -> int:
         "| model | correct outcome | mean MF precision | mean MF recall |",
         "|---|---|---|---|",
     ]
-    models = sorted({row["model"] for row in rows})
+    scored_rows = [row for row in rows if "error" not in row]
+    models = sorted({row["model"] for row in scored_rows})
     for model in models:
-        mrows = [row for row in rows if row["model"] == model]
+        mrows = [row for row in scored_rows if row["model"] == model]
         correct = sum(1 for row in mrows if row["outcome_match"])
         mp = sum(row["precision"] for row in mrows) / len(mrows)
         mr = sum(row["recall"] for row in mrows) / len(mrows)
         lines.append(f"| {model} | {correct}/{len(mrows)} | {mp:.3f} | {mr:.3f} |")
     lines += ["", "## Per-row outcomes", "", "| model | scenario | outcome | missing facts |", "|---|---|---|---|"]
     for row in rows:
-        lines.append(
-            f"| {row['model']} | {row['scenario']} | {row['outcome']} | {', '.join(row['missing_facts']) or '—'} |"
-        )
+        if "error" in row:
+            lines.append(f"| {row['model']} | {row['scenario']} | ERROR | {row['error']} |")
+        else:
+            lines.append(
+                f"| {row['model']} | {row['scenario']} | {row['outcome']} | {', '.join(row['missing_facts']) or '—'} |"
+            )
     lines.append("")
     (OUT_DIR / "u7_probe.md").write_text("\n".join(lines), encoding="utf-8")
     print(f"Wrote {len(rows)} rows and u7_probe.md -> {OUT_DIR}")
