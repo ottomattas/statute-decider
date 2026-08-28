@@ -109,6 +109,35 @@ def unknown_claim_ids_for_scenario(
     return [claim.claim_id for claim in use_case.claims if claim.claim_id not in known_facts]
 
 
+def trust_only_claim_ids_for_scenario(
+    scenario: SuiteScenario,
+    use_case: UseCaseDefinition,
+    mock_db: MockDbArtifact,
+) -> list[str]:
+    """Catalog claim ids whose value rests only on trust-only sources.
+
+    A fact is trust-only when it is not intent-asserted (non-null) and no
+    available ordinary (non-trust-only) source provides it, but at least one
+    available trust-only source does. Used by the u7 disclosure probe; the
+    default baseline path never calls this.
+    """
+    catalog = {claim.claim_id for claim in use_case.claims}
+    intent_ids = {
+        claim_id for claim_id, value in scenario.intent_assignments.items() if value is not None
+    }
+    overridden = _apply_db_overrides(mock_db, scenario.mock_db_overrides)
+    ordinary: set[str] = set()
+    trusted: set[str] = set()
+    for source in overridden.sources:
+        if source.availability == "unavailable":
+            continue
+        target = trusted if source.trust_only else ordinary
+        for claim_id, value in source.values.items():
+            if claim_id in catalog and value is not None:
+                target.add(claim_id)
+    return sorted(trusted - ordinary - intent_ids)
+
+
 def load_scenario_context(scenario_path: str | Path) -> ScenarioContext:
     """Load a suite scenario plus law, request, mock DB, and known/unknown facts."""
     path = Path(scenario_path).resolve()
@@ -247,8 +276,20 @@ def build_user_prompt(
     known_facts: dict[str, bool],
     unknown_claim_ids: list[str],
     claim_catalog_text: str,
+    unverified_facts: dict[str, bool] | None = None,
 ) -> str:
-    """Render the user prompt for the LLM-only decision call."""
+    """Render the user prompt for the LLM-only decision call.
+
+    ``unverified_facts`` (u7 disclosure probe only) are presented in their own
+    section instead of KNOWN FACTS; the default baseline passes None and the
+    rendered prompt is byte-identical to before the probe existed.
+    """
+    disclosure = ""
+    if unverified_facts:
+        disclosure = (
+            "UNVERIFIED ASSERTIONS (asserted by the applicant; NOT verified by any register):\n"
+            f"{_format_known_facts(unverified_facts)}\n\n"
+        )
     return (
         "STATUTE:\n"
         f"{law_text.strip()}\n\n"
@@ -256,6 +297,7 @@ def build_user_prompt(
         f"{request_text.strip() or '(no request text)'}\n\n"
         "KNOWN FACTS (claim_id = true/false):\n"
         f"{_format_known_facts(known_facts)}\n\n"
+        f"{disclosure}"
         "UNKNOWN CLAIM IDS (in the catalog; value not given):\n"
         f"{_format_unknown_ids(unknown_claim_ids)}\n\n"
         "CLAIM CATALOG (labels only; not the gold decision rules):\n"
@@ -274,6 +316,11 @@ def _filter_missing_facts(raw: list[str], unknown_claim_ids: list[str]) -> list[
     return filtered
 
 
+_DISCLOSURE_SYSTEM_SUFFIX = """
+Facts listed under UNVERIFIED ASSERTIONS are claims the applicant makes that no register has confirmed. They are not known facts. If such a fact is required to decide the case, treat it as missing: choose NEED_MORE_INFO and include its claim id in missing_facts.
+"""
+
+
 def decide_llm_only(
     *,
     law_text: str,
@@ -282,20 +329,32 @@ def decide_llm_only(
     unknown_claim_ids: list[str],
     claim_catalog_text: str,
     provider_complete: ProviderComplete,
+    unverified_facts: dict[str, bool] | None = None,
 ) -> BaselineDecision:
-    """Ask the model for ALLOW/DENY/NEED_MORE_INFO plus catalog missing-fact ids."""
+    """Ask the model for ALLOW/DENY/NEED_MORE_INFO plus catalog missing-fact ids.
+
+    ``unverified_facts`` (u7 disclosure probe, off by default) moves trust-only
+    facts out of KNOWN FACTS into a disclosed section, appends one system-prompt
+    paragraph, and widens the missing-fact filter to accept those ids.
+    """
     user_prompt = build_user_prompt(
         law_text=law_text,
         request_text=request_text,
         known_facts=known_facts,
         unknown_claim_ids=unknown_claim_ids,
         claim_catalog_text=claim_catalog_text,
+        unverified_facts=unverified_facts,
     )
+    system_prompt = _SYSTEM_PROMPT
+    allowed_ids = list(unknown_claim_ids)
+    if unverified_facts:
+        system_prompt = _SYSTEM_PROMPT + _DISCLOSURE_SYSTEM_SUFFIX
+        allowed_ids += [fid for fid in unverified_facts if fid not in set(allowed_ids)]
     decision = _call_complete(
         provider_complete,
-        system=_SYSTEM_PROMPT,
+        system=system_prompt,
         user=user_prompt,
         response_model=BaselineDecision,
     )
-    decision.missing_facts = _filter_missing_facts(decision.missing_facts, unknown_claim_ids)
+    decision.missing_facts = _filter_missing_facts(decision.missing_facts, allowed_ids)
     return decision
