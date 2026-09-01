@@ -446,6 +446,35 @@ def write_summary(rows_path: Path, out_path: Path, *, repeats: int, n_scenarios:
         for cond, oacc, a, d, n, p, r in PRIOR_CONDITIONS.get(model, []):
             lines.append(f"| {model} | {cond} | {oacc} | {a} | {d} | {n} | {p} | {r} |")
 
+    lines += ["", "## Failure pattern", ""]
+    fail_counts: dict[tuple[str, str, str], list[str]] = defaultdict(list)
+    factset_counts: dict[str, list[str]] = defaultdict(list)
+    for model in sorted(by_model):
+        for row in by_model[model]:
+            if row.get("outcome_match") is False:
+                key = (row["scenario"], str(row["expected_paper_outcome"]), str(row["paper_outcome"]))
+                fail_counts[key].append(model)
+            elif row.get("outcome_match") and (row["precision"] < 1.0 or row["recall"] < 1.0):
+                factset_counts[row["scenario"]].append(model)
+    if fail_counts:
+        lines += ["| scenario | expected → predicted | rows | models |", "|---|---|---|---|"]
+        for (scenario, exp, pred), models in sorted(fail_counts.items()):
+            model_counts = ", ".join(
+                f"{m} ({models.count(m)})" for m in sorted(set(models))
+            )
+            lines.append(f"| {scenario} | {exp} → {pred} | {len(models)} | {model_counts} |")
+    else:
+        lines.append("No outcome mismatches.")
+    if factset_counts:
+        lines += [
+            "",
+            "Fact-set-only misses (outcome correct, missing-fact set imperfect):",
+            "",
+        ]
+        for scenario, models in sorted(factset_counts.items()):
+            model_counts = ", ".join(f"{m} ({models.count(m)})" for m in sorted(set(models)))
+            lines.append(f"- {scenario}: {model_counts}")
+
     error_rows = [row for row in _load_jsonl(rows_path) if row.get("error")]
     lines += ["", "## Error rows", ""]
     if error_rows:
