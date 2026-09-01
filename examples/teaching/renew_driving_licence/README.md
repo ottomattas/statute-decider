@@ -14,11 +14,12 @@ Every quote in this pack is verbatim from the official translation.
 
 1. **Talk to the service owner.** An official or service owner explains the
    service, names the registers, and points to the law.
-2. **Read the law and find your provisions.** The act has 127 pages; this
-   service needs eight paragraphs. Open
-   `data/statutes/driving_licence_renewal/road_traffic_act_en_highlighted.pdf`
-   — the full act with exactly those paragraphs highlighted in yellow.
-3. **Build the term catalogue** from the highlighted provisions
+2. **Read the law and find your provisions.** The act runs to hundreds of
+   sections; this service needs eight paragraphs. Open
+   `data/statutes/driving_licence_renewal/road_traffic_act_en_marked.txt`
+   — the full act with exactly those paragraphs marked (the official PDFs
+   sit next to it for page-level highlighting).
+3. **Build the term catalogue** from the marked provisions
    (`term-catalogue-guide.md`, three steps).
 4. **Write the human-readable service description**
    (`data/services/renew_driving_licence/service-description.md`) — plain
@@ -69,9 +70,10 @@ oracle files.
 ## What is in this folder
 
 ```
-full act (text) ........... data/statutes/driving_licence_renewal/road_traffic_act_en_full.txt
-full act, highlighted ..... data/statutes/driving_licence_renewal/road_traffic_act_en_highlighted.pdf
-highlighter script ........ highlight_law.py (regenerates the PDF from the text)
+full act, English (text) .. data/statutes/driving_licence_renewal/road_traffic_act_en_full.txt
+full act, Estonian (text) . data/statutes/driving_licence_renewal/road_traffic_act_et_full.txt
+full act, marked .......... data/statutes/driving_licence_renewal/road_traffic_act_en_marked.txt
+official PDFs ............. road_traffic_act_en.pdf / road_traffic_act_et.pdf (download from Riigi Teataja, see below)
 verbatim excerpts ......... data/statutes/driving_licence_renewal/statute.txt (+ terms + rules in oracle/)
 term-catalogue method ..... term-catalogue-guide.md
 human service page ........ data/services/renew_driving_licence/service-description.md
@@ -84,6 +86,22 @@ runnable demo ............. run_demo.py
 
 The `data/` tree uses exactly the same layout and schemas as the main
 benchmark (`data/` at the repo root), so everything transfers 1:1.
+
+### Official PDFs
+
+Riigi Teataja serves downloads only to a real browser, so fetch the two
+PDFs manually and drop them into
+`data/statutes/driving_licence_renewal/` as `road_traffic_act_en.pdf` and
+`road_traffic_act_et.pdf`:
+
+- English translation: <https://www.riigiteataja.ee/en/eli/527072026001>
+  (use the *Download* link on the page)
+- Estonian consolidated text: <https://www.riigiteataja.ee/akt/111072026044>
+  (use the *Laadi alla* link on the page)
+
+For the classroom, extract the pages containing § 96–98 and § 101 and
+highlight the marked provisions — `road_traffic_act_en_marked.txt` tells
+you exactly which paragraphs.
 
 ## From one seed file to all artifacts
 
@@ -114,7 +132,7 @@ service:
 2. **Find the law on [riigiteataja.ee](https://www.riigiteataja.ee)** and
    copy out, verbatim, the provisions that state the conditions and
    consequences (our `statute.txt` shows the format; mark them in the full
-   text like our highlighted PDF).
+   text like our `road_traffic_act_en_marked.txt`).
 3. **Build the term catalogue** with the 3-step method in
    `term-catalogue-guide.md`: highlight → name the yes/no terms with a
    warranting source → write the allow/deny rules, each anchored to a real

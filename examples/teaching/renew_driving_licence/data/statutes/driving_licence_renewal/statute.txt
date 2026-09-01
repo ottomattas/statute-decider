@@ -1,4 +1,4 @@
-EXCERPT — Road Traffic Act (Liiklusseadus), official English translation
+EXCERPT — Road Traffic Act, official English translation
 
 Source: https://www.riigiteataja.ee/en/akt/527072026001
 Legally binding Estonian consolidated text (RT I, 11.07.2026, 44):
@@ -6,8 +6,10 @@ https://www.riigiteataja.ee/et/akt/111072026044
 
 The provisions below are verbatim from the official English translation.
 The excerpt covers the provisions needed to decide a driving licence
-replacement (renewal). The full act, with these same provisions
-highlighted, is in road_traffic_act_en_highlighted.pdf next to this file.
+replacement (renewal). The full act is next to this file
+(road_traffic_act_en_full.txt, road_traffic_act_et_full.txt), and
+road_traffic_act_en_marked.txt shows these same provisions marked
+inside the full text.
 
 =======================================================================
 § 96. Documents certifying right to drive

@@ -12,7 +12,7 @@
 
 When your driving licence approaches the end of its validity (ten years
 for category B, Road Traffic Act § 97 (7)), you can apply to the Transport
-Administration (Transpordiamet) to have it replaced. The new licence is
+Administration to have it replaced. The new licence is
 issued within ten working days of the application (§ 98 (2)).
 
 ## Who is it for?
@@ -56,8 +56,8 @@ arrived — no decision is made until the missing information exists
   <https://www.riigiteataja.ee/et/akt/111072026044>
 - Excerpt of the decision-relevant provisions:
   `../../statutes/driving_licence_renewal/statute.txt`; the full act with
-  the same provisions highlighted:
-  `../../statutes/driving_licence_renewal/road_traffic_act_en_highlighted.pdf`
+  the same provisions marked:
+  `../../statutes/driving_licence_renewal/road_traffic_act_en_marked.txt`
 
 ## If something goes wrong
 

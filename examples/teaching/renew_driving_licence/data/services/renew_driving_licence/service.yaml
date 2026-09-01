@@ -27,7 +27,7 @@ service:
   version: "0.2"
   name: Driving licence renewal
   provider:
-    organisation: Transport Administration (Transpordiamet)
+    organisation: Transport Administration
   purpose:
     concept: maintain_driving_entitlement
     description: Replace an expiring or expired driving licence.
@@ -40,7 +40,7 @@ legal_mapping:
   # The statutory basis and the term vocabulary this service instantiates.
   statute_id: driving_licence_renewal
   legal_basis:
-    act: Road Traffic Act (Liiklusseadus)
+    act: Road Traffic Act
     english_translation: https://www.riigiteataja.ee/en/akt/527072026001
     binding_text: https://www.riigiteataja.ee/et/akt/111072026044   # RT I, 11.07.2026, 44
   outcome_space: [ALLOW, DENY, NEED_MORE_INFO]

@@ -10,8 +10,8 @@ Worked example throughout: driving licence renewal, Road Traffic Act
 ([official English translation](https://www.riigiteataja.ee/en/akt/527072026001);
 the legally binding Estonian text is
 [RT I, 11.07.2026, 44](https://www.riigiteataja.ee/et/akt/111072026044)).
-Open `data/statutes/driving_licence_renewal/road_traffic_act_en_highlighted.pdf`
-to see where these few provisions sit inside the full 127-page act.
+Open `data/statutes/driving_licence_renewal/road_traffic_act_en_marked.txt`
+to see where these few provisions sit inside the full act.
 
 ---
 
