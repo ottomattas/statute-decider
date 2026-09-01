@@ -66,6 +66,13 @@
   "unavailable_registers": [],
   "unavailable_terms": [],
   "conflicts": [],
+  "covered_terms": [
+    "applicant_is_not_parent",
+    "applicant_is_parent",
+    "both_parents_consent",
+    "delegated_decision_right",
+    "sole_custody"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

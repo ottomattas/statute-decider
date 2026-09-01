@@ -70,6 +70,13 @@
     "fee_paid"
   ],
   "conflicts": [],
+  "covered_terms": [
+    "building_requirements_met",
+    "competent_designer",
+    "plan_conformant",
+    "plan_violation",
+    "site_study_provided"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

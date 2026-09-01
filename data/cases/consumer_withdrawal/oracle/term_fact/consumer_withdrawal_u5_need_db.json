@@ -30,6 +30,11 @@
   "unavailable_registers": [],
   "unavailable_terms": [],
   "conflicts": [],
+  "covered_terms": [
+    "distance_contract",
+    "excluded_category",
+    "is_consumer"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

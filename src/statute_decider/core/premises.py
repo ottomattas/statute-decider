@@ -116,6 +116,12 @@ class FactSet(BaseModel):
     unavailable_registers: list[str] = Field(default_factory=list)
     unavailable_terms: list[str] = Field(default_factory=list)  # mapped terms those registers cover
     conflicts: list[str] = Field(default_factory=list)  # term_ids with conflicting values
+    # Terms an available register in this scenario's registry state is declared
+    # to answer (via record_term mappings), whether or not a value was found.
+    # The warrant principle needs this: a claim on a covered-but-silent term is
+    # unverified support, while a claim on an uncovered term has nothing to be
+    # checked against and stays decision-grade.
+    covered_terms: list[str] = Field(default_factory=list)
     provenance: Provenance | None = None
 
     def by_term(self) -> dict[str, FactPremise]:

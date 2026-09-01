@@ -66,6 +66,13 @@
   "unavailable_registers": [],
   "unavailable_terms": [],
   "conflicts": [],
+  "covered_terms": [
+    "applicant_is_owner",
+    "municipality_exemption_set",
+    "primary_residence_registered",
+    "receives_pension",
+    "residential_land"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

@@ -78,6 +78,14 @@
   "unavailable_registers": [],
   "unavailable_terms": [],
   "conflicts": [],
+  "covered_terms": [
+    "criminal_conviction",
+    "ee_citizen",
+    "eu_citizen",
+    "full_capacity",
+    "secondary_education",
+    "speaks_estonian"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

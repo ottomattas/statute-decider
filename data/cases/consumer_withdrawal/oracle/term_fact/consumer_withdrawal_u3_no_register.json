@@ -23,6 +23,9 @@
     "is_consumer"
   ],
   "conflicts": [],
+  "covered_terms": [
+    "excluded_category"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

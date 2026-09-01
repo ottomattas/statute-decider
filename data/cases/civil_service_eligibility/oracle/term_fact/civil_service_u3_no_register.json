@@ -48,6 +48,11 @@
     "full_capacity"
   ],
   "conflicts": [],
+  "covered_terms": [
+    "criminal_conviction",
+    "secondary_education",
+    "speaks_estonian"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

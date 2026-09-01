@@ -1,4 +1,4 @@
-generated_at: '2026-09-01T19:51:04Z'
+generated_at: '2026-09-01T20:44:26Z'
 experiment:
   name: 20260901-solver-validation
   question: 'Do the solver endpoint and the oracle data agree end to end? Every node

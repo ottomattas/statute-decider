@@ -1,0 +1,159 @@
+generated_at: '2026-09-01T20:11:39Z'
+experiment:
+  name: 20260901-candidate
+  question: 'Committed run 3 of 3: the proposed architecture. Statute chain oracle,
+    user chain fused LLM grounding (utterance_term + term_claim in one call), register
+    chain deterministic lookup, decision by z3, trace rendered.
+
+    '
+  condition: candidate
+  cases: all
+  models:
+  - gemini-2.5-flash
+  - gpt-5-mini
+  - haiku-4.5
+  - deepseek-v4-flash
+  prompts: {}
+  repeats: 10
+  temperature: 0.0
+  max_output_tokens: 8192
+  budget_eur: 5.0
+  notes: 'Cheap-model grid x 10 repeats over all 47 scenarios (1880 rows, one short
+    ground call each). The only LLM surface is the fused user chain.
+
+    '
+condition:
+  condition: candidate
+  bindings:
+    statute_text:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    text_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_rule:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    user_utterance:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    utterance_term:
+      method: llm
+      strategy: ground
+      prompt: ground-v1
+      solver: null
+      template: null
+    term_claim:
+      method: llm
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    registry_record:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    record_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_fact:
+      method: lookup
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    premise_outcome:
+      method: solver
+      strategy: null
+      prompt: null
+      solver: z3
+      template: null
+    outcome_trace:
+      method: render
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+  fuse:
+  - - utterance_term
+    - term_claim
+  logic: propositional
+  loop: 'off'
+  notes: Proposed architecture candidate — the modular system under test.
+execution: parallel
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+providers_filter: []
+solver_override: null
+prompt_combos:
+- {}
+repeats: 10
+scenarios:
+- building_permit/building_permit_allow
+- building_permit/building_permit_allow_via_db
+- building_permit/building_permit_deny
+- building_permit/building_permit_deny_incompetent
+- building_permit/building_permit_deny_no_site_study
+- building_permit/building_permit_need_db
+- building_permit/building_permit_u3_no_register
+- building_permit/building_permit_u7_trust_only
+- civil_service_eligibility/civil_service_allow
+- civil_service_eligibility/civil_service_allow_eu_path
+- civil_service_eligibility/civil_service_deny
+- civil_service_eligibility/civil_service_deny_no_citizenship
+- civil_service_eligibility/civil_service_need_db
+- civil_service_eligibility/civil_service_u3_no_register
+- civil_service_eligibility/civil_service_u7_trust_only
+- civil_service_eligibility/civil_service_u8_need_user
+- consumer_withdrawal/consumer_withdrawal_allow
+- consumer_withdrawal/consumer_withdrawal_allow_via_db
+- consumer_withdrawal/consumer_withdrawal_deny
+- consumer_withdrawal/consumer_withdrawal_deny_not_consumer
+- consumer_withdrawal/consumer_withdrawal_need_user
+- consumer_withdrawal/consumer_withdrawal_u3_no_register
+- consumer_withdrawal/consumer_withdrawal_u5_need_db
+- consumer_withdrawal/consumer_withdrawal_u7_trust_only
+- land_tax_exemption/land_tax_allow
+- land_tax_exemption/land_tax_allow_pensioner
+- land_tax_exemption/land_tax_allow_via_db
+- land_tax_exemption/land_tax_deny
+- land_tax_exemption/land_tax_deny_not_residential
+- land_tax_exemption/land_tax_need_db
+- land_tax_exemption/land_tax_u3_no_register
+- land_tax_exemption/land_tax_u7_trust_only
+- personal_data_journalism/journalism_allow
+- personal_data_journalism/journalism_allow_via_consent
+- personal_data_journalism/journalism_deny
+- personal_data_journalism/journalism_deny_no_basis
+- personal_data_journalism/journalism_need_user
+- personal_data_journalism/journalism_u3_no_register
+- personal_data_journalism/journalism_u5_need_db
+- personal_data_journalism/journalism_u7_trust_only
+- section_120_demo/allow
+- section_120_demo/db-then-user
+- section_120_demo/deny
+- section_120_demo/need-db
+- section_120_demo/need-user
+- section_120_demo/prompt-swap
+- section_120_demo/unrelated-law
+budget_eur: 5.0

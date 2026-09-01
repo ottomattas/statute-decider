@@ -1,7 +1,26 @@
 {
   "node": "term_claim",
   "scenario_id": "journalism_need_user",
-  "claims": [],
+  "claims": [
+    {
+      "premise_id": "claim_journalistic_purpose",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "journalistic_purpose",
+      "value": true,
+      "span": "The processing is ajakirjanduslik in purpose",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_subject_consent",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "subject_consent",
+      "value": false,
+      "span": "has not granted a separate nõusolek",
+      "notes": ""
+    }
+  ],
   "provenance": {
     "node": "term_claim",
     "method": "oracle",

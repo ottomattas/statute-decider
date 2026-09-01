@@ -66,6 +66,14 @@
   "unavailable_registers": [],
   "unavailable_terms": [],
   "conflicts": [],
+  "covered_terms": [
+    "building_requirements_met",
+    "competent_designer",
+    "fee_paid",
+    "plan_conformant",
+    "plan_violation",
+    "site_study_provided"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

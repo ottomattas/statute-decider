@@ -58,6 +58,12 @@
     "primary_residence_registered"
   ],
   "conflicts": [],
+  "covered_terms": [
+    "applicant_is_owner",
+    "municipality_exemption_set",
+    "receives_pension",
+    "residential_land"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

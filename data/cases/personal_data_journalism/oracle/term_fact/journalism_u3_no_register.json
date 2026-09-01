@@ -22,6 +22,9 @@
     "journalistic_purpose"
   ],
   "conflicts": [],
+  "covered_terms": [
+    "subject_consent"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

@@ -30,6 +30,10 @@
   "unavailable_registers": [],
   "unavailable_terms": [],
   "conflicts": [],
+  "covered_terms": [
+    "journalistic_purpose",
+    "subject_consent"
+  ],
   "provenance": {
     "node": "term_fact",
     "method": "oracle",

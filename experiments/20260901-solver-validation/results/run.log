@@ -1,2 +1,2 @@
-2026-09-01 22:51:04,157 INFO statute_decider.runner.experiment Experiment 20260901-solver-validation: 47 cells (47 scenarios x 1 models x 1 prompt combos x 1 repeats), sequential.
-2026-09-01 22:51:04,567 INFO statute_decider.runner.experiment Experiment 20260901-solver-validation done: 47 rows, EUR 0.0000.
+2026-09-01 23:44:26,096 INFO statute_decider.runner.experiment Experiment 20260901-solver-validation: 47 cells (47 scenarios x 1 models x 1 prompt combos x 1 repeats), sequential.
+2026-09-01 23:44:26,473 INFO statute_decider.runner.experiment Experiment 20260901-solver-validation done: 47 rows, EUR 0.0000.

@@ -1,7 +1,16 @@
 {
   "node": "utterance_term",
   "scenario_id": "journalism_need_user",
-  "term_refs": [],
+  "term_refs": [
+    {
+      "term_id": "journalistic_purpose",
+      "span": "The processing is ajakirjanduslik in purpose"
+    },
+    {
+      "term_id": "subject_consent",
+      "span": "has not granted a separate nõusolek"
+    }
+  ],
   "provenance": {
     "node": "utterance_term",
     "method": "oracle",

@@ -27,6 +27,8 @@ An inconsistent boolean theory (unsat) falls back to DENY with a note.
 
 from __future__ import annotations
 
+import threading
+
 from z3 import And, Bool, Implies, Not, Solver, sat
 
 from statute_decider.core import (
@@ -142,6 +144,12 @@ def _fired_rules(theory: _Theory, derived: dict[str, bool]) -> list[FiredRule]:
     return fired
 
 
+# The z3 Python bindings share one native context; concurrent solve calls from
+# the parallel runner's worker threads crash the interpreter (silent SIGSEGV).
+# Solves are millisecond-scale next to the LLM calls, so serializing is free.
+_Z3_LOCK = threading.Lock()
+
+
 @register_solver("z3")
 class Z3Solver:
     name = "z3"
@@ -157,6 +165,16 @@ class Z3Solver:
         )
 
     def solve(
+        self,
+        catalog: TermCatalog,
+        rules: RuleSet,
+        claims: ClaimSet,
+        facts: FactSet,
+    ) -> PremiseOutcome:
+        with _Z3_LOCK:
+            return self._solve_impl(catalog, rules, claims, facts)
+
+    def _solve_impl(
         self,
         catalog: TermCatalog,
         rules: RuleSet,
@@ -209,36 +227,76 @@ class Z3Solver:
             allow = theory.entailed(valuation, rules.allow_outcome_id)
             deny = theory.entailed(valuation, rules.deny_outcome_id)
             if allow is True and deny is not True:
-                if trust_only_used:
-                    allow_register_antecedents = {
-                        tid
-                        for rule in rules.rules
-                        if rule.rule_kind == RuleKind.ALLOW_IF_ALL
-                        for tid in rule.when_term_ids
-                        if tid in terms and terms[tid].evidence == Evidence.REGISTER
-                    }
-                    authoritative_false = {
-                        fact.term_id
-                        for fact in facts.facts
-                        if fact.warrant == Warrant.AUTHORITATIVE and fact.value is False
-                    }
+                # Warrant principle: an entailed ALLOW is only final when every
+                # register-evidence antecedent on the allow path has warranted
+                # support. Authoritative facts warrant; a trust-only fact taints
+                # the entire allow path (verify everything before granting); a
+                # claim on a term some available register covers but is silent
+                # about is unverified support for that term; a claim on a term
+                # no present register covers has nothing to be checked against
+                # and stays decision-grade. Holds identically for scripted and
+                # extracted claims.
+                allow_register_antecedents = {
+                    tid
+                    for rule in rules.rules
+                    if rule.rule_kind == RuleKind.ALLOW_IF_ALL
+                    for tid in rule.when_term_ids
+                    if tid in terms and terms[tid].evidence == Evidence.REGISTER
+                }
+                authoritative_terms = {
+                    fact.term_id
+                    for fact in facts.facts
+                    if fact.warrant == Warrant.AUTHORITATIVE
+                }
+                authoritative_false = {
+                    fact.term_id
+                    for fact in facts.facts
+                    if fact.warrant == Warrant.AUTHORITATIVE and fact.value is False
+                }
+                trust_terms = {
+                    fact.term_id
+                    for fact in facts.facts
+                    if fact.warrant == Warrant.TRUST_ONLY
+                } - authoritative_terms
+                covered = set(facts.covered_terms)
+                unavailable = set(facts.unavailable_terms)
+
+                def reason_for(tid: str) -> MissingReason:
+                    if tid in trust_terms:
+                        return MissingReason.UNWARRANTED_ONLY
+                    if tid in unavailable:
+                        return MissingReason.NO_REGISTER
+                    return MissingReason.NO_VALUE
+
+                trust_taint = allow_register_antecedents & trust_terms
+                unavailable_taint = (
+                    allow_register_antecedents & unavailable
+                ) - authoritative_terms
+                claim_terms = {c.term_id for c in claims.claims if c.term_id in terms}
+                claim_taint = {
+                    tid
+                    for tid in allow_register_antecedents & covered & claim_terms
+                    if tid not in authoritative_terms
+                    and tid not in trust_terms
+                    and tid not in unavailable
+                }
+                if trust_taint:
                     flagged = sorted(allow_register_antecedents - authoritative_false)
+                elif unavailable_taint or claim_taint:
+                    flagged = sorted(unavailable_taint | claim_taint)
+                else:
+                    flagged = []
+                if flagged:
                     missing = [
-                        MissingTerm(
-                            term_id=tid,
-                            reason=MissingReason.UNWARRANTED_ONLY
-                            if tid in trust_only_used
-                            else MissingReason.NO_VALUE,
-                        )
-                        for tid in flagged
+                        MissingTerm(term_id=tid, reason=reason_for(tid)) for tid in flagged
                     ]
                     return outcome(
                         OutcomeState.UNVERIFIABLE_CLAIM,
                         derived,
                         missing,
-                        "ALLOW is entailed, but rests on trust-only values; the "
-                        "allow-path register evidence is flagged for verification "
-                        "(warrant principle).",
+                        "ALLOW is entailed, but rests on unwarranted support "
+                        "(claims or trust-only values) for register-evidence "
+                        "terms; flagged for verification (warrant principle).",
                     )
                 return outcome(OutcomeState.ALLOW, derived, [], "ALLOW entailed.")
             if deny is True:

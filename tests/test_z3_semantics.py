@@ -151,6 +151,33 @@ def test_rewrite_rule_inconsistency_falls_back_to_deny(z3):
     assert "inconsistent" in out.note.lower()
 
 
+def test_claim_on_covered_but_silent_register_term_is_unverified(z3):
+    facts = FactSet(scenario_id="s", facts=[], covered_terms=["is_registered", "is_banned"])
+    out = z3.solve(catalog(), rules(), claims(asked_nicely=True, is_registered=True), facts)
+    assert out.state == OutcomeState.UNVERIFIABLE_CLAIM
+    assert [m.term_id for m in out.missing_terms] == ["is_registered"]
+
+
+def test_claim_on_uncovered_register_term_is_decision_grade(z3):
+    facts = FactSet(scenario_id="s", facts=[], covered_terms=[])
+    out = z3.solve(catalog(), rules(), claims(asked_nicely=True, is_registered=True), facts)
+    assert out.state == OutcomeState.ALLOW
+
+
+def test_trust_taint_flags_whole_allow_path(z3):
+    facts = FactSet(
+        scenario_id="s",
+        facts=[fact("is_registered", True, Warrant.TRUST_ONLY)],
+        covered_terms=["is_registered"],
+    )
+    out = z3.solve(
+        catalog(), rules(), claims(asked_nicely=True, is_registered=True), facts
+    )
+    assert out.state == OutcomeState.UNVERIFIABLE_CLAIM
+    reasons = {m.term_id: m.reason for m in out.missing_terms}
+    assert reasons == {"is_registered": MissingReason.UNWARRANTED_ONLY}
+
+
 def test_facts_never_override_claims(z3):
     facts = FactSet(scenario_id="s", facts=[fact("is_banned", False), fact("is_registered", True)])
     out = z3.solve(catalog(), rules(), claims(asked_nicely=True, is_banned=True), facts)

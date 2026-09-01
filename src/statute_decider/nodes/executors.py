@@ -226,11 +226,14 @@ def lookup_facts(
     unavailable_registers: list[str] = []
     unavailable_terms: set[str] = set()
     conflicts: set[str] = set()
+    covered_terms: set[str] = set()
 
     for mapping in mappings:
         reg = registers.get(mapping.register_id)
         if reg is None:
             continue
+        if reg.availability != Availability.REGISTER_UNAVAILABLE:
+            covered_terms.update(entry.term_id for entry in mapping.mappings)
         if reg.availability == Availability.REGISTER_UNAVAILABLE:
             if reg.register_id not in unavailable_registers:
                 unavailable_registers.append(reg.register_id)
@@ -272,6 +275,7 @@ def lookup_facts(
         unavailable_registers=sorted(unavailable_registers),
         unavailable_terms=sorted(unavailable_terms - set(facts)),
         conflicts=sorted(conflicts),
+        covered_terms=sorted(covered_terms),
         provenance=Provenance(node="term_fact", method="lookup", provider="code"),
     )
 
