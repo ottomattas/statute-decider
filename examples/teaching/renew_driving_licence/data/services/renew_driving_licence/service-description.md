@@ -1,110 +1,96 @@
-# Juhiloa uuendamine / Driving licence renewal
+# Driving licence renewal
 
-> Inimloetav teenusekirjeldus, avaldatav veebilehel. Masinloetav vaste:
-> `service.yaml` samas kaustas — iga selle lehe lause peab olema sealt
-> leitav, ja vastupidi.
-> [Human-readable service description, publishable on a website. Machine
+> Human-readable service description, publishable on a website. Machine
 > counterpart: `service.yaml` in this directory — every sentence on this
-> page must be traceable there, and back.]
+> page must be traceable there, and back. When an agent later acts on a
+> person's behalf, this page is what the person reads to understand what
+> is being done for them.
 
 ---
 
-## Mis teenus see on? / What is this service?
+## What is this service?
 
-**ET.** Kui sinu juhiloa kehtivusaeg (B-kategoorial kümme aastat,
-Liiklusseadus § 97 lg 7) hakkab läbi saama, saad taotleda Transpordiametilt
-juhiloa vahetamist. Uus juhiluba väljastatakse kümne tööpäeva jooksul
-taotluse esitamisest (LS § 98 lg 2).
+When your driving licence approaches the end of its validity (ten years
+for category B, Road Traffic Act § 97 (7)), you can apply to the Transport
+Administration (Transpordiamet) to have it replaced. The new licence is
+issued within ten working days of the application (§ 98 (2)).
 
-**EN.** When your driving licence approaches the end of its validity (ten
-years for category B, Road Traffic Act § 97 (7)), you can apply to the
-Transport Administration (Transpordiamet) to have it replaced. The new
-licence is issued within ten working days of the application (§ 98 (2)).
+## Who is it for?
 
-## Kellele? / Who is it for?
+A natural person whose permanent residence is in Estonia (§ 98 (1¹)).
 
-- Füüsiline isik, kelle alaline elukoht on Eestis (LS § 98 lg 1¹).
-- Natural person whose permanent residence is in Estonia (§ 98 (1¹)).
+## What do you need?
 
-## Mida on vaja? / What do you need?
-
-| Tingimus / Condition | Kust riik seda kontrollib / How the state checks it |
+| Condition | How the state checks it |
 |---|---|
-| Esitatud vahetustaotlus / A submitted replacement application | Sinu taotlus ise / your request itself (LS § 98 lg 2) |
-| Kehtiv tervisetõend / A valid medical certificate | Tervise infosüsteem / the health information system (LS § 101 lg 1 ja 8) |
-| Tasutud riigilõiv / The state fee paid | Riigikassa maksete andmed / state treasury payment data (LS § 96 lg 9) |
-| Juhtimisõigus ei ole peatatud ega ära võetud / Your right to drive is not suspended or withdrawn | Liiklusregister / the motor register (LS § 98 lg 3, § 96 lg 7) |
+| A submitted replacement application | Your request itself (§ 98 (2)) |
+| A valid medical certificate | The health information system (§ 101 (1) and (8)) |
+| The state fee paid | State treasury payment data (§ 96 (9)) |
+| Your right to drive is not suspended or withdrawn | The motor register (§ 98 (3), § 96 (7)) |
 
-**ET.** Pane tähele: ainult taotluse esitamine on asi, mida sina väidad ja
-mida riik usub sinu sõnast. Ülejäänud kolme tingimust kontrollitakse
-registritest — sinu kinnitusest ei piisa, ja see on seaduse, mitte
-ametniku valik.
+Note the difference: only the application itself is something you declare
+and the state takes at your word. The other three conditions are checked
+against registers — your say-so is not enough, and that is the law's
+choice, not a clerk's.
 
-**EN.** Note the difference: only the application itself is something you
-declare and the state takes at your word. The other three conditions are
-checked against registers — your say-so is not enough, and that is the
-law's choice, not a clerk's.
+## How is the decision made?
 
-## Kuidas otsus sünnib? / How is the decision made?
-
-**ET.** Kui taotlus on esitatud, tervisetõend kehtib ja riigilõiv on
-tasutud, juhiluba vahetatakse (LUBATUD). Kui juhtimisõigus on peatatud või
-ära võetud, juhiluba ei väljastata (KEELDUTUD, LS § 98 lg 3). Kui mõni
-registrikontroll jääb vastuseta — näiteks makse ei ole veel laekunud —
-otsust ei tehta enne, kui puuduv teave on olemas (VAJA LISAINFOT).
-
-**EN.** If the application is in, the medical certificate is valid, and the
-state fee is paid, the licence is replaced (ALLOW). If your right to drive
-is suspended or withdrawn, no licence is issued (DENY, § 98 (3)). If a
+If the application is in, the medical certificate is valid, and the state
+fee is paid, the licence is replaced (**ALLOW**). If your right to drive is
+suspended or withdrawn, no licence is issued (**DENY**, § 98 (3)). If a
 register check comes back empty — for example the payment has not yet
 arrived — no decision is made until the missing information exists
-(NEED MORE INFO).
+(**NEED MORE INFO**).
 
-## Hind ja aeg / Cost and time
+## Cost and time
 
-- Riigilõiv / state fee: vastavalt riigilõivuseadusele (näidisväärtus
-  selles paketis: 26 EUR) / per the State Fees Act (demo value in this
-  pack: 26 EUR).
-- Otsus / decision: kohe, kui kõik registrid vastavad; muidu kuni 10
-  tööpäeva / immediate when all registers answer; otherwise up to 10
-  working days (LS § 98 lg 2).
+- State fee: per the State Fees Act (demo value in this pack: 26 EUR).
+- Decision: immediate when all registers answer; otherwise within ten
+  working days (§ 98 (2)).
 
-## Õiguslik alus / Legal basis
+## Legal basis
 
-- Liiklusseadus, terviktekst RT I, 11.07.2026, 44:
-  <https://www.riigiteataja.ee/et/akt/111072026044>
 - Road Traffic Act, official English translation:
   <https://www.riigiteataja.ee/en/akt/527072026001>
-- Väljavõte otsustamiseks vajalikest sätetest / excerpt of the
-  decision-relevant provisions: `../../statutes/driving_licence_renewal/statute.txt`
+- Legally binding Estonian consolidated text (RT I, 11.07.2026, 44):
+  <https://www.riigiteataja.ee/et/akt/111072026044>
+- Excerpt of the decision-relevant provisions:
+  `../../statutes/driving_licence_renewal/statute.txt`; the full act with
+  the same provisions highlighted:
+  `../../statutes/driving_licence_renewal/road_traffic_act_en_highlighted.pdf`
 
-## Kui midagi läheb valesti? / If something goes wrong
+## If something goes wrong
 
-**ET.** Kui otsus on keelduv, saad teada, milline säte keeldumise põhjustas
-(nt LS § 98 lg 3) ja millisest registrist see teave pärines. Kui register
-on maas või andmed on vastuolulised, suunatakse asi inimesele.
-
-**EN.** A refusal names the provision that caused it (e.g. § 98 (3)) and
-the register the information came from. If a register is down or the data
+A refusal names the provision that caused it (e.g. § 98 (3)) and the
+register the information came from. If a register is down or the data
 conflicts, the case is routed to a human.
 
 ---
 
-## Kuidas sellest lehest sai masinloetav fail / How this page became the machine-readable file
+## How this page becomes the machine-readable file — and everything after it
 
-| See leht ütleb / This page says | `service.yaml` kannab / carries it as |
-|---|---|
-| "saad taotleda Transpordiametilt juhiloa vahetamist" | `service.purpose.concept: maintain_driving_entitlement` |
-| tabeli rida "Esitatud vahetustaotlus" | `conditions[].term_id: renewal_application_submitted`, `evidence: user` |
-| tabeli rida "Kehtiv tervisetõend … tervise infosüsteem" | `term_id: health_certificate_valid`, `register_id: …__health_registry` |
-| tabeli rida "Tasutud riigilõiv" | `term_id: state_fee_paid`, `register_id: …__payment_ledger` |
-| tabeli rida "Juhtimisõigus ei ole peatatud" | `term_id: driving_ban_active`, `register_id: …__traffic_registry` |
-| "Kuidas otsus sünnib" kolm lõiku | `rules:` (allow_renewal, deny_driving_ban) + `outcome_space` |
-| "Hind ja aeg" | `service_level` |
-| "Kui midagi läheb valesti" | `escalation` |
+Each block of this page lands in a `service.yaml` section, and each
+`service.yaml` section is the seed for one machine artifact downstream:
 
-Kui mõnda lauset ei saa sellesse tabelisse panna, on see kas (a) puuduv
-väli masinloetavas failis või (b) sisutühi lause — mõlemal juhul paranda.
-[If a sentence cannot be placed in this table, it is either (a) a missing
-field in the machine-readable file or (b) an empty sentence — fix either
-way.]
+| This page says | `service.yaml` carries it as | ... which later generates |
+|---|---|---|
+| "you can apply ... to have it replaced" | `service.purpose` | service discovery metadata |
+| the "What do you need?" table, incl. the law §§ | `legal_mapping.conditions[]` (term, quote, evidence, register, field) | term catalogue (`text_term.json`) with verbatim anchors |
+| the three "How is the decision made?" sentences | `legal_mapping.rules[]` + `outcomes[]` | decision rules (`term_rule.json`) |
+| "the health information system", "the motor register" ... | `registers[]` (owner, warrant, fields, failure modes) | register schemas (`schema.yaml`) + field-to-term maps (`record_term.json`) |
+| the ALLOW / DENY / NEED MORE INFO walk-through | `scenario_seeds[]` (request, expected outcome, reason) | scenarios, example requests, oracle outcomes |
+| "Cost and time" | `service_level` | service runtime metadata |
+| "If something goes wrong" | `escalation` | routing rules |
+
+Two writing rules follow:
+
+1. **If a sentence cannot be placed in this table**, it is either a missing
+   field in the machine-readable file or an empty sentence — fix either way.
+2. **If a `service.yaml` field cannot be traced to a sentence here**, the
+   page is hiding something from the human — add the sentence.
+
+While interviewing the service owner, make sure this page ends up
+answering, for every register-checked condition: *which register, who owns
+it, is its answer authoritative or merely trusted, and what does failure
+look like* (empty record? system down?). Those are exactly the details the
+downstream artifacts need and that no law text will tell you.

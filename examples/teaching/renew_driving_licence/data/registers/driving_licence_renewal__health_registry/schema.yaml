@@ -1,5 +1,5 @@
 register_id: driving_licence_renewal__health_registry
-label: Health information system (tervise infosüsteem)
+label: Health information system
 description: Records health certificate validity for licence holders.
 fields:
 - health_certificate_valid

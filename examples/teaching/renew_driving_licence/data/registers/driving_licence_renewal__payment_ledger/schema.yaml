@@ -1,5 +1,5 @@
 register_id: driving_licence_renewal__payment_ledger
-label: State treasury payment ledger (riigikassa maksete infosüsteem)
+label: State treasury payment ledger
 description: Records state fee payments by purpose.
 fields:
 - state_fee_paid

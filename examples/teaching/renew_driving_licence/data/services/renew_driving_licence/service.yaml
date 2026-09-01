@@ -1,66 +1,147 @@
-# Machine-readable service description (Semantic Service Contract, v0.1)
+# Machine-readable service description (Semantic Service Contract, v0.2)
 #
 # Human-readable counterpart: service-description.md in the same directory.
 # Rule of the pack: author the human-readable page FIRST, then translate it
 # into this file. Every value here must be traceable to a sentence there.
+#
+# This file is deliberately rich enough to be the SEED for every other
+# machine artifact. Derivation map:
+#   legal_mapping.conditions[]  -> term catalogue (text_term.json: term ids,
+#                                  evidence, verbatim anchors)
+#   legal_mapping.rules[]       -> decision rules (term_rule.json)
+#   legal_mapping.outcomes[]    -> outcome vocabulary (term_rule.json)
+#   registers[]                 -> register schemas (schema.yaml) and
+#                                  field-to-term mappings (record_term.json)
+#   scenario_seeds[]            -> scenarios, example requests (utterances),
+#                                  and oracle outcomes
+#   actions[] / audit / service_level -> service runtime layers (future work)
 #
 # One file answers four questions a machine must answer on its own:
 #   1. WHAT is this service?            (discovery, purpose)
 #   2. WHO/WHEN does it apply?          (eligibility, preconditions)
 #   3. WHAT does it need to run?        (required data, data sources)
 #   4. WHAT may be done on whose behalf? (actions, authority, audit)
-#
-# The legal_mapping section is the bridge into statute-decider: every
-# machine-checkable condition names the statutory term it instantiates and
-# the register that can warrant it. That mapping is what turns a service
-# description into something a solver can decide over.
 
 service:
   id: renew_driving_licence
-  version: "0.1"
-  name:
-    et: Juhiloa uuendamine
-    en: Driving licence renewal
+  version: "0.2"
+  name: Driving licence renewal
   provider:
-    organisation: Transpordiamet (Transport Administration)
+    organisation: Transport Administration (Transpordiamet)
   purpose:
     concept: maintain_driving_entitlement
-    description: Renew an expiring or expired driving licence.
+    description: Replace an expiring or expired driving licence.
   eligible_subject:
     type: natural_person
+    constraints:
+      - permanent residence in Estonia (§ 98 (1^1))
 
 legal_mapping:
   # The statutory basis and the term vocabulary this service instantiates.
   statute_id: driving_licence_renewal
   legal_basis:
-    act: Liiklusseadus (Road Traffic Act)
-    consolidated_text: https://www.riigiteataja.ee/et/akt/111072026044   # RT I, 11.07.2026, 44
+    act: Road Traffic Act (Liiklusseadus)
     english_translation: https://www.riigiteataja.ee/en/akt/527072026001
+    binding_text: https://www.riigiteataja.ee/et/akt/111072026044   # RT I, 11.07.2026, 44
   outcome_space: [ALLOW, DENY, NEED_MORE_INFO]
+
+  # Each condition carries everything the term catalogue needs: the yes/no
+  # term, the verbatim law sentence (anchor), who can warrant it, and - for
+  # register evidence - which register and which field.
   conditions:
     - term_id: renewal_application_submitted
-      clause: "LS § 98 lg 2"
+      statement: The person has submitted a replacement application.
+      clause: "§ 98 (2)"
+      quote: "... an application for replacement of the driving licence was submitted."
       evidence: user                            # the applicant's own statement suffices
       source: the request itself
     - term_id: health_certificate_valid
-      clause: "LS § 101 lg 1 ja lg 8"
+      statement: A valid medical certificate is on record.
+      clause: "§ 101 (1), (8)"
+      quote: "Compliance with the medical requirements is proven by a medical certificate issued by the person who carried out the medical examination."
       evidence: register                        # must be warranted, a claim is not enough
       register_id: driving_licence_renewal__health_registry
+      register_field: health_certificate_valid
     - term_id: state_fee_paid
-      clause: "LS § 96 lg 9"
+      statement: The state fee has been paid.
+      clause: "§ 96 (9)"
+      quote: "A state fee is payable for issuing or replacing a driving licence."
       evidence: register
       register_id: driving_licence_renewal__payment_ledger
+      register_field: state_fee_paid
     - term_id: driving_ban_active
-      clause: "LS § 98 lg 3"
+      statement: The right to drive is suspended or withdrawn.
+      clause: "§ 98 (3)"
+      quote: "... whose right to drive has been suspended or withdrawn in accordance with § 125 of this Act ..."
       evidence: register
       register_id: driving_licence_renewal__traffic_registry
+      register_field: driving_ban_active
+
+  outcomes:
+    - outcome_id: licence_renewed
+      label: Driving licence is replaced
+    - outcome_id: renewal_refused
+      label: Replacement is refused
+
   rules:
     - premise_id: allow_renewal
       effect: licence_renewed
       when_all: [renewal_application_submitted, health_certificate_valid, state_fee_paid]
+      clauses: ["§ 98 (2)", "§ 101 (1)", "§ 96 (9)"]
     - premise_id: deny_driving_ban
       effect: renewal_refused
       when_all: [driving_ban_active]
+      clauses: ["§ 98 (3)"]
+
+# One entry per register the service consults. This block is the seed for
+# each register's schema.yaml (fields, warrant) and record_term.json
+# (field -> term mapping). Ask the officials for owner and failure modes -
+# they know.
+registers:
+  - register_id: driving_licence_renewal__health_registry
+    label: Health information system
+    owner: Health and Welfare Information Systems Centre (TEHIK)
+    named_in_law: "§ 101 (8): '... issued to the driver via the health information system ...'"
+    warrant: authoritative
+    fields:
+      - field: health_certificate_valid
+        term_id: health_certificate_valid
+    failure_modes: [no certificate on record, system unavailable]
+  - register_id: driving_licence_renewal__payment_ledger
+    label: State treasury payment ledger
+    owner: Ministry of Finance / State Shared Service Centre
+    named_in_law: "implied by § 96 (9) (state fee payable)"
+    warrant: authoritative
+    fields:
+      - field: state_fee_paid
+        term_id: state_fee_paid
+    failure_modes: [payment not yet arrived, reference number mismatch]
+  - register_id: driving_licence_renewal__traffic_registry
+    label: Motor register
+    owner: Transport Administration
+    named_in_law: "§ 96 (7): 'The right to drive a motor vehicle is proven based on the data of the motor register.'"
+    warrant: authoritative
+    fields:
+      - field: driving_ban_active
+        term_id: driving_ban_active
+    failure_modes: [foreign decision not yet forwarded (§ 98 (3))]
+
+# One seed per outcome class: a realistic request plus the expected outcome
+# and its reason. These become the scenarios, the example utterances, and
+# the oracle outcomes.
+scenario_seeds:
+  - scenario_id: renewal_allow
+    request: Person applies for renewal and states the fee is paid; all registers confirm.
+    expected_outcome: ALLOW
+    reason: All allow-rule conditions warranted (fee claim verified against the payment ledger).
+  - scenario_id: renewal_deny_ban
+    request: Person applies while admitting their right to drive is suspended; the motor register confirms.
+    expected_outcome: DENY
+    reason: deny_driving_ban fires (§ 98 (3)); the admission is a statement against interest.
+  - scenario_id: renewal_need_fee
+    request: Person applies but says nothing about the fee; the payment ledger has no payment on record.
+    expected_outcome: NEED_MORE_INFO
+    reason: state_fee_paid has no warranted value; the decision waits for the register.
 
 required_data:
   - person.identifier
@@ -125,5 +206,5 @@ audit:
     - timestamps
 
 service_level:
-  fee: "26 EUR (state fee; demo value)"
-  decision_time: "immediate when all registers answer; else 5 working days"
+  fee: "26 EUR (state fee; demo value, actual per the State Fees Act)"
+  decision_time: "immediate when all registers answer; else within 10 working days (§ 98 (2))"

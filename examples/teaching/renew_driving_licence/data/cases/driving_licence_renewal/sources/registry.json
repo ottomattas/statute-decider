@@ -3,7 +3,7 @@
   "registers": [
     {
       "register_id": "driving_licence_renewal__health_registry",
-      "label": "Health information system (tervise infosüsteem)",
+      "label": "Health information system",
       "warrant": "authoritative",
       "availability": "available",
       "records": [
@@ -17,7 +17,7 @@
     },
     {
       "register_id": "driving_licence_renewal__payment_ledger",
-      "label": "State treasury payment ledger (riigikassa maksete infosüsteem)",
+      "label": "State treasury payment ledger",
       "warrant": "authoritative",
       "availability": "available",
       "records": [
@@ -31,7 +31,7 @@
     },
     {
       "register_id": "driving_licence_renewal__traffic_registry",
-      "label": "Traffic register (liiklusregister)",
+      "label": "Motor register",
       "warrant": "authoritative",
       "availability": "available",
       "records": [

@@ -1,103 +1,63 @@
-VÄLJAVÕTE — Liiklusseadus (terviktekst RT I, 11.07.2026, 44)
-EXCERPT — Road Traffic Act (official English translation)
+EXCERPT — Road Traffic Act (Liiklusseadus), official English translation
 
-Eesti keeles / Estonian:  https://www.riigiteataja.ee/et/akt/111072026044
-In English / inglise keeles: https://www.riigiteataja.ee/en/akt/527072026001
+Source: https://www.riigiteataja.ee/en/akt/527072026001
+Legally binding Estonian consolidated text (RT I, 11.07.2026, 44):
+https://www.riigiteataja.ee/et/akt/111072026044
 
-Alljärgnevad sätted on sõna-sõnalt Riigi Teataja tekstide järgi. Väljavõte
-katab juhiloa vahetamise (uuendamise) otsustamiseks vajalikud sätted;
-terviklik seadus asub ülaltoodud aadressidel.
-[The provisions below are verbatim from the Riigi Teataja texts. The
-excerpt covers the provisions needed to decide a driving licence
-replacement (renewal); the full act is at the addresses above.]
+The provisions below are verbatim from the official English translation.
+The excerpt covers the provisions needed to decide a driving licence
+replacement (renewal). The full act, with these same provisions
+highlighted, is in road_traffic_act_en_highlighted.pdf next to this file.
 
 =======================================================================
-§ 96. Juhtimisõigust tõendav dokument
 § 96. Documents certifying right to drive
 =======================================================================
 
-(7) [teine lause / second sentence]
-ET: Õigust juhtida mootorsõidukit tõendatakse liiklusregistri andmete
-alusel.
-EN: The right to drive a motor vehicle is proven based on the data of the
-motor register.
+(7) [second sentence] The right to drive a motor vehicle is proven based
+on the data of the motor register.
 
-(9)
-ET: Juhiloa väljastamise ja vahetamise eest tuleb tasuda riigilõivu.
-EN: A state fee is payable for issuing or replacing a driving licence.
+(9) A state fee is payable for issuing or replacing a driving licence.
 
 =======================================================================
-§ 97. Juhiloa kehtivus
 § 97. Terms of driving licences
 =======================================================================
 
-(7)
-ET: AM-, A-, B-, T-kategooria ja A1-, A2-, B1-alamkategooria mootorsõiduki
-ja BE-kategooria autorongi juhiluba antakse välja kehtivusega kümme aastat.
-EN: A driving licence for motor vehicles of categories AM, A, B and T and
+(7) A driving licence for motor vehicles of categories AM, A, B and T and
 subcategories A1, A2 and B1 and combinations of vehicles of category BE is
 valid for ten years.
 
 =======================================================================
-§ 98. Esmase juhiloa ja juhiloa väljaandmine, vahetamine ja kehtetuks
-tunnistamine
 § 98. Issue, replacement and revocation of provisional driving licence
 and driving licence
 =======================================================================
 
-(1)
-ET: Esmase juhiloa ja juhiloa väljastab, vahetab ja tunnistab kehtetuks
-Transpordiamet.
-EN: Provisional driving licences and driving licences are issued, replaced
+(1) Provisional driving licences and driving licences are issued, replaced
 and revoked by the Transport Administration.
 
-(2)
-ET: Esmane juhiluba ja juhiluba antakse välja kümne tööpäeva jooksul
-sellekohase eksami sooritamisele või juhiloa vahetamise taotluse
-esitamisele järgnevast päevast arvates.
-EN: Provisional driving licences and driving licences are issued within
+(2) Provisional driving licences and driving licences are issued within
 ten working days as of the day after which the respective test was passed
 or an application for replacement of the driving licence was submitted.
 
-(3) [esimene lause / first sentence]
-ET: Esmast juhiluba ja juhiluba ei väljastata isikule, kellele ei ole
-antud juhtimisõigust või kelle juhtimisõigus on peatatud või käesoleva
-seaduse § 125 kohaselt ära võetud või kelle juhtimisõiguse on ära võtnud
-Euroopa Liidu, Euroopa Majanduspiirkonna liikmesriigi või Šveitsi
-Konföderatsiooni pädev asutus ning selle kohta jõustunud otsus on
-edastatud Transpordiametile.
-EN: A provisional driving licence and a driving licences is not issued to
-a person whom no right to driver has been granted or whose right to drive
-has been suspended or withdrawn in accordance with § 125 of this Act or
-whose right to drive has been withdrawn by a competent authority of a
-Member State of the European Union, the European Economic Area or the
-Swiss Confederation and the respective final decision has been forwarded
-to the Transport Administration.
+(3) [first sentence] A provisional driving licence and a driving licences
+is not issued to a person whom no right to driver has been granted or
+whose right to drive has been suspended or withdrawn in accordance with
+§ 125 of this Act or whose right to drive has been withdrawn by a
+competent authority of a Member State of the European Union, the European
+Economic Area or the Swiss Confederation and the respective final decision
+has been forwarded to the Transport Administration.
 
 =======================================================================
-§ 101. Mootorsõidukijuhi ja juhtimisõiguse taotleja tervisekontroll
 § 101. Medical examination of driver of motor vehicle and applicant for
 right to drive
 =======================================================================
 
-(1)
-ET: Mootorsõidukijuhi ja juhtimisõiguse taotleja terviseseisund peab
-vastama käesoleva paragrahvi lõike 10 alusel kehtestatud tervisenõuetele.
-Tervisenõuetele vastavust tõendab tervisekontrolli teostaja väljastatud
-tervisetõend.
-EN: The state of health of a motor vehicle driver and applicant for the
+(1) The state of health of a motor vehicle driver and applicant for the
 right to drive must comply with the medical requirements established in
 accordance with subsection 10 of this section. Compliance with the medical
 requirements is proven by a medical certificate issued by the person who
 carried out the medical examination.
 
-(8)
-ET: Mootorsõidukijuhi järgmise tervisekontrolli läbimise tähtpäeva
-saabumisel peatub mootorsõidukijuhi juhtimisõigus, kui talle ei ole
-tervise infosüsteemi vahendusel väljastatud või kui ta ise ei esita
-hiljemalt nimetatud tähtpäeval Transpordiametile uut kehtivat
-tervisetõendit.
-EN: Upon arrival of the due date for the next medical examination of a
+(8) Upon arrival of the due date for the next medical examination of a
 motor vehicle driver, the driver's right to drive motor vehicles is
 suspended where no new valid medical certificate has been issued to the
 driver via the health information system or the driver fails to submit a

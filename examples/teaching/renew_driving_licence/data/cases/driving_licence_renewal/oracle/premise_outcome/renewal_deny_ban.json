@@ -7,7 +7,7 @@
   "fired_rules": [],
   "valuation": {},
   "free_missing": [],
-  "note": "The applicant's own admission of the driving ban fires deny_driving_ban; the traffic register confirms.",
+  "note": "The applicant's own admission of the driving ban fires deny_driving_ban; the motor register confirms.",
   "provenance": {
     "node": "premise_outcome",
     "method": "oracle",

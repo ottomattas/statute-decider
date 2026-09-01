@@ -12,33 +12,33 @@
       "higher_order": "ApplicationSubmitted(person)",
       "anchors": [
         {
-          "clause_id": "ls_98_2",
-          "clause_title": "LS § 98 lg 2",
-          "quote": "Esmane juhiluba ja juhiluba antakse välja kümne tööpäeva jooksul sellekohase eksami sooritamisele või juhiloa vahetamise taotluse esitamisele järgnevast päevast arvates.",
-          "note": "EN: '...issued within ten working days as of the day after which ... an application for replacement of the driving licence was submitted.' The request itself; user-declarable."
+          "clause_id": "rta_98_2",
+          "clause_title": "§ 98 (2)",
+          "quote": "Provisional driving licences and driving licences are issued within ten working days as of the day after which the respective test was passed or an application for replacement of the driving licence was submitted.",
+          "note": "The request itself; user-declarable."
         }
       ],
       "notes": ""
     },
     {
       "term_id": "health_certificate_valid",
-      "label": "Valid medical certificate (tervisetõend) on record",
-      "definition": "A currently valid medical certificate has been issued for the person, delivered via the health information system (tervise infosüsteem) or submitted to the Transport Administration.",
+      "label": "Valid medical certificate on record",
+      "definition": "A currently valid medical certificate has been issued for the person, delivered via the health information system or submitted to the Transport Administration.",
       "evidence": "register",
       "propositional": "HEALTH_CERT",
       "predicate": "ValidHealthCertificate(person)",
       "higher_order": "ValidHealthCertificate(person)",
       "anchors": [
         {
-          "clause_id": "ls_101_1",
-          "clause_title": "LS § 101 lg 1",
-          "quote": "Tervisenõuetele vastavust tõendab tervisekontrolli teostaja väljastatud tervisetõend.",
-          "note": "EN: 'Compliance with the medical requirements is proven by a medical certificate issued by the person who carried out the medical examination.'"
+          "clause_id": "rta_101_1",
+          "clause_title": "§ 101 (1)",
+          "quote": "Compliance with the medical requirements is proven by a medical certificate issued by the person who carried out the medical examination.",
+          "note": "Compliance must be proven, not asserted."
         },
         {
-          "clause_id": "ls_101_8",
-          "clause_title": "LS § 101 lg 8",
-          "quote": "... kui talle ei ole tervise infosüsteemi vahendusel väljastatud või kui ta ise ei esita hiljemalt nimetatud tähtpäeval Transpordiametile uut kehtivat tervisetõendit.",
+          "clause_id": "rta_101_8",
+          "clause_title": "§ 101 (8)",
+          "quote": "... where no new valid medical certificate has been issued to the driver via the health information system or the driver fails to submit a new valid medical certificate to the Transport Administration by the due date at the latest.",
           "note": "The law itself names the register: the health information system is the electronic channel for the certificate."
         }
       ],
@@ -46,7 +46,7 @@
     },
     {
       "term_id": "state_fee_paid",
-      "label": "State fee (riigilõiv) has been paid",
+      "label": "State fee has been paid",
       "definition": "The state fee for issuing or replacing the driving licence has been paid.",
       "evidence": "register",
       "propositional": "FEE_PAID",
@@ -54,10 +54,10 @@
       "higher_order": "StateFeePaid(person)",
       "anchors": [
         {
-          "clause_id": "ls_96_9",
-          "clause_title": "LS § 96 lg 9",
-          "quote": "Juhiloa väljastamise ja vahetamise eest tuleb tasuda riigilõivu.",
-          "note": "EN: 'A state fee is payable for issuing or replacing a driving licence.' Amount set by Riigilõivuseadus."
+          "clause_id": "rta_96_9",
+          "clause_title": "§ 96 (9)",
+          "quote": "A state fee is payable for issuing or replacing a driving licence.",
+          "note": "Amount set by the State Fees Act."
         }
       ],
       "notes": ""
@@ -65,23 +65,23 @@
     {
       "term_id": "driving_ban_active",
       "label": "Right to drive is suspended or withdrawn",
-      "definition": "The person's right to drive has been suspended or withdrawn (LS § 125); established by the data of the motor register (liiklusregister).",
+      "definition": "The person's right to drive has been suspended or withdrawn (§ 125); established by the data of the motor register.",
       "evidence": "register",
       "propositional": "DRIVING_BAN",
       "predicate": "DrivingBanActive(person)",
       "higher_order": "DrivingBanActive(person)",
       "anchors": [
         {
-          "clause_id": "ls_98_3",
-          "clause_title": "LS § 98 lg 3",
-          "quote": "Esmast juhiluba ja juhiluba ei väljastata isikule, kellele ei ole antud juhtimisõigust või kelle juhtimisõigus on peatatud või käesoleva seaduse § 125 kohaselt ära võetud ...",
-          "note": "EN: 'A ... driving licence is not issued to a person ... whose right to drive has been suspended or withdrawn in accordance with § 125 of this Act ...' Deny condition."
+          "clause_id": "rta_98_3",
+          "clause_title": "§ 98 (3)",
+          "quote": "A provisional driving licence and a driving licences is not issued to a person whom no right to driver has been granted or whose right to drive has been suspended or withdrawn in accordance with § 125 of this Act ...",
+          "note": "Deny condition. (Grammar as in the official translation.)"
         },
         {
-          "clause_id": "ls_96_7",
-          "clause_title": "LS § 96 lg 7",
-          "quote": "Õigust juhtida mootorsõidukit tõendatakse liiklusregistri andmete alusel.",
-          "note": "The motor register (liiklusregister) is the authoritative source for the right to drive."
+          "clause_id": "rta_96_7",
+          "clause_title": "§ 96 (7)",
+          "quote": "The right to drive a motor vehicle is proven based on the data of the motor register.",
+          "note": "The motor register is the authoritative source for the right to drive."
         }
       ],
       "notes": ""
@@ -97,6 +97,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-02T00:00:00Z",
-    "notes": "Teaching example authored 2026-09-02; anchored 2026-09-02 to Liiklusseadus terviktekst RT I, 11.07.2026, 44 and its official English translation."
+    "notes": "Teaching example authored 2026-09-02; anchored to the official English translation of the Road Traffic Act (Estonian consolidated text RT I, 11.07.2026, 44 prevails)."
   }
 }

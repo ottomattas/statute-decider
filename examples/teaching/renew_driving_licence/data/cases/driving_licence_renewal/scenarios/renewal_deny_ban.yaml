@@ -2,7 +2,7 @@ scenario_id: renewal_deny_ban
 case_id: driving_licence_renewal
 description: >-
   Applicant admits an active driving ban in the request itself (a statement
-  against interest); the traffic register confirms it. The deny rule fires on
+  against interest); the motor register confirms it. The deny rule fires on
   the applicant's own words: DENY.
 utterance_file: request_renewal_admits_ban.txt
 register_overrides:

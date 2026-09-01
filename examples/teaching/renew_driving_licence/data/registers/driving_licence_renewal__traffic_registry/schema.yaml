@@ -1,6 +1,6 @@
 register_id: driving_licence_renewal__traffic_registry
-label: Traffic register (liiklusregister)
-description: Records driving-right suspensions and revocations.
+label: Motor register
+description: Records driving-right suspensions and revocations (§ 96 (7) of the Road Traffic Act).
 fields:
 - driving_ban_active
 default_warrant: authoritative

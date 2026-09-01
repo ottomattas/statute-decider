@@ -19,7 +19,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Licence is replaced on application (LS § 98 lg 2), valid medical certificate (LS § 101 lg 1), and paid state fee (LS § 96 lg 9).",
+      "label": "Licence is replaced on application (§ 98 (2)), valid medical certificate (§ 101 (1)), and paid state fee (§ 96 (9)).",
       "when_term_ids": [
         "renewal_application_submitted",
         "health_certificate_valid",
@@ -29,21 +29,21 @@
       "target_term_id": null,
       "law_references": [
         {
-          "clause_id": "ls_98_2",
-          "clause_title": "LS § 98 lg 2",
-          "quote": "Esmane juhiluba ja juhiluba antakse välja kümne tööpäeva jooksul ... juhiloa vahetamise taotluse esitamisele järgnevast päevast arvates.",
+          "clause_id": "rta_98_2",
+          "clause_title": "§ 98 (2)",
+          "quote": "Provisional driving licences and driving licences are issued within ten working days as of the day after which ... an application for replacement of the driving licence was submitted.",
           "note": "Application path for replacement."
         },
         {
-          "clause_id": "ls_101_1",
-          "clause_title": "LS § 101 lg 1",
-          "quote": "Tervisenõuetele vastavust tõendab tervisekontrolli teostaja väljastatud tervisetõend.",
+          "clause_id": "rta_101_1",
+          "clause_title": "§ 101 (1)",
+          "quote": "Compliance with the medical requirements is proven by a medical certificate issued by the person who carried out the medical examination.",
           "note": "Medical certificate condition."
         },
         {
-          "clause_id": "ls_96_9",
-          "clause_title": "LS § 96 lg 9",
-          "quote": "Juhiloa väljastamise ja vahetamise eest tuleb tasuda riigilõivu.",
+          "clause_id": "rta_96_9",
+          "clause_title": "§ 96 (9)",
+          "quote": "A state fee is payable for issuing or replacing a driving licence.",
           "note": "State fee condition."
         }
       ],
@@ -54,7 +54,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "deny_if_all",
-      "label": "Licence is not issued while the right to drive is suspended or withdrawn (LS § 98 lg 3).",
+      "label": "Licence is not issued while the right to drive is suspended or withdrawn (§ 98 (3)).",
       "when_term_ids": [
         "driving_ban_active"
       ],
@@ -62,9 +62,9 @@
       "target_term_id": null,
       "law_references": [
         {
-          "clause_id": "ls_98_3",
-          "clause_title": "LS § 98 lg 3",
-          "quote": "Esmast juhiluba ja juhiluba ei väljastata isikule, ... kelle juhtimisõigus on peatatud või käesoleva seaduse § 125 kohaselt ära võetud ...",
+          "clause_id": "rta_98_3",
+          "clause_title": "§ 98 (3)",
+          "quote": "A provisional driving licence and a driving licences is not issued to a person ... whose right to drive has been suspended or withdrawn in accordance with § 125 of this Act ...",
           "note": "Deny path."
         }
       ],

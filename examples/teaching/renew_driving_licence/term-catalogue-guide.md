@@ -6,9 +6,12 @@ yes?* The three steps below turn that reading into a **term catalogue** —
 the shared vocabulary that the service description, the registers, and the
 decision rules all speak.
 
-Worked example throughout: driving licence renewal, Liiklusseadus
-([ET terviktekst](https://www.riigiteataja.ee/et/akt/111072026044),
-[official EN translation](https://www.riigiteataja.ee/en/akt/527072026001)).
+Worked example throughout: driving licence renewal, Road Traffic Act
+([official English translation](https://www.riigiteataja.ee/en/akt/527072026001);
+the legally binding Estonian text is
+[RT I, 11.07.2026, 44](https://www.riigiteataja.ee/et/akt/111072026044)).
+Open `data/statutes/driving_licence_renewal/road_traffic_act_en_highlighted.pdf`
+to see where these few provisions sit inside the full 127-page act.
 
 ---
 
@@ -22,22 +25,24 @@ deadlines for the agency, ministerial regulations.
 This is what the highlighting looks like on the real text (bold = what we
 marked):
 
-> **LS § 98 lg 2.** Esmane juhiluba ja juhiluba antakse välja kümne
-> tööpäeva jooksul sellekohase eksami sooritamisele või **juhiloa
-> vahetamise taotluse esitamisele** järgnevast päevast arvates.
+> **§ 98 (2).** Provisional driving licences and driving licences are
+> issued within ten working days as of the day after which the respective
+> test was passed or **an application for replacement of the driving
+> licence was submitted**.
 >
-> **LS § 101 lg 1.** ... Tervisenõuetele vastavust tõendab tervisekontrolli
-> teostaja väljastatud **tervisetõend**.
+> **§ 101 (1).** ... Compliance with the medical requirements **is proven
+> by a medical certificate** issued by the person who carried out the
+> medical examination.
 >
-> **LS § 96 lg 9.** Juhiloa väljastamise ja vahetamise eest **tuleb tasuda
-> riigilõivu**.
+> **§ 96 (9).** **A state fee is payable** for issuing or replacing a
+> driving licence.
 >
-> **LS § 98 lg 3.** Esmast juhiluba ja juhiluba **ei väljastata** isikule,
-> ... **kelle juhtimisõigus on peatatud või** käesoleva seaduse § 125
-> kohaselt **ära võetud** ...
+> **§ 98 (3).** A provisional driving licence and a driving licences **is
+> not issued** to a person ... **whose right to drive has been suspended or
+> withdrawn** in accordance with § 125 of this Act ...
 
 Four highlights: three conditions for a yes, one condition that forces a
-no. Notice the last one is a consequence too ("ei väljastata") — deny
+no. Notice the last one is a consequence too ("is not issued") — deny
 conditions usually carry their consequence in the same sentence.
 
 ## Step 2 — Turn each highlight into a term
@@ -48,18 +53,18 @@ give it a short machine name (`snake_case`), and answer the key question:
 > **Who can warrant this?** Is the person's own word enough (the law treats
 > it as their declaration), or must a register confirm it (the law demands
 > proof)? If a register — which one? The law often names it outright:
-> § 101 lg 8 says the certificate arrives "tervise infosüsteemi
-> vahendusel"; § 96 lg 7 says the right to drive is proven "liiklusregistri
-> andmete alusel".
+> § 101 (8) says the certificate is issued "via the health information
+> system"; § 96 (7) says the right to drive "is proven based on the data of
+> the motor register".
 
 The worked catalogue:
 
 | Highlight | Term (yes/no statement) | `term_id` | Who warrants it? |
 |---|---|---|---|
-| "juhiloa vahetamise taotluse esitamisele" (§ 98 lg 2) | The person has submitted a replacement application | `renewal_application_submitted` | **The person** — the request itself |
-| "tervisetõend" (§ 101 lg 1, lg 8) | A valid medical certificate is on record | `health_certificate_valid` | **Register:** tervise infosüsteem |
-| "tuleb tasuda riigilõivu" (§ 96 lg 9) | The state fee has been paid | `state_fee_paid` | **Register:** payment ledger (riigikassa) |
-| "juhtimisõigus on peatatud või ... ära võetud" (§ 98 lg 3) | The right to drive is suspended or withdrawn | `driving_ban_active` | **Register:** liiklusregister |
+| "an application for replacement ... was submitted" (§ 98 (2)) | The person has submitted a replacement application | `renewal_application_submitted` | **The person** — the request itself |
+| "is proven by a medical certificate" (§ 101 (1), (8)) | A valid medical certificate is on record | `health_certificate_valid` | **Register:** health information system |
+| "a state fee is payable" (§ 96 (9)) | The state fee has been paid | `state_fee_paid` | **Register:** state treasury payment ledger |
+| "right to drive has been suspended or withdrawn" (§ 98 (3)) | The right to drive is suspended or withdrawn | `driving_ban_active` | **Register:** motor register |
 
 Rules of thumb:
 
@@ -77,9 +82,9 @@ Combine the terms into decision rules. Two shapes cover almost everything:
 ```text
 ALLOW if ALL of: renewal_application_submitted,
                  health_certificate_valid,
-                 state_fee_paid            -> licence_renewed   (§ 98 lg 2, § 101 lg 1, § 96 lg 9)
+                 state_fee_paid            -> licence_renewed   (§ 98 (2), § 101 (1), § 96 (9))
 
-DENY  if:        driving_ban_active       -> renewal_refused   (§ 98 lg 3)
+DENY  if:        driving_ban_active       -> renewal_refused   (§ 98 (3))
 ```
 
 Then run the completeness check: give only the catalogue and the rules to
