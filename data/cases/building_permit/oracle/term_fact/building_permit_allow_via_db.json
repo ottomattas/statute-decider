@@ -1,0 +1,93 @@
+{
+  "node": "term_fact",
+  "scenario_id": "building_permit_allow_via_db",
+  "facts": [
+    {
+      "premise_id": "fact_building_requirements_met",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "building_requirements_met",
+      "value": true,
+      "register_id": "building_permit__building_registry",
+      "record_id": "main",
+      "field": "building_requirements_met",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_competent_designer",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "competent_designer",
+      "value": true,
+      "register_id": "building_permit__designer_registry",
+      "record_id": "main",
+      "field": "competent_designer",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_fee_paid",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "fee_paid",
+      "value": true,
+      "register_id": "building_permit__payment_ledger",
+      "record_id": "main",
+      "field": "fee_paid",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_plan_conformant",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "plan_conformant",
+      "value": true,
+      "register_id": "building_permit__building_registry",
+      "record_id": "main",
+      "field": "plan_conformant",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_plan_violation",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "plan_violation",
+      "value": false,
+      "register_id": "building_permit__building_registry",
+      "record_id": "main",
+      "field": "plan_violation",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_site_study_provided",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "site_study_provided",
+      "value": true,
+      "register_id": "building_permit__building_registry",
+      "record_id": "main",
+      "field": "site_study_provided",
+      "warrant": "authoritative",
+      "notes": ""
+    }
+  ],
+  "unavailable_registers": [],
+  "unavailable_terms": [],
+  "conflicts": [],
+  "provenance": {
+    "node": "term_fact",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

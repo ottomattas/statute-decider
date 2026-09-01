@@ -1,0 +1,16 @@
+scenario_id: building_permit_need_db
+case_id: building_permit
+description: State-fee payment record absent from the payment ledger; solver cannot
+  confirm fee_paid after DB lookup -> NEED_DB_INFO.
+utterance_file: request_allow.txt
+register_overrides:
+  building_permit__payment_ledger:
+    remove:
+      main:
+      - fee_paid
+tags:
+- needs-info
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

@@ -1,0 +1,15 @@
+scenario_id: civil_service_u3_no_register
+case_id: civil_service_eligibility
+description: Population registry is unavailable, so citizenship and capacity claims
+  cannot be resolved -> U3 UNVERIFIABLE_CLAIM (no_register).
+utterance_file: request_allow.txt
+register_overrides:
+  civil_service_eligibility__population_registry:
+    availability: unavailable
+tags:
+- uncertainty
+- u3
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

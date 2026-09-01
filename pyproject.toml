@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "statute-decider"
+version = "2.0.0"
+description = "Solver-backed statutory decision graph: source -> term -> premise -> outcome -> trace, every node independently checkable against oracle data."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = [
+    "pydantic>=2.7",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+solvers = [
+    "z3-solver>=4.13",
+]
+llm = [
+    "anthropic>=0.40",
+    "openai>=1.50",
+    "google-genai>=1.0",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+sd = "statute_decider.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

@@ -1,0 +1,44 @@
+{
+  "node": "premise_outcome",
+  "scenario_id": "civil_service_u7_trust_only",
+  "state": "UNVERIFIABLE_CLAIM",
+  "scored_as": "NEED_MORE_INFO",
+  "missing_terms": [
+    {
+      "term_id": "ee_citizen",
+      "reason": "unwarranted_only"
+    },
+    {
+      "term_id": "eu_citizen",
+      "reason": "unwarranted_only"
+    },
+    {
+      "term_id": "full_capacity",
+      "reason": "unwarranted_only"
+    },
+    {
+      "term_id": "secondary_education",
+      "reason": "no_value"
+    },
+    {
+      "term_id": "speaks_estonian",
+      "reason": "no_value"
+    }
+  ],
+  "fired_rules": [],
+  "valuation": {},
+  "free_missing": [],
+  "note": "v1 expected_outcome=UNVERIFIABLE_CLAIM; v1 reason_code=trust_only",
+  "provenance": {
+    "node": "premise_outcome",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

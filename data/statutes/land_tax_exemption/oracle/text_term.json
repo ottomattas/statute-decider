@@ -1,0 +1,126 @@
+{
+  "node": "text_term",
+  "statute_id": "land_tax_exemption",
+  "terms": [
+    {
+      "term_id": "residential_land",
+      "label": "Land's intended use is residential (elamumaa)",
+      "definition": "The cadastre records the land's intended use as residential.",
+      "evidence": "register",
+      "propositional": "RESIDENTIAL_LAND",
+      "predicate": "ResidentialLand(parcel)",
+      "higher_order": "ResidentialLand(parcel)",
+      "anchors": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "quote": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa ...",
+          "note": "Residential land-use category for home-land exemption."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "primary_residence_registered",
+      "label": "Owner's primary residence is registered on the parcel",
+      "definition": "The population registry lists the applicant's primary residence on the parcel.",
+      "evidence": "register",
+      "propositional": "PRIMARY_RESIDENCE",
+      "predicate": "PrimaryResidence(owner, parcel)",
+      "higher_order": "PrimaryResidence(owner)(parcel)",
+      "anchors": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "quote": "... kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.",
+          "note": "Population-registry residence condition."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "applicant_is_owner",
+      "label": "Applicant owns the parcel",
+      "definition": "The land registry shows the applicant as the current owner.",
+      "evidence": "register",
+      "propositional": "OWNER",
+      "predicate": "Owns(applicant, parcel)",
+      "higher_order": "Owns(applicant)(parcel)",
+      "anchors": [
+        {
+          "clause_id": "mms_11_1_1",
+          "clause_title": "§ 11 lg 1^1",
+          "quote": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad ...",
+          "note": "Ownership precondition for home-land exemption."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "receives_pension",
+      "label": "Applicant receives a state pension",
+      "definition": "The social-insurance registry records the applicant as a state-pension recipient.",
+      "evidence": "register",
+      "propositional": "PENSIONER",
+      "predicate": "StatePensioner(applicant)",
+      "higher_order": "StatePensioner(applicant)",
+      "anchors": [
+        {
+          "clause_id": "mms_11_5_1",
+          "clause_title": "§ 11 lg 5 p 1",
+          "quote": "... täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele: 1) riikliku pensionikindlustuse seaduse alusel pensioni saajad;",
+          "note": "Pensioner target group for the supplementary exemption."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "municipality_exemption_set",
+      "label": "Municipality has set the exemption",
+      "definition": "The land-tax information system records a § 11(1)/(5) exemption set by the local council.",
+      "evidence": "register",
+      "propositional": "EXEMPTION_SET",
+      "predicate": "MunicipalityExemptionSet(parcel)",
+      "higher_order": "MunicipalityExemptionSet(parcel)",
+      "anchors": [
+        {
+          "clause_id": "mms_11_1",
+          "clause_title": "§ 11 lg 1",
+          "quote": "Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada ... kodualuse maa maksusoodustuse ...",
+          "note": "Local-council act is required to activate the exemption."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "application_submitted",
+      "label": "Supplementary-exemption application has been submitted",
+      "definition": "Applicant confirms that the § 11(7) application has been submitted in the required form.",
+      "evidence": "user",
+      "propositional": "APPLICATION",
+      "predicate": "ApplicationSubmitted(applicant)",
+      "higher_order": "ApplicationSubmitted(applicant)",
+      "anchors": [
+        {
+          "clause_id": "mms_11_7",
+          "clause_title": "§ 11 lg 7",
+          "quote": "Täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.",
+          "note": "User-provided confirmation of submitted application."
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "text_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

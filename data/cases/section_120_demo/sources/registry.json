@@ -1,0 +1,49 @@
+{
+  "node": "registry_record",
+  "registers": [
+    {
+      "register_id": "section_120_demo__population_registry",
+      "label": "Dummy parent registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "applicant_is_parent": true,
+            "applicant_is_not_parent": false
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "section_120_demo__custody_registry",
+      "label": "Dummy custody registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "sole_custody": false,
+            "delegated_decision_right": false
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "section_120_demo__consent_service",
+      "label": "Dummy consent service",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "both_parents_consent": false
+          }
+        }
+      ]
+    }
+  ]
+}

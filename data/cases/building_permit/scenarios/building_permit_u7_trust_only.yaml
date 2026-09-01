@@ -1,0 +1,25 @@
+scenario_id: building_permit_u7_trust_only
+case_id: building_permit
+description: Designer self-report (trust-only) covers competence and state-fee; allow_building_permit
+  fires via lookup but supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
+  (trust_only).
+utterance_file: request_allow.txt
+register_overrides:
+  building_permit__designer_selfreport:
+    warrant: trust_only
+    availability: available
+    set:
+      main:
+        competent_designer: true
+        fee_paid: true
+  building_permit__designer_registry:
+    exclude: true
+  building_permit__payment_ledger:
+    exclude: true
+tags:
+- uncertainty
+- u7
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

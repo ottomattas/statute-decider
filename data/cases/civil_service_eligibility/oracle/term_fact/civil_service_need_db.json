@@ -1,0 +1,81 @@
+{
+  "node": "term_fact",
+  "scenario_id": "civil_service_need_db",
+  "facts": [
+    {
+      "premise_id": "fact_criminal_conviction",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "criminal_conviction",
+      "value": false,
+      "register_id": "civil_service_eligibility__criminal_records_registry",
+      "record_id": "main",
+      "field": "criminal_conviction",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_eu_citizen",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "eu_citizen",
+      "value": false,
+      "register_id": "civil_service_eligibility__population_registry",
+      "record_id": "main",
+      "field": "eu_citizen",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_full_capacity",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "full_capacity",
+      "value": true,
+      "register_id": "civil_service_eligibility__population_registry",
+      "record_id": "main",
+      "field": "full_capacity",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_secondary_education",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "secondary_education",
+      "value": true,
+      "register_id": "civil_service_eligibility__education_registry",
+      "record_id": "main",
+      "field": "secondary_education",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_speaks_estonian",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "speaks_estonian",
+      "value": true,
+      "register_id": "civil_service_eligibility__language_registry",
+      "record_id": "main",
+      "field": "speaks_estonian",
+      "warrant": "authoritative",
+      "notes": ""
+    }
+  ],
+  "unavailable_registers": [],
+  "unavailable_terms": [],
+  "conflicts": [],
+  "provenance": {
+    "node": "term_fact",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

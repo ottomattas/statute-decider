@@ -1,0 +1,12 @@
+scenario_id: civil_service_allow
+case_id: civil_service_eligibility
+description: Estonian-citizen applicant with clean record and confirmed non-conflict
+  resolves to ALLOW.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

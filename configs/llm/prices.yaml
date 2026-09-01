@@ -1,0 +1,40 @@
+# USD per 1 million tokens; conservative working rates (higher tier when a
+# model has context/peak/cache tiers). Verified 2026-08-20/25 against official
+# pricing pages. Keys match configs/llm/models.yaml.
+
+usd_to_eur: 0.92
+
+models:
+  gemini-2.5-flash:
+    input_usd_per_million: 0.30
+    output_usd_per_million: 2.50
+    source: https://ai.google.dev/gemini-api/docs/pricing
+  gpt-5-mini:
+    input_usd_per_million: 0.25
+    output_usd_per_million: 2.00
+    source: https://developers.openai.com/api/docs/models/gpt-5-mini
+  haiku-4.5:
+    input_usd_per_million: 1.00
+    output_usd_per_million: 5.00
+    source: https://www.anthropic.com/claude/haiku
+  deepseek-v4-flash:
+    input_usd_per_million: 0.22
+    output_usd_per_million: 0.66
+    source: https://api-docs.deepseek.com/quick_start/pricing
+
+  gemini-3.1-pro:
+    input_usd_per_million: 2.00
+    output_usd_per_million: 12.00
+    source: https://ai.google.dev/gemini-api/docs/gemini-3
+  gpt-5.6-sol:
+    input_usd_per_million: 4.00
+    output_usd_per_million: 20.00
+    source: https://developers.openai.com/api/docs/pricing
+  fable-5:
+    input_usd_per_million: 10.00
+    output_usd_per_million: 50.00
+    source: https://platform.claude.com/docs/en/about-claude/pricing
+  deepseek-v4-pro:
+    input_usd_per_million: 1.32
+    output_usd_per_million: 3.96
+    source: https://api-docs.deepseek.com/quick_start/pricing

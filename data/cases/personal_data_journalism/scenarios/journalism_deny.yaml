@@ -1,0 +1,12 @@
+scenario_id: journalism_deny
+case_id: personal_data_journalism
+description: Excessive harm defeats ethics compliance and blocks the journalism basis;
+  no consent on record.
+utterance_file: request_deny.txt
+register_overrides: {}
+tags:
+- negative
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

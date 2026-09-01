@@ -1,0 +1,17 @@
+scenario_id: consumer_withdrawal_u5_need_db
+case_id: consumer_withdrawal
+description: DB lacks is_consumer with no source-unavailable flag; user timely-dispatch
+  facts are pinned -> U5 NEED_DB_INFO.
+utterance_file: request_allow.txt
+register_overrides:
+  consumer_withdrawal__trader_crm:
+    remove:
+      main:
+      - is_consumer
+tags:
+- needs-info
+- u5
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

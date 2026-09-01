@@ -1,0 +1,48 @@
+{
+  "node": "registry_record",
+  "registers": [
+    {
+      "register_id": "land_tax_exemption__land_registry",
+      "label": "Dummy land registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "residential_land": true,
+            "applicant_is_owner": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "land_tax_exemption__population_registry",
+      "label": "Dummy population registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "primary_residence_registered": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "land_tax_exemption__social_insurance_registry",
+      "label": "Dummy social-insurance registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "receives_pension": true
+          }
+        }
+      ]
+    }
+  ]
+}

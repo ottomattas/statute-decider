@@ -1,25 +1,19 @@
-wip/
-
-# Generated experiment runs
-experiments/output/
-experiments/ledger.jsonl
-experiments/results/*.jsonl
-experiments/results/**/*.jsonl
-
 # Virtualenvs
+.venv/
 venv/
-framework/venv/
 
 # Python
 __pycache__/
 *.pyc
-.egg-info/
+*.egg-info/
 .pytest_cache/
+.ruff_cache/
 
 # macOS
 .DS_Store
 
 # Local secrets (see .env.example)
 .env
-framework/.env
+
+# v1 leftover: 435MB raw log, over the GitHub file limit; summaries are in history
 experiments/scale-20260825.log

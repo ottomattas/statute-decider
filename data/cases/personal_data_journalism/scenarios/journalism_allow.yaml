@@ -1,0 +1,12 @@
+scenario_id: journalism_allow
+case_id: personal_data_journalism
+description: Journalistic purpose with editorial public-interest and ethics assessment
+  resolves to ALLOW.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

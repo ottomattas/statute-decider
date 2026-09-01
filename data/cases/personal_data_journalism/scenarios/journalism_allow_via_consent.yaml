@@ -1,0 +1,13 @@
+scenario_id: journalism_allow_via_consent
+case_id: personal_data_journalism
+description: Data subject has consented; consent baseline rule fires independently
+  of the journalism basis -> ALLOW.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+- consent-baseline
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

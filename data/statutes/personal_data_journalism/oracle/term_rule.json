@@ -1,0 +1,95 @@
+{
+  "node": "term_rule",
+  "statute_id": "personal_data_journalism",
+  "allow_outcome_id": "processing_allowed",
+  "deny_outcome_id": "processing_denied",
+  "outcomes": [
+    {
+      "outcome_id": "processing_allowed",
+      "label": "Processing is allowed"
+    },
+    {
+      "outcome_id": "processing_denied",
+      "label": "Processing is denied"
+    }
+  ],
+  "rules": [
+    {
+      "premise_id": "allow_journalism_basis",
+      "kind": "rule",
+      "epistemic": "normative",
+      "rule_kind": "allow_if_all",
+      "label": "Journalism basis (§ 4 lause 1) without consent.",
+      "when_term_ids": [
+        "journalistic_purpose",
+        "public_interest",
+        "journalism_ethics"
+      ],
+      "target_outcome_id": "processing_allowed",
+      "target_term_id": null,
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4, esimene lause",
+          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "note": "Three-condition journalism basis."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "premise_id": "allow_consent_basis",
+      "kind": "rule",
+      "epistemic": "normative",
+      "rule_kind": "allow_if_all",
+      "label": "Consent baseline under IKS.",
+      "when_term_ids": [
+        "subject_consent"
+      ],
+      "target_outcome_id": "processing_allowed",
+      "target_term_id": null,
+      "law_references": [
+        {
+          "clause_id": "iks_4",
+          "clause_title": "§ 4 (implicit baseline)",
+          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "note": "Consent is the general baseline; the journalism basis is its exception."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "premise_id": "block_ethics_when_excessive_harm",
+      "kind": "rule",
+      "epistemic": "normative",
+      "rule_kind": "set_false_if_all",
+      "label": "Excessive harm defeats ethics compliance (§ 4 lause 2).",
+      "when_term_ids": [
+        "excessive_harm"
+      ],
+      "target_outcome_id": null,
+      "target_term_id": "journalism_ethics",
+      "law_references": [
+        {
+          "clause_id": "iks_4_harm",
+          "clause_title": "§ 4, teine lause",
+          "quote": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "note": "Proportionality override of the ethics condition."
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "term_rule",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

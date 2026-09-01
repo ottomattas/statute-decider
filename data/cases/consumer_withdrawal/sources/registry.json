@@ -1,0 +1,34 @@
+{
+  "node": "registry_record",
+  "registers": [
+    {
+      "register_id": "consumer_withdrawal__trader_crm",
+      "label": "Dummy trader CRM",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "is_consumer": true,
+            "distance_contract": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "consumer_withdrawal__product_catalogue",
+      "label": "Dummy product catalogue",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "excluded_category": false
+          }
+        }
+      ]
+    }
+  ]
+}

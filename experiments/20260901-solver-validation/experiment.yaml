@@ -1,0 +1,11 @@
+name: 20260901-solver-validation
+question: >
+  Do the solver endpoint and the oracle data agree end to end? Every node
+  oracle/file, decision by z3, trace rendered. No LLM; row 1 of any table.
+
+condition: solver-validation
+cases: all
+models: []
+repeats: 1
+budget_eur: 0.0
+notes: Committed run 1 of 3 (solver-validation, baseline, candidate).

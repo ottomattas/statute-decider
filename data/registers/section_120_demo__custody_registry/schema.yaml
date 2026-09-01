@@ -1,0 +1,10 @@
+register_id: section_120_demo__custody_registry
+label: Dummy custody registry
+description: Confirms sole custody or delegated decision rights.
+fields:
+- delegated_decision_right
+- sole_custody
+default_warrant: authoritative
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Field
+  names mirror the vocabulary (v1 mock DBs were keyed by claim id); the mapping is
+  identity until richer field naming is authored.

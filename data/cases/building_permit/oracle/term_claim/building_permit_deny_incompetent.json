@@ -1,0 +1,72 @@
+{
+  "node": "term_claim",
+  "scenario_id": "building_permit_deny_incompetent",
+  "claims": [
+    {
+      "premise_id": "claim_building_requirements_met",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "building_requirements_met",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_competent_designer",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "competent_designer",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_fee_paid",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "fee_paid",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_plan_conformant",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "plan_conformant",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_plan_violation",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "plan_violation",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_site_study_provided",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "site_study_provided",
+      "value": true,
+      "span": "",
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "term_claim",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

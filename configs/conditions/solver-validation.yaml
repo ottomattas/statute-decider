@@ -1,0 +1,17 @@
+# Committed run 1: every node oracle/file, decision by solver, trace rendered.
+# No LLM, essentially free; proves the endpoint and the oracle data agree.
+condition: solver-validation
+notes: Row 1 of any table — the trusted path end to end.
+
+statute_text: { method: file }
+text_term: { method: oracle }
+term_rule: { method: oracle }
+user_utterance: { method: file }
+utterance_term: { method: oracle }
+term_claim: { method: oracle }
+registry_record: { method: file }
+record_term: { method: oracle }
+term_fact: { method: lookup }
+premise_outcome: { method: solver, solver: z3 }
+outcome_trace: { method: render }
+logic: propositional

@@ -1,0 +1,9 @@
+scenario_id: need-user
+case_id: section_120_demo
+description: DB facts are known but the emergency fact remains open.
+utterance_file: request_need_user.txt
+register_overrides: {}
+tags: []
+gold_confidence: high
+notes: ''
+provenance: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

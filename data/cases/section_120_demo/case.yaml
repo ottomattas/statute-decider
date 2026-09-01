@@ -1,0 +1,10 @@
+case_id: section_120_demo
+title: Family Law Section 120 demo
+description: File-backed Section 120 worked example for the generic framework pipeline.
+statute_ids:
+- section_120_demo
+register_ids:
+- section_120_demo__population_registry
+- section_120_demo__custody_registry
+- section_120_demo__consent_service
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

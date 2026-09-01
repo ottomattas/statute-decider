@@ -1,0 +1,12 @@
+case_id: building_permit
+title: Ehitusseadustik §§ 42, 44 demo
+description: Building-permit issuance check under the Building Code § 42 lg 1 and
+  § 44 refusal grounds.
+statute_ids:
+- building_permit
+register_ids:
+- building_permit__building_registry
+- building_permit__designer_registry
+- building_permit__payment_ledger
+- building_permit__designer_selfreport
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

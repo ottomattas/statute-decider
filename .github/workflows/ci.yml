@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  framework:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,20 +20,18 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Create virtual environment
-        run: python -m venv framework/venv
+      - name: Install package
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -e '.[dev,solvers]'
 
-      - name: Install dependencies
-        run: framework/venv/bin/pip install -r framework/requirements.txt
+      - name: Lint
+        run: .venv/bin/ruff check src tests tools
 
-      - name: Run unit tests
-        working-directory: framework
-        run: make test
+      - name: Run tests (includes full solver-validation over all scenarios)
+        run: .venv/bin/pytest -q
 
-      - name: Run scenario suite
-        working-directory: framework
-        run: make scenarios
-
-      - name: Run truth-table enumeration
-        working-directory: framework
-        run: make truth-tables
+      - name: Validate data and export matrix
+        run: |
+          .venv/bin/sd validate
+          .venv/bin/sd matrix export

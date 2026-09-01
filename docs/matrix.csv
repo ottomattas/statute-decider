@@ -1,0 +1,128 @@
+chain,level,node_family,node,method,strategy,provider,model,consumed_artifact,future,implemented,note
+statute,source,*_text,statute_text,file,fixture,code,dc5297b,fixture path,false,true,
+statute,source,*_text,statute_text,live,statute-api,code,dc5297b,endpoint config,true,false,
+statute,source,*_text,statute_text,generate,synthetic,code,dc5297b,generation recipe,true,false,
+statute,source,*_text,regulation_text,file,fixture,code,dc5297b,fixture path,true,false,new family member; feeds the same text_term
+statute,source,*_markup,statute_markup,file,fixture,code,dc5297b,fixture path,true,false,machine-readable legislation (e.g. Akoma Ntoso)
+statute,term,*_term,text_term,oracle,hand-defined catalog,human,operator,authoring procedure / notes,false,true,
+statute,term,*_term,text_term,llm,select,deepseek,deepseek-v4-flash,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,deepseek,deepseek-v4-pro,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,anthropic,fable-5,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,google,gemini-2.5-flash,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,google,gemini-3.1-pro,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,openai,gpt-5-mini,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,openai,gpt-5.6-sol,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,select,anthropic,haiku-4.5,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,deepseek,deepseek-v4-flash,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,deepseek,deepseek-v4-pro,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,anthropic,fable-5,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,google,gemini-2.5-flash,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,google,gemini-3.1-pro,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,openai,gpt-5-mini,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,openai,gpt-5.6-sol,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,text_term,llm,synthesize,anthropic,haiku-4.5,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
+statute,term,*_term,markup_term,parse,markup-parser,code,dc5297b,markup grammar,true,false,
+statute,premise,term_*,term_rule,oracle,hand-authored rules,human,operator,authoring procedure / notes,false,true,
+statute,premise,term_*,term_rule,llm,select,deepseek,deepseek-v4-flash,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,deepseek,deepseek-v4-pro,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,anthropic,fable-5,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,google,gemini-2.5-flash,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,google,gemini-3.1-pro,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,openai,gpt-5-mini,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,openai,gpt-5.6-sol,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,select,anthropic,haiku-4.5,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,deepseek,deepseek-v4-flash,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,deepseek,deepseek-v4-pro,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,anthropic,fable-5,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,google,gemini-2.5-flash,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,google,gemini-3.1-pro,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,openai,gpt-5-mini,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,openai,gpt-5.6-sol,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_rule,llm,synthesize,anthropic,haiku-4.5,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
+statute,premise,term_*,term_presumption,oracle,,human,operator,authoring procedure / notes,true,false,new epistemic type: statutory presumptions
+user,source,*_utterance,user_utterance,file,fixture,code,dc5297b,fixture path,false,true,
+user,source,*_utterance,user_utterance,live,intake,code,dc5297b,endpoint config,true,false,
+user,source,*_utterance,user_utterance,generate,synthetic,code,dc5297b,generation recipe,true,false,
+user,source,*_document,user_document,file,fixture,code,dc5297b,fixture path,true,false,asserted — shape does not upgrade warrant
+user,term,*_term,utterance_term,oracle,hand-tagged recognition,human,operator,authoring procedure / notes,false,true,
+user,term,*_term,utterance_term,llm,ground,deepseek,deepseek-v4-flash,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,deepseek,deepseek-v4-pro,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,anthropic,fable-5,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,google,gemini-2.5-flash,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,google,gemini-3.1-pro,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,openai,gpt-5-mini,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,openai,gpt-5.6-sol,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,ground,anthropic,haiku-4.5,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,deepseek,deepseek-v4-flash,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,deepseek,deepseek-v4-pro,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,anthropic,fable-5,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,google,gemini-2.5-flash,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,google,gemini-3.1-pro,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,openai,gpt-5-mini,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,openai,gpt-5.6-sol,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,utterance_term,llm,open,anthropic,haiku-4.5,utterance_term/ground/ground-v1,false,true,
+user,term,*_term,document_term,llm,,deepseek,deepseek-v4-flash,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,deepseek,deepseek-v4-pro,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,anthropic,fable-5,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,google,gemini-2.5-flash,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,google,gemini-3.1-pro,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,openai,gpt-5-mini,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,openai,gpt-5.6-sol,(prompt variant),true,false,
+user,term,*_term,document_term,llm,,anthropic,haiku-4.5,(prompt variant),true,false,
+user,premise,term_*,term_claim,oracle,hand-assigned values,human,operator,authoring procedure / notes,false,true,
+user,premise,term_*,term_claim,llm,value,deepseek,deepseek-v4-flash,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,deepseek,deepseek-v4-pro,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,anthropic,fable-5,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,google,gemini-2.5-flash,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,google,gemini-3.1-pro,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,openai,gpt-5-mini,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,openai,gpt-5.6-sol,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+user,premise,term_*,term_claim,llm,value,anthropic,haiku-4.5,term_claim/value-v1,false,true,fusable with utterance_term (ground)
+register,source,*_record,registry_record,file,fixture,code,dc5297b,fixture path,false,true,
+register,source,*_record,registry_record,live,register-api,code,dc5297b,endpoint config,true,false,
+register,source,*_record,registry_record,generate,synthetic,code,dc5297b,generation recipe,true,false,
+register,term,*_term,record_term,oracle,hand-validated mapping,human,operator,authoring procedure / notes,false,true,
+register,term,*_term,record_term,match,name/alias matching,code,dc5297b,term catalog (alias table),false,true,
+register,term,*_term,record_term,llm,schema-mapping,deepseek,deepseek-v4-flash,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,deepseek,deepseek-v4-pro,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,anthropic,fable-5,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,google,gemini-2.5-flash,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,google,gemini-3.1-pro,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,openai,gpt-5-mini,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,openai,gpt-5.6-sol,(prompt variant),false,false,
+register,term,*_term,record_term,llm,schema-mapping,anthropic,haiku-4.5,(prompt variant),false,false,
+register,term,*_term,record_term,vendor,register documentation,code,dc5297b,register documentation,true,false,
+register,premise,term_*,term_fact,oracle,hand-assigned values,human,operator,authoring procedure / notes,false,true,
+register,premise,term_*,term_fact,lookup,via the mapping,code,dc5297b,record_term mapping,false,true,
+register,premise,term_*,term_fact,llm,record-reading,deepseek,deepseek-v4-flash,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,deepseek,deepseek-v4-pro,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,anthropic,fable-5,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,google,gemini-2.5-flash,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,google,gemini-3.1-pro,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,openai,gpt-5-mini,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,openai,gpt-5.6-sol,(prompt variant),false,false,fusable with record_term
+register,premise,term_*,term_fact,llm,record-reading,anthropic,haiku-4.5,(prompt variant),false,false,fusable with record_term
+join,outcome,*_outcome,premise_outcome,oracle,bind expected outcome,human,operator,authoring procedure / notes,false,true,isolation testing
+join,outcome,*_outcome,premise_outcome,solver,z3,z3,z3 backend,encoding options,false,true,
+join,outcome,*_outcome,premise_outcome,solver,pysat,pysat,pysat backend,encoding options,true,false,
+join,outcome,*_outcome,premise_outcome,solver,clingo,clingo,clingo backend,encoding options,true,false,
+join,outcome,*_outcome,premise_outcome,solver,horn,horn,horn backend,encoding options,true,false,
+join,outcome,*_outcome,premise_outcome,solver,hol,hol,hol backend,encoding options,true,false,
+join,outcome,*_outcome,premise_outcome,llm,decide,deepseek,deepseek-v4-flash,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,deepseek,deepseek-v4-pro,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,anthropic,fable-5,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,google,gemini-2.5-flash,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,google,gemini-3.1-pro,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,openai,gpt-5-mini,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,openai,gpt-5.6-sol,premise_outcome/decide/decide-v1,false,true,
+join,outcome,*_outcome,premise_outcome,llm,decide,anthropic,haiku-4.5,premise_outcome/decide/decide-v1,false,true,
+join,trace,*_trace,outcome_trace,oracle,hand-written reference trace,human,operator,authoring procedure / notes,false,true,
+join,trace,*_trace,outcome_trace,render,default,code,dc5297b,render template,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,deepseek,deepseek-v4-flash,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,deepseek,deepseek-v4-pro,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,anthropic,fable-5,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,google,gemini-2.5-flash,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,google,gemini-3.1-pro,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,openai,gpt-5-mini,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,openai,gpt-5.6-sol,outcome_trace/justify/justify-v1,false,true,
+join,trace,*_trace,outcome_trace,llm,justify,anthropic,haiku-4.5,outcome_trace/justify/justify-v1,false,true,

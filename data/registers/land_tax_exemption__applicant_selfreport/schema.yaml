@@ -1,0 +1,13 @@
+register_id: land_tax_exemption__applicant_selfreport
+label: Applicant self-report of parcel and residence status
+description: 'Stand-in for all four § 11 DB claims: values are taken on trust, triggering
+  U7 TRUST_ONLY.'
+fields:
+- applicant_is_owner
+- municipality_exemption_set
+- primary_residence_registered
+- residential_land
+default_warrant: trust_only
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Field
+  names mirror the vocabulary (v1 mock DBs were keyed by claim id); the mapping is
+  identity until richer field naming is authored.

@@ -1,0 +1,50 @@
+{
+  "node": "registry_record",
+  "registers": [
+    {
+      "register_id": "building_permit__building_registry",
+      "label": "Dummy building registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "plan_conformant": true,
+            "building_requirements_met": true,
+            "site_study_provided": true,
+            "plan_violation": false
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "building_permit__designer_registry",
+      "label": "Dummy designer competence registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "competent_designer": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "building_permit__payment_ledger",
+      "label": "Dummy state-fee payment ledger",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "fee_paid": true
+          }
+        }
+      ]
+    }
+  ]
+}
