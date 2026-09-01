@@ -1,0 +1,24 @@
+{
+  "node": "record_term",
+  "register_id": "driving_licence_renewal__payment_ledger",
+  "mappings": [
+    {
+      "term_id": "state_fee_paid",
+      "register_id": "driving_licence_renewal__payment_ledger",
+      "field": "state_fee_paid",
+      "transform": "identity"
+    }
+  ],
+  "provenance": {
+    "node": "record_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-02T00:00:00Z",
+    "notes": "Teaching example authored 2026-09-02."
+  }
+}

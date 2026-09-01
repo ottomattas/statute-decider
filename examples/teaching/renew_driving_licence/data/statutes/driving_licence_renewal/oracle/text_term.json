@@ -1,0 +1,90 @@
+{
+  "node": "text_term",
+  "statute_id": "driving_licence_renewal",
+  "terms": [
+    {
+      "term_id": "renewal_application_submitted",
+      "label": "Renewal application has been submitted",
+      "definition": "The person has submitted (or is hereby submitting) a driving licence renewal application to the Transport Administration.",
+      "evidence": "user",
+      "propositional": "APPLICATION",
+      "predicate": "ApplicationSubmitted(person)",
+      "higher_order": "ApplicationSubmitted(person)",
+      "anchors": [
+        {
+          "clause_id": "d1",
+          "clause_title": "§ D1",
+          "quote": "Juhiloa uuendamiseks esitab isik Transpordiametile taotluse.",
+          "note": "The request itself; user-declarable."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "health_certificate_valid",
+      "label": "Valid health certificate on record",
+      "definition": "The health information system records a currently valid health certificate for the person.",
+      "evidence": "register",
+      "propositional": "HEALTH_CERT",
+      "predicate": "ValidHealthCertificate(person)",
+      "higher_order": "ValidHealthCertificate(person)",
+      "anchors": [
+        {
+          "clause_id": "d2",
+          "clause_title": "§ D2",
+          "quote": "Juhiluba uuendatakse, kui isikul on kehtiv tervisetõend.",
+          "note": "Register-evidence term: the health information system is authoritative."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "state_fee_paid",
+      "label": "State fee has been paid",
+      "definition": "The state treasury payment system records the renewal state fee as paid.",
+      "evidence": "register",
+      "propositional": "FEE_PAID",
+      "predicate": "StateFeePaid(person)",
+      "higher_order": "StateFeePaid(person)",
+      "anchors": [
+        {
+          "clause_id": "d3",
+          "clause_title": "§ D3",
+          "quote": "Juhiloa uuendamise eest tasutakse riigilõiv enne taotluse läbivaatamist.",
+          "note": "Register-evidence term: the payment ledger is authoritative."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "driving_ban_active",
+      "label": "Right to drive is suspended or revoked",
+      "definition": "The traffic register records an active suspension or revocation of the person's right to drive.",
+      "evidence": "register",
+      "propositional": "DRIVING_BAN",
+      "predicate": "DrivingBanActive(person)",
+      "higher_order": "DrivingBanActive(person)",
+      "anchors": [
+        {
+          "clause_id": "d4",
+          "clause_title": "§ D4",
+          "quote": "Juhiluba ei uuendata, kui isiku juhtimisõigus on peatatud või ära võetud.",
+          "note": "Deny condition; the traffic register is authoritative."
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "text_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-02T00:00:00Z",
+    "notes": "Teaching example authored 2026-09-02."
+  }
+}

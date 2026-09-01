@@ -1,0 +1,7 @@
+register_id: driving_licence_renewal__traffic_registry
+label: Traffic register (liiklusregister)
+description: Records driving-right suspensions and revocations.
+fields:
+- driving_ban_active
+default_warrant: authoritative
+notes: Teaching example authored 2026-09-02.

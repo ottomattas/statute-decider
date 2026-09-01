@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1600" height="900" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="800" y="46" text-anchor="middle" font-size="30" font-weight="bold" fill="#1a1a2e">One public service, three linked artefacts — juhiloa uuendamine (driving licence renewal)</text>
+  <text x="800" y="74" text-anchor="middle" font-size="17" fill="#666">service description &#8596; statutory terms and rules &#8596; warranting registers &#8594; solver decision</text>
+
+  <!-- ================= Column 1: Service description ================= -->
+  <rect x="40" y="100" width="460" height="540" rx="12" fill="#eef4fb" stroke="#3b6ea5" stroke-width="2"/>
+  <text x="270" y="134" text-anchor="middle" font-size="21" font-weight="bold" fill="#25517e">1 &#183; Service description</text>
+  <text x="270" y="156" text-anchor="middle" font-size="14" fill="#557" font-style="italic">service.yaml — machine-readable contract</text>
+
+  <text x="64" y="188" font-size="15" font-weight="bold" fill="#25517e">What / who</text>
+  <text x="64" y="210" font-size="14" fill="#333">id: renew_driving_licence</text>
+  <text x="64" y="230" font-size="14" fill="#333">provider: Transpordiamet</text>
+  <text x="64" y="250" font-size="14" fill="#333">purpose: maintain_driving_entitlement</text>
+
+  <text x="64" y="284" font-size="15" font-weight="bold" fill="#25517e">Machine-checkable conditions</text>
+  <rect x="64" y="296" width="412" height="30" rx="6" fill="#ffffff" stroke="#3b6ea5"/>
+  <text x="76" y="316" font-size="13.5" fill="#333">application submitted &#8594; term: renewal_application_submitted</text>
+  <rect x="64" y="332" width="412" height="30" rx="6" fill="#ffffff" stroke="#3b6ea5"/>
+  <text x="76" y="352" font-size="13.5" fill="#333">valid health certificate &#8594; term: health_certificate_valid</text>
+  <rect x="64" y="368" width="412" height="30" rx="6" fill="#ffffff" stroke="#3b6ea5"/>
+  <text x="76" y="388" font-size="13.5" fill="#333">state fee paid &#8594; term: state_fee_paid</text>
+  <rect x="64" y="404" width="412" height="30" rx="6" fill="#ffffff" stroke="#3b6ea5"/>
+  <text x="76" y="424" font-size="13.5" fill="#333">no driving ban &#8594; term: driving_ban_active</text>
+
+  <text x="64" y="462" font-size="15" font-weight="bold" fill="#25517e">Agent authority (least privilege)</text>
+  <text x="64" y="484" font-size="14" fill="#333">submit_renewal_application: legally significant,</text>
+  <text x="64" y="503" font-size="14" fill="#333">&#160;&#160;scope driving_licence.application.submit</text>
+  <text x="64" y="523" font-size="14" fill="#333">pay_state_fee: financial, max 50 EUR</text>
+
+  <text x="64" y="558" font-size="15" font-weight="bold" fill="#25517e">Audit</text>
+  <text x="64" y="580" font-size="14" fill="#333">who acted, on whose behalf, on what authority,</text>
+  <text x="64" y="599" font-size="14" fill="#333">which register values (with warrant), which rules fired</text>
+
+  <!-- ================= Column 2: Statute ================= -->
+  <rect x="570" y="100" width="460" height="540" rx="12" fill="#fdf6e7" stroke="#b98a2e" stroke-width="2"/>
+  <text x="800" y="134" text-anchor="middle" font-size="21" font-weight="bold" fill="#8a6410">2 &#183; Statute</text>
+  <text x="800" y="156" text-anchor="middle" font-size="14" fill="#886" font-style="italic">Liiklusseadus (simplified excerpt) &#8594; terms + rules</text>
+
+  <rect x="594" y="176" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
+  <text x="606" y="197" font-size="13.5" font-weight="bold" fill="#333">&#167; D1 — renewal application is submitted</text>
+  <text x="606" y="217" font-size="13" fill="#666">evidence: user (the request itself suffices)</text>
+
+  <rect x="594" y="238" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
+  <text x="606" y="259" font-size="13.5" font-weight="bold" fill="#333">&#167; D2 — valid health certificate</text>
+  <text x="606" y="279" font-size="13" fill="#666">evidence: register (a claim is not enough)</text>
+
+  <rect x="594" y="300" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
+  <text x="606" y="321" font-size="13.5" font-weight="bold" fill="#333">&#167; D3 — state fee is paid</text>
+  <text x="606" y="341" font-size="13" fill="#666">evidence: register</text>
+
+  <rect x="594" y="362" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
+  <text x="606" y="383" font-size="13.5" font-weight="bold" fill="#333">&#167; D4 — right to drive suspended/revoked</text>
+  <text x="606" y="403" font-size="13" fill="#666">evidence: register &#183; deny condition</text>
+
+  <text x="618" y="452" font-size="15" font-weight="bold" fill="#8a6410">Rules (hand-authored, solver-ready)</text>
+  <rect x="594" y="464" width="412" height="66" rx="6" fill="#fff9ec" stroke="#b98a2e" stroke-dasharray="4 3"/>
+  <text x="606" y="486" font-size="13.5" fill="#333" font-family="Menlo, monospace">ALLOW if application &#8743; health_cert</text>
+  <text x="606" y="505" font-size="13.5" fill="#333" font-family="Menlo, monospace">&#160;&#160;&#8743; fee_paid &#8594; licence_renewed</text>
+  <rect x="594" y="540" width="412" height="46" rx="6" fill="#fff9ec" stroke="#b98a2e" stroke-dasharray="4 3"/>
+  <text x="606" y="562" font-size="13.5" fill="#333" font-family="Menlo, monospace">DENY if driving_ban &#8594; renewal_refused</text>
+
+  <text x="800" y="622" text-anchor="middle" font-size="13" fill="#996">Real work: anchor every term to the Riigi Teataja consolidated text, &#167; and lg precise.</text>
+
+  <!-- ================= Column 3: Registers ================= -->
+  <rect x="1100" y="100" width="460" height="540" rx="12" fill="#ecf6ee" stroke="#3e8e57" stroke-width="2"/>
+  <text x="1330" y="134" text-anchor="middle" font-size="21" font-weight="bold" fill="#2c6b41">3 &#183; Registers</text>
+  <text x="1330" y="156" text-anchor="middle" font-size="14" fill="#575" font-style="italic">who can warrant each term (authoritative facts)</text>
+
+  <rect x="1124" y="186" width="412" height="72" rx="6" fill="#ffffff" stroke="#3e8e57"/>
+  <text x="1136" y="209" font-size="14" font-weight="bold" fill="#333">Health information system</text>
+  <text x="1136" y="229" font-size="13" fill="#666">tervise infos&#252;steem</text>
+  <text x="1136" y="248" font-size="13" fill="#2c6b41" font-family="Menlo, monospace">health_certificate_valid</text>
+
+  <rect x="1124" y="272" width="412" height="72" rx="6" fill="#ffffff" stroke="#3e8e57"/>
+  <text x="1136" y="295" font-size="14" font-weight="bold" fill="#333">State treasury payment ledger</text>
+  <text x="1136" y="315" font-size="13" fill="#666">riigikassa maksete infos&#252;steem</text>
+  <text x="1136" y="334" font-size="13" fill="#2c6b41" font-family="Menlo, monospace">state_fee_paid</text>
+
+  <rect x="1124" y="358" width="412" height="72" rx="6" fill="#ffffff" stroke="#3e8e57"/>
+  <text x="1136" y="381" font-size="14" font-weight="bold" fill="#333">Traffic register</text>
+  <text x="1136" y="401" font-size="13" fill="#666">liiklusregister</text>
+  <text x="1136" y="420" font-size="13" fill="#2c6b41" font-family="Menlo, monospace">driving_ban_active</text>
+
+  <rect x="1124" y="452" width="412" height="150" rx="6" fill="#f7fbf8" stroke="#3e8e57" stroke-dasharray="4 3"/>
+  <text x="1136" y="477" font-size="14" font-weight="bold" fill="#2c6b41">Warrant principle</text>
+  <text x="1136" y="500" font-size="13" fill="#333">What the person merely claims is asserted;</text>
+  <text x="1136" y="519" font-size="13" fill="#333">what a register confirms is warranted.</text>
+  <text x="1136" y="538" font-size="13" fill="#333">Unwarranted information must not decide</text>
+  <text x="1136" y="557" font-size="13" fill="#333">an outcome &#8212; the system abstains and asks</text>
+  <text x="1136" y="576" font-size="13" fill="#333">the register or the person instead.</text>
+
+  <!-- Connector arrows between columns -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#888"/>
+    </marker>
+  </defs>
+  <line x1="500" y1="311" x2="570" y2="311" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="500" y1="383" x2="570" y2="383" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="1030" y1="264" x2="1100" y2="222" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="1030" y1="326" x2="1100" y2="308" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="1030" y1="388" x2="1100" y2="394" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="535" y="296" text-anchor="middle" font-size="12" fill="#888">maps to</text>
+  <text x="1065" y="250" text-anchor="middle" font-size="12" fill="#888">warranted by</text>
+
+  <!-- ================= Bottom band: the pipeline ================= -->
+  <rect x="40" y="668" width="1520" height="196" rx="12" fill="#f4f2fa" stroke="#6c5a9e" stroke-width="2"/>
+  <text x="800" y="698" text-anchor="middle" font-size="19" font-weight="bold" fill="#4c3d78">How a decision is made (statute-decider pipeline)</text>
+
+  <rect x="70" y="720" width="230" height="88" rx="8" fill="#ffffff" stroke="#6c5a9e"/>
+  <text x="185" y="748" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">User request (free text)</text>
+  <text x="185" y="770" text-anchor="middle" font-size="12.5" fill="#666">&#8222;I want to renew my licence,</text>
+  <text x="185" y="788" text-anchor="middle" font-size="12.5" fill="#666">the fee is paid&#8230;&#8220;</text>
+
+  <rect x="360" y="720" width="230" height="88" rx="8" fill="#ffffff" stroke="#6c5a9e"/>
+  <text x="475" y="748" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">LLM extracts claims</text>
+  <text x="475" y="770" text-anchor="middle" font-size="12.5" fill="#666">only into the fixed term</text>
+  <text x="475" y="788" text-anchor="middle" font-size="12.5" fill="#666">vocabulary (asserted)</text>
+
+  <rect x="650" y="720" width="230" height="88" rx="8" fill="#ffffff" stroke="#6c5a9e"/>
+  <text x="765" y="748" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Registers looked up</text>
+  <text x="765" y="770" text-anchor="middle" font-size="12.5" fill="#666">facts with warrant</text>
+  <text x="765" y="788" text-anchor="middle" font-size="12.5" fill="#666">(authoritative / trust-only)</text>
+
+  <rect x="940" y="720" width="230" height="88" rx="8" fill="#ffffff" stroke="#6c5a9e"/>
+  <text x="1055" y="748" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Solver (Z3) applies rules</text>
+  <text x="1055" y="770" text-anchor="middle" font-size="12.5" fill="#666">deterministic, auditable,</text>
+  <text x="1055" y="788" text-anchor="middle" font-size="12.5" fill="#666">warrant-aware</text>
+
+  <rect x="1230" y="720" width="300" height="88" rx="8" fill="#ffffff" stroke="#6c5a9e"/>
+  <text x="1380" y="744" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Outcome + trace</text>
+  <text x="1380" y="766" text-anchor="middle" font-size="12.5" fill="#2c6b41">ALLOW &#183; fee claim verified by ledger</text>
+  <text x="1380" y="784" text-anchor="middle" font-size="12.5" fill="#a33">DENY &#183; own admission of driving ban</text>
+  <text x="1380" y="802" text-anchor="middle" font-size="12.5" fill="#8a6410">NEED_MORE_INFO &#183; ledger silent on fee</text>
+
+  <line x1="300" y1="764" x2="360" y2="764" stroke="#6c5a9e" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="590" y1="764" x2="650" y2="764" stroke="#6c5a9e" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="880" y1="764" x2="940" y2="764" stroke="#6c5a9e" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="1170" y1="764" x2="1230" y2="764" stroke="#6c5a9e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="800" y="846" text-anchor="middle" font-size="12.5" fill="#777">Every decision cites the fired rule, its statutory anchor, and the warrant of every value used &#8212; one scenario per outcome, runnable end to end.</text>
+</svg>

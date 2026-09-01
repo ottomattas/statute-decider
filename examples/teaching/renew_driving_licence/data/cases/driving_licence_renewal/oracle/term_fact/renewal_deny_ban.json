@@ -1,0 +1,62 @@
+{
+  "node": "term_fact",
+  "scenario_id": "renewal_deny_ban",
+  "facts": [
+    {
+      "premise_id": "fact_driving_ban_active",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "driving_ban_active",
+      "value": true,
+      "register_id": "driving_licence_renewal__traffic_registry",
+      "record_id": "main",
+      "field": "driving_ban_active",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_health_certificate_valid",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "health_certificate_valid",
+      "value": true,
+      "register_id": "driving_licence_renewal__health_registry",
+      "record_id": "main",
+      "field": "health_certificate_valid",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_state_fee_paid",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "state_fee_paid",
+      "value": true,
+      "register_id": "driving_licence_renewal__payment_ledger",
+      "record_id": "main",
+      "field": "state_fee_paid",
+      "warrant": "authoritative",
+      "notes": ""
+    }
+  ],
+  "unavailable_registers": [],
+  "unavailable_terms": [],
+  "conflicts": [],
+  "covered_terms": [
+    "driving_ban_active",
+    "health_certificate_valid",
+    "state_fee_paid"
+  ],
+  "provenance": {
+    "node": "term_fact",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-02T00:00:00Z",
+    "notes": "Teaching example authored 2026-09-02."
+  }
+}

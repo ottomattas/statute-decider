@@ -1,0 +1,10 @@
+statute_id: driving_licence_renewal
+kind: statute_text
+title: Liiklusseadus (Traffic Act) — simplified teaching excerpt, driving licence renewal
+act_references:
+- Liiklusseadus (official Riigi Teataja act; this file is a simplified paraphrase, not the official text)
+jurisdiction: EE
+language: et
+notes: >-
+  Teaching example authored 2026-09-02. Clause ids d1-d4 are demo ids; student
+  work must anchor terms to the real Riigi Teataja consolidated text instead.

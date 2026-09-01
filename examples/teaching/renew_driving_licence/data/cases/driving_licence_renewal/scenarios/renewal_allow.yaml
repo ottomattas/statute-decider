@@ -1,0 +1,14 @@
+scenario_id: renewal_allow
+case_id: driving_licence_renewal
+description: >-
+  Applicant requests renewal and claims the fee is paid; every register
+  confirms. The fee claim is verified against the payment ledger, so the
+  outcome is a clean ALLOW.
+utterance_file: request_renewal.txt
+register_overrides: {}
+tags:
+- positive
+- teaching
+gold_confidence: high
+notes: Demonstrates a claim verified by an authoritative register.
+provenance: Teaching example authored 2026-09-02.

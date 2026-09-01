@@ -1,0 +1,122 @@
+# Machine-readable service description (Semantic Service Contract, v0.1)
+#
+# One file answers four questions a machine must answer on its own:
+#   1. WHAT is this service?            (discovery, purpose)
+#   2. WHO/WHEN does it apply?          (eligibility, preconditions)
+#   3. WHAT does it need to run?        (required data, data sources)
+#   4. WHAT may be done on whose behalf? (actions, authority, audit)
+#
+# The legal_mapping section is the bridge into statute-decider: every
+# machine-checkable condition names the statutory term it instantiates and
+# the register that can warrant it. That mapping is what turns a service
+# description into something a solver can decide over.
+
+service:
+  id: renew_driving_licence
+  version: "0.1"
+  name:
+    et: Juhiloa uuendamine
+    en: Driving licence renewal
+  provider:
+    organisation: Transpordiamet (Transport Administration)
+  purpose:
+    concept: maintain_driving_entitlement
+    description: Renew an expiring or expired driving licence.
+  eligible_subject:
+    type: natural_person
+
+legal_mapping:
+  # The statutory basis and the term vocabulary this service instantiates.
+  statute_id: driving_licence_renewal          # simplified excerpt of Liiklusseadus
+  riigi_teataja: https://www.riigiteataja.ee   # anchor real work to the official consolidated text
+  outcome_space: [ALLOW, DENY, NEED_MORE_INFO]
+  conditions:
+    - term_id: renewal_application_submitted
+      clause: "§ D1"
+      evidence: user                            # the applicant's own statement suffices
+      source: the request itself
+    - term_id: health_certificate_valid
+      clause: "§ D2"
+      evidence: register                        # must be warranted, a claim is not enough
+      register_id: driving_licence_renewal__health_registry
+    - term_id: state_fee_paid
+      clause: "§ D3"
+      evidence: register
+      register_id: driving_licence_renewal__payment_ledger
+    - term_id: driving_ban_active
+      clause: "§ D4"
+      evidence: register
+      register_id: driving_licence_renewal__traffic_registry
+  rules:
+    - premise_id: allow_renewal
+      effect: licence_renewed
+      when_all: [renewal_application_submitted, health_certificate_valid, state_fee_paid]
+    - premise_id: deny_driving_ban
+      effect: renewal_refused
+      when_all: [driving_ban_active]
+
+required_data:
+  - person.identifier
+  - contact.address
+
+process:
+  - step: receive_application
+    type: user_input
+    produces_term: renewal_application_submitted
+  - step: check_health_certificate
+    type: register_lookup
+    register_id: driving_licence_renewal__health_registry
+    produces_term: health_certificate_valid
+  - step: check_state_fee
+    type: register_lookup
+    register_id: driving_licence_renewal__payment_ledger
+    produces_term: state_fee_paid
+  - step: check_driving_ban
+    type: register_lookup
+    register_id: driving_licence_renewal__traffic_registry
+    produces_term: driving_ban_active
+  - step: decide
+    type: rule_application
+    automated: true
+  - step: issue_or_refuse
+    type: legally_significant_action
+    authorization_required: true
+
+actions:
+  # What an agent may do on the person's behalf, with explicit limits.
+  - id: submit_renewal_application
+    effect: legally_significant
+    authority:
+      required: true
+      scope: driving_licence.application.submit
+    confirmation:
+      required: false
+  - id: pay_state_fee
+    effect: financial
+    authority:
+      required: true
+      scope: payment
+    constraints:
+      max_amount: "50 EUR"
+    confirmation:
+      required_if: amount > 50 EUR
+
+escalation:
+  - when: any decision-relevant register value is missing or in conflict
+    action: outcome NEED_MORE_INFO, route to human or ask the register/user
+  - when: outcome is DENY
+    action: notify the person with the fired rule and its statutory anchor
+
+audit:
+  record:
+    - acting_agent
+    - represented_person
+    - authority_basis
+    - actions_taken
+    - register_values_used (with warrant)
+    - fired_rules
+    - timestamps
+
+service_level:
+  fee: "26 EUR (state fee; demo value)"
+  decision_time: "immediate when all registers answer; else 5 working days"

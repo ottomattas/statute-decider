@@ -1,0 +1,13 @@
+case_id: driving_licence_renewal
+title: Driving licence renewal (juhiloa uuendamine)
+description: >-
+  Teaching case: may the Transport Administration renew this person's driving
+  licence? One allow rule (application + valid health certificate + paid fee),
+  one deny rule (active driving ban). Three scenarios, one per outcome bucket.
+statute_ids:
+- driving_licence_renewal
+register_ids:
+- driving_licence_renewal__health_registry
+- driving_licence_renewal__payment_ledger
+- driving_licence_renewal__traffic_registry
+notes: Teaching example authored 2026-09-02; not part of the benchmark suite.

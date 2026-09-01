@@ -63,7 +63,11 @@ python3.12 -m venv .venv          # or: uv venv --python 3.12
 
 LLM experiments are budget-capped and parallel by default; every run writes
 `results/rows.jsonl`, per-node recordings, a cost ledger, and `summary.md`
-into its experiment folder.
+into its experiment folder. `results/transcript.jsonl` is the full LLM
+audit trail: one entry per provider call with the rendered system and user
+messages exactly as sent and the raw model response before any parsing.
+Solver inputs and outputs live in `results/nodes/premise_outcome.jsonl`
+(claims, facts, valuation, fired rules) and `results/nodes/outcome_trace.jsonl`.
 
 ## Layout
 

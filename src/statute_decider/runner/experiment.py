@@ -109,7 +109,7 @@ def run_experiment(
         ledger_path=results_dir / "ledger.jsonl",
         usd_to_eur=registry.usd_to_eur,
     )
-    client = LLMClient(registry, budget)
+    client = LLMClient(registry, budget, transcript_path=results_dir / "transcript.jsonl")
 
     # Resolve the model grid. 'all' means the experiment's declared list (or the
     # whole registry when the experiment declares none). Conditions with no llm

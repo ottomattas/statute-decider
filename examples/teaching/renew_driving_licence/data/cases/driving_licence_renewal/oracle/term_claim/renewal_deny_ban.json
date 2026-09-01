@@ -1,0 +1,45 @@
+{
+  "node": "term_claim",
+  "scenario_id": "renewal_deny_ban",
+  "claims": [
+    {
+      "premise_id": "claim_driving_ban_active",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "driving_ban_active",
+      "value": true,
+      "span": "I know my right to drive is currently suspended after the speeding case",
+      "notes": "Statement against interest."
+    },
+    {
+      "premise_id": "claim_renewal_application_submitted",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "renewal_application_submitted",
+      "value": true,
+      "span": "I am submitting my application now",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_state_fee_paid",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "state_fee_paid",
+      "value": true,
+      "span": "I have paid the state fee",
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "term_claim",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-02T00:00:00Z",
+    "notes": "Teaching example authored 2026-09-02."
+  }
+}

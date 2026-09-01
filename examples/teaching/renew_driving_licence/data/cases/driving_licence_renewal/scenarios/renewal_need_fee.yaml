@@ -1,0 +1,18 @@
+scenario_id: renewal_need_fee
+case_id: driving_licence_renewal
+description: >-
+  Applicant requests renewal but says nothing about the fee, and the payment
+  ledger has no payment on record. A decision-relevant register term has no
+  value: NEED_REGISTER_INFO.
+utterance_file: request_renewal_no_fee.txt
+register_overrides:
+  driving_licence_renewal__payment_ledger:
+    remove:
+      main:
+      - state_fee_paid
+tags:
+- need-info
+- teaching
+gold_confidence: high
+notes: Demonstrates abstention when a covering register is silent.
+provenance: Teaching example authored 2026-09-02.

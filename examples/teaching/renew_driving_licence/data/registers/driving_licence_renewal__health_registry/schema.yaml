@@ -1,0 +1,7 @@
+register_id: driving_licence_renewal__health_registry
+label: Health information system (tervise infosüsteem)
+description: Records health certificate validity for licence holders.
+fields:
+- health_certificate_valid
+default_warrant: authoritative
+notes: Teaching example authored 2026-09-02.

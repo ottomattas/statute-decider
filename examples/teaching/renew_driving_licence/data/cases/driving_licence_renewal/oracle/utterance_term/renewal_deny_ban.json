@@ -1,0 +1,33 @@
+{
+  "node": "utterance_term",
+  "scenario_id": "renewal_deny_ban",
+  "term_refs": [
+    {
+      "term_id": "driving_ban_active",
+      "span": "I know my right to drive is currently suspended after the speeding case",
+      "confidence": null
+    },
+    {
+      "term_id": "renewal_application_submitted",
+      "span": "I am submitting my application now",
+      "confidence": null
+    },
+    {
+      "term_id": "state_fee_paid",
+      "span": "I have paid the state fee",
+      "confidence": null
+    }
+  ],
+  "provenance": {
+    "node": "utterance_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-02T00:00:00Z",
+    "notes": "Teaching example authored 2026-09-02."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "node": "premise_outcome",
+  "scenario_id": "renewal_need_fee",
+  "state": "NEED_REGISTER_INFO",
+  "scored_as": "NEED_MORE_INFO",
+  "missing_terms": [
+    {
+      "term_id": "state_fee_paid",
+      "reason": "no_value"
+    }
+  ],
+  "fired_rules": [],
+  "valuation": {},
+  "free_missing": [],
+  "note": "The payment ledger covers state_fee_paid but records no payment; the applicant is silent about it. Abstain and ask the register.",
+  "provenance": {
+    "node": "premise_outcome",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-02T00:00:00Z",
+    "notes": "Teaching example authored 2026-09-02."
+  }
+}
