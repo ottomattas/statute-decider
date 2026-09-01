@@ -156,15 +156,13 @@ class AnthropicAdapter:
 
         client = anthropic.Anthropic(api_key=env("ANTHROPIC_API_KEY"), timeout=call_timeout_s())
         schema = strict_json_schema(response_model)
+        del temperature  # SDK >= 1.3 removed sampling controls from messages.create
         kwargs: dict[str, Any] = {
             "model": api_model,
             "max_tokens": max_output_tokens,
-            "temperature": temperature,
             "system": system,
             "messages": [{"role": "user", "content": user}],
         }
-        if api_model.startswith(("claude-fable", "claude-mythos")):
-            kwargs.pop("temperature")  # always-on adaptive thinking rejects it
         started = time.monotonic()
         try:
             message = client.messages.create(
