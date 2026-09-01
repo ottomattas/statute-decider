@@ -1,5 +1,9 @@
 # Machine-readable service description (Semantic Service Contract, v0.1)
 #
+# Human-readable counterpart: service-description.md in the same directory.
+# Rule of the pack: author the human-readable page FIRST, then translate it
+# into this file. Every value here must be traceable to a sentence there.
+#
 # One file answers four questions a machine must answer on its own:
 #   1. WHAT is this service?            (discovery, purpose)
 #   2. WHO/WHEN does it apply?          (eligibility, preconditions)
@@ -27,24 +31,27 @@ service:
 
 legal_mapping:
   # The statutory basis and the term vocabulary this service instantiates.
-  statute_id: driving_licence_renewal          # simplified excerpt of Liiklusseadus
-  riigi_teataja: https://www.riigiteataja.ee   # anchor real work to the official consolidated text
+  statute_id: driving_licence_renewal
+  legal_basis:
+    act: Liiklusseadus (Road Traffic Act)
+    consolidated_text: https://www.riigiteataja.ee/et/akt/111072026044   # RT I, 11.07.2026, 44
+    english_translation: https://www.riigiteataja.ee/en/akt/527072026001
   outcome_space: [ALLOW, DENY, NEED_MORE_INFO]
   conditions:
     - term_id: renewal_application_submitted
-      clause: "§ D1"
+      clause: "LS § 98 lg 2"
       evidence: user                            # the applicant's own statement suffices
       source: the request itself
     - term_id: health_certificate_valid
-      clause: "§ D2"
+      clause: "LS § 101 lg 1 ja lg 8"
       evidence: register                        # must be warranted, a claim is not enough
       register_id: driving_licence_renewal__health_registry
     - term_id: state_fee_paid
-      clause: "§ D3"
+      clause: "LS § 96 lg 9"
       evidence: register
       register_id: driving_licence_renewal__payment_ledger
     - term_id: driving_ban_active
-      clause: "§ D4"
+      clause: "LS § 98 lg 3"
       evidence: register
       register_id: driving_licence_renewal__traffic_registry
   rules:

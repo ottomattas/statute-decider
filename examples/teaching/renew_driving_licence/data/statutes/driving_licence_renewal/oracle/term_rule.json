@@ -19,7 +19,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Renewal is granted on application, valid health certificate, and paid fee (§§ D1-D3).",
+      "label": "Licence is replaced on application (LS § 98 lg 2), valid medical certificate (LS § 101 lg 1), and paid state fee (LS § 96 lg 9).",
       "when_term_ids": [
         "renewal_application_submitted",
         "health_certificate_valid",
@@ -29,10 +29,22 @@
       "target_term_id": null,
       "law_references": [
         {
-          "clause_id": "d1",
-          "clause_title": "§ D1-D3",
-          "quote": "Juhiloa uuendamiseks esitab isik Transpordiametile taotluse. ... kehtiv tervisetõend ... tasutakse riigilõiv ...",
-          "note": "Allow path."
+          "clause_id": "ls_98_2",
+          "clause_title": "LS § 98 lg 2",
+          "quote": "Esmane juhiluba ja juhiluba antakse välja kümne tööpäeva jooksul ... juhiloa vahetamise taotluse esitamisele järgnevast päevast arvates.",
+          "note": "Application path for replacement."
+        },
+        {
+          "clause_id": "ls_101_1",
+          "clause_title": "LS § 101 lg 1",
+          "quote": "Tervisenõuetele vastavust tõendab tervisekontrolli teostaja väljastatud tervisetõend.",
+          "note": "Medical certificate condition."
+        },
+        {
+          "clause_id": "ls_96_9",
+          "clause_title": "LS § 96 lg 9",
+          "quote": "Juhiloa väljastamise ja vahetamise eest tuleb tasuda riigilõivu.",
+          "note": "State fee condition."
         }
       ],
       "notes": ""
@@ -42,7 +54,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "deny_if_all",
-      "label": "Renewal is refused while the right to drive is suspended or revoked (§ D4).",
+      "label": "Licence is not issued while the right to drive is suspended or withdrawn (LS § 98 lg 3).",
       "when_term_ids": [
         "driving_ban_active"
       ],
@@ -50,9 +62,9 @@
       "target_term_id": null,
       "law_references": [
         {
-          "clause_id": "d4",
-          "clause_title": "§ D4",
-          "quote": "Juhiluba ei uuendata, kui isiku juhtimisõigus on peatatud või ära võetud.",
+          "clause_id": "ls_98_3",
+          "clause_title": "LS § 98 lg 3",
+          "quote": "Esmast juhiluba ja juhiluba ei väljastata isikule, ... kelle juhtimisõigus on peatatud või käesoleva seaduse § 125 kohaselt ära võetud ...",
           "note": "Deny path."
         }
       ],

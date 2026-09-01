@@ -37,22 +37,22 @@
   <!-- ================= Column 2: Statute ================= -->
   <rect x="570" y="100" width="460" height="540" rx="12" fill="#fdf6e7" stroke="#b98a2e" stroke-width="2"/>
   <text x="800" y="134" text-anchor="middle" font-size="21" font-weight="bold" fill="#8a6410">2 &#183; Statute</text>
-  <text x="800" y="156" text-anchor="middle" font-size="14" fill="#886" font-style="italic">Liiklusseadus (simplified excerpt) &#8594; terms + rules</text>
+  <text x="800" y="156" text-anchor="middle" font-size="14" fill="#886" font-style="italic">Liiklusseadus / Road Traffic Act — official excerpts &#8594; terms + rules</text>
 
   <rect x="594" y="176" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
-  <text x="606" y="197" font-size="13.5" font-weight="bold" fill="#333">&#167; D1 — renewal application is submitted</text>
+  <text x="606" y="197" font-size="13.5" font-weight="bold" fill="#333">&#167; 98 lg 2 — replacement application submitted</text>
   <text x="606" y="217" font-size="13" fill="#666">evidence: user (the request itself suffices)</text>
 
   <rect x="594" y="238" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
-  <text x="606" y="259" font-size="13.5" font-weight="bold" fill="#333">&#167; D2 — valid health certificate</text>
+  <text x="606" y="259" font-size="13.5" font-weight="bold" fill="#333">&#167; 101 lg 1, lg 8 — valid medical certificate</text>
   <text x="606" y="279" font-size="13" fill="#666">evidence: register (a claim is not enough)</text>
 
   <rect x="594" y="300" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
-  <text x="606" y="321" font-size="13.5" font-weight="bold" fill="#333">&#167; D3 — state fee is paid</text>
+  <text x="606" y="321" font-size="13.5" font-weight="bold" fill="#333">&#167; 96 lg 9 — state fee (riigil&#245;iv) is paid</text>
   <text x="606" y="341" font-size="13" fill="#666">evidence: register</text>
 
   <rect x="594" y="362" width="412" height="52" rx="6" fill="#ffffff" stroke="#b98a2e"/>
-  <text x="606" y="383" font-size="13.5" font-weight="bold" fill="#333">&#167; D4 — right to drive suspended/revoked</text>
+  <text x="606" y="383" font-size="13.5" font-weight="bold" fill="#333">&#167; 98 lg 3 — right to drive suspended/withdrawn</text>
   <text x="606" y="403" font-size="13" fill="#666">evidence: register &#183; deny condition</text>
 
   <text x="618" y="452" font-size="15" font-weight="bold" fill="#8a6410">Rules (hand-authored, solver-ready)</text>
@@ -62,7 +62,7 @@
   <rect x="594" y="540" width="412" height="46" rx="6" fill="#fff9ec" stroke="#b98a2e" stroke-dasharray="4 3"/>
   <text x="606" y="562" font-size="13.5" fill="#333" font-family="Menlo, monospace">DENY if driving_ban &#8594; renewal_refused</text>
 
-  <text x="800" y="622" text-anchor="middle" font-size="13" fill="#996">Real work: anchor every term to the Riigi Teataja consolidated text, &#167; and lg precise.</text>
+  <text x="800" y="622" text-anchor="middle" font-size="13" fill="#996">Verbatim from RT I, 11.07.2026, 44 (riigiteataja.ee) — every term anchored &#167; and lg precise.</text>
 
   <!-- ================= Column 3: Registers ================= -->
   <rect x="1100" y="100" width="460" height="540" rx="12" fill="#ecf6ee" stroke="#3e8e57" stroke-width="2"/>

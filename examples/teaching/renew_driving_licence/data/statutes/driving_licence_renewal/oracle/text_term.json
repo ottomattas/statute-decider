@@ -4,72 +4,84 @@
   "terms": [
     {
       "term_id": "renewal_application_submitted",
-      "label": "Renewal application has been submitted",
-      "definition": "The person has submitted (or is hereby submitting) a driving licence renewal application to the Transport Administration.",
+      "label": "Licence replacement (renewal) application has been submitted",
+      "definition": "The person has submitted (or is hereby submitting) an application for replacement of the driving licence to the Transport Administration.",
       "evidence": "user",
       "propositional": "APPLICATION",
       "predicate": "ApplicationSubmitted(person)",
       "higher_order": "ApplicationSubmitted(person)",
       "anchors": [
         {
-          "clause_id": "d1",
-          "clause_title": "§ D1",
-          "quote": "Juhiloa uuendamiseks esitab isik Transpordiametile taotluse.",
-          "note": "The request itself; user-declarable."
+          "clause_id": "ls_98_2",
+          "clause_title": "LS § 98 lg 2",
+          "quote": "Esmane juhiluba ja juhiluba antakse välja kümne tööpäeva jooksul sellekohase eksami sooritamisele või juhiloa vahetamise taotluse esitamisele järgnevast päevast arvates.",
+          "note": "EN: '...issued within ten working days as of the day after which ... an application for replacement of the driving licence was submitted.' The request itself; user-declarable."
         }
       ],
       "notes": ""
     },
     {
       "term_id": "health_certificate_valid",
-      "label": "Valid health certificate on record",
-      "definition": "The health information system records a currently valid health certificate for the person.",
+      "label": "Valid medical certificate (tervisetõend) on record",
+      "definition": "A currently valid medical certificate has been issued for the person, delivered via the health information system (tervise infosüsteem) or submitted to the Transport Administration.",
       "evidence": "register",
       "propositional": "HEALTH_CERT",
       "predicate": "ValidHealthCertificate(person)",
       "higher_order": "ValidHealthCertificate(person)",
       "anchors": [
         {
-          "clause_id": "d2",
-          "clause_title": "§ D2",
-          "quote": "Juhiluba uuendatakse, kui isikul on kehtiv tervisetõend.",
-          "note": "Register-evidence term: the health information system is authoritative."
+          "clause_id": "ls_101_1",
+          "clause_title": "LS § 101 lg 1",
+          "quote": "Tervisenõuetele vastavust tõendab tervisekontrolli teostaja väljastatud tervisetõend.",
+          "note": "EN: 'Compliance with the medical requirements is proven by a medical certificate issued by the person who carried out the medical examination.'"
+        },
+        {
+          "clause_id": "ls_101_8",
+          "clause_title": "LS § 101 lg 8",
+          "quote": "... kui talle ei ole tervise infosüsteemi vahendusel väljastatud või kui ta ise ei esita hiljemalt nimetatud tähtpäeval Transpordiametile uut kehtivat tervisetõendit.",
+          "note": "The law itself names the register: the health information system is the electronic channel for the certificate."
         }
       ],
       "notes": ""
     },
     {
       "term_id": "state_fee_paid",
-      "label": "State fee has been paid",
-      "definition": "The state treasury payment system records the renewal state fee as paid.",
+      "label": "State fee (riigilõiv) has been paid",
+      "definition": "The state fee for issuing or replacing the driving licence has been paid.",
       "evidence": "register",
       "propositional": "FEE_PAID",
       "predicate": "StateFeePaid(person)",
       "higher_order": "StateFeePaid(person)",
       "anchors": [
         {
-          "clause_id": "d3",
-          "clause_title": "§ D3",
-          "quote": "Juhiloa uuendamise eest tasutakse riigilõiv enne taotluse läbivaatamist.",
-          "note": "Register-evidence term: the payment ledger is authoritative."
+          "clause_id": "ls_96_9",
+          "clause_title": "LS § 96 lg 9",
+          "quote": "Juhiloa väljastamise ja vahetamise eest tuleb tasuda riigilõivu.",
+          "note": "EN: 'A state fee is payable for issuing or replacing a driving licence.' Amount set by Riigilõivuseadus."
         }
       ],
       "notes": ""
     },
     {
       "term_id": "driving_ban_active",
-      "label": "Right to drive is suspended or revoked",
-      "definition": "The traffic register records an active suspension or revocation of the person's right to drive.",
+      "label": "Right to drive is suspended or withdrawn",
+      "definition": "The person's right to drive has been suspended or withdrawn (LS § 125); established by the data of the motor register (liiklusregister).",
       "evidence": "register",
       "propositional": "DRIVING_BAN",
       "predicate": "DrivingBanActive(person)",
       "higher_order": "DrivingBanActive(person)",
       "anchors": [
         {
-          "clause_id": "d4",
-          "clause_title": "§ D4",
-          "quote": "Juhiluba ei uuendata, kui isiku juhtimisõigus on peatatud või ära võetud.",
-          "note": "Deny condition; the traffic register is authoritative."
+          "clause_id": "ls_98_3",
+          "clause_title": "LS § 98 lg 3",
+          "quote": "Esmast juhiluba ja juhiluba ei väljastata isikule, kellele ei ole antud juhtimisõigust või kelle juhtimisõigus on peatatud või käesoleva seaduse § 125 kohaselt ära võetud ...",
+          "note": "EN: 'A ... driving licence is not issued to a person ... whose right to drive has been suspended or withdrawn in accordance with § 125 of this Act ...' Deny condition."
+        },
+        {
+          "clause_id": "ls_96_7",
+          "clause_title": "LS § 96 lg 7",
+          "quote": "Õigust juhtida mootorsõidukit tõendatakse liiklusregistri andmete alusel.",
+          "note": "The motor register (liiklusregister) is the authoritative source for the right to drive."
         }
       ],
       "notes": ""
@@ -85,6 +97,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-02T00:00:00Z",
-    "notes": "Teaching example authored 2026-09-02."
+    "notes": "Teaching example authored 2026-09-02; anchored 2026-09-02 to Liiklusseadus terviktekst RT I, 11.07.2026, 44 and its official English translation."
   }
 }

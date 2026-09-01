@@ -58,6 +58,21 @@ first-class source: `service_record` joins `statute_text` / `user_utterance` /
 The `legal_mapping` block (term_id + clause + register_id per condition) is
 the bridge into the existing graph.
 
+**Ruling F — human+machine pairing (proposed, discussion held for later).**
+Every machine-readable artifact keeps a human-readable counterpart, authored
+first and kept in translation with it (the teaching pack demonstrates the
+pattern: `service-description.md` ↔ `service.yaml`, with an explicit
+sentence↔field translation table). Rationale beyond pedagogy: when an agent
+acts under delegation, the human behind it must be able to inspect, in plain
+language, the service, the conditions, and what was done on their behalf —
+so names, descriptions, and traces should ship in both registers.
+Open questions to settle before adopting repo-wide: which artifacts are in
+scope (services certainly; term catalogues and rules plausibly; oracle files
+probably not), where the counterpart lives (sidecar `.md` next to each file
+vs generated view), and whether the pairing is enforced (a validation step
+that fails when the translation table has gaps) or advisory. Decide at the
+same sitting as the rename execution; do not block it.
+
 ### Rename table (draft — confirm before executing)
 
 | today | proposed | note |

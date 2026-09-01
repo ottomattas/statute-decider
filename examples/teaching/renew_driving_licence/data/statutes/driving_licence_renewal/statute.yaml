@@ -1,10 +1,13 @@
 statute_id: driving_licence_renewal
 kind: statute_text
-title: Liiklusseadus (Traffic Act) — simplified teaching excerpt, driving licence renewal
+title: Liiklusseadus / Road Traffic Act — excerpt for driving licence replacement (renewal)
 act_references:
-- Liiklusseadus (official Riigi Teataja act; this file is a simplified paraphrase, not the official text)
+- 'Liiklusseadus, terviktekst RT I, 11.07.2026, 44: https://www.riigiteataja.ee/et/akt/111072026044'
+- 'Road Traffic Act, official English translation: https://www.riigiteataja.ee/en/akt/527072026001'
 jurisdiction: EE
 language: et
+version_date: "2026-07-11"
 notes: >-
-  Teaching example authored 2026-09-02. Clause ids d1-d4 are demo ids; student
-  work must anchor terms to the real Riigi Teataja consolidated text instead.
+  Teaching example. Verbatim excerpts (§ 96 lg 7 and 9, § 97 lg 7, § 98 lg 1-3,
+  § 101 lg 1 and 8) from the official consolidated text, with the official
+  English translation alongside. Full act at the Riigi Teataja links.
