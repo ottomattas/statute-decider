@@ -16,10 +16,31 @@ class ModelSpec:
     tier: str = ""
     input_usd_per_million: float = 0.0
     output_usd_per_million: float = 0.0
+    # Prompt-cache rates. When absent (0.0) the ledger prices cache hits and
+    # writes at the plain input rate — the pre-3 Sep behaviour, an overestimate.
+    cached_input_usd_per_million: float = 0.0
+    cache_write_usd_per_million: float = 0.0
 
-    def eur(self, input_tokens: int, output_tokens: int, usd_to_eur: float) -> float:
+    def eur(
+        self,
+        input_tokens: int,
+        output_tokens: int,
+        usd_to_eur: float,
+        cached_input_tokens: int = 0,
+        cache_write_input_tokens: int = 0,
+    ) -> float:
+        """Cost of one call. ``input_tokens`` is the vendor's full prompt count;
+        cached and cache-write tokens are priced at their own rates and the
+        remainder at the plain input rate."""
+        cached_rate = self.cached_input_usd_per_million or self.input_usd_per_million
+        write_rate = self.cache_write_usd_per_million or self.input_usd_per_million
+        cached = min(cached_input_tokens, input_tokens)
+        written = min(cache_write_input_tokens, input_tokens - cached)
+        plain = input_tokens - cached - written
         usd = (
-            input_tokens / 1_000_000 * self.input_usd_per_million
+            plain / 1_000_000 * self.input_usd_per_million
+            + cached / 1_000_000 * cached_rate
+            + written / 1_000_000 * write_rate
             + output_tokens / 1_000_000 * self.output_usd_per_million
         )
         return usd * usd_to_eur
@@ -43,6 +64,8 @@ class ModelRegistry:
                 tier=spec.get("tier", ""),
                 input_usd_per_million=float(prices.get("input_usd_per_million", 0.0)),
                 output_usd_per_million=float(prices.get("output_usd_per_million", 0.0)),
+                cached_input_usd_per_million=float(prices.get("cached_input_usd_per_million", 0.0)),
+                cache_write_usd_per_million=float(prices.get("cache_write_usd_per_million", 0.0)),
             )
 
     def model_ids(self, tier: str | None = None) -> list[str]:

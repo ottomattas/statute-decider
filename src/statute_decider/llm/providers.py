@@ -14,10 +14,23 @@ Vendor quirks that cost debugging time once, kept explicit:
   disabled explicitly for cheap runs.
 - Every client gets a hard timeout: a dropped connection must fail the call,
   never hang the run (v1 lost ~2h to a bare SSL read).
+
+Prompt caching (verified 2026-09-03 against vendor docs): the statute text is
+the same across every scenario/repeat of a case, so it is passed as the
+leading ``cache_prefix_len`` characters of the user message.
+- Anthropic: explicit ``cache_control`` on a separate leading content block
+  (min 1024 tokens; Haiku 4.5 needs 4096). Reads 0.1x (Fable 5.1: 0.025x),
+  5-minute writes 1.25x. Reported as cache_read/cache_creation_input_tokens.
+- OpenAI: automatic prefix caching (>=1024 tokens on GPT-5.6+, 2048 before);
+  ``prompt_cache_key`` only steers routing. Reads 0.1x; usage reports
+  ``input_tokens_details.cached_tokens``.
+- Gemini 2.5+: implicit caching, no request change; ``cached_content_token_count``.
+- DeepSeek: automatic disk cache; ``prompt_cache_hit_tokens`` in usage.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
 import time
 from typing import Any, TypeVar
@@ -54,7 +67,9 @@ class GoogleAdapter:
         response_model: type[T],
         temperature: float = 0.0,
         max_output_tokens: int = 8192,
+        cache_prefix_len: int = 0,
     ) -> LLMResult:
+        del cache_prefix_len  # Gemini 2.5+ caches shared prefixes implicitly.
         from google import genai
         from google.genai import types
 
@@ -99,6 +114,7 @@ class OpenAIAdapter:
         response_model: type[T],
         temperature: float = 0.0,
         max_output_tokens: int = 8192,
+        cache_prefix_len: int = 0,
     ) -> LLMResult:
         from openai import OpenAI
 
@@ -121,6 +137,10 @@ class OpenAIAdapter:
         }
         if not api_model.startswith(_NO_TEMPERATURE_PREFIXES):
             kwargs["temperature"] = temperature
+        if cache_prefix_len > 0:
+            # Same key for every call sharing this (system, statute) prefix so
+            # they land on the same cache; caching itself is automatic.
+            kwargs["prompt_cache_key"] = _prefix_key(system, user[:cache_prefix_len])
         started = time.monotonic()
         response = client.responses.create(**kwargs)
         latency_ms = int((time.monotonic() - started) * 1000)
@@ -151,17 +171,30 @@ class AnthropicAdapter:
         response_model: type[T],
         temperature: float = 0.0,
         max_output_tokens: int = 8192,
+        cache_prefix_len: int = 0,
     ) -> LLMResult:
         import anthropic
 
         client = anthropic.Anthropic(api_key=env("ANTHROPIC_API_KEY"), timeout=call_timeout_s())
         schema = strict_json_schema(response_model)
         del temperature  # SDK >= 1.3 removed sampling controls from messages.create
+        content: Any = user
+        if 0 < cache_prefix_len < len(user):
+            # Static statute block gets the cache breakpoint; the scenario-specific
+            # remainder follows as a second block. Text transmitted is unchanged.
+            content = [
+                {
+                    "type": "text",
+                    "text": user[:cache_prefix_len],
+                    "cache_control": {"type": "ephemeral"},
+                },
+                {"type": "text", "text": user[cache_prefix_len:]},
+            ]
         kwargs: dict[str, Any] = {
             "model": api_model,
             "max_tokens": max_output_tokens,
             "system": system,
-            "messages": [{"role": "user", "content": user}],
+            "messages": [{"role": "user", "content": content}],
         }
         started = time.monotonic()
         try:
@@ -192,7 +225,13 @@ class AnthropicAdapter:
             cached_input_tokens=int(getattr(usage_obj, "cache_read_input_tokens", 0) or 0)
             if usage_obj
             else 0,
+            cache_write_input_tokens=int(getattr(usage_obj, "cache_creation_input_tokens", 0) or 0)
+            if usage_obj
+            else 0,
         )
+        # Anthropic's input_tokens excludes cached/written tokens; normalize to
+        # the full-prompt convention the other vendors and the ledger use.
+        usage.input_tokens += usage.cached_input_tokens + usage.cache_write_input_tokens
         return LLMResult(parsed, raw_text, usage, self.name, api_model, latency_ms)
 
 
@@ -222,7 +261,9 @@ class DeepSeekAdapter:
         response_model: type[T],
         temperature: float = 0.0,
         max_output_tokens: int = 8192,
+        cache_prefix_len: int = 0,
     ) -> LLMResult:
+        del cache_prefix_len  # DeepSeek caches shared prefixes automatically.
         from openai import OpenAI
 
         client = OpenAI(
@@ -261,8 +302,15 @@ class DeepSeekAdapter:
             output_tokens=int(getattr(usage_obj, "completion_tokens", 0) or 0)
             if usage_obj
             else 0,
+            cached_input_tokens=int(getattr(usage_obj, "prompt_cache_hit_tokens", 0) or 0)
+            if usage_obj
+            else 0,
         )
         return LLMResult(parsed, raw_text, usage, self.name, api_model, latency_ms)
+
+
+def _prefix_key(system: str, prefix: str) -> str:
+    return "sd-" + hashlib.sha256((system + "\x00" + prefix).encode("utf-8")).hexdigest()[:32]
 
 
 ADAPTERS: dict[str, type] = {

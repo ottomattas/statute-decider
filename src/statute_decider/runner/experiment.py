@@ -109,7 +109,16 @@ def run_experiment(
         ledger_path=results_dir / "ledger.jsonl",
         usd_to_eur=registry.usd_to_eur,
     )
-    client = LLMClient(registry, budget, transcript_path=results_dir / "transcript.jsonl")
+    # 5 attempts with 20/40/60/80 s backoff: a multi-minute network blip (3 Sep
+    # 23:18 lost 33 cells to DNS failures under 3 x 5 s) must not cost rows.
+    # Budget and vendor 4xx errors still surface after the last attempt.
+    client = LLMClient(
+        registry,
+        budget,
+        max_retries=4,
+        retry_backoff_s=20.0,
+        transcript_path=results_dir / "transcript.jsonl",
+    )
 
     # Resolve the model grid. 'all' means the experiment's declared list (or the
     # whole registry when the experiment declares none). Conditions with no llm

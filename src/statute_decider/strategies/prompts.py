@@ -32,6 +32,27 @@ class PromptTemplate:
                 f"Prompt {self.prompt_id} expects placeholder {exc} not supplied."
             ) from exc
 
+    def render_with_prefix(self, static: str, **placeholders: str) -> tuple[str, int]:
+        """Render, and report how many leading characters are the static prefix.
+
+        The prefix is everything up to and including the ``{static}``
+        placeholder (e.g. the statute text). Callers pass that length to the
+        LLM client so vendors that need an explicit cache marker get one; the
+        rendered text is identical to ``render``.
+        """
+        marker = "{" + static + "}"
+        idx = self.body.find(marker)
+        if idx < 0:
+            return self.render(**placeholders), 0
+        head = self.body[: idx + len(marker)]
+        try:
+            prefix = head.format(**placeholders)
+        except KeyError as exc:
+            raise ValueError(
+                f"Prompt {self.prompt_id} expects placeholder {exc} not supplied."
+            ) from exc
+        return prefix + self.body[idx + len(marker) :].format(**placeholders), len(prefix)
+
 
 class _SafeDict(dict):
     def __missing__(self, key: str) -> str:  # pragma: no cover

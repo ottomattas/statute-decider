@@ -33,7 +33,13 @@ class BudgetGuard:
                 )
 
     def record(self, spec: ModelSpec, usage: Usage, meta: dict | None = None) -> float:
-        eur = spec.eur(usage.input_tokens, usage.output_tokens, self.usd_to_eur)
+        eur = spec.eur(
+            usage.input_tokens,
+            usage.output_tokens,
+            self.usd_to_eur,
+            cached_input_tokens=usage.cached_input_tokens,
+            cache_write_input_tokens=usage.cache_write_input_tokens,
+        )
         row = {
             "timestamp": utc_now(),
             "provider": spec.provider,
@@ -41,6 +47,7 @@ class BudgetGuard:
             "input_tokens": usage.input_tokens,
             "output_tokens": usage.output_tokens,
             "cached_input_tokens": usage.cached_input_tokens,
+            "cache_write_input_tokens": usage.cache_write_input_tokens,
             "eur": round(eur, 6),
             **(meta or {}),
         }

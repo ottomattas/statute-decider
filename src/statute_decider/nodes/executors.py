@@ -326,7 +326,7 @@ def decide_llm(
         placeholders["claims"] = render_claims(claims)
     if "facts" in wants:
         placeholders["facts"] = render_facts(facts)
-    user = prompt.render(**placeholders)
+    user, prefix_len = prompt.render_with_prefix("statute", **placeholders)
     result = client.complete(
         LLMCall(
             model_id=model_id,
@@ -336,6 +336,7 @@ def decide_llm(
             temperature=temperature,
             max_output_tokens=max_output_tokens,
             meta={**(meta or {}), "node": "premise_outcome", "prompt_id": prompt.prompt_id},
+            cache_prefix_len=prefix_len,
         )
     )
     decision: DecideResponse = result.parsed
@@ -398,7 +399,8 @@ def justify_llm(
 ) -> OutcomeTrace:
     """LLM-written justification (the only trace an llm-decided outcome can have)."""
     missing = ", ".join(sorted(outcome.missing_term_ids() | set(outcome.free_missing))) or "(none)"
-    user = prompt.render(
+    user, prefix_len = prompt.render_with_prefix(
+        "statute",
         statute=statute_text.strip(),
         utterance=utterance.strip() or "(no request text)",
         outcome=outcome.scored_as.value,
@@ -414,6 +416,7 @@ def justify_llm(
             temperature=temperature,
             max_output_tokens=max_output_tokens,
             meta={**(meta or {}), "node": "outcome_trace", "prompt_id": prompt.prompt_id},
+            cache_prefix_len=prefix_len,
         )
     )
     justification: JustifyResponse = result.parsed

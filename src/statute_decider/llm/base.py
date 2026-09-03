@@ -15,9 +15,19 @@ T = TypeVar("T", bound=BaseModel)
 
 @dataclass
 class Usage:
+    """Token counts as the provider reports them.
+
+    ``input_tokens`` is the full prompt (cache hits included, as every vendor
+    reports it); ``cached_input_tokens`` is the part served from a prompt cache
+    at the cached rate; ``cache_write_input_tokens`` is the part written to a
+    cache at the write surcharge (Anthropic reports it; OpenAI/Gemini/DeepSeek
+    fold writes into the normal input price).
+    """
+
     input_tokens: int = 0
     output_tokens: int = 0
     cached_input_tokens: int = 0
+    cache_write_input_tokens: int = 0
 
 
 @dataclass
@@ -44,6 +54,7 @@ class ProviderAdapter(Protocol):
         response_model: type[T],
         temperature: float = 0.0,
         max_output_tokens: int = 8192,
+        cache_prefix_len: int = 0,
     ) -> LLMResult: ...
 
 

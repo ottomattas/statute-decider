@@ -4,7 +4,7 @@ question: >
   oracle claims, looked-up facts with warrant, no statute text)? Three repeats.
 condition: llm-as-solver
 cases: all
-models: [gemini-3.1-pro, gpt-5.6-sol, fable-5, deepseek-v4-pro]
+models: [gemini-3.1-pro, gpt-5.6-sol, fable-5.1, deepseek-v4-pro]
 repeats: 3
 temperature: 0.0
 max_output_tokens: 8192

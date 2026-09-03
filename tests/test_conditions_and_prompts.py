@@ -1,5 +1,7 @@
 """Condition loading, fuse declarations, prompt templates, matrix export."""
 
+import json
+
 import pytest
 
 from statute_decider.llm.registry import ModelRegistry
@@ -142,3 +144,42 @@ def test_registry_and_budget_math(root, tmp_path):
     with pytest.raises(BudgetExceeded):
         guard.check()
     assert (tmp_path / "ledger.jsonl").read_text().count("\n") == 1
+
+
+def test_cache_aware_pricing(root, tmp_path):
+    from statute_decider.llm import BudgetGuard, Usage
+
+    registry = ModelRegistry(
+        root / "configs" / "llm" / "models.yaml", root / "configs" / "llm" / "prices.yaml"
+    )
+    # OpenAI convention: input_tokens is the full prompt, cached is a subset.
+    mini = registry.spec("gpt-5-mini")
+    eur = mini.eur(1_000_000, 0, 1.0, cached_input_tokens=900_000)
+    assert abs(eur - (0.1 * 0.25 + 0.9 * 0.025)) < 1e-9
+    # Anthropic: write surcharge + cheap reads; fable-5.1 reads at 0.025x.
+    fable = registry.spec("fable-5.1")
+    assert fable.api_model == "claude-fable-5-1"
+    eur = fable.eur(1_000_000, 0, 1.0, cached_input_tokens=800_000, cache_write_input_tokens=100_000)
+    assert abs(eur - (0.1 * 10.0 + 0.8 * 0.25 + 0.1 * 12.5)) < 1e-9
+    # No cache prices configured -> plain input rate (old behaviour).
+    from statute_decider.llm.registry import ModelSpec
+
+    bare = ModelSpec("x", "openai", "x", input_usd_per_million=1.0)
+    assert abs(bare.eur(100, 0, 1.0, cached_input_tokens=50) - 1e-4) < 1e-12
+    # Ledger row carries both cache fields.
+    guard = BudgetGuard(cap_eur=10, ledger_path=tmp_path / "ledger.jsonl")
+    guard.record(fable, Usage(input_tokens=10, output_tokens=0, cached_input_tokens=5))
+    row = json.loads((tmp_path / "ledger.jsonl").read_text().splitlines()[0])
+    assert row["cached_input_tokens"] == 5 and row["cache_write_input_tokens"] == 0
+
+
+def test_render_with_prefix_splits_after_statute(root):
+    prompt = load_prompt(root / "prompts", "premise_outcome", "decide-v1", strategy="decide")
+    text, n = prompt.render_with_prefix(
+        "statute", statute="ACT TEXT", utterance="I apply", registry="{}"
+    )
+    assert text == prompt.render(statute="ACT TEXT", utterance="I apply", registry="{}")
+    assert text[:n].endswith("ACT TEXT") and text[n:].lstrip().startswith("CASE REQUEST")
+    solver = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-v1", strategy="decide")
+    _, n2 = solver.render_with_prefix("statute", rules="R", claims="C", facts="F")
+    assert n2 == 0

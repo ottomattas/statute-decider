@@ -29,10 +29,14 @@ models:
     provider: openai
     api_model: gpt-5.6-sol
     tier: sota
+  fable-5.1:
+    provider: anthropic
+    api_model: claude-fable-5-1  # released 2026-09-01; forced tool_choice is a 400 on this model
+    tier: sota
   fable-5:
     provider: anthropic
     api_model: claude-fable-5
-    tier: sota
+    tier: legacy-sota  # superseded by fable-5.1 on 2026-09-03; kept for the 1 Sep ledgers
   deepseek-v4-pro:
     provider: deepseek
     api_model: deepseek-v4-pro

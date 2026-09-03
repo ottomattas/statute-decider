@@ -41,6 +41,11 @@ class LLMCall:
     temperature: float = 0.0
     max_output_tokens: int = 8192
     meta: dict[str, Any] = field(default_factory=dict)
+    # Leading characters of ``user`` that are identical across many calls
+    # (the statute text). Adapters mark that span as a prompt-cache prefix
+    # where the vendor needs an explicit marker; the transmitted text is the
+    # same either way, so transcripts stay comparable.
+    cache_prefix_len: int = 0
 
 
 class LLMClient:
@@ -118,6 +123,7 @@ class LLMClient:
                     response_model=call.response_model,
                     temperature=call.temperature,
                     max_output_tokens=call.max_output_tokens,
+                    cache_prefix_len=call.cache_prefix_len,
                 )
                 result.model = spec.model_id
                 self._record_transcript(
