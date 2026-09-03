@@ -17,3 +17,4 @@ __pycache__/
 
 # v1 leftover: 435MB raw log, over the GitHub file limit; summaries are in history
 experiments/scale-20260825.log
+experiments/_chains/
