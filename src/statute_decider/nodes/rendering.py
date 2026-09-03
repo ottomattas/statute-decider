@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 
 from statute_decider.core import (
+    ClaimSet,
+    FactSet,
     PremiseOutcome,
     RegistryState,
     RuleSet,
@@ -36,6 +38,76 @@ def render_registry(registry: RegistryState) -> str:
     return json.dumps(
         registry.model_dump(exclude={"node"}), ensure_ascii=False, indent=2, default=str
     )
+
+
+def render_rules(rules: RuleSet, catalog: TermCatalog | None = None) -> str:
+    """Hand-authored encoding as prompt-ready variables + readable rules.
+
+    Used by the LLM-decider cell: the model is given the correct rules and
+    asked to apply them, so the comparison with the solver is unattackable.
+    """
+    var_lines: list[str] = []
+    if catalog is not None:
+        for term in catalog.terms:
+            definition = f" — {term.definition}" if term.definition else ""
+            var_lines.append(f"- {term.term_id}: {term.label}{definition}")
+    allow = rules.allow_outcome_id
+    deny = rules.deny_outcome_id
+    rule_lines: list[str] = []
+    for rule in rules.rules:
+        premise = " AND ".join(rule.when_term_ids) or "(empty)"
+        if rule.rule_kind.value == "set_false_if_all":
+            conclusion = f"NOT {rule.target_term_id}"
+        elif rule.target_outcome_id == allow:
+            conclusion = "ALLOW"
+        elif rule.target_outcome_id == deny:
+            conclusion = "DENY"
+        else:
+            conclusion = str(rule.target_outcome_id)
+        rule_lines.append(
+            f"- {rule.premise_id} ({rule.rule_kind.value}): {premise} -> {conclusion}"
+        )
+    variables = "\n".join(var_lines) if var_lines else "(no catalog)"
+    rendered = "\n".join(rule_lines) if rule_lines else "(no rules)"
+    return (
+        "REFERENCE DECISION RULES (hand-authored encoding of the statute; "
+        "boolean variables are the term ids):\n"
+        f"ALLOW outcome: {allow}\nDENY outcome: {deny}\n"
+        f"Variables:\n{variables}\n"
+        f"Rules:\n{rendered}"
+    )
+
+
+def render_claims(claims: ClaimSet | None) -> str:
+    """Asserted values, exactly as the solver receives them."""
+    if claims is None or not claims.claims:
+        return "CLAIMS (asserted by the applicant): (none)"
+    lines = []
+    for claim in claims.claims:
+        span = f' — "{claim.span}"' if claim.span else ""
+        lines.append(f"- {claim.term_id} = {'true' if claim.value else 'false'}{span}")
+    return "CLAIMS (asserted by the applicant; fallible, not verified):\n" + "\n".join(lines)
+
+
+def render_facts(facts: FactSet | None) -> str:
+    """Warranted values plus register coverage, exactly as the solver receives them."""
+    if facts is None:
+        return "FACTS (from registers): (no register chain)"
+    lines = []
+    for fact in facts.facts:
+        source = f"{fact.register_id}.{fact.record_id}.{fact.field}".strip(".")
+        lines.append(
+            f"- {fact.term_id} = {'true' if fact.value else 'false'} "
+            f"[warrant: {fact.warrant.value}; source: {source or 'n/a'}]"
+        )
+    body = "\n".join(lines) if lines else "(no facts returned)"
+    extras = [
+        f"Registers unavailable this scenario: {', '.join(facts.unavailable_registers) or 'none'}",
+        f"Terms those unavailable registers would answer: {', '.join(facts.unavailable_terms) or 'none'}",
+        f"Terms an available register covers (can be checked): {', '.join(facts.covered_terms) or 'none'}",
+        f"Terms with conflicting register values: {', '.join(facts.conflicts) or 'none'}",
+    ]
+    return "FACTS (from registers):\n" + body + "\n" + "\n".join(extras)
 
 
 def render_trace_text(

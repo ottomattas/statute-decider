@@ -1,0 +1,24 @@
+# The candidate with the solver swapped for an LLM: oracle rules, LLM-extracted
+# claims (fused ground, same as candidate), looked-up facts, LLM decides on
+# those premises. Isolates the decider inside the full architecture.
+condition: llm-structured
+notes: >
+  Candidate minus the solver. Same claim extraction as candidate; the
+  decision step is an LLM given the solver's inputs. Difference to candidate
+  = the value of a deterministic decider; difference to llm-as-solver = the
+  error contributed by LLM grounding.
+
+statute_text: { method: file }
+text_term: { method: oracle }
+term_rule: { method: oracle }
+user_utterance: { method: file }
+utterance_term: { method: llm, strategy: ground, prompt: ground-v1 }
+term_claim: { method: llm }
+registry_record: { method: file }
+record_term: { method: oracle }
+term_fact: { method: lookup }
+premise_outcome: { method: llm, strategy: decide, prompt: solver-inputs-v1 }
+outcome_trace: { method: skip }
+fuse:
+  - [utterance_term, term_claim]
+logic: propositional

@@ -1,0 +1,12 @@
+name: 20260903-llm-as-solver
+question: >
+  Decision-step isolation with identical inputs: oracle rules + oracle claims
+  + looked-up facts, LLM decides. Pair row for solver-validation (1.00).
+condition: llm-as-solver
+cases: all
+models: [gemini-2.5-flash, gpt-5-mini, haiku-4.5, deepseek-v4-flash]
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 5.0
+notes: Estimate ~EUR 2 (short prompts, no statute text). 1880 cells.

@@ -38,7 +38,10 @@ from statute_decider.nodes.llm_io import (
     tri_to_bool,
 )
 from statute_decider.nodes.rendering import (
+    render_claims,
+    render_facts,
     render_registry,
+    render_rules,
     render_term_catalog,
     render_term_refs,
     render_trace_text,
@@ -289,20 +292,41 @@ def decide_llm(
     prompt: PromptTemplate,
     *,
     scenario_id: str,
-    statute_text: str,
+    statute_text: str | None,
     utterance: str,
-    registry: RegistryState,
+    registry: RegistryState | None,
     catalog: TermCatalog | None = None,
+    rules: RuleSet | None = None,
+    claims: ClaimSet | None = None,
+    facts: FactSet | None = None,
     temperature: float = 0.0,
     max_output_tokens: int = 8192,
     meta: dict | None = None,
 ) -> PremiseOutcome:
-    """LLM-only decision from the raw sources (no vocabulary, no solver)."""
-    user = prompt.render(
-        statute=statute_text.strip(),
-        utterance=utterance.strip() or "(no request text)",
-        registry=render_registry(registry),
-    )
+    """LLM decision. The prompt's placeholders select the inputs: raw sources
+    (baseline), raw sources + oracle rules (llm-decider), or the solver's own
+    inputs — rules + claims + facts, no statute text (llm-as-solver)."""
+    placeholders: dict[str, str] = {
+        "utterance": utterance.strip() or "(no request text)",
+    }
+    wants = {name for name in ("statute", "registry", "rules", "claims", "facts") if f"{{{name}}}" in prompt.body}
+    if "statute" in wants:
+        if statute_text is None:
+            raise RuntimeError(f"Prompt {prompt.prompt_id} expects {{statute}} but statute_text is unbound.")
+        placeholders["statute"] = statute_text.strip()
+    if "registry" in wants:
+        if registry is None:
+            raise RuntimeError(f"Prompt {prompt.prompt_id} expects {{registry}} but registry_record is unbound.")
+        placeholders["registry"] = render_registry(registry)
+    if "rules" in wants:
+        if rules is None:
+            raise RuntimeError(f"Prompt {prompt.prompt_id} expects {{rules}} but term_rule is unbound.")
+        placeholders["rules"] = render_rules(rules, catalog)
+    if "claims" in wants:
+        placeholders["claims"] = render_claims(claims)
+    if "facts" in wants:
+        placeholders["facts"] = render_facts(facts)
+    user = prompt.render(**placeholders)
     result = client.complete(
         LLMCall(
             model_id=model_id,

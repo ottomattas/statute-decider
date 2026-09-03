@@ -249,9 +249,9 @@ def run_scenario(
         )
     elif po_binding.method == "llm":
         client, model_id = services.require_llm("premise_outcome")
-        if statute_text_value is None or registry is None:
-            raise RuntimeError("premise_outcome=llm requires raw sources (file bindings).")
         prompt = services.prompt_for("premise_outcome", po_binding)
+        # The prompt's placeholders decide which inputs are required; decide_llm
+        # raises if the condition left one of them unbound.
         outcome = decide_llm(
             client,
             model_id,
@@ -261,6 +261,9 @@ def run_scenario(
             utterance=utterance,
             registry=registry,
             catalog=catalog,
+            rules=ruleset,
+            claims=claims,
+            facts=facts,
             temperature=services.temperature,
             max_output_tokens=services.max_output_tokens,
             meta=meta,

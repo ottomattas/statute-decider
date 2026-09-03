@@ -9,10 +9,74 @@ from statute_decider.strategies import load_prompt
 
 
 def test_committed_conditions_load(root):
-    for name in ("solver-validation", "baseline", "candidate"):
+    for name in (
+        "solver-validation",
+        "baseline",
+        "candidate",
+        "llm-decider",
+        "llm-as-solver",
+        "llm-structured",
+        "candidate-staged",
+    ):
         condition = load_condition(root / "configs" / "conditions" / f"{name}.yaml")
         assert condition.condition == name
         assert len(condition.bindings) == 11
+
+
+def test_solver_inputs_prompt_renders_premises(root):
+    from statute_decider.core import DataStore
+    from statute_decider.nodes import lookup_facts
+    from statute_decider.nodes.rendering import render_claims, render_facts, render_rules
+
+    store = DataStore(root / "data")
+    case_id = "section_120_demo"
+    case = store.case(case_id)
+    scenario_id = store.all_scenarios([case_id])[0][1]
+    scenario = store.scenario(case_id, scenario_id)
+    statute_id = case.statute_ids[0]
+    registry = store.scenario_registry(case_id, scenario)
+    mappings = [store.oracle_record_term(rid) for rid in case.register_ids]
+    facts = lookup_facts(scenario_id, registry, mappings)
+    claims = store.oracle_value(case_id, "term_claim", scenario_id)
+    prompt = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-v1", strategy="decide")
+    rendered = prompt.render(
+        rules=render_rules(store.oracle_term_rule(statute_id), store.oracle_text_term(statute_id)),
+        claims=render_claims(claims),
+        facts=render_facts(facts),
+    )
+    assert "REFERENCE DECISION RULES" in rendered
+    assert "CLAIMS" in rendered and "FACTS" in rendered
+    assert "STATUTE" not in rendered
+
+
+def test_llm_decider_binds_oracle_rules(root):
+    condition = load_condition(root / "configs" / "conditions" / "llm-decider.yaml")
+    assert condition.binding("term_rule").method == "oracle"
+    assert condition.binding("text_term").method == "oracle"
+    assert condition.binding("premise_outcome").method == "llm"
+    assert condition.binding("premise_outcome").prompt == "oracle-rules-v1"
+    assert condition.binding("outcome_trace").method == "skip"
+    prompt = load_prompt(
+        root / "prompts", "premise_outcome", "oracle-rules-v1", strategy="decide"
+    )
+    rendered = prompt.render(
+        statute="Act", utterance="I apply", registry="{}", rules="Rules: parent -> ALLOW"
+    )
+    assert "I apply" in rendered
+    assert "Rules: parent -> ALLOW" in rendered
+    assert "{rules}" not in rendered
+
+
+def test_render_oracle_rules(root):
+    from statute_decider.core import DataStore
+    from statute_decider.nodes.rendering import render_rules
+
+    store = DataStore(root / "data")
+    statute_id = store.statute_ids()[0]
+    text = render_rules(store.oracle_term_rule(statute_id), store.oracle_text_term(statute_id))
+    assert "Variables:" in text
+    assert "Rules:" in text
+    assert "ALLOW" in text
 
 
 def test_candidate_fuses_user_chain(root):

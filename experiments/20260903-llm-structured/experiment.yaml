@@ -1,0 +1,12 @@
+name: 20260903-llm-structured
+question: >
+  Candidate minus the solver: oracle rules, LLM-extracted claims (fused
+  ground), looked-up facts, LLM decides on those premises.
+condition: llm-structured
+cases: all
+models: [gemini-2.5-flash, gpt-5-mini, haiku-4.5, deepseek-v4-flash]
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 8.0
+notes: Estimate ~EUR 4 (ground call ~1.7 + decide ~2). 1880 cells, 2 calls each.

@@ -1,0 +1,13 @@
+name: 20260903-candidate-staged
+question: >
+  Candidate with grounding staged in two calls (recognize, then value): does
+  splitting recognition from valuation change term recall / claim accuracy /
+  outcome?
+condition: candidate-staged
+cases: all
+models: [gemini-2.5-flash, gpt-5-mini, haiku-4.5, deepseek-v4-flash]
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 8.0
+notes: Estimate ~EUR 3.4 (two short calls per cell). 1880 cells.
