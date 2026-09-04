@@ -1,6 +1,6 @@
 # 20260901-baseline
 
-Generated 2026-09-01T22:01:04Z — execution `parallel`, condition `baseline`.
+Generated 2026-09-04T18:11:40Z — execution `parallel`, condition `baseline`.
 
 **Question:** Committed run 2 of 3: LLM-only source-to-trace. Raw statute text, utterance, and registry go to the model, which decides and justifies without any intermediate structure. The comparison floor for the candidate.
 
@@ -31,8 +31,8 @@ Generated 2026-09-01T22:01:04Z — execution `parallel`, condition `baseline`.
 |---|---|---|---|---|---|---|---|---|---|
 | deepseek-v4-flash | 470 | 0.660 | 0.629 | 0.889 | 0.500 | 0.672 | 0.553 | 0.553 | 0.553 |
 | gemini-2.5-flash | 470 | 0.594 | 0.595 | 0.486 | 0.640 | 0.574 | 0.553 | 0.553 | 0.553 |
-| gpt-5-mini | 467 | 0.492 | 0.494 | 0.260 | 0.576 | 0.443 | 0.550 | 0.550 | 0.550 |
-| haiku-4.5 | 466 | 0.659 | 0.579 | 0.891 | 0.564 | 0.678 | 0.558 | 0.558 | 0.558 |
+| gpt-5-mini | 470 | 0.491 | 0.494 | 0.258 | 0.574 | 0.442 | 0.553 | 0.553 | 0.553 |
+| haiku-4.5 | 470 | 0.662 | 0.579 | 0.891 | 0.574 | 0.681 | 0.553 | 0.553 | 0.553 |
 
 Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INFO: 210.
 
@@ -46,8 +46,8 @@ Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INF
 - `building_permit/building_permit_need_db` — 33 wrong rows (e.g. deepseek-v4-flash: ALLOW != NEED_MORE_INFO)
 - `building_permit/building_permit_u3_no_register` — 9 wrong rows (e.g. haiku-4.5: ALLOW != NEED_MORE_INFO)
 - `civil_service_eligibility/civil_service_allow` — 17 wrong rows (e.g. gemini-2.5-flash: NEED_MORE_INFO != ALLOW)
-- `civil_service_eligibility/civil_service_allow_eu_path` — 17 wrong rows (e.g. gemini-2.5-flash: NEED_MORE_INFO != ALLOW)
-- `civil_service_eligibility/civil_service_deny` — 19 wrong rows (e.g. gemini-2.5-flash: ALLOW != DENY)
+- `civil_service_eligibility/civil_service_allow_eu_path` — 18 wrong rows (e.g. gemini-2.5-flash: NEED_MORE_INFO != ALLOW)
+- `civil_service_eligibility/civil_service_deny` — 20 wrong rows (e.g. gemini-2.5-flash: ALLOW != DENY)
 - `civil_service_eligibility/civil_service_deny_no_citizenship` — 20 wrong rows (e.g. gemini-2.5-flash: ALLOW != DENY)
 - `civil_service_eligibility/civil_service_need_db` — 22 wrong rows (e.g. deepseek-v4-flash: ALLOW != NEED_MORE_INFO)
 - `civil_service_eligibility/civil_service_u3_no_register` — 20 wrong rows (e.g. deepseek-v4-flash: ALLOW != NEED_MORE_INFO)
@@ -76,28 +76,16 @@ Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INF
 - `section_120_demo/prompt-swap` — 20 wrong rows (e.g. deepseek-v4-flash: NEED_MORE_INFO != ALLOW)
 - `section_120_demo/unrelated-law` — 20 wrong rows (e.g. deepseek-v4-flash: NEED_MORE_INFO != ALLOW)
 
-## Errors
-
-7 rows errored:
-
-- `civil_service_eligibility/civil_service_allow_eu_path` gpt-5-mini: RuntimeError: openai/gpt-5-mini failed after 3 attempts: Connection error.
-- `civil_service_eligibility/civil_service_allow_eu_path` gpt-5-mini: RuntimeError: openai/gpt-5-mini failed after 3 attempts: Connection error.
-- `civil_service_eligibility/civil_service_deny` gpt-5-mini: RuntimeError: openai/gpt-5-mini failed after 3 attempts: Connection error.
-- `personal_data_journalism/journalism_u3_no_register` haiku-4.5: RuntimeError: anthropic/haiku-4.5 failed after 3 attempts: Connection error.
-- `personal_data_journalism/journalism_u3_no_register` haiku-4.5: RuntimeError: anthropic/haiku-4.5 failed after 3 attempts: Connection error.
-- `personal_data_journalism/journalism_u3_no_register` haiku-4.5: RuntimeError: anthropic/haiku-4.5 failed after 3 attempts: Connection error.
-- `personal_data_journalism/journalism_u3_no_register` haiku-4.5: RuntimeError: anthropic/haiku-4.5 failed after 3 attempts: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details.
-
 ## Cost (ledger)
 
 | model | calls | EUR |
 |---|---|---|
 | deepseek-v4-flash | 940 | 1.9964 |
 | gemini-2.5-flash | 940 | 2.6844 |
-| gpt-5-mini | 936 | 3.3931 |
-| haiku-4.5 | 934 | 10.0136 |
+| gpt-5-mini | 942 | 3.4053 |
+| haiku-4.5 | 942 | 10.0282 |
 
-Total: EUR 18.0875.
+Total: EUR 18.1142.
 
 ---
 Rows: `results/rows.jsonl`; node values: `results/nodes/`; resolved config: `results/config.snapshot.yaml`.

@@ -1,4 +1,4 @@
-generated_at: '2026-09-04T04:56:54Z'
+generated_at: '2026-09-04T18:25:50Z'
 experiment:
   name: 20260904-llm-as-solver-v2
   question: 'LLM-as-solver with the solver''s staged precedence rule stated (solver-inputs-v2).
@@ -155,3 +155,7 @@ scenarios:
 - section_120_demo/prompt-swap
 - section_120_demo/unrelated-law
 budget_eur: 5.0
+resume: true
+rerun_errors: true
+limit: null
+kept_rows: 1875

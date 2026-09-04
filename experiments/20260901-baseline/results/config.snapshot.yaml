@@ -1,4 +1,4 @@
-generated_at: '2026-09-01T21:03:49Z'
+generated_at: '2026-09-04T18:11:11Z'
 experiment:
   name: 20260901-baseline
   question: 'Committed run 2 of 3: LLM-only source-to-trace. Raw statute text, utterance,
@@ -156,3 +156,7 @@ scenarios:
 - section_120_demo/prompt-swap
 - section_120_demo/unrelated-law
 budget_eur: 25.0
+resume: true
+rerun_errors: true
+limit: null
+kept_rows: 1873

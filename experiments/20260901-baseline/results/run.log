@@ -4958,3 +4958,19 @@
 2026-09-02 01:00:46,142 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
 2026-09-02 01:01:04,029 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
 2026-09-02 01:01:04,224 INFO statute_decider.runner.experiment Experiment 20260901-baseline done: 1880 rows, EUR 18.0875.
+2026-09-04 21:11:11,997 INFO statute_decider.runner.experiment Experiment 20260901-baseline: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1873 kept from a previous run, 7 to run now, parallel.
+2026-09-04 21:11:15,521 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:15,826 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:15,830 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:15,899 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:21,115 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:21,475 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:21,664 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:22,803 INFO httpx2 HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-09-04 21:11:25,920 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-04 21:11:26,214 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-04 21:11:29,844 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-04 21:11:36,826 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-04 21:11:38,167 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-04 21:11:40,534 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-04 21:11:40,624 INFO statute_decider.runner.experiment Experiment 20260901-baseline done: 1880 rows, EUR 18.1142.
