@@ -1,0 +1,10 @@
+name: 20260904-sota-llm-as-solver-v2
+question: SOTA models as solver with the full staged specification (solver-inputs-v2), 3 repeats.
+condition: llm-as-solver-v2
+cases: all
+models: [gemini-3.1-pro, gpt-5.6-sol, fable-5.1, deepseek-v4-pro]
+repeats: 3
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 8.0
+notes: v1 cost EUR 5.22 in 4 min.

@@ -1,0 +1,160 @@
+generated_at: '2026-09-03T21:24:04Z'
+experiment:
+  name: 20260903-llm-structured
+  question: 'Candidate minus the solver: oracle rules, LLM-extracted claims (fused
+    ground), looked-up facts, LLM decides on those premises.
+
+    '
+  condition: llm-structured
+  cases: all
+  models:
+  - gemini-2.5-flash
+  - gpt-5-mini
+  - haiku-4.5
+  - deepseek-v4-flash
+  prompts: {}
+  repeats: 10
+  temperature: 0.0
+  max_output_tokens: 8192
+  budget_eur: 8.0
+  notes: Estimate ~EUR 4 (ground call ~1.7 + decide ~2). 1880 cells, 2 calls each.
+condition:
+  condition: llm-structured
+  bindings:
+    statute_text:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    text_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_rule:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    user_utterance:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    utterance_term:
+      method: llm
+      strategy: ground
+      prompt: ground-v1
+      solver: null
+      template: null
+    term_claim:
+      method: llm
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    registry_record:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    record_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_fact:
+      method: lookup
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    premise_outcome:
+      method: llm
+      strategy: decide
+      prompt: solver-inputs-v1
+      solver: null
+      template: null
+    outcome_trace:
+      method: skip
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+  fuse:
+  - - utterance_term
+    - term_claim
+  logic: propositional
+  loop: 'off'
+  notes: 'Candidate minus the solver. Same claim extraction as candidate; the decision
+    step is an LLM given the solver''s inputs. Difference to candidate = the value
+    of a deterministic decider; difference to llm-as-solver = the error contributed
+    by LLM grounding.
+
+    '
+execution: parallel
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+providers_filter: []
+solver_override: null
+prompt_combos:
+- {}
+repeats: 10
+scenarios:
+- building_permit/building_permit_allow
+- building_permit/building_permit_allow_via_db
+- building_permit/building_permit_deny
+- building_permit/building_permit_deny_incompetent
+- building_permit/building_permit_deny_no_site_study
+- building_permit/building_permit_need_db
+- building_permit/building_permit_u3_no_register
+- building_permit/building_permit_u7_trust_only
+- civil_service_eligibility/civil_service_allow
+- civil_service_eligibility/civil_service_allow_eu_path
+- civil_service_eligibility/civil_service_deny
+- civil_service_eligibility/civil_service_deny_no_citizenship
+- civil_service_eligibility/civil_service_need_db
+- civil_service_eligibility/civil_service_u3_no_register
+- civil_service_eligibility/civil_service_u7_trust_only
+- civil_service_eligibility/civil_service_u8_need_user
+- consumer_withdrawal/consumer_withdrawal_allow
+- consumer_withdrawal/consumer_withdrawal_allow_via_db
+- consumer_withdrawal/consumer_withdrawal_deny
+- consumer_withdrawal/consumer_withdrawal_deny_not_consumer
+- consumer_withdrawal/consumer_withdrawal_need_user
+- consumer_withdrawal/consumer_withdrawal_u3_no_register
+- consumer_withdrawal/consumer_withdrawal_u5_need_db
+- consumer_withdrawal/consumer_withdrawal_u7_trust_only
+- land_tax_exemption/land_tax_allow
+- land_tax_exemption/land_tax_allow_pensioner
+- land_tax_exemption/land_tax_allow_via_db
+- land_tax_exemption/land_tax_deny
+- land_tax_exemption/land_tax_deny_not_residential
+- land_tax_exemption/land_tax_need_db
+- land_tax_exemption/land_tax_u3_no_register
+- land_tax_exemption/land_tax_u7_trust_only
+- personal_data_journalism/journalism_allow
+- personal_data_journalism/journalism_allow_via_consent
+- personal_data_journalism/journalism_deny
+- personal_data_journalism/journalism_deny_no_basis
+- personal_data_journalism/journalism_need_user
+- personal_data_journalism/journalism_u3_no_register
+- personal_data_journalism/journalism_u5_need_db
+- personal_data_journalism/journalism_u7_trust_only
+- section_120_demo/allow
+- section_120_demo/db-then-user
+- section_120_demo/deny
+- section_120_demo/need-db
+- section_120_demo/need-user
+- section_120_demo/prompt-swap
+- section_120_demo/unrelated-law
+budget_eur: 8.0

@@ -1,0 +1,10 @@
+name: 20260904-smoke-as-solver-v2
+question: Does stating the staged precedence rule remove the conflict-scenario misses? gpt-5-mini, 1 repeat.
+condition: llm-as-solver-v2
+cases: all
+models: [gpt-5-mini]
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 0.5
+notes: Smoke.

@@ -1,0 +1,16 @@
+2026-09-03 22:42:20,302 INFO statute_decider.runner.experiment Experiment 20260903-smoke-llm-structured: 7 cells (7 scenarios x 1 models x 1 prompt combos x 1 repeats), parallel.
+2026-09-03 22:42:21,122 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:21,183 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:21,186 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:21,187 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:21,981 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:22,085 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:22,095 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:22,183 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:23,206 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:23,226 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:23,444 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:24,503 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:24,933 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:24,980 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:42:25,959 INFO statute_decider.runner.experiment Experiment 20260903-smoke-llm-structured done: 7 rows, EUR 0.0032.

@@ -1,0 +1,9 @@
+2026-09-03 22:44:20,446 INFO statute_decider.runner.experiment Experiment 20260903-smoke-llm-decider: 7 cells (7 scenarios x 1 models x 1 prompt combos x 1 repeats), parallel.
+2026-09-03 22:44:21,883 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:21,917 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:21,948 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:21,989 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:24,458 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:24,866 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:24,937 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:26,189 INFO statute_decider.runner.experiment Experiment 20260903-smoke-llm-decider done: 7 rows, EUR 0.0894.

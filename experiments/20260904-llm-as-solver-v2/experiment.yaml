@@ -1,0 +1,13 @@
+name: 20260904-llm-as-solver-v2
+question: >
+  LLM-as-solver with the solver's staged precedence rule stated (solver-inputs-v2).
+  v1 misses on 3 Sep were 100% on the 13 claim/fact-conflict scenarios for the
+  strong models.
+condition: llm-as-solver-v2
+cases: all
+models: [gemini-2.5-flash, gpt-5-mini, haiku-4.5, deepseek-v4-flash]
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 5.0
+notes: v1 cost EUR 2.01 in 14 min.

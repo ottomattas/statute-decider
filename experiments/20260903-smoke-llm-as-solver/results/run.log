@@ -1,0 +1,15 @@
+2026-09-03 22:43:33,375 INFO statute_decider.runner.experiment Experiment 20260903-smoke-llm-as-solver: 7 cells (7 scenarios x 1 models x 1 prompt combos x 1 repeats), parallel.
+2026-09-03 22:43:34,265 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:34,271 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:34,272 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:34,307 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:35,703 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:35,703 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:35,704 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:39,547 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/3): Expecting ',' delimiter: line 4 column 1367 (char 1412) — retrying in 5s
+2026-09-03 22:43:45,022 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:43:48,963 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/3): Expecting ',' delimiter: line 4 column 1367 (char 1412) — retrying in 10s
+2026-09-03 22:43:59,396 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:12,578 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/3): Expecting ',' delimiter: line 4 column 1153 (char 1198) — retrying in 5s
+2026-09-03 22:44:18,002 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-03 22:44:20,221 INFO statute_decider.runner.experiment Experiment 20260903-smoke-llm-as-solver done: 7 rows, EUR 0.0026.
