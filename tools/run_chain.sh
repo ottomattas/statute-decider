@@ -17,7 +17,9 @@ LOG="experiments/_chains/${STAMP}.log"
 echo "chain start $(date -Iseconds) commit $(git rev-parse --short HEAD)" | tee -a "$LOG"
 for exp in "$@"; do
   echo "=== $exp start $(date -Iseconds)" | tee -a "$LOG"
-  if .venv/bin/sd run --experiment "experiments/$exp" --execution parallel --models all >> "$LOG" 2>&1; then
+  # --resume makes the chain idempotent: a finished experiment has nothing
+  # pending and is skipped; an interrupted one continues from its rows.jsonl.
+  if .venv/bin/sd run --experiment "experiments/$exp" --execution parallel --models all --resume >> "$LOG" 2>&1; then
     echo "=== $exp done  $(date -Iseconds)" | tee -a "$LOG"
   else
     echo "=== $exp FAILED (exit $?) $(date -Iseconds)" | tee -a "$LOG"

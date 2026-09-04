@@ -183,3 +183,28 @@ def test_render_with_prefix_splits_after_statute(root):
     solver = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-v1", strategy="decide")
     _, n2 = solver.render_with_prefix("statute", rules="R", claims="C", facts="F")
     assert n2 == 0
+
+
+def test_resume_and_limit_continue_a_grid(root, tmp_path):
+    from statute_decider.runner.experiment import run_experiment
+
+    exp_dir = tmp_path / "exp"
+    exp_dir.mkdir()
+    (exp_dir / "experiment.yaml").write_text(
+        "name: resume-test\nquestion: t\ncondition: solver-validation\n"
+        "cases: [section_120_demo]\nmodels: []\nrepeats: 1\nbudget_eur: 0\n",
+        encoding="utf-8",
+    )
+    # Batch 1: three cells only.
+    results = run_experiment(root, exp_dir, execution="sequential", models=["all"], limit=3)
+    rows = [json.loads(l) for l in (results / "rows.jsonl").read_text().splitlines() if l.strip()]
+    assert len(rows) == 3
+    # Resume: the remaining four run, the first three are kept, none duplicated.
+    run_experiment(root, exp_dir, execution="sequential", models=["all"], resume=True)
+    rows = [json.loads(l) for l in (results / "rows.jsonl").read_text().splitlines() if l.strip()]
+    assert len(rows) == 7
+    assert len({(r["scenario_id"], r["repeat"]) for r in rows}) == 7
+    # Resume again: nothing pending, rows unchanged; every invocation recorded.
+    run_experiment(root, exp_dir, execution="sequential", models=["all"], resume=True)
+    assert (results / "rows.jsonl").read_text().count("\n") == 7
+    assert (results / "invocations.jsonl").read_text().count("\n") == 3

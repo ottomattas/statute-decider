@@ -32,6 +32,9 @@ def _cmd_run(args: argparse.Namespace) -> int:
         models=args.models,
         providers=args.providers,
         solver=args.solver,
+        resume=args.resume,
+        rerun_errors=args.rerun_errors,
+        limit=args.limit,
     )
     print(f"Results: {results_dir}")
     print(f"Summary: {results_dir / 'summary.md'}")
@@ -126,6 +129,22 @@ def main(argv: list[str] | None = None) -> int:
     )
     run_parser.add_argument("--providers", nargs="+", default=None, help="Optional filter.")
     run_parser.add_argument("--solver", default=None, help="Override premise_outcome.solver.")
+    run_parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Keep cells already in results/rows.jsonl; run only the missing ones.",
+    )
+    run_parser.add_argument(
+        "--rerun-errors",
+        action="store_true",
+        help="With --resume: also re-run cells whose row has an error.",
+    )
+    run_parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Run at most N new cells this invocation (batching; combine with --resume).",
+    )
     run_parser.set_defaults(func=_cmd_run)
 
     matrix_parser = sub.add_parser("matrix", help="Matrix operations.")
