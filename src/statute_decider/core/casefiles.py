@@ -13,27 +13,60 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from statute_decider.core.enums import Availability, Warrant
+from statute_decider.core.provenance import Provenance
 
 
-class StatuteSidecar(BaseModel):
-    """YAML sidecar next to ``statute.txt``."""
+class StatuteSource(BaseModel):
+    """Which consolidated text in the legislation corpus a statute is read from."""
 
-    statute_id: str
+    model_config = {"extra": "forbid"}
+
+    catalogue: str = "ee"  # jurisdiction directory under data/sources/legislation/
+    global_id: str  # Riigi Teataja <globaalID> of the consolidated text (normally the English one)
+    language: str | None = None  # override: read the counterpart in this language instead
+
+
+class StatuteSpec(BaseModel):
+    """``data/statutes/<act_slug>/statute.yaml`` — a selection spec over the corpus.
+
+    The input to the system is always the **full act** (``scope: full_act``);
+    ``provisions`` names the eIds the rules and term catalogue were written
+    against. It drives ``statute_text: slice`` (the ablation), the committed
+    ``statute.rendered.txt`` artefact, and ``sd validate``'s resolution checks.
+    RT element ids never appear here — only ``<eId>`` values.
+    """
+
+    model_config = {"extra": "forbid"}
+
+    statute_id: str  # the act slug, e.g. land_tax_act
     kind: str = "statute_text"  # future: regulation_text, caselaw_text, ...
     title: str = ""
-    act_references: list[str] = Field(default_factory=list)
     jurisdiction: str = "EE"
-    language: str = "en"
-    version_date: str = ""
-    # Official translation the text was taken from (Riigi Teataja English
-    # translations, https://www.riigiteataja.ee/en/). Empty for original-language texts.
-    translation_id: str = ""  # Riigi Teataja translation id, e.g. "505012026005"
-    translation_url: str = ""
-    translation_in_force_from: str = ""  # header "In force from" (dd.mm.yyyy)
-    translation_in_force_until: str = ""  # header "In force until" ("In force" = open-ended)
-    translation_published: str = ""  # header "Translation published"
-    provisions: str = ""  # which §§ / subsections / clauses the slice reproduces
+    source: StatuteSource
+    scope: Literal["full_act"] = "full_act"
+    provisions: list[str] = Field(default_factory=list)  # eIds within the act
     notes: str = ""
+
+
+class StatuteText(BaseModel):
+    """Output of ``statute_text``: the rendered text plus its provenance.
+
+    ``text`` is excluded from dumps (a full act runs to a megabyte); the
+    recorded node value is the provenance — document (``global_id`` +
+    ``sha256``) and the declared provision eIds — plus the size.
+    """
+
+    node: Literal["statute_text"] = "statute_text"
+    statute_id: str
+    act_slug: str
+    global_id: str
+    sha256: str
+    language: str
+    method: Literal["full_act", "slice"]
+    provisions: list[str] = Field(default_factory=list)
+    chars: int = 0
+    text: str = Field(default="", exclude=True)
+    provenance: Provenance | None = None
 
 
 class RegisterSchema(BaseModel):

@@ -12,6 +12,22 @@ from statute_decider.core import (
     RuleSet,
     TermCatalog,
 )
+from statute_decider.core.terms import ClauseAnchor
+from statute_decider.legislation.references import display_reference
+
+
+def _display_anchor(anchor: ClauseAnchor) -> str:
+    """Display form only ("§ 11 (5) 1)"), never the ``<act_slug>/<eId>`` key.
+
+    ``clause_title`` is the corpus-checked display form (``sd validate``); when
+    it is empty the form is derived from the reference itself.
+    """
+    if anchor.clause_title:
+        return anchor.clause_title
+    try:
+        return display_reference(anchor.clause_id)
+    except ValueError:
+        return anchor.clause_id
 
 
 def render_term_catalog(catalog: TermCatalog) -> str:
@@ -133,9 +149,7 @@ def render_trace_text(
         if rule is None:
             steps.append(f"Rule {fired.premise_id} fired -> {fired.effect}.")
             continue
-        refs = "; ".join(
-            f"{anchor.clause_title or anchor.clause_id}" for anchor in rule.law_references
-        )
+        refs = "; ".join(_display_anchor(anchor) for anchor in rule.law_references)
         label = rule.label or rule.premise_id
         steps.append(
             f"Rule {rule.premise_id} ({label}) fired -> {fired.effect}"

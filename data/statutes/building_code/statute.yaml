@@ -1,0 +1,17 @@
+statute_id: building_code
+kind: statute_text
+title: Building Code §§ 42, 44
+jurisdiction: EE
+source:
+  catalogue: ee
+  global_id: '510082026002'
+scope: full_act
+provisions:
+- sec_42__subsec_1
+- sec_44__subsec_1__point_1
+- sec_44__subsec_1__point_2
+- sec_44__subsec_1__point_3
+notes: Read from the official Riigi Teataja consolidated text (English translation
+  RT V, 10.08.2026). The rules and the term catalogue cite § 42 (1) and § 44 1)–3).
+  Re-authored 2026-09-01 from v1 validated content (tag pre-refactor); source switched
+  to the XML corpus 2026-09-05 (Ruling G).

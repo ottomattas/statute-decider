@@ -4,7 +4,8 @@
 # file only; docs/reference/id-aliases.md is the human-readable rendering.
 #
 # Conventions after the rename:
-#   statutes    <act abbreviation>_<paragraphs>           (official names)
+#   statutes    <act abbreviation>_<paragraphs>           (2026-09-05 morning; superseded the same
+#               evening by English act slugs — Ruling G, see "statutes" second block and "clauses")
 #   cases       the citizen's service question
 #   scenarios   <gold>_<mechanism>[_<distinguisher>], unique within a case
 #   registers   <new case>__<register>  (per-case forks kept; see id-aliases.md)
@@ -19,6 +20,40 @@ statutes:
   land_tax_exemption: mms_11
   personal_data_journalism: iks_4
   section_120_demo: pks_120
+  # Ruling G (2026-09-05 evening): statute id = English act slug of the corpus entry
+  # (data/sources/legislation/catalogue.json). Chains resolve: land_tax_exemption -> mms_11 -> land_tax_act.
+  ehs_42_44: building_code
+  ats_14_15: civil_service_act
+  vos_53_56: law_of_obligations_act
+  mms_11: land_tax_act
+  iks_4: personal_data_protection_act
+  pks_120: family_law_act
+
+# Ruling G: one reference vocabulary. clause_id -> <act_slug>/<Akoma Ntoso eId>; the
+# clause_title is regenerated from the corpus as the display form ("§ 11 (5) 1)"); a
+# qualifier the old title carried ("first sentence", "and § 120 (1)") moves into the note.
+clauses:
+  mms_11_1: land_tax_act/sec_11__subsec_1
+  mms_11_1_1: land_tax_act/sec_11__subsec_1_1
+  mms_11_5_1: land_tax_act/sec_11__subsec_5__point_1
+  mms_11_7: land_tax_act/sec_11__subsec_7
+  vos_53_4: law_of_obligations_act/sec_53__subsec_4
+  vos_56_1: law_of_obligations_act/sec_56__subsec_1
+  vos_56_21: law_of_obligations_act/sec_56__subsec_2_1
+  es_42_1: building_code/sec_42__subsec_1
+  es_44_1: building_code/sec_44__subsec_1__point_1
+  es_44_2: building_code/sec_44__subsec_1__point_2
+  es_44_3: building_code/sec_44__subsec_1__point_3
+  ats_14_1: civil_service_act/sec_14__subsec_1
+  ats_14_2: civil_service_act/sec_14__subsec_2
+  ats_15_1: civil_service_act/sec_15__subsec_1__point_1
+  ats_15_4: civil_service_act/sec_15__subsec_1__point_4
+  iks_4: personal_data_protection_act/sec_4
+  iks_4_harm: personal_data_protection_act/sec_4
+  representation_parent: family_law_act/sec_120__subsec_1
+  single_action_authority: family_law_act/sec_120__subsec_2
+  emergency_exception: family_law_act/sec_120__subsec_3
+  joint_consent: family_law_act/sec_118__subsec_1
 
 cases:
   building_permit: building_permit_grant

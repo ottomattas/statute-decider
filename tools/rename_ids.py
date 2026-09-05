@@ -21,10 +21,19 @@ What it touches (see docs/reference/id-aliases.md for the full table):
 Numbers never change: every rewrite is a key/value substitution on ids.
 Prove it with ``tools/fingerprint_results.py --compare``.
 
+Ruling G (2026-09-05 evening) extended the map: ``statutes`` chains on to the
+English act slugs and ``clauses`` maps every old ``clause_id`` to
+``<act_slug>/<eId>``; ``--scope statutes`` applies just that pass (statute
+directories, ``statute_id(s)``, ``clause_id`` in data and in results
+``nodes/*.jsonl``; ``clause_title`` regenerated from the corpus in the data
+plane only). Free text and the recorded ``clause_title`` strings in results
+stay as produced.
+
 Usage::
 
     .venv/bin/python tools/rename_ids.py            # apply
     .venv/bin/python tools/rename_ids.py --dry-run  # list the moves only
+    .venv/bin/python tools/rename_ids.py --scope statutes
 """
 
 from __future__ import annotations
@@ -57,6 +66,7 @@ class RenameMap:
     def __init__(self, path: Path) -> None:
         m = yaml.safe_load(path.read_text(encoding="utf-8"))
         self.statutes: dict[str, str] = m.get("statutes") or {}
+        self.clauses: dict[str, str] = m.get("clauses") or {}
         self.cases: dict[str, str] = m.get("cases") or {}
         self.registers: dict[str, str] = m.get("registers") or {}
         self.scenarios: dict[str, str] = m.get("scenarios") or {}
@@ -75,6 +85,14 @@ class RenameMap:
             if self.cases.get(oc, oc) != nc:
                 raise ValueError(f"scenario map {old} -> {new} disagrees with cases map")
             self.scen_by_case.setdefault(oc, {})[os_] = ns
+
+    def statute(self, value: str) -> str:
+        """Follow the chain (land_tax_exemption -> mms_11 -> land_tax_act) to its end."""
+        seen: set[str] = set()
+        while value in self.statutes and value not in seen:
+            seen.add(value)
+            value = self.statutes[value]
+        return value
 
     def pair(self, case_id: str, scenario_id: str) -> tuple[str, str]:
         new_scen = self.scen_by_case.get(case_id, {}).get(scenario_id, scenario_id)
@@ -176,9 +194,11 @@ def map_register_fields(obj, scenario_map: dict[str, str] | None = None):
         elif key == "register_overrides" and isinstance(value, dict):
             obj[key] = {M.registers.get(k, k): v for k, v in value.items()}
         elif key == "statute_id" and isinstance(value, str):
-            obj[key] = M.statutes.get(value, value)
+            obj[key] = M.statute(value)
         elif key == "statute_ids" and isinstance(value, list):
-            obj[key] = [M.statutes.get(v, v) for v in value]
+            obj[key] = [M.statute(v) for v in value]
+        elif key == "clause_id" and isinstance(value, str):
+            obj[key] = M.clauses.get(value, value)
         elif key == "prompt_id" and isinstance(value, str):
             obj[key] = M.prompts.get(value, value)
         elif key == "scenario_id" and scenario_map is not None and isinstance(value, str):
@@ -191,20 +211,63 @@ def map_register_fields(obj, scenario_map: dict[str, str] | None = None):
 # --- data plane --------------------------------------------------------------
 
 
+def retitle_anchors(obj) -> None:
+    """Data-plane only: every anchor / law reference whose clause_id is already in the
+    ``<act_slug>/<eId>`` form gets its clause_title regenerated from the corpus (the one
+    display renderer); a qualifier the old title carried is kept in the note."""
+    from statute_decider.legislation import display_reference, parse_reference
+    from statute_decider.legislation.corpus import CORPUS_RELATIVE, Corpus
+
+    corpus = Corpus(ROOT / CORPUS_RELATIVE)
+
+    def visit(node) -> None:
+        if isinstance(node, list):
+            for item in node:
+                visit(item)
+            return
+        if not isinstance(node, dict):
+            return
+        if isinstance(node.get("clause_id"), str) and "/" in node["clause_id"]:
+            ref = parse_reference(node["clause_id"])
+            act = corpus.load(corpus.entry_for(ref.act_slug, "en").global_id)
+            new_title = display_reference(ref, act=act).removeprefix(act.metadata.title).strip()
+            old_title = str(node.get("clause_title") or "")
+            heading = act.provision(ref.eid).section.heading
+            plain = old_title in ("", new_title, f"{new_title} {heading}".strip())
+            if not plain:
+                marker = f"Cited as “{old_title}”."
+                note = str(node.get("note") or "")
+                if marker not in note:
+                    node["note"] = f"{marker} {note}".strip()
+            node["clause_title"] = new_title
+        for value in node.values():
+            if isinstance(value, (dict, list)):
+                visit(value)
+
+    visit(obj)
+
+
 def rename_statutes() -> None:
-    for old, new in M.statutes.items():
+    done: set[str] = set()
+    for old in list(M.statutes):
+        new = M.statute(old)
         git_mv(ROOT / "data" / "statutes" / old, ROOT / "data" / "statutes" / new)
         d = ROOT / "data" / "statutes" / new
-        if DRY or not d.exists():
+        if DRY or not d.exists() or new in done:
             continue
+        done.add(new)
         side = d / "statute.yaml"
-        data = read_yaml(side)
-        data["statute_id"] = new
-        write_yaml(side, data)
+        if side.exists():
+            data = read_yaml(side)
+            data["statute_id"] = new
+            write_yaml(side, data)
         for name in ("text_term.json", "term_rule.json"):
             p = d / "oracle" / name
             if p.exists():
-                write_json(p, map_register_fields(read_json(p)))
+                data = map_register_fields(read_json(p))
+                if M.clauses:
+                    retitle_anchors(data)
+                write_json(p, data)
 
 
 def rename_registers() -> None:
@@ -281,7 +344,7 @@ def rename_conditions() -> None:
         if DRY or not p.exists():
             continue
         text = p.read_text(encoding="utf-8")
-        text = re.sub(rf"^condition:\s*{re.escape(old)}\s*$", f"condition: {new}", text, flags=re.M)
+        text = re.sub(rf"^condition:\s*{re.escape(old)}\s*$", f"condition: {new}", text, flags=re.MULTILINE)
         for ov, nv in M.prompt_variants.items():
             text = re.sub(rf"(prompt:\s*){re.escape(ov)}(?=[\s,}}\]]|$)", rf"\g<1>{nv}", text)
         p.write_text(text, encoding="utf-8")
@@ -298,7 +361,7 @@ def rename_template() -> None:
         return
     text = p.read_text(encoding="utf-8")
     for old, new in M.conditions.items():
-        text = re.sub(rf"^(condition:\s*){re.escape(old)}\b", rf"\g<1>{new}", text, flags=re.M)
+        text = re.sub(rf"^(condition:\s*){re.escape(old)}\b", rf"\g<1>{new}", text, flags=re.MULTILINE)
     p.write_text(text, encoding="utf-8")
 
 
@@ -430,12 +493,43 @@ def export_matrix() -> None:
         subprocess.run([str(sd), "matrix", "export"], check=True, cwd=ROOT)
 
 
+def rename_statute_refs_only() -> None:
+    """``--scope statutes``: the Ruling G pass. Moves the statute directories, rewrites
+    ``statute_id`` / ``statute_ids`` / ``clause_id`` in the data plane (cases, oracle JSONs)
+    and in the results plane's ``nodes/*.jsonl`` structured fields. Summaries, logs,
+    transcripts and every free-text string are left as recorded."""
+    rename_statutes()
+    for case_dir in sorted((ROOT / "data" / "cases").glob("*")):
+        case_yaml = case_dir / "case.yaml"
+        if case_yaml.exists() and not DRY:
+            write_yaml(case_yaml, map_register_fields(read_yaml(case_yaml)))
+    for exp_dir in sorted((ROOT / "experiments").glob("*")):
+        nodes = exp_dir / "results" / "nodes"
+        if not nodes.exists():
+            continue
+        for p in sorted(nodes.glob("*.jsonl")):
+            rewrite_jsonl(p, fix_row)
+        if not DRY:
+            print(f"rewrote {exp_dir.name}/results/nodes")
+
+
 def main(argv: list[str] | None = None) -> int:
     global DRY
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--scope",
+        choices=["all", "statutes"],
+        default="all",
+        help="'statutes': only statute ids + clause ids (data plane and results nodes); no summaries.",
+    )
     args = parser.parse_args(argv)
     DRY = args.dry_run
+    if args.scope == "statutes":
+        rename_statute_refs_only()
+        export_matrix()
+        print(f"{'would move' if DRY else 'moved'} {len(MOVES)} paths")
+        return 0
     rename_statutes()
     rename_registers()
     rename_cases()

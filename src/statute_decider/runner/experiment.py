@@ -279,6 +279,16 @@ def run_experiment(
                           "model": spec.model_id if spec else None},
                 )
                 run = run_scenario(store, condition, case_id, scenario_id, services)
+                statute = run.value("statute_text")
+                if statute is not None:
+                    # Which text the model/solver saw: document + declared provisions, never RT ids.
+                    row["statute_source"] = {
+                        "global_id": statute.global_id,
+                        "sha256": statute.sha256,
+                        "method": statute.method,
+                        "provisions": list(statute.provisions),
+                        "chars": statute.chars,
+                    }
                 produced_outcome = run.value("premise_outcome")
                 if produced_outcome is not None:
                     row["produced_state"] = produced_outcome.state.value

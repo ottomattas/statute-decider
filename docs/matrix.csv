@@ -1,9 +1,10 @@
 chain,level,node_family,node,method,strategy,provider,model,consumed_artifact,future,implemented,note
-statute,source,*_text,statute_text,file,fixture,code,c1593c4,fixture path,false,true,
-statute,source,*_text,statute_text,live,statute-api,code,c1593c4,endpoint config,true,false,
-statute,source,*_text,statute_text,generate,synthetic,code,c1593c4,generation recipe,true,false,
-statute,source,*_text,regulation_text,file,fixture,code,c1593c4,fixture path,true,false,new family member; feeds the same text_term
-statute,source,*_markup,statute_markup,file,fixture,code,c1593c4,fixture path,true,false,machine-readable legislation (e.g. Akoma Ntoso)
+statute,source,*_text,statute_text,file,full-act,code,9fce9f9,fixture path,false,true,the whole act rendered from the official Riigi Teataja XML in data/sources/legislation (provenance: global_id + sha256 + declared eIds)
+statute,source,*_text,statute_text,slice,declared-provisions,code,9fce9f9,statute.yaml provisions,false,true,only the eIds statute.yaml declares; ablation against full-act
+statute,source,*_text,statute_text,live,statute-api,code,9fce9f9,endpoint config,true,false,
+statute,source,*_text,statute_text,generate,synthetic,code,9fce9f9,generation recipe,true,false,
+statute,source,*_text,regulation_text,file,fixture,code,9fce9f9,fixture path,true,false,new family member; feeds the same text_term
+statute,source,*_markup,statute_markup,file,riigiteataja-xml,code,9fce9f9,fixture path,false,true,machine-readable legislation: Riigi Teataja tyviseadus XML (legislation.riigiteataja); Akoma Ntoso eIds
 statute,term,*_term,text_term,oracle,hand-defined catalog,human,operator,authoring procedure / notes,false,true,
 statute,term,*_term,text_term,llm,select,deepseek,deepseek-v4-flash,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
 statute,term,*_term,text_term,llm,select,deepseek,deepseek-v4-pro,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
@@ -23,7 +24,7 @@ statute,term,*_term,text_term,llm,synthesize,google,gemini-3.1-pro,(prompt varia
 statute,term,*_term,text_term,llm,synthesize,openai,gpt-5-mini,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
 statute,term,*_term,text_term,llm,synthesize,openai,gpt-5.6-sol,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
 statute,term,*_term,text_term,llm,synthesize,anthropic,haiku-4.5,(prompt variant),false,false,capability declared; executor lands with the experiment that needs it
-statute,term,*_term,markup_term,parse,markup-parser,code,c1593c4,markup grammar,true,false,
+statute,term,*_term,markup_term,parse,provision-resolver,code,9fce9f9,markup grammar,false,true,eId -> provision element and display form (legislation.riigiteataja / references)
 statute,premise,term_*,term_rule,oracle,hand-authored rules,human,operator,authoring procedure / notes,false,true,
 statute,premise,term_*,term_rule,llm,select,deepseek,deepseek-v4-flash,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
 statute,premise,term_*,term_rule,llm,select,deepseek,deepseek-v4-pro,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
@@ -44,10 +45,10 @@ statute,premise,term_*,term_rule,llm,synthesize,openai,gpt-5-mini,(prompt varian
 statute,premise,term_*,term_rule,llm,synthesize,openai,gpt-5.6-sol,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
 statute,premise,term_*,term_rule,llm,synthesize,anthropic,haiku-4.5,(prompt variant),false,false,loop re-entry (remap/regenerate) is a grid coordinate
 statute,premise,term_*,term_presumption,oracle,,human,operator,authoring procedure / notes,true,false,new epistemic type: statutory presumptions
-user,source,*_utterance,user_utterance,file,fixture,code,c1593c4,fixture path,false,true,
-user,source,*_utterance,user_utterance,live,intake,code,c1593c4,endpoint config,true,false,
-user,source,*_utterance,user_utterance,generate,synthetic,code,c1593c4,generation recipe,true,false,
-user,source,*_document,user_document,file,fixture,code,c1593c4,fixture path,true,false,asserted — shape does not upgrade warrant
+user,source,*_utterance,user_utterance,file,fixture,code,9fce9f9,fixture path,false,true,
+user,source,*_utterance,user_utterance,live,intake,code,9fce9f9,endpoint config,true,false,
+user,source,*_utterance,user_utterance,generate,synthetic,code,9fce9f9,generation recipe,true,false,
+user,source,*_document,user_document,file,fixture,code,9fce9f9,fixture path,true,false,asserted — shape does not upgrade warrant
 user,term,*_term,utterance_term,oracle,hand-tagged recognition,human,operator,authoring procedure / notes,false,true,
 user,term,*_term,utterance_term,llm,ground,deepseek,deepseek-v4-flash,utterance_term/ground/ground-v1,false,true,
 user,term,*_term,utterance_term,llm,ground,deepseek,deepseek-v4-pro,utterance_term/ground/ground-v1,false,true,
@@ -86,11 +87,11 @@ user,premise,term_*,term_claim,llm,value,google,gemini-3.1-pro,term_claim/value-
 user,premise,term_*,term_claim,llm,value,openai,gpt-5-mini,term_claim/value-v1,false,true,fusable with utterance_term (ground)
 user,premise,term_*,term_claim,llm,value,openai,gpt-5.6-sol,term_claim/value-v1,false,true,fusable with utterance_term (ground)
 user,premise,term_*,term_claim,llm,value,anthropic,haiku-4.5,term_claim/value-v1,false,true,fusable with utterance_term (ground)
-register,source,*_record,registry_record,file,fixture,code,c1593c4,fixture path,false,true,
-register,source,*_record,registry_record,live,register-api,code,c1593c4,endpoint config,true,false,
-register,source,*_record,registry_record,generate,synthetic,code,c1593c4,generation recipe,true,false,
+register,source,*_record,registry_record,file,fixture,code,9fce9f9,fixture path,false,true,
+register,source,*_record,registry_record,live,register-api,code,9fce9f9,endpoint config,true,false,
+register,source,*_record,registry_record,generate,synthetic,code,9fce9f9,generation recipe,true,false,
 register,term,*_term,record_term,oracle,hand-validated mapping,human,operator,authoring procedure / notes,false,true,
-register,term,*_term,record_term,match,name/alias matching,code,c1593c4,term catalog (alias table),false,true,
+register,term,*_term,record_term,match,name/alias matching,code,9fce9f9,term catalog (alias table),false,true,
 register,term,*_term,record_term,llm,schema-mapping,deepseek,deepseek-v4-flash,(prompt variant),false,false,
 register,term,*_term,record_term,llm,schema-mapping,deepseek,deepseek-v4-pro,(prompt variant),false,false,
 register,term,*_term,record_term,llm,schema-mapping,anthropic,fable-5,(prompt variant),false,false,
@@ -100,9 +101,9 @@ register,term,*_term,record_term,llm,schema-mapping,google,gemini-3.1-pro,(promp
 register,term,*_term,record_term,llm,schema-mapping,openai,gpt-5-mini,(prompt variant),false,false,
 register,term,*_term,record_term,llm,schema-mapping,openai,gpt-5.6-sol,(prompt variant),false,false,
 register,term,*_term,record_term,llm,schema-mapping,anthropic,haiku-4.5,(prompt variant),false,false,
-register,term,*_term,record_term,vendor,register documentation,code,c1593c4,register documentation,true,false,
+register,term,*_term,record_term,vendor,register documentation,code,9fce9f9,register documentation,true,false,
 register,premise,term_*,term_fact,oracle,hand-assigned values,human,operator,authoring procedure / notes,false,true,
-register,premise,term_*,term_fact,lookup,via the mapping,code,c1593c4,record_term mapping,false,true,
+register,premise,term_*,term_fact,lookup,via the mapping,code,9fce9f9,record_term mapping,false,true,
 register,premise,term_*,term_fact,llm,record-reading,deepseek,deepseek-v4-flash,(prompt variant),false,false,fusable with record_term
 register,premise,term_*,term_fact,llm,record-reading,deepseek,deepseek-v4-pro,(prompt variant),false,false,fusable with record_term
 register,premise,term_*,term_fact,llm,record-reading,anthropic,fable-5,(prompt variant),false,false,fusable with record_term
@@ -155,7 +156,7 @@ join,outcome,*_outcome,premise_outcome,llm,decide,anthropic,haiku-4.5,premise_ou
 join,outcome,*_outcome,premise_outcome,llm,decide,anthropic,haiku-4.5,premise_outcome/decide/solver-inputs-full-procedure,false,true,
 join,outcome,*_outcome,premise_outcome,llm,decide,anthropic,haiku-4.5,premise_outcome/decide/solver-inputs-partial-specification,false,true,
 join,trace,*_trace,outcome_trace,oracle,hand-written reference trace,human,operator,authoring procedure / notes,false,true,
-join,trace,*_trace,outcome_trace,render,default,code,c1593c4,render template,false,true,
+join,trace,*_trace,outcome_trace,render,default,code,9fce9f9,render template,false,true,
 join,trace,*_trace,outcome_trace,llm,justify,deepseek,deepseek-v4-flash,outcome_trace/justify/justify-v1,false,true,
 join,trace,*_trace,outcome_trace,llm,justify,deepseek,deepseek-v4-pro,outcome_trace/justify/justify-v1,false,true,
 join,trace,*_trace,outcome_trace,llm,justify,anthropic,fable-5,outcome_trace/justify/justify-v1,false,true,

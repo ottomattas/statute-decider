@@ -10,7 +10,8 @@ the paper's pinned commit `0d28213`, ES notes) uses the **old** column.
 
 | level | convention |
 |---|---|
-| statute | `<act abbreviation>_<paragraphs>` — the Riigi Teataja act and the §§ the slice covers |
+| statute | English act slug (`land_tax_act`) = `act_slug` in the legislation catalogue; the input is always the full act (Ruling G, 2026-09-05 evening) |
+| provision | `<act_slug>/<eId>` — Akoma Ntoso-style eId (`sec_11__subsec_5__point_1`); display form `§ 11 (5) 1)`; see `docs/reference/legislation-corpus.md` |
 | case | the citizen's service question |
 | scenario | `<gold>_<mechanism>[_<distinguisher>]`; unique within a case; global id `<case>/<scenario>` |
 | register | `<case>__<register>` — per-case forks kept for now (see "Registers") |
@@ -30,14 +31,50 @@ term is not stated), `register_down` (register unavailable), `trust_only`
 
 ## Statutes
 
-| old | new | act |
+Two renames on 2026-09-05: the morning pass (v1 case names → act abbreviation + §§)
+and the evening pass (Ruling G: → English act slugs, one per act, since the input is now
+the whole act read from the XML corpus). `statute_id` / `statute_ids` in cases, oracle
+JSONs and results `nodes/*.jsonl` carry the newest column; `tools/rename_ids.py
+--scope statutes` applied the evening pass.
+
+| v1 (before 2026-09-05) | morning 2026-09-05 | **current** | act |
+|---|---|---|---|
+| `building_permit` | `ehs_42_44` | `building_code` | Building Code (Ehitusseadustik); rules cite §§ 42, 44 |
+| `civil_service_eligibility` | `ats_14_15` | `civil_service_act` | Civil Service Act (Avaliku teenistuse seadus); §§ 14–15 |
+| `consumer_withdrawal` | `vos_53_56` | `law_of_obligations_act` | Law of Obligations Act (Võlaõigusseadus); § 53 (4), § 56 |
+| `land_tax_exemption` | `mms_11` | `land_tax_act` | Land Tax Act (Maamaksuseadus); § 11 |
+| `personal_data_journalism` | `iks_4` | `personal_data_protection_act` | Personal Data Protection Act (Isikuandmete kaitse seadus); § 4 |
+| `section_120_demo` | `pks_120` | `family_law_act` | Family Law Act (Perekonnaseadus); § 120, § 118 (1) |
+| — | — | `public_information_act` | Public Information Act (Avaliku teabe seadus); catalogue only, no case |
+
+### Provision references (clause ids)
+
+Before the evening pass a `clause_id` was an ad-hoc token (`mms_11_5_1`, `es_44_1`,
+`ats_15_1`, `iks_4_harm`); now it is `<act_slug>/<eId>` and `clause_title` is the
+display form the corpus renders. Old `clause_title` qualifiers that the display form
+cannot carry ("first sentence", "implicit consent baseline") moved into the anchor's
+`note` as `Cited as “…”.` Results `nodes/term_rule.jsonl` and `nodes/text_term.jsonl`
+carry the new `clause_id`; their recorded `clause_title` strings are untouched.
+
+| old `clause_id` | new `clause_id` | display |
 |---|---|---|
-| `building_permit` | `ehs_42_44` | Building Code (Ehitusseadustik) §§ 42, 44 |
-| `civil_service_eligibility` | `ats_14_15` | Civil Service Act (Avaliku teenistuse seadus) §§ 14–15 |
-| `consumer_withdrawal` | `vos_53_56` | Law of Obligations Act (Võlaõigusseadus) § 53 (4), § 56 (1) |
-| `land_tax_exemption` | `mms_11` | Land Tax Act (Maamaksuseadus) § 11 |
-| `personal_data_journalism` | `iks_4` | Personal Data Protection Act (Isikuandmete kaitse seadus) § 4 |
-| `section_120_demo` | `pks_120` | Family Law Act (Perekonnaseadus), whole act; § 120 exercised |
+| `mms_11_1` | `land_tax_act/sec_11__subsec_1` | § 11 (1) |
+| `mms_11_1_1` | `land_tax_act/sec_11__subsec_1_1` | § 11 (1¹) |
+| `mms_11_5_1` | `land_tax_act/sec_11__subsec_5__point_1` | § 11 (5) 1) |
+| `mms_11_7` | `land_tax_act/sec_11__subsec_7` | § 11 (7) |
+| `vos_53_4` | `law_of_obligations_act/sec_53__subsec_4` | § 53 (4) |
+| `vos_56_1` | `law_of_obligations_act/sec_56__subsec_1` | § 56 (1) |
+| `vos_56_2_1` | `law_of_obligations_act/sec_56__subsec_2_1` | § 56 (2¹) |
+| `es_42_1` | `building_code/sec_42__subsec_1` | § 42 (1) |
+| `es_44_1` / `es_44_2` / `es_44_3` | `building_code/sec_44__subsec_1__point_1` … `_3` | § 44 1) … 3) |
+| `ats_14_1` / `ats_14_2` | `civil_service_act/sec_14__subsec_1` / `_2` | § 14 (1) / (2) |
+| `ats_15_1` / `ats_15_4` | `civil_service_act/sec_15__subsec_1__point_1` / `_4` | § 15 1) / 4) |
+| `iks_4`, `iks_4_harm` | `personal_data_protection_act/sec_4` | § 4 |
+| `pks_118_1` | `family_law_act/sec_118__subsec_1` | § 118 (1) |
+| `pks_120_1` / `_2` / `_3` | `family_law_act/sec_120__subsec_1` / `_2` / `_3` | § 120 (1) / (2) / (3) |
+
+Full map: `tools/rename_map.yaml` (`clauses:`). Grammar and bijection to Riigi Teataja
+element ids: `docs/reference/legislation-corpus.md`.
 
 ## Cases
 

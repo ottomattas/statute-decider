@@ -1,0 +1,17 @@
+statute_id: law_of_obligations_act
+kind: statute_text
+title: Law of Obligations Act § 53 (4), § 56 (1)
+jurisdiction: EE
+source:
+  catalogue: ee
+  global_id: '526062026001'
+scope: full_act
+provisions:
+- sec_53__subsec_4
+- sec_56__subsec_1
+- sec_56__subsec_2_1
+- sec_56__subsec_2_2
+notes: Read from the official Riigi Teataja consolidated text (English translation
+  RT V, 26.06.2026). The rules and the term catalogue cite § 53 (4), § 56 (1), (2¹),
+  (2²). Re-authored 2026-09-01 from v1 validated content (tag pre-refactor); source
+  switched to the XML corpus 2026-09-05 (Ruling G).

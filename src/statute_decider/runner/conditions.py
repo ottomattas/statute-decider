@@ -22,6 +22,7 @@ VALID_METHODS = {
     "render",
     "parse",
     "file",
+    "slice",
     "live",
     "generate",
     "skip",

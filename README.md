@@ -38,7 +38,7 @@ conditions swap the solver for an LLM on the same inputs
 procedure the decide prompt states) or give the LLM the oracle rules
 (`llm-only-plus-rules`).
 
-Ids were renamed on 2026-09-05 (statutes by act and §, cases by service
+Ids were renamed on 2026-09-05 (statutes by act, cases by service
 question, scenarios as `<gold>_<mechanism>`, conditions as above). The
 old → new tables, including the `u3/u5/u7/u8` legend, are in
 [`docs/reference/id-aliases.md`](docs/reference/id-aliases.md); results
@@ -50,11 +50,20 @@ scenarios, 18 ALLOW / 18 DENY / 18 NEED_MORE_INFO (five near-duplicates
 retired, twelve authored; hand-verification sheet in
 [`docs/reference/gold-review-2026-09-05.md`](docs/reference/gold-review-2026-09-05.md)),
 and every string a model or reader sees — request texts, term catalogues,
-rule labels, register schemas, traces — is English, with statute texts taken
-from the official Riigi Teataja translations (currently interim snippets,
-to be replaced by deterministic slicing of the official XML). Experiment
+rule labels, register schemas, traces — is English. Experiment
 folders dated 2026-09-01 … 04 are 47-scenario history and are not comparable
 cell-for-cell with runs on the 54-scenario suite.
+
+Statute texts come from the official Riigi Teataja consolidated-text XML
+(`data/sources/legislation/`, 7 acts × {et, en}, byte-identical copies plus
+a generated `catalogue.json`). The input to the system is always the
+**full act**, rendered deterministically from the XML; each statute's
+`statute.yaml` names the act (by `global_id`) and the provisions its rules
+were written against. Statute ids are English act slugs (`land_tax_act`),
+provision references are `<act_slug>/<eId>`
+(`land_tax_act/sec_11__subsec_5__point_1`, displayed as `§ 11 (5) 1)`);
+the RT element ids are never stored. Layout, catalogue schema and the
+id bijection: [`docs/reference/legislation-corpus.md`](docs/reference/legislation-corpus.md).
 
 Research software (Mättas / Järv / Tammet, TalTech). The current manuscript
 that uses this tool is
@@ -78,7 +87,8 @@ python3.12 -m venv .venv          # or: uv venv --python 3.12
 .venv/bin/pip install -e '.[dev,solvers,llm]'
 
 .venv/bin/pytest -q               # full test suite, incl. 54-scenario solver validation
-.venv/bin/sd validate             # data inventory + schema check
+.venv/bin/sd validate             # data inventory + schema check + every provision resolved against the XML
+.venv/bin/sd corpus check         # re-hash the legislation corpus, report drift and validity windows
 .venv/bin/sd matrix export        # regenerate docs/matrix.csv (the experiment menu)
 
 # run the free committed condition end to end
@@ -100,13 +110,15 @@ src/statute_decider/   the package: core schemas, solvers, llm client, nodes, ru
 configs/conditions/    method-per-node bindings (solver-validation, llm-only, architecture, ...)
 configs/llm/           model registry + prices
 prompts/<node>/        versioned prompt templates (new wording = new file)
-data/statutes/         statute text + oracle terms/rules, stored once
+data/sources/legislation/  Riigi Teataja XML corpus + generated catalogue.json (sd corpus ingest / check)
+data/statutes/         statute selection spec (statute.yaml) + rendered provisions + oracle terms/rules, stored once
 data/registers/        register schemas + oracle field-to-term maps, stored once
 data/cases/            thin assemblies: utterances, registry state, scenarios, oracle values
 experiments/           one folder per run: experiment.yaml + results/ + analysis/
 docs/matrix.csv        generated experimentation matrix (sd matrix export)
 docs/refactor-v2-plan.md  the design document for this architecture
-docs/reference/id-aliases.md  old → new id tables (2026-09-05 rename)
+docs/reference/id-aliases.md  old → new id tables (2026-09-05 renames)
+docs/reference/legislation-corpus.md  the XML corpus, catalogue schema, reference vocabulary
 tools/                 one-off authoring scripts (v1 → v2 data migration, id rename + fingerprint)
 ```
 

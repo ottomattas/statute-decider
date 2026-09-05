@@ -54,8 +54,78 @@ def _cmd_matrix(args: argparse.Namespace) -> int:
     return 0
 
 
+def _validate_statute(store, statute_id: str, *, write_rendered: bool) -> list[str]:
+    """One statute: spec parses, the act loads from the corpus, every declared
+    provision and every rule / catalogue ``clause_id`` resolves against the XML,
+    ``clause_title`` equals the display form, and ``statute.rendered.txt`` equals
+    the deterministic slice (``--write-rendered`` regenerates it)."""
+    from statute_decider.legislation import display_reference, parse_reference
+    from statute_decider.legislation.riigiteataja import ProvisionNotFound
+
+    problems: list[str] = []
+    spec = store.statute_spec(statute_id)
+    if spec.statute_id != statute_id:
+        problems.append(f"statute {statute_id}: statute.yaml says statute_id={spec.statute_id!r}")
+    entry = store.statute_entry(statute_id)
+    act = store.statute_act(statute_id)
+    if entry.act_slug != statute_id:
+        problems.append(
+            f"statute {statute_id}: catalogue entry {entry.global_id} is act {entry.act_slug!r}"
+        )
+    for eid in spec.provisions:
+        try:
+            act.provision(eid)
+        except (ProvisionNotFound, ValueError) as exc:
+            problems.append(f"statute {statute_id}: provisions[{eid}]: {exc}")
+
+    def check_anchor(where: str, clause_id: str, clause_title: str) -> None:
+        try:
+            ref = parse_reference(clause_id)
+        except ValueError as exc:
+            problems.append(f"statute {statute_id}: {where}: {exc}")
+            return
+        if ref.act_slug != statute_id:
+            problems.append(f"statute {statute_id}: {where}: {clause_id} cites another act")
+            return
+        try:
+            act.provision(ref.eid)
+        except (ProvisionNotFound, ValueError) as exc:
+            problems.append(f"statute {statute_id}: {where}: {exc}")
+            return
+        expected = display_reference(ref, act=act).removeprefix(act.metadata.title).strip()
+        if clause_title != expected:
+            problems.append(
+                f"statute {statute_id}: {where}: clause_title {clause_title!r} != {expected!r}"
+            )
+
+    catalog = store.oracle_text_term(statute_id)
+    for term in catalog.terms:
+        for i, anchor in enumerate(term.anchors):
+            check_anchor(f"text_term {term.term_id} anchors[{i}]", anchor.clause_id, anchor.clause_title)
+    rules = store.oracle_term_rule(statute_id)
+    for rule in rules.rules:
+        for i, ref in enumerate(rule.law_references):
+            check_anchor(
+                f"term_rule {rule.premise_id} law_references[{i}]", ref.clause_id, ref.clause_title
+            )
+
+    rendered = store.render_declared_provisions(statute_id)
+    path = store.statute_rendered_path(statute_id)
+    current = path.read_text(encoding="utf-8") if path.exists() else None
+    if current != rendered:
+        if write_rendered:
+            path.write_text(rendered, encoding="utf-8")
+            print(f"wrote {path.relative_to(store.root.parent)} ({len(rendered)} chars)")
+        else:
+            state = "missing" if current is None else "drifted from the corpus slice"
+            problems.append(
+                f"statute {statute_id}: {path.name} {state}; run `sd validate --write-rendered`"
+            )
+    return problems
+
+
 def _cmd_validate(args: argparse.Namespace) -> int:
-    """Validate every data file against the core schemas."""
+    """Validate every data file against the core schemas and the legislation corpus."""
     from statute_decider.core import DataStore
 
     root = _find_root(Path(args.root) if args.root else None)
@@ -66,10 +136,7 @@ def _cmd_validate(args: argparse.Namespace) -> int:
     cases = store.case_ids()
     for statute_id in statutes:
         try:
-            store.statute_text(statute_id)
-            store.statute_sidecar(statute_id)
-            store.oracle_text_term(statute_id)
-            store.oracle_term_rule(statute_id)
+            problems.extend(_validate_statute(store, statute_id, write_rendered=args.write_rendered))
         except Exception as exc:  # noqa: BLE001
             problems.append(f"statute {statute_id}: {exc}")
     for register_id in registers:
@@ -185,7 +252,14 @@ def main(argv: list[str] | None = None) -> int:
     export_parser.add_argument("--out", default=None)
     export_parser.set_defaults(func=_cmd_matrix)
 
-    validate_parser = sub.add_parser("validate", help="Validate all data files.")
+    validate_parser = sub.add_parser(
+        "validate", help="Validate all data files and resolve every provision against the corpus."
+    )
+    validate_parser.add_argument(
+        "--write-rendered",
+        action="store_true",
+        help="Regenerate data/statutes/*/statute.rendered.txt instead of failing on drift.",
+    )
     validate_parser.set_defaults(func=_cmd_validate)
 
     corpus_parser = sub.add_parser("corpus", help="Legislation corpus (data/sources/legislation).")

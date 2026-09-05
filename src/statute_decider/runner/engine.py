@@ -22,6 +22,7 @@ from statute_decider.core import (
     RecordTermMap,
     RegistryState,
     RuleSet,
+    StatuteText,
     TermCatalog,
     UtteranceTerms,
 )
@@ -110,12 +111,21 @@ def run_scenario(
         return condition.binding(node)
 
     # --- sources ---
+    # statute_text: ``file`` = the full act rendered from the corpus XML (what
+    # prompts receive); ``slice`` = only the provisions statute.yaml declares
+    # (the ablation). Both record document + provision provenance.
+    statute: StatuteText | None = None
     statute_text_value: str | None = None
-    if bind("statute_text").method == "file":
-        statute_text_value = store.statute_text(statute_id)
-    elif bind("statute_text").method != "skip":
-        raise _unsupported("statute_text", bind("statute_text").method)
-    values["statute_text"] = statute_text_value
+    st_method = bind("statute_text").method
+    if st_method == "file":
+        statute = store.statute_text(statute_id, method="full_act")
+    elif st_method == "slice":
+        statute = store.statute_text(statute_id, method="slice")
+    elif st_method != "skip":
+        raise _unsupported("statute_text", st_method)
+    if statute is not None:
+        statute_text_value = statute.text
+    values["statute_text"] = statute
 
     utterance: str = ""
     if bind("user_utterance").method == "file":

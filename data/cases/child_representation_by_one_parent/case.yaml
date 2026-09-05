@@ -3,7 +3,7 @@ title: Family Law Act § 120
 description: Representation of a child by one parent under the Family Law Act § 120
   (sole custody, delegated power of decision, emergency, joint consent).
 statute_ids:
-- pks_120
+- family_law_act
 register_ids:
 - child_representation_by_one_parent__population_registry
 - child_representation_by_one_parent__custody_registry

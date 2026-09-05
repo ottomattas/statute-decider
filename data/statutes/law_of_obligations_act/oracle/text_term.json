@@ -1,0 +1,108 @@
+{
+  "node": "text_term",
+  "statute_id": "law_of_obligations_act",
+  "terms": [
+    {
+      "term_id": "is_consumer",
+      "label": "Applicant is a consumer",
+      "definition": "The trader's CRM records the counter-party as a consumer (non-professional).",
+      "evidence": "register",
+      "propositional": "IS_CONSUMER",
+      "predicate": "IsConsumer(party)",
+      "higher_order": "IsConsumer(party)",
+      "anchors": [
+        {
+          "clause_id": "law_of_obligations_act/sec_56__subsec_1",
+          "clause_title": "§ 56 (1)",
+          "quote": "A consumer may withdraw from a distance contract within 14 days without giving any reason.",
+          "note": "Only consumers enjoy the withdrawal right."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "distance_contract",
+      "label": "Contract was concluded by means of distance communication",
+      "definition": "The order form stored by the trader marks the contract as a distance sale (e-shop, phone, etc.).",
+      "evidence": "register",
+      "propositional": "DISTANCE_CONTRACT",
+      "predicate": "DistanceContract(contract)",
+      "higher_order": "DistanceContract(contract)",
+      "anchors": [
+        {
+          "clause_id": "law_of_obligations_act/sec_56__subsec_1",
+          "clause_title": "§ 56 (1)",
+          "quote": "... withdraw from a distance contract ...",
+          "note": "Withdrawal only applies to distance contracts."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "excluded_category",
+      "label": "Subject of the contract falls into a § 53 (4) excluded category",
+      "definition": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
+      "evidence": "register",
+      "propositional": "EXCLUDED_CATEGORY",
+      "predicate": "ExcludedCategory(goods)",
+      "higher_order": "ExcludedCategory(goods)",
+      "anchors": [
+        {
+          "clause_id": "law_of_obligations_act/sec_53__subsec_4",
+          "clause_title": "§ 53 (4)",
+          "quote": "The right of withdrawal provided for in subsection 1 of § 56 of this Act shall not apply to contracts the object of which is: ...",
+          "note": "Category-based exclusion blocks the withdrawal right."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "within_14_days",
+      "label": "The 14-day withdrawal period is still running",
+      "definition": "Consumer confirms that fewer than 14 days have elapsed since receipt of the goods / conclusion of the contract.",
+      "evidence": "user",
+      "propositional": "WITHIN_14_DAYS",
+      "predicate": "Within14Days(contract)",
+      "higher_order": "Within14Days(contract)",
+      "anchors": [
+        {
+          "clause_id": "law_of_obligations_act/sec_56__subsec_1",
+          "clause_title": "§ 56 (1)",
+          "quote": "... within 14 days ...",
+          "note": "Statutory 14-day window."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "notice_sent_in_time",
+      "label": "Withdrawal notice has been sent in time",
+      "definition": "Consumer confirms that the withdrawal notice was dispatched to the trader before the 14-day period expired.",
+      "evidence": "user",
+      "propositional": "NOTICE_SENT",
+      "predicate": "NoticeSent(consumer, trader)",
+      "higher_order": "NoticeSent(consumer)(trader)",
+      "anchors": [
+        {
+          "clause_id": "law_of_obligations_act/sec_56__subsec_2_1",
+          "clause_title": "§ 56 (2¹)",
+          "quote": "The deadline for withdrawal from a distance contract shall be deemed to have been observed by the consumer if the consumer has dispatched a notification concerning the withdrawal to the trader during the withdrawal period.",
+          "note": "Timely dispatch satisfies the deadline."
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "text_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
+  }
+}

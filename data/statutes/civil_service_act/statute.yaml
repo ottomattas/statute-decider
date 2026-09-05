@@ -1,0 +1,19 @@
+statute_id: civil_service_act
+kind: statute_text
+title: Civil Service Act §§ 14–15
+jurisdiction: EE
+source:
+  catalogue: ee
+  global_id: '513072026004'
+scope: full_act
+provisions:
+- sec_14__subsec_1
+- sec_14__subsec_2
+- sec_15__subsec_1__point_1
+- sec_15__subsec_1__point_2
+- sec_15__subsec_1__point_3
+- sec_15__subsec_1__point_4
+notes: Read from the official Riigi Teataja consolidated text (English translation
+  RT V, 13.07.2026). The rules and the term catalogue cite § 14 (1)–(2) and § 15 1)–4).
+  Re-authored 2026-09-01 from v1 validated content (tag pre-refactor); source switched
+  to the XML corpus 2026-09-05 (Ruling G).

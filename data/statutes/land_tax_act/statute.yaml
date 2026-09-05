@@ -1,0 +1,14 @@
+statute_id: land_tax_act
+kind: statute_text
+title: Land Tax Act § 11
+jurisdiction: EE
+source:
+  catalogue: ee
+  global_id: '505012026005'
+scope: full_act
+provisions:
+- sec_11
+notes: Read from the official Riigi Teataja consolidated text (English translation
+  RT V, 05.01.2026; in force from 01.01.2026). The rules and the term catalogue were
+  written against § 11 (1), (1¹), (5) 1), (7). Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor); source switched to the XML corpus 2026-09-05 (Ruling G).

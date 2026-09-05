@@ -33,14 +33,15 @@ class Capability:
 
 CAPABILITIES: list[Capability] = [
     # statute chain
-    Capability("statute", "source", "*_text", "statute_text", "file", ("fixture",)),
+    Capability("statute", "source", "*_text", "statute_text", "file", ("full-act",), note="the whole act rendered from the official Riigi Teataja XML in data/sources/legislation (provenance: global_id + sha256 + declared eIds)"),
+    Capability("statute", "source", "*_text", "statute_text", "slice", ("declared-provisions",), note="only the eIds statute.yaml declares; ablation against full-act"),
     Capability("statute", "source", "*_text", "statute_text", "live", ("statute-api",), future=True, implemented=False),
     Capability("statute", "source", "*_text", "statute_text", "generate", ("synthetic",), future=True, implemented=False),
     Capability("statute", "source", "*_text", "regulation_text", "file", ("fixture",), future=True, implemented=False, note="new family member; feeds the same text_term"),
-    Capability("statute", "source", "*_markup", "statute_markup", "file", ("fixture",), future=True, implemented=False, note="machine-readable legislation (e.g. Akoma Ntoso)"),
+    Capability("statute", "source", "*_markup", "statute_markup", "file", ("riigiteataja-xml",), note="machine-readable legislation: Riigi Teataja tyviseadus XML (legislation.riigiteataja); Akoma Ntoso eIds"),
     Capability("statute", "term", "*_term", "text_term", "oracle", ("hand-defined catalog",)),
     Capability("statute", "term", "*_term", "text_term", "llm", ("select", "synthesize"), implemented=False, note="capability declared; executor lands with the experiment that needs it"),
-    Capability("statute", "term", "*_term", "markup_term", "parse", ("markup-parser",), future=True, implemented=False),
+    Capability("statute", "term", "*_term", "markup_term", "parse", ("provision-resolver",), note="eId -> provision element and display form (legislation.riigiteataja / references)"),
     Capability("statute", "premise", "term_*", "term_rule", "oracle", ("hand-authored rules",)),
     Capability("statute", "premise", "term_*", "term_rule", "llm", ("select", "synthesize"), implemented=False, note="loop re-entry (remap/regenerate) is a grid coordinate"),
     Capability("statute", "premise", "term_*", "term_presumption", "oracle", (), future=True, implemented=False, note="new epistemic type: statutory presumptions"),
@@ -151,6 +152,7 @@ def expand_rows(root: Path, registry: ModelRegistry) -> list[dict[str, str]]:
             for strategy in strategies:
                 consumed = {
                     "file": "fixture path",
+                    "slice": "statute.yaml provisions",
                     "match": "term catalog (alias table)",
                     "lookup": "record_term mapping",
                     "render": "render template",

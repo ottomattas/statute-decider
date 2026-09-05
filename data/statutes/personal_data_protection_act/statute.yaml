@@ -1,0 +1,15 @@
+statute_id: personal_data_protection_act
+kind: statute_text
+title: Personal Data Protection Act § 4
+jurisdiction: EE
+source:
+  catalogue: ee
+  global_id: '519032026002'
+scope: full_act
+provisions:
+- sec_4
+notes: Read from the official Riigi Teataja consolidated text (English translation
+  RT V, 19.03.2026; in force from 16.03.2026). The rules and the term catalogue cite
+  § 4 (a single-sentence-pair section; "first/second sentence" qualifiers live in the
+  anchors' notes). Re-authored 2026-09-01 from v1 validated content (tag pre-refactor);
+  source switched to the XML corpus 2026-09-05 (Ruling G).

@@ -8,7 +8,9 @@ from statute_decider.core.casefiles import (
     RegisterState,
     RegistryState,
     Scenario,
-    StatuteSidecar,
+    StatuteSource,
+    StatuteSpec,
+    StatuteText,
     apply_register_overrides,
 )
 from statute_decider.core.enums import (
@@ -82,7 +84,9 @@ __all__ = [
     "RuleSet",
     "Scenario",
     "ScoredOutcome",
-    "StatuteSidecar",
+    "StatuteSource",
+    "StatuteSpec",
+    "StatuteText",
     "Term",
     "TermCatalog",
     "TermRef",

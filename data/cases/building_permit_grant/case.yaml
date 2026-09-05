@@ -3,7 +3,7 @@ title: Building Code §§ 42, 44
 description: Building-permit issuance check under the Building Code § 42 (1) and the
   § 44 refusal grounds.
 statute_ids:
-- ehs_42_44
+- building_code
 register_ids:
 - building_permit_grant__building_registry
 - building_permit_grant__designer_registry

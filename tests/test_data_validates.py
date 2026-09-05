@@ -8,11 +8,28 @@ def test_inventory(store):
 
 
 def test_statutes_load(store):
+    from statute_decider.legislation import parse_reference
+
     for statute_id in store.statute_ids():
-        assert store.statute_text(statute_id).strip()
-        sidecar = store.statute_sidecar(statute_id)
-        assert sidecar.statute_id == statute_id
+        spec = store.statute_spec(statute_id)
+        assert spec.statute_id == statute_id
+        assert spec.scope == "full_act" and spec.provisions
+        act = store.statute_act(statute_id)
+        for eid in spec.provisions:
+            act.provision(eid)  # raises on a miss
+        full = store.statute_text(statute_id)
+        assert full.method == "full_act" and full.text.strip() and full.chars == len(full.text)
+        assert full.global_id == spec.source.global_id and len(full.sha256) == 64
+        sliced = store.statute_text(statute_id, "slice")
+        assert sliced.chars < full.chars
+        rendered = store.statute_rendered_path(statute_id)
+        assert rendered.read_text(encoding="utf-8") == sliced.text, f"{statute_id}: rendered drift"
         catalog = store.oracle_text_term(statute_id)
+        for term in catalog.terms:
+            for anchor in term.anchors:
+                ref = parse_reference(anchor.clause_id)
+                assert ref.act_slug == statute_id
+                act.provision(ref.eid)
         assert catalog.terms
         ruleset = store.oracle_term_rule(statute_id)
         assert ruleset.rules

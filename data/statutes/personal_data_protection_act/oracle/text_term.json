@@ -1,0 +1,108 @@
+{
+  "node": "text_term",
+  "statute_id": "personal_data_protection_act",
+  "terms": [
+    {
+      "term_id": "journalistic_purpose",
+      "label": "Processing has a journalistic purpose",
+      "definition": "The controller's CMS records classify the processing as journalism.",
+      "evidence": "register",
+      "propositional": "JOURNALISM",
+      "predicate": "JournalisticPurpose(processing)",
+      "higher_order": "JournalisticPurpose(processing)",
+      "anchors": [
+        {
+          "clause_id": "personal_data_protection_act/sec_4",
+          "clause_title": "§ 4",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
+          "note": "Journalistic-purpose gateway to the consent-free processing basis."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "public_interest",
+      "label": "There is public interest in the processing",
+      "definition": "Editorial assessment confirms that there is public interest in the processing.",
+      "evidence": "user",
+      "propositional": "PUBLIC_INTEREST",
+      "predicate": "PublicInterest(processing)",
+      "higher_order": "PublicInterest(processing)",
+      "anchors": [
+        {
+          "clause_id": "personal_data_protection_act/sec_4",
+          "clause_title": "§ 4",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
+          "note": "Public-interest condition for the journalism basis."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "journalism_ethics",
+      "label": "Processing respects journalism ethics",
+      "definition": "The editorial team confirms the processing is consistent with journalism ethics.",
+      "evidence": "user",
+      "propositional": "ETHICS_OK",
+      "predicate": "EthicsCompliant(processing)",
+      "higher_order": "EthicsCompliant(processing)",
+      "anchors": [
+        {
+          "clause_id": "personal_data_protection_act/sec_4",
+          "clause_title": "§ 4",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
+          "note": "Journalism-ethics condition for the journalism basis."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "subject_consent",
+      "label": "Data subject has consented",
+      "definition": "Consent records show the data subject has given valid consent.",
+      "evidence": "register",
+      "propositional": "CONSENT",
+      "predicate": "SubjectConsent(processing)",
+      "higher_order": "SubjectConsent(processing)",
+      "anchors": [
+        {
+          "clause_id": "personal_data_protection_act/sec_4",
+          "clause_title": "§ 4",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject ...",
+          "note": "Cited as “§ 4 (implicit consent baseline)”. Consent baseline: when consent exists, the journalism basis is not needed."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "term_id": "excessive_harm",
+      "label": "Disclosure would cause excessive damage to the data subject's rights",
+      "definition": "Editorial risk assessment concludes that disclosure would cause excessive damage to the data subject's rights (§ 4, second sentence).",
+      "evidence": "user",
+      "propositional": "EXCESSIVE_HARM",
+      "predicate": "ExcessiveHarm(subject)",
+      "higher_order": "ExcessiveHarm(subject)",
+      "anchors": [
+        {
+          "clause_id": "personal_data_protection_act/sec_4",
+          "clause_title": "§ 4",
+          "quote": "Disclosure of personal data must not cause excessive damage to the rights of any data subjects.",
+          "note": "Cited as “§ 4, second sentence”. Proportionality limit: excessive harm defeats the journalism basis."
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "text_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
+  }
+}
