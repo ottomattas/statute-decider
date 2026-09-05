@@ -7,7 +7,7 @@ is the z3 result on oracle claims + oracle facts (the `solver-validation` condit
 Full run: `experiments/20260906-solver-validation/results/summary.md` — 54/54, macro F1 1.000.
 
 Sections: 1. class table · 2. the twelve authored scenarios · 3. retired scenarios ·
-4. request texts that changed (all 30 rewritten files, with the one material change flagged) ·
+4. request texts that changed (all 35 rewritten files, with the one material change flagged) ·
 5. catalogue wording changes that touch gold reasoning.
 
 ## 1. Class table (scored three-way)
@@ -188,7 +188,7 @@ Files removed: scenario YAML, four oracle JSONs, and the request texts used only
 `request_allow_conflict_silent.txt`). Rows stay in `docs/reference/id-aliases.md` (marked
 retired) and in every pre-existing experiment folder.
 
-## 4. Request texts rewritten in English (30 files, 42 pre-existing scenarios)
+## 4. Request texts rewritten in English (35 files, 42 pre-existing scenarios)
 
 Rule: same claims, same silences as the 5 Sep faithful-inputs audit; Estonian legal
 terms replaced with the official translation's terminology (`building permit`,
