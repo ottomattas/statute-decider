@@ -94,6 +94,30 @@ def test_deny_fires_from_assertion_against_interest(z3):
     assert out.state == OutcomeState.DENY
 
 
+def test_register_recorded_deny_ground_fires_unmentioned(z3):
+    """Ruling I: a deny antecedent the applicant never raised is drawn from the
+    register and fires the deny rule (Building Code § 44; Civil Service Act § 15 2))."""
+    facts = FactSet(scenario_id="s", facts=[fact("is_registered", True), fact("is_banned", True)])
+    out = z3.solve(catalog(), rules(), claims(asked_nicely=True), facts)
+    assert out.state == OutcomeState.DENY
+    assert [f.premise_id for f in out.fired_rules] == ["deny_ban"]
+    assert out.valuation["is_banned"] is True
+
+
+def test_deny_ground_fires_even_when_allow_path_is_open_on_a_user_term(z3):
+    """Before Ruling I the solver stopped at NEED_USER_INFO without reading the registers."""
+    facts = FactSet(scenario_id="s", facts=[fact("is_registered", True), fact("is_banned", True)])
+    out = z3.solve(catalog(), rules(), ClaimSet(scenario_id="s"), facts)
+    assert out.state == OutcomeState.DENY
+
+
+def test_claims_seed_first_and_facts_never_override(z3):
+    facts = FactSet(scenario_id="s", facts=[fact("is_registered", True), fact("is_banned", True)])
+    out = z3.solve(catalog(), rules(), claims(asked_nicely=True, is_banned=False), facts)
+    assert out.valuation["is_banned"] is False
+    assert out.state == OutcomeState.ALLOW
+
+
 def test_trust_only_allow_is_unverifiable(z3):
     facts = FactSet(
         scenario_id="s", facts=[fact("is_registered", True, Warrant.TRUST_ONLY)]

@@ -1,14 +1,24 @@
 """Z3 backend: staged, warrant-aware boolean inference.
 
-Semantics (validated against the 47-scenario oracle suite; v1-equivalent):
+Semantics (validated against the 54-scenario oracle suite):
 
 1. Stage 1 — claims. Claims are defeasible premises: what the applicant
    asserts seeds the valuation for any catalog term (statements against
    interest legitimately fire deny rules; the oracle outcomes depend on this).
-2. If the outcome is still open on register-evidence terms, stage 2 merges
-   facts *for the missing terms only* (registers are consulted for
-   decision-relevant terms, mirroring an on-demand lookup). Facts never
-   override an explicit assertion; they fill what is missing.
+2. Stage 2 — facts. Warranted register values are drawn for the antecedents
+   of **every** rule — allow and deny alike, rewrite rules included — that
+   the claims left open. Facts never override an explicit assertion; they
+   fill what is missing. (Ruling I, 2026-09-06; ADR 0006. Until then facts
+   were merged only for the open allow path, mirroring an on-demand lookup,
+   so a register-recorded deny ground went unread whenever the applicant did
+   not mention it. The statutes do not condition refusal on the applicant
+   raising the ground: Building Code § 44 — "The competent authority refuses
+   to issue a building permit if: 1) the envisaged construction work does not
+   conform to the detailed spatial plan …"; Civil Service Act § 15 2) — a
+   person "who has been punished for an intentionally committed criminal
+   offence against the state, regardless of the deletion of the information
+   concerning punishment" may not be employed. A deny ground the register
+   records must fire the deny rule on its own.)
 3. The warrant machinery lives on the register path: trust-only facts merge
    at claim-strength — if the final ALLOW rests on any of them, the state is
    UNVERIFIABLE_CLAIM and the *whole allow-path register evidence* is flagged
@@ -16,13 +26,15 @@ Semantics (validated against the 47-scenario oracle suite; v1-equivalent):
    except terms definitively excluded by an authoritative false value.
    Trust-only-valued terms carry reason ``unwarranted_only``; the rest of the
    flagged evidence carries ``no_value`` (to be re-verified).
-4. Remaining missing register terms classify per term: ``no_register`` when
-   the covering register is unavailable, ``conflict`` when available registers
-   disagree, else ``no_value``. Any ``no_register`` makes the state
-   UNVERIFIABLE_CLAIM; else NEED_REGISTER_INFO / NEED_USER_INFO; with nothing
-   decision-relevant missing, the default is DENY.
+4. Remaining missing register terms on the open allow path classify per
+   term: ``no_register`` when the covering register is unavailable,
+   ``conflict`` when available registers disagree, else ``no_value``. Any
+   ``no_register`` makes the state UNVERIFIABLE_CLAIM; else
+   NEED_REGISTER_INFO / NEED_USER_INFO; with nothing decision-relevant
+   missing, the default is DENY.
 
-An inconsistent boolean theory (unsat) falls back to DENY with a note.
+An inconsistent boolean theory (unsat) — after the claims, or after the
+facts are merged — falls back to DENY with a note.
 """
 
 from __future__ import annotations
@@ -135,6 +147,12 @@ def _open_allow_missing(theory: _Theory, derived: dict[str, bool]) -> list[str]:
     return sorted(missing)
 
 
+def _rule_antecedents(rules: RuleSet, terms: dict) -> set[str]:
+    """Every catalog term any rule (allow, deny, rewrite) tests — the terms
+    stage 2 asks the registers about."""
+    return {tid for rule in rules.rules for tid in rule.when_term_ids if tid in terms}
+
+
 def _fired_rules(theory: _Theory, derived: dict[str, bool]) -> list[FiredRule]:
     fired: list[FiredRule] = []
     for rule in theory.rules.rules:
@@ -217,12 +235,10 @@ class Z3Solver:
         def classify(
             valuation: dict[str, bool],
             *,
-            after_lookup: bool,
-            trust_only_used: set[str],
             unavailable_terms: set[str],
             conflict_terms: set[str],
-        ) -> PremiseOutcome | list[str]:
-            """Return a final PremiseOutcome, or the missing register terms to look up."""
+        ) -> PremiseOutcome:
+            """Decide on the merged valuation (claims first, facts filled in)."""
             derived = _derived_valuation(theory, valuation)
             allow = theory.entailed(valuation, rules.allow_outcome_id)
             deny = theory.entailed(valuation, rules.deny_outcome_id)
@@ -308,9 +324,6 @@ class Z3Solver:
             ]
             missing_user = [tid for tid in missing_ids if terms[tid].evidence == Evidence.USER]
 
-            if missing_register and not after_lookup:
-                return missing_register  # stage 2 will consult the registers
-
             if missing_register:
                 items: list[MissingTerm] = []
                 unverifiable = False
@@ -359,30 +372,18 @@ class Z3Solver:
                 "default DENY.",
             )
 
-        result = classify(
-            valuation,
-            after_lookup=False,
-            trust_only_used=set(),
-            unavailable_terms=set(),
-            conflict_terms=set(),
-        )
-        if isinstance(result, PremiseOutcome):
-            return result
-
-        # Stage 2: consult facts for the missing register-evidence terms only.
-        requested = result
+        # Stage 2: draw warranted values for the antecedents of every rule the
+        # claims left open (Ruling I) — never for a claimed term. A fact whose
+        # register is unavailable or in conflict is not a value.
         fact_by_term = facts.by_term()
         unavailable_terms = set(facts.unavailable_terms)
         conflict_terms = set(facts.conflicts)
-        trust_only_used: set[str] = set()
         merged = dict(valuation)
-        for tid in requested:
+        for tid in sorted(_rule_antecedents(rules, terms) - set(valuation)):
             fact = fact_by_term.get(tid)
             if fact is None or tid in unavailable_terms or tid in conflict_terms:
                 continue
             merged[tid] = fact.value
-            if fact.warrant == Warrant.TRUST_ONLY:
-                trust_only_used.add(tid)
 
         if not theory.consistent(merged):
             return outcome(
@@ -392,12 +393,8 @@ class Z3Solver:
                 "Boolean theory inconsistent after register lookup; fallback DENY.",
             )
 
-        final = classify(
+        return classify(
             merged,
-            after_lookup=True,
-            trust_only_used=trust_only_used,
             unavailable_terms=unavailable_terms,
             conflict_terms=conflict_terms,
         )
-        assert isinstance(final, PremiseOutcome)
-        return final
