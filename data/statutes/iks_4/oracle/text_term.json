@@ -13,8 +13,8 @@
       "anchors": [
         {
           "clause_id": "iks_4",
-          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
-          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "clause_title": "§ 4 Processing of personal data for journalistic purposes",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
           "note": "Journalistic-purpose gateway to the consent-free processing basis."
         }
       ],
@@ -31,8 +31,8 @@
       "anchors": [
         {
           "clause_id": "iks_4",
-          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
-          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "clause_title": "§ 4 Processing of personal data for journalistic purposes",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
           "note": "Public-interest condition for the journalism basis."
         }
       ],
@@ -49,8 +49,8 @@
       "anchors": [
         {
           "clause_id": "iks_4",
-          "clause_title": "§ 4 Isikuandmete töötlemine ajakirjanduslikul eesmärgil",
-          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "clause_title": "§ 4 Processing of personal data for journalistic purposes",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
           "note": "Journalism-ethics condition for the journalism basis."
         }
       ],
@@ -67,8 +67,8 @@
       "anchors": [
         {
           "clause_id": "iks_4",
-          "clause_title": "§ 4 (implicit baseline)",
-          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "clause_title": "§ 4 (implicit consent baseline)",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject ...",
           "note": "Consent baseline: when consent exists, the journalism basis is not needed."
         }
       ],
@@ -76,8 +76,8 @@
     },
     {
       "term_id": "excessive_harm",
-      "label": "Publication would excessively harm the subject",
-      "definition": "Editorial risk assessment concludes publication would excessively harm the subject's rights.",
+      "label": "Disclosure would cause excessive damage to the data subject's rights",
+      "definition": "Editorial risk assessment concludes that disclosure would cause excessive damage to the data subject's rights (§ 4, second sentence).",
       "evidence": "user",
       "propositional": "EXCESSIVE_HARM",
       "predicate": "ExcessiveHarm(subject)",
@@ -85,8 +85,8 @@
       "anchors": [
         {
           "clause_id": "iks_4_harm",
-          "clause_title": "§ 4, teine lause",
-          "quote": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "clause_title": "§ 4, second sentence",
+          "quote": "Disclosure of personal data must not cause excessive damage to the rights of any data subjects.",
           "note": "Proportionality limit: excessive harm defeats the journalism basis."
         }
       ],
@@ -103,6 +103,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

@@ -4,8 +4,8 @@
   "terms": [
     {
       "term_id": "plan_conformant",
-      "label": "Project conforms to the detailed plan",
-      "definition": "The building registry confirms the project conforms to the applicable detail plan.",
+      "label": "Project conforms to the detailed spatial plan",
+      "definition": "The building registry confirms the project conforms to the applicable detailed spatial plan.",
       "evidence": "register",
       "propositional": "PLAN_OK",
       "predicate": "ConformsToDetailPlan(project)",
@@ -13,8 +13,8 @@
       "anchors": [
         {
           "clause_id": "es_42_1",
-          "clause_title": "§ 42 lg 1",
-          "quote": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "clause_title": "§ 42 (1)",
+          "quote": "The building permit is issued if the building design documentation that has been filed conforms to the requirements established in legislation, i.e., above all to the detailed spatial plan or design specifications and to the requirements for construction works and for building work.",
           "note": "Detail-plan conformity is the primary positive condition."
         }
       ],
@@ -31,8 +31,8 @@
       "anchors": [
         {
           "clause_id": "es_42_1",
-          "clause_title": "§ 42 lg 1",
-          "quote": "... ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "clause_title": "§ 42 (1)",
+          "quote": "... and to the requirements for construction works and for building work.",
           "note": "Construction-and-safety requirement condition."
         }
       ],
@@ -49,8 +49,8 @@
       "anchors": [
         {
           "clause_id": "es_44_2",
-          "clause_title": "§ 44 p 2",
-          "quote": "... ehitusprojekti ei ole koostanud pädev isik või pädev isik ei ole teinud ehitusprojekti ekspertiisi;",
+          "clause_title": "§ 44 2)",
+          "quote": "... the building design documentation has not been created by a competent person or an expert assessment by a competent person has not been performed in respect of the building design documentation;",
           "note": "Competent-designer requirement, stated as a refusal ground."
         }
       ],
@@ -58,8 +58,8 @@
     },
     {
       "term_id": "site_study_provided",
-      "label": "Site construction study has been provided",
-      "definition": "The building registry contains a valid site construction study (ehitusuuring).",
+      "label": "Required site investigations have been performed",
+      "definition": "The building register records that the building design documentation takes into account the results of the required site investigations.",
       "evidence": "register",
       "propositional": "SITE_STUDY",
       "predicate": "SiteStudyProvided(project)",
@@ -67,8 +67,8 @@
       "anchors": [
         {
           "clause_id": "es_44_3",
-          "clause_title": "§ 44 p 3",
-          "quote": "... ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu tulemustele või on nõutav uuring tegemata.",
+          "clause_title": "§ 44 3)",
+          "quote": "... the building design documentation does not take into account the results of the site investigations conducted at the site of the construction work to be built or the required site investigations have not been performed;",
           "note": "Site-study requirement, stated as a refusal ground."
         }
       ],
@@ -85,17 +85,17 @@
       "anchors": [
         {
           "clause_id": "es_42_1",
-          "clause_title": "§ 42 lg 1 (õigusaktides sätestatud nõuded)",
-          "quote": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele ...",
-          "note": "State-fee obligation falls under 'õigusaktides sätestatud nõuded'."
+          "clause_title": "§ 42 (1) (requirements established in legislation)",
+          "quote": "The building permit is issued if the building design documentation that has been filed conforms to the requirements established in legislation ...",
+          "note": "State-fee obligation falls under the 'requirements established in legislation'."
         }
       ],
       "notes": ""
     },
     {
       "term_id": "plan_violation",
-      "label": "Project violates the detailed plan",
-      "definition": "The building registry records that the project violates the detail plan or equivalent planning instrument.",
+      "label": "Project violates the detailed spatial plan",
+      "definition": "The building registry records that the project violates the detailed spatial plan or equivalent planning instrument.",
       "evidence": "register",
       "propositional": "PLAN_VIOLATION",
       "predicate": "ViolatesDetailPlan(project)",
@@ -103,8 +103,8 @@
       "anchors": [
         {
           "clause_id": "es_44_1",
-          "clause_title": "§ 44 p 1",
-          "quote": "... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;",
+          "clause_title": "§ 44 1)",
+          "quote": "... the envisaged construction work does not conform to the detailed spatial plan, design specifications, ... the requirements established for construction works or for building work, or other public-law restrictions;",
           "note": "Plan-violation refusal ground."
         }
       ],
@@ -121,6 +121,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

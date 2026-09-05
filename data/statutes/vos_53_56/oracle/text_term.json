@@ -13,8 +13,8 @@
       "anchors": [
         {
           "clause_id": "vos_56_1",
-          "clause_title": "§ 56 lg 1",
-          "quote": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "clause_title": "§ 56 (1)",
+          "quote": "A consumer may withdraw from a distance contract within 14 days without giving any reason.",
           "note": "Only consumers enjoy the withdrawal right."
         }
       ],
@@ -31,8 +31,8 @@
       "anchors": [
         {
           "clause_id": "vos_56_1",
-          "clause_title": "§ 56 lg 1",
-          "quote": "... sidevahendi abil sõlmitud lepingust ...",
+          "clause_title": "§ 56 (1)",
+          "quote": "... withdraw from a distance contract ...",
           "note": "Withdrawal only applies to distance contracts."
         }
       ],
@@ -40,7 +40,7 @@
     },
     {
       "term_id": "excluded_category",
-      "label": "Subject of the contract falls into a § 53 lg 4 excluded category",
+      "label": "Subject of the contract falls into a § 53 (4) excluded category",
       "definition": "The product catalogue flags the goods as custom-made / perishable / hygiene-sealed, etc.",
       "evidence": "register",
       "propositional": "EXCLUDED_CATEGORY",
@@ -49,8 +49,8 @@
       "anchors": [
         {
           "clause_id": "vos_53_4",
-          "clause_title": "§ 53 lg 4",
-          "quote": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "clause_title": "§ 53 (4)",
+          "quote": "The right of withdrawal provided for in subsection 1 of § 56 of this Act shall not apply to contracts the object of which is: ...",
           "note": "Category-based exclusion blocks the withdrawal right."
         }
       ],
@@ -67,8 +67,8 @@
       "anchors": [
         {
           "clause_id": "vos_56_1",
-          "clause_title": "§ 56 lg 1",
-          "quote": "... 14 päeva jooksul.",
+          "clause_title": "§ 56 (1)",
+          "quote": "... within 14 days ...",
           "note": "Statutory 14-day window."
         }
       ],
@@ -85,8 +85,8 @@
       "anchors": [
         {
           "clause_id": "vos_56_21",
-          "clause_title": "§ 56 lg 2^1",
-          "quote": "Loetakse, et tarbija on sidevahendi abil sõlmitud lepingust taganenud tähtaegselt, kui ta on ettevõtjale selle kohta teate ära saatnud taganemistähtaja jooksul.",
+          "clause_title": "§ 56 (2¹)",
+          "quote": "The deadline for withdrawal from a distance contract shall be deemed to have been observed by the consumer if the consumer has dispatched a notification concerning the withdrawal to the trader during the withdrawal period.",
           "note": "Timely dispatch satisfies the deadline."
         }
       ],
@@ -103,6 +103,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

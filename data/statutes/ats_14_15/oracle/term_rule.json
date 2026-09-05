@@ -19,7 +19,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Estonian-citizen path to appointment (§ 14 lg 1).",
+      "label": "Estonian-citizen path to appointment (§ 14 (1)).",
       "when_term_ids": [
         "ee_citizen",
         "secondary_education",
@@ -32,8 +32,8 @@
       "law_references": [
         {
           "clause_id": "ats_14_1",
-          "clause_title": "§ 14 lg 1",
-          "quote": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "clause_title": "§ 14 (1)",
+          "quote": "An Estonian citizen who has at least a secondary education, has active legal capacity and is proficient in Estonian to the extent provided by law or on the basis thereof may be employed in the service.",
           "note": "Baseline Estonian-citizen path under § 14(1)."
         }
       ],
@@ -44,7 +44,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "EU-citizen path to appointment (§ 14 lg 2).",
+      "label": "EU-citizen path to appointment (§ 14 (2)).",
       "when_term_ids": [
         "eu_citizen",
         "secondary_education",
@@ -57,8 +57,8 @@
       "law_references": [
         {
           "clause_id": "ats_14_2",
-          "clause_title": "§ 14 lg 2",
-          "quote": "Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.",
+          "clause_title": "§ 14 (2)",
+          "quote": "A citizen of a Member State of the European Union who conforms to the requirements established by law and on the basis thereof may also be employed in the service.",
           "note": "Alternative EU-citizen path under § 14(2)."
         }
       ],
@@ -69,7 +69,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "deny_if_all",
-      "label": "Conviction for an intentional crime blocks appointment (§ 15 p 1).",
+      "label": "Conviction for an intentional crime blocks appointment (§ 15 1)).",
       "when_term_ids": [
         "criminal_conviction"
       ],
@@ -78,8 +78,8 @@
       "law_references": [
         {
           "clause_id": "ats_15_1",
-          "clause_title": "§ 15 p 1",
-          "quote": "Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.",
+          "clause_title": "§ 15 1)",
+          "quote": "The following person may not be employed in service: 1) who is under punishment for an intentionally committed criminal offence;",
           "note": "Statutory bar for intentional-crime conviction."
         }
       ],
@@ -96,6 +96,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

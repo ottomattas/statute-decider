@@ -13,8 +13,8 @@
       "anchors": [
         {
           "clause_id": "ats_14_1",
-          "clause_title": "§ 14 lg 1",
-          "quote": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "clause_title": "§ 14 (1)",
+          "quote": "An Estonian citizen who has at least a secondary education, has active legal capacity and is proficient in Estonian to the extent provided by law or on the basis thereof may be employed in the service.",
           "note": "Primary citizenship basis for appointment under § 14(1)."
         }
       ],
@@ -22,8 +22,8 @@
     },
     {
       "term_id": "eu_citizen",
-      "label": "Applicant is an EU member-state citizen",
-      "definition": "The applicant holds citizenship of an EU member state per the population registry.",
+      "label": "Applicant is a citizen of another EU Member State",
+      "definition": "The applicant holds citizenship of a Member State of the European Union other than Estonia per the population register (the § 14 (2) alternative to Estonian citizenship; exclusive of ee_citizen).",
       "evidence": "register",
       "propositional": "EU_CITIZEN",
       "predicate": "EuCitizen(applicant)",
@@ -31,8 +31,8 @@
       "anchors": [
         {
           "clause_id": "ats_14_2",
-          "clause_title": "§ 14 lg 2",
-          "quote": "Ametnikuna võib teenistusse võtta ka Euroopa Liidu liikmesriigi kodaniku, kes vastab seadusega ja seaduse alusel kehtestatud nõuetele.",
+          "clause_title": "§ 14 (2)",
+          "quote": "A citizen of a Member State of the European Union who conforms to the requirements established by law and on the basis thereof may also be employed in the service.",
           "note": "Alternative EU citizenship basis under § 14(2)."
         }
       ],
@@ -49,8 +49,8 @@
       "anchors": [
         {
           "clause_id": "ats_14_1",
-          "clause_title": "§ 14 lg 1",
-          "quote": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "clause_title": "§ 14 (1)",
+          "quote": "An Estonian citizen who has at least a secondary education, has active legal capacity and is proficient in Estonian to the extent provided by law or on the basis thereof may be employed in the service.",
           "note": "Secondary-education baseline required for appointment."
         }
       ],
@@ -67,8 +67,8 @@
       "anchors": [
         {
           "clause_id": "ats_14_1",
-          "clause_title": "§ 14 lg 1",
-          "quote": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "clause_title": "§ 14 (1)",
+          "quote": "An Estonian citizen who has at least a secondary education, has active legal capacity and is proficient in Estonian to the extent provided by law or on the basis thereof may be employed in the service.",
           "note": "Estonian-language proficiency required for appointment."
         }
       ],
@@ -76,8 +76,8 @@
     },
     {
       "term_id": "full_capacity",
-      "label": "Applicant has full legal capacity",
-      "definition": "The applicant has full active legal capacity (täielik teovõime).",
+      "label": "Applicant has active legal capacity",
+      "definition": "The applicant has active legal capacity.",
       "evidence": "register",
       "propositional": "FULL_CAPACITY",
       "predicate": "HasFullCapacity(applicant)",
@@ -85,8 +85,8 @@
       "anchors": [
         {
           "clause_id": "ats_14_1",
-          "clause_title": "§ 14 lg 1",
-          "quote": "Ametnikuna võib teenistusse võtta vähemalt keskharidusega täieliku teovõimega Eesti Vabariigi kodaniku, kes valdab eesti keelt seaduses või seaduse alusel sätestatud ulatuses.",
+          "clause_title": "§ 14 (1)",
+          "quote": "An Estonian citizen who has at least a secondary education, has active legal capacity and is proficient in Estonian to the extent provided by law or on the basis thereof may be employed in the service.",
           "note": "Full legal capacity is required for appointment."
         }
       ],
@@ -103,8 +103,8 @@
       "anchors": [
         {
           "clause_id": "ats_15_1",
-          "clause_title": "§ 15 p 1",
-          "quote": "Teenistusse ei või võtta isikut, kellel on karistatus tahtlikult toimepandud kuriteo eest.",
+          "clause_title": "§ 15 1)",
+          "quote": "The following person may not be employed in service: 1) who is under punishment for an intentionally committed criminal offence;",
           "note": "Bar on appointment for intentional-crime convictions."
         }
       ],
@@ -112,8 +112,8 @@
     },
     {
       "term_id": "no_conflict_declared",
-      "label": "Applicant declares no § 15 p 4 family conflict",
-      "definition": "The applicant confirms they are not a close relative of a supervising official per § 15 p 4.",
+      "label": "Applicant declares no § 15 4) family conflict",
+      "definition": "The applicant confirms they are not a close relative of a supervising official per § 15 4).",
       "evidence": "user",
       "propositional": "NO_CONFLICT",
       "predicate": "DeclaresNoConflict(applicant)",
@@ -121,9 +121,9 @@
       "anchors": [
         {
           "clause_id": "ats_15_4",
-          "clause_title": "§ 15 p 4",
-          "quote": "Teenistusse ei või võtta isikut, kes on vastavat ametikohta vahetult kontrolliva ametniku abikaasa, elukaaslane, vanem, vanavanem või alaneja sugulane.",
-          "note": "User-provided declaration that § 15 p 4 family-conflict bar does not apply."
+          "clause_title": "§ 15 4)",
+          "quote": "The following person may not be employed in service: ... 4) who is a spouse or a partner in the marriage-like relationship (hereinafter unmarried partner) or a grandparent, a parent of an official who has direct control over the corresponding post, or a parent or a descendant of the parent, including a child and grandchild, of a spouse or an unmarried partner.",
+          "note": "User-provided declaration that § 15 4) family-conflict bar does not apply."
         }
       ],
       "notes": ""
@@ -139,6 +139,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

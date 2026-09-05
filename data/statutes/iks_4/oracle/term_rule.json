@@ -19,7 +19,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Journalism basis (§ 4 lause 1) without consent.",
+      "label": "Journalism basis (§ 4, first sentence) without consent.",
       "when_term_ids": [
         "journalistic_purpose",
         "public_interest",
@@ -30,8 +30,8 @@
       "law_references": [
         {
           "clause_id": "iks_4",
-          "clause_title": "§ 4, esimene lause",
-          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil, eelkõige avalikustada meedias, kui selleks on avalik huvi ja see on kooskõlas ajakirjanduseetika põhimõtetega.",
+          "clause_title": "§ 4, first sentence",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject, in particular disclosed in the media, if there is public interest and this is in accordance with the principles of journalism ethics.",
           "note": "Three-condition journalism basis."
         }
       ],
@@ -42,7 +42,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Consent baseline under IKS.",
+      "label": "Consent baseline under the Personal Data Protection Act.",
       "when_term_ids": [
         "subject_consent"
       ],
@@ -51,8 +51,8 @@
       "law_references": [
         {
           "clause_id": "iks_4",
-          "clause_title": "§ 4 (implicit baseline)",
-          "quote": "Isikuandmeid võib andmesubjekti nõusolekuta töödelda ajakirjanduslikul eesmärgil ...",
+          "clause_title": "§ 4 (implicit consent baseline)",
+          "quote": "Personal data may be processed and disclosed in the media for journalistic purposes without the consent of the data subject ...",
           "note": "Consent is the general baseline; the journalism basis is its exception."
         }
       ],
@@ -63,7 +63,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "set_false_if_all",
-      "label": "Excessive harm defeats ethics compliance (§ 4 lause 2).",
+      "label": "Excessive harm defeats ethics compliance (§ 4, second sentence).",
       "when_term_ids": [
         "excessive_harm"
       ],
@@ -72,8 +72,8 @@
       "law_references": [
         {
           "clause_id": "iks_4_harm",
-          "clause_title": "§ 4, teine lause",
-          "quote": "Isikuandmete avalikustamine ei tohi ülemäära kahjustada andmesubjekti õigusi.",
+          "clause_title": "§ 4, second sentence",
+          "quote": "Disclosure of personal data must not cause excessive damage to the rights of any data subjects.",
           "note": "Proportionality override of the ethics condition."
         }
       ],
@@ -90,6 +90,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

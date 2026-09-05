@@ -19,7 +19,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Grant permit when all positive conditions of § 42 lg 1 are met.",
+      "label": "Grant permit when all positive conditions of § 42 (1) are met.",
       "when_term_ids": [
         "plan_conformant",
         "building_requirements_met",
@@ -32,8 +32,8 @@
       "law_references": [
         {
           "clause_id": "es_42_1",
-          "clause_title": "§ 42 lg 1",
-          "quote": "Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele.",
+          "clause_title": "§ 42 (1)",
+          "quote": "The building permit is issued if the building design documentation that has been filed conforms to the requirements established in legislation, i.e., above all to the detailed spatial plan or design specifications and to the requirements for construction works and for building work.",
           "note": "Five-claim positive path to permit issuance."
         }
       ],
@@ -44,7 +44,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "deny_if_all",
-      "label": "Refuse permit when the project violates the detail plan (§ 44 p 1).",
+      "label": "Refuse permit when the project violates the detailed spatial plan (§ 44 1)).",
       "when_term_ids": [
         "plan_violation"
       ],
@@ -53,8 +53,8 @@
       "law_references": [
         {
           "clause_id": "es_44_1",
-          "clause_title": "§ 44 p 1",
-          "quote": "... kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, ... ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;",
+          "clause_title": "§ 44 1)",
+          "quote": "... the envisaged construction work does not conform to the detailed spatial plan, design specifications, ... the requirements established for construction works or for building work, or other public-law restrictions;",
           "note": "Hard refusal ground based on plan violation."
         }
       ],
@@ -71,6 +71,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

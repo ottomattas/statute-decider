@@ -19,7 +19,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "allow_if_all",
-      "label": "Consumer may withdraw from a timely distance contract under § 56 lg 1.",
+      "label": "Consumer may withdraw from a timely distance contract under § 56 (1).",
       "when_term_ids": [
         "is_consumer",
         "distance_contract",
@@ -31,8 +31,8 @@
       "law_references": [
         {
           "clause_id": "vos_56_1",
-          "clause_title": "§ 56 lg 1",
-          "quote": "Tarbija võib sidevahendi abil sõlmitud lepingust taganeda põhjust avaldamata 14 päeva jooksul.",
+          "clause_title": "§ 56 (1)",
+          "quote": "A consumer may withdraw from a distance contract within 14 days without giving any reason.",
           "note": "Positive path for withdrawal."
         }
       ],
@@ -43,7 +43,7 @@
       "kind": "rule",
       "epistemic": "normative",
       "rule_kind": "deny_if_all",
-      "label": "Withdrawal is excluded for § 53 lg 4 goods (custom-made, perishable, hygiene-sealed, ...).",
+      "label": "Withdrawal is excluded for § 53 (4) goods (custom-made, perishable, hygiene-sealed, ...).",
       "when_term_ids": [
         "excluded_category"
       ],
@@ -52,8 +52,8 @@
       "law_references": [
         {
           "clause_id": "vos_53_4",
-          "clause_title": "§ 53 lg 4",
-          "quote": "Käesoleva seaduse § 56 lõikes 1 sätestatud taganemisõigust ei kohaldata lepingule, mille esemeks on ...",
+          "clause_title": "§ 53 (4)",
+          "quote": "The right of withdrawal provided for in subsection 1 of § 56 of this Act shall not apply to contracts the object of which is: ...",
           "note": "Category-based exclusion."
         }
       ],
@@ -70,6 +70,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }

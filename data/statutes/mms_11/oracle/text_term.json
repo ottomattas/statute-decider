@@ -4,8 +4,8 @@
   "terms": [
     {
       "term_id": "residential_land",
-      "label": "Land's intended use is residential (elamumaa)",
-      "definition": "The cadastre records the land's intended use as residential.",
+      "label": "Intended purpose of the land is residential land",
+      "definition": "The cadastre records the intended purpose (or one of the intended purposes) of the land as residential land.",
       "evidence": "register",
       "propositional": "RESIDENTIAL_LAND",
       "predicate": "ResidentialLand(parcel)",
@@ -13,8 +13,8 @@
       "anchors": [
         {
           "clause_id": "mms_11_1_1",
-          "clause_title": "§ 11 lg 1^1",
-          "quote": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa ...",
+          "clause_title": "§ 11 (1¹)",
+          "quote": "The land under the home is considered to be land owned by the land owner ... the intended purpose or one of the intended purposes of which is residential land ...",
           "note": "Residential land-use category for home-land exemption."
         }
       ],
@@ -31,8 +31,8 @@
       "anchors": [
         {
           "clause_id": "mms_11_1_1",
-          "clause_title": "§ 11 lg 1^1",
-          "quote": "... kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.",
+          "clause_title": "§ 11 (1¹)",
+          "quote": "... in case the building on this land is the residence of the land owner or user according to the residence data entered in the population register.",
           "note": "Population-registry residence condition."
         }
       ],
@@ -49,8 +49,8 @@
       "anchors": [
         {
           "clause_id": "mms_11_1_1",
-          "clause_title": "§ 11 lg 1^1",
-          "quote": "Kodualuse maana käsitatakse maa omaniku omandis olevat ... maad ...",
+          "clause_title": "§ 11 (1¹)",
+          "quote": "The land under the home is considered to be land owned by the land owner ...",
           "note": "Ownership precondition for home-land exemption."
         }
       ],
@@ -67,8 +67,8 @@
       "anchors": [
         {
           "clause_id": "mms_11_5_1",
-          "clause_title": "§ 11 lg 5 p 1",
-          "quote": "... täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele: 1) riikliku pensionikindlustuse seaduse alusel pensioni saajad;",
+          "clause_title": "§ 11 (5) 1)",
+          "quote": "... an additional tax incentive of up to 1,000 euros to the following target groups: 1) pension recipients based on the State Pension Insurance Act;",
           "note": "Pensioner target group for the supplementary exemption."
         }
       ],
@@ -85,8 +85,8 @@
       "anchors": [
         {
           "clause_id": "mms_11_1",
-          "clause_title": "§ 11 lg 1",
-          "quote": "Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada ... kodualuse maa maksusoodustuse ...",
+          "clause_title": "§ 11 (1)",
+          "quote": "The municipal council may establish by a regulation ... a tax incentive ... on the land under the home ...",
           "note": "Local-council act is required to activate the exemption."
         }
       ],
@@ -103,8 +103,8 @@
       "anchors": [
         {
           "clause_id": "mms_11_7",
-          "clause_title": "§ 11 lg 7",
-          "quote": "Täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.",
+          "clause_title": "§ 11 (7)",
+          "quote": "To receive additional tax incentive specified in subsection 5 or 6 of this section, a person who meets the conditions provided in this section submits an application to the municipality in accordance with the procedure established by the council.",
           "note": "User-provided confirmation of submitted application."
         }
       ],
@@ -121,6 +121,6 @@
     "prompt_hash": null,
     "consumed_artifact": null,
     "timestamp": "2026-09-01T19:48:55Z",
-    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Translated to English 2026-09-05 (anchor quotes from the official Riigi Teataja translation; clause_id values unchanged)."
   }
 }
