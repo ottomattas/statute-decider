@@ -21,6 +21,15 @@ Three classes of hit, each fatal:
   form ``§ 42 (1)``.
 * **C — Estonian.** Any Estonian diacritic and a list of Estonian legal /
   common words, case-insensitive, whole-word, with and without diacritics.
+* **D — version suffixes** (Ruling K, 2026-09-06). A tracked path component
+  or an identifier-shaped token ending in ``-v<digit>`` / ``_v<digit>``
+  (``ground-v1.md``, ``refactor-v2-plan``, ``prompt: decide-v1``). One file
+  per prompt, edits are commits, ``prompt_hash`` pins the wording a run saw.
+  Exclusions, all third-party names: ``VERSION_SUFFIX_ALLOWED`` (``deepseek-v4``
+  is the vendor's model family name) and URLs (stripped before matching; a
+  spec URL such as ``…/legalruleml-core-spec-v1.0`` is not ours to rename).
+  File names are checked for every tracked path (results folders included),
+  content for the files in scope.
 
 Exclusions (why):
 
@@ -95,6 +104,12 @@ EXEMPT_CLASSES: dict[str, set[str]] = {
     "data/sources/legislation/catalogue.json": {"C"},
 }
 RESULTS_KEEP = {"summary.md"}
+
+# class D — version suffixes in names/ids
+VERSION_SUFFIX_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_./-]*[-_]v\d+\b")
+VERSION_SUFFIX_PATH_RE = re.compile(r"[-_]v\d")
+VERSION_SUFFIX_ALLOWED = {"deepseek-v4"}  # vendor model family name (configs/llm/models.yaml)
+URL_RE = re.compile(r"[a-z]+://\S+|\b[a-z0-9.-]+\.(?:org|com|ee|io|net)/\S*", re.IGNORECASE)
 
 # proper nouns and names that are English usage; removed before class C
 ALLOWED_PHRASES = [
@@ -280,10 +295,48 @@ def _strip_allowed(line: str) -> str:
     return line
 
 
+def _version_suffix_tokens(line: str) -> list[str]:
+    clean = URL_RE.sub(" ", line)
+    out = []
+    for m in VERSION_SUFFIX_RE.finditer(clean):
+        tok = m.group(0)
+        if any(tok == a or tok.endswith("/" + a) for a in VERSION_SUFFIX_ALLOWED):
+            continue
+        out.append(tok)
+    return out
+
+
+def iter_tracked_paths(root: Path) -> Iterator[str]:
+    """Every tracked path (git index), or the whole tree when not a git checkout."""
+    try:
+        import subprocess
+
+        res = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True, text=True, check=True)
+        yield from (p for p in res.stdout.splitlines() if p)
+    except Exception:  # noqa: BLE001 — no git: fall back to the file walk
+        for p in root.rglob("*"):
+            if p.is_file():
+                yield p.relative_to(root).as_posix()
+
+
+def scan_paths(root: Path) -> list[Hit]:
+    hits: list[Hit] = []
+    for rel in iter_tracked_paths(root):
+        parts = rel.split("/")
+        if any(p in SKIP_DIRS for p in parts[:-1]):
+            continue
+        for part in parts:
+            stem = part.rsplit(".", 1)[0] if "." in part else part
+            if VERSION_SUFFIX_PATH_RE.search(stem) and stem not in VERSION_SUFFIX_ALLOWED:
+                hits.append(Hit(rel, 0, "D", part, f"path component {part!r}"))
+                break
+    return hits
+
+
 def scan(root: Path = ROOT) -> list[Hit]:
     retired_re = build_retired_re(retired_tokens(root / RENAME_MAP))
     estonian_re = build_estonian_re(ESTONIAN_WORDS, ESTONIAN_EXACT_WORDS)
-    hits: list[Hit] = []
+    hits: list[Hit] = scan_paths(root)
     for path in iter_files(root):
         text = _read(path)
         if text is None:
@@ -314,6 +367,9 @@ def scan(root: Path = ROOT) -> list[Hit]:
                     hits.append(Hit(rel, no, "C", m.group(0), line))
                 for m in estonian_re.finditer(clean):
                     hits.append(Hit(rel, no, "C", m.group(0), line))
+            if "D" not in exempt:
+                for tok in _version_suffix_tokens(line):
+                    hits.append(Hit(rel, no, "D", tok, line))
     return hits
 
 
@@ -326,14 +382,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.summary or hits:
         by_class = Counter(h.cls for h in hits)
         by_group = Counter((h.cls, h.path.split("/", 1)[0]) for h in hits)
-        print(f"check_vocabulary: {len(hits)} hit(s)  A={by_class['A']} B={by_class['B']} C={by_class['C']}")
+        print(
+            f"check_vocabulary: {len(hits)} hit(s)  A={by_class['A']} B={by_class['B']} "
+            f"C={by_class['C']} D={by_class['D']}"
+        )
         for (cls, group), n in sorted(by_group.items()):
             print(f"  [{cls}] {group}: {n}")
     if not args.summary:
         for h in hits:
             print(h.format())
     if not hits:
-        print("check_vocabulary: OK — no retired ids, RT element ids or Estonian outside the permitted paths")
+        print(
+            "check_vocabulary: OK — no retired ids, RT element ids, Estonian or version-suffixed "
+            "names outside the permitted paths"
+        )
     return 1 if hits else 0
 
 

@@ -89,7 +89,7 @@ condition:
     outcome_trace:
       method: llm
       strategy: justify
-      prompt: justify-v1
+      prompt: justify
       solver: null
       template: null
   fuse: []

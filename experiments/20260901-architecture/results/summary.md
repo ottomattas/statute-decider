@@ -1,6 +1,6 @@
 # 20260901-architecture
 
-Generated 2026-09-05T17:46:52Z — execution `parallel`, condition `architecture`.
+Generated 2026-09-05T22:04:44Z — execution `parallel`, condition `architecture`.
 
 **Question:** Committed run 3 of 3: the proposed architecture. Statute chain oracle, user chain fused LLM grounding (utterance_term + term_claim in one call), register chain deterministic lookup, decision by z3, trace rendered.
 
@@ -13,7 +13,7 @@ Generated 2026-09-05T17:46:52Z — execution `parallel`, condition `architecture
 | text_term | oracle |  |  |  |  |
 | term_rule | oracle |  |  |  |  |
 | user_utterance | file |  |  |  |  |
-| utterance_term | llm | ground | ground-v1 |  | yes |
+| utterance_term | llm | ground | ground |  | yes |
 | term_claim | llm |  |  |  | yes |
 | registry_record | file |  |  |  |  |
 | record_term | oracle |  |  |  |  |

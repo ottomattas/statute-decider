@@ -58,7 +58,7 @@ class CellServices:
         variant = self.prompt_overrides.get(node) or binding.prompt
         if not variant:
             raise ValueError(f"Node {node} bound to llm without a prompt variant.")
-        # Accept both bare variants ("ground-v1") and full ids ("utterance_term/ground/ground-v1").
+        # Accept both bare variants ("ground") and full ids ("utterance_term/ground/ground").
         if "/" in variant:
             variant = variant.rsplit("/", 1)[1]
         return load_prompt(self.prompts_dir, node, variant, strategy=binding.strategy)

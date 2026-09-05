@@ -274,7 +274,19 @@ file, so hashes recorded before that commit match the files at `8fea149`.
 | `premise_outcome/decide/oracle-rules-v1` | `premise_outcome/decide/decide-raw-sources-plus-rules` |
 | `premise_outcome/decide/solver-inputs-v1` | `premise_outcome/decide/solver-inputs-partial-specification` |
 | `premise_outcome/decide/solver-inputs-v2` | `premise_outcome/decide/solver-inputs-full-procedure` |
-| `utterance_term/ground/ground-v1`, `term_claim/value-v1`, `outcome_trace/justify/justify-v1` | unchanged (single versions) |
+| `utterance_term/ground/ground-v1` | `utterance_term/ground/ground` (Ruling K, 2026-09-06) |
+| `term_claim/value-v1` | `term_claim/value` (Ruling K, 2026-09-06) |
+| `outcome_trace/justify/justify-v1` | `outcome_trace/justify/justify` (Ruling K, 2026-09-06) |
+
+Ruling K (2026-09-06): no `-vN` / `_vN` suffix in file names or ids. One file per
+prompt, named for what it does; an edit is a commit, and the `prompt_hash` recorded
+on every ledger row pins the wording a run saw. The three renames above were
+applied with `tools/rename_ids.py --scope prompts` (files moved, structured
+`prompt_id` / `prompts` / `prompt:` fields rewritten in configs and in every
+committed results set; `tools/fingerprint_results.py --compare` identical on 21
+experiments, 16 776 rows). Free text keeps the old ids. `docs/refactor-v2-plan.md`
+became `docs/architecture-plan.md` the same day. `tools/check_vocabulary.py` now
+fails on the pattern.
 
 ## Experiments
 
@@ -314,7 +326,7 @@ to match. Every `experiment.yaml` got one `notes` line recording the rename.
   `provenance.notes`; `error` strings — the audit trail of what was sent and produced.
 - Prompt `system`/body text (what a model sees). The historical docs under
   `docs/adr/`, `docs/reference/scenario-suite.md`, `docs/reference/nl-extraction.md`,
-  `docs/refactor-v2-plan.md` were left verbatim by the rename but rewritten to the
+  `docs/architecture-plan.md` were left verbatim by the rename but rewritten to the
   current vocabulary by the evening sweep (each carries a note); this file is the only
   place the old ids remain.
 - The paper (`article.tex`) pins `0d28213`, whose tree has the old names; if the

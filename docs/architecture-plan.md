@@ -1,4 +1,6 @@
-# statute-decider v2 — the ideal end state (this submission)
+# statute-decider — the architecture plan (this submission)
+
+*(File renamed on 2026-09-06 — Ruling K, no version suffixes in file names; the old name is in `docs/reference/id-aliases.md`. Content otherwise unchanged; "v2" in the prose below names the rewrite generation, not a file.)*
 
 **Standing rule: rewrite, not port.** Current `framework/`, scripts, schemas, provider wrappers are not constraints; git tag `pre-refactor` is the archive. The **oracle knowledge** (which statutes, which cases, which expected outcomes — the validated content) survives as reference material, but its files are re-authored fresh in the v2 shapes; no old file layout, field name, or probe code constrains the new design.
 
@@ -209,8 +211,8 @@ statute_text:      { method: file }
 text_term:         { method: oracle }
 term_rule:         { method: oracle }
 user_utterance:    { method: file }
-utterance_term:    { method: llm, strategy: ground, prompt: ground-v1 }
-term_claim:        { method: llm, prompt: value-v1 }
+utterance_term:    { method: llm, strategy: ground, prompt: ground }
+term_claim:        { method: llm, prompt: value }
 registry_record:   { method: file }
 record_term:       { method: oracle }
 term_fact:         { method: lookup }
@@ -295,10 +297,10 @@ A case is then a thin assembly: `case.yaml` names its statute id(s) and register
 
 Every LLM-method node call renders a **prompt template** (config plane): `prompts/<node>/<strategy>/<variant>.md`, with YAML frontmatter (description, declared placeholders) and the template body. Rules:
 
-- **Strategy picks the code path** (`select` vs `synthesize` differ in logic); **`prompt` picks the wording variant within it** — a condition binds both: `utterance_term: { method: llm, strategy: ground, prompt: ground-v2 }`. Nodes with a single code path (e.g. `term_claim`) drop the strategy segment: `prompts/<node>/<variant>.md`.
+- **Strategy picks the code path** (`select` vs `synthesize` differ in logic); **`prompt` picks the wording variant within it** — a condition binds both: `utterance_term: { method: llm, strategy: ground, prompt: ground }`. Nodes with a single code path (e.g. `term_claim`) drop the strategy segment: `prompts/<node>/<variant>.md`.
 - A **fused pair binds one prompt**, declared on the first node of the pair — one call, one template, two recorded node values.
-- Prompt files are never edited in place after use — a new wording is a new variant file (`ground-v3.md`). Provenance on every produced node value records the prompt id *and* content hash, so old results stay interpretable.
-- `experiment.yaml` can sweep prompts exactly like models: `prompts: [ground-v2, ground-v3]` multiplies the run grid, and the report groups by prompt id. Prompt A/B testing is an experiment, not a code change.
+- One file per prompt, named for what it does (`ground.md`, `decide-raw-sources.md`), never for a version — an edit is a commit, and provenance on every produced node value records the prompt id *and* content hash (`prompt_hash`), so old results stay interpretable. (Ruling K, 2026-09-06; until then the rule was "new wording = new `-vN` file".) A genuinely different wording that should coexist with the current one gets a descriptive name, not a number.
+- `experiment.yaml` can sweep prompts exactly like models: `prompts: {utterance_term: [ground, ground-terse]}` multiplies the run grid, and the report groups by prompt id. Prompt A/B testing is an experiment, not a code change.
 
 ### Scenarios and oracle data
 

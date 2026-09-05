@@ -14,5 +14,5 @@ registry_record: { method: file }
 record_term: { method: skip }
 term_fact: { method: skip }
 premise_outcome: { method: llm, strategy: decide, prompt: decide-raw-sources }
-outcome_trace: { method: llm, strategy: justify, prompt: justify-v1 }
+outcome_trace: { method: llm, strategy: justify, prompt: justify }
 logic: propositional

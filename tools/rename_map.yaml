@@ -173,6 +173,11 @@ prompts:
   premise_outcome/decide/oracle-rules-v1: premise_outcome/decide/decide-raw-sources-plus-rules
   premise_outcome/decide/solver-inputs-v1: premise_outcome/decide/solver-inputs-partial-specification
   premise_outcome/decide/solver-inputs-v2: premise_outcome/decide/solver-inputs-full-procedure
+  # Ruling K (2026-09-06): no -vN suffix in file names or ids. One file per prompt; edits are
+  # commits; prompt_hash in the ledger pins the wording a run saw. Applied with --scope prompts.
+  utterance_term/ground/ground-v1: utterance_term/ground/ground
+  term_claim/value-v1: term_claim/value
+  outcome_trace/justify/justify-v1: outcome_trace/justify/justify
 
 # Tags appended to each scenario YAML (keyed by the OLD composite id). The
 # u3/u5/u7/u8 tags already present are kept (legend in docs/reference/id-aliases.md).

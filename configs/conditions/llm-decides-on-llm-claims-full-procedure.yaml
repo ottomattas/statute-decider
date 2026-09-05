@@ -12,7 +12,7 @@ statute_text: { method: file }
 text_term: { method: oracle }
 term_rule: { method: oracle }
 user_utterance: { method: file }
-utterance_term: { method: llm, strategy: ground, prompt: ground-v1 }
+utterance_term: { method: llm, strategy: ground, prompt: ground }
 term_claim: { method: llm }
 registry_record: { method: file }
 record_term: { method: oracle }

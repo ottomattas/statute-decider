@@ -12,7 +12,7 @@ models: # the declared grid; --models all resolves to this list
   - gpt-5-mini
   - haiku-4.5
   - deepseek-v4-flash
-prompts: {} # optional sweep, e.g. {utterance_term: [ground-v1, ground-v2]}
+prompts: {} # optional sweep, e.g. {utterance_term: [ground, ground-terse]} — one file per prompt, no -vN suffix
 repeats: 1
 temperature: 0.0
 max_output_tokens: 8192

@@ -1,6 +1,6 @@
 # 20260901-llm-only-smoke
 
-Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only`.
+Generated 2026-09-05T22:04:44Z — execution `parallel`, condition `llm-only`.
 
 **Question:** Smoke: do all four providers return parseable decide + justify responses under the llm-only condition on one case?
 
@@ -19,7 +19,7 @@ Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only`.
 | record_term | skip |  |  |  |  |
 | term_fact | skip |  |  |  |  |
 | premise_outcome | llm | decide | decide-raw-sources |  |  |
-| outcome_trace | llm | justify | justify-v1 |  |  |
+| outcome_trace | llm | justify | justify |  |  |
 
 ## Data
 

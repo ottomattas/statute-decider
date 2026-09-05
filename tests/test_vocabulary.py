@@ -52,13 +52,19 @@ def test_checker_detects_each_class(tmp_path: Path):
         "see § 42 lg 1\n"                        # B: Estonian citation style
         "the tarbija signed the leping\n"        # C: Estonian words, no diacritics
         "Võlaõigusseadus\n"                      # C: diacritics
-        "memory lapses are English\n"            # not a hit: exact-word rule (lapse != lapses)
-        "Riigi Teataja publishes in Tallinn\n",  # not a hit: allowed proper nouns
+        "memory lapses are English\n"            # not a hit: exact-word rule (no Estonian word)
+        "Riigi Teataja publishes in Tallinn\n"   # not a hit: allowed proper nouns
+        "prompt: decide-v1 and refactor_v2\n"    # D: version-suffixed ids
+        "model deepseek-v4-flash, spec https://docs.oasis-open.org/x/spec-v1.0/\n",  # not a hit: vendor name, URL
         encoding="utf-8",
     )
+    (tmp_path / "prompts").mkdir()
+    (tmp_path / "prompts" / "ground-v1.md").write_text("x\n", encoding="utf-8")  # D: file name
     hits = checker.scan(tmp_path)
     classes = {(h.cls, h.line) for h in hits}
     assert ("A", 1) in classes and ("A", 2) in classes and ("A", 3) in classes and ("A", 5) in classes
     assert ("B", 6) in classes and ("B", 7) in classes
     assert ("C", 8) in classes and ("C", 9) in classes
-    assert all(h.line not in (10, 11) for h in hits), [h.format() for h in hits if h.line in (10, 11)]
+    assert all(h.line not in (10, 11, 13) for h in hits), [h.format() for h in hits if h.line in (10, 11, 13)]
+    d_hits = {h.match for h in hits if h.cls == "D"}
+    assert d_hits == {"decide-v1", "refactor_v2", "ground-v1.md"}, d_hits

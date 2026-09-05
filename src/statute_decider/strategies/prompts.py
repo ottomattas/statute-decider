@@ -17,7 +17,7 @@ import yaml
 
 @dataclass(frozen=True)
 class PromptTemplate:
-    prompt_id: str  # e.g. "utterance_term/ground/ground-v1"
+    prompt_id: str  # e.g. "utterance_term/ground/ground"
     path: Path
     description: str
     system: str

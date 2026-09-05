@@ -1,6 +1,6 @@
 # 20260903-architecture-sota
 
-Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture`.
+Generated 2026-09-05T22:04:44Z — execution `parallel`, condition `architecture`.
 
 **Question:** Architecture is model-agnostic: the architecture condition on the four SOTA models, one repeat (indicative, n=47 per model).
 
@@ -13,7 +13,7 @@ Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture
 | text_term | oracle |  |  |  |  |
 | term_rule | oracle |  |  |  |  |
 | user_utterance | file |  |  |  |  |
-| utterance_term | llm | ground | ground-v1 |  | yes |
+| utterance_term | llm | ground | ground |  | yes |
 | term_claim | llm |  |  |  | yes |
 | registry_record | file |  |  |  |  |
 | record_term | oracle |  |  |  |  |

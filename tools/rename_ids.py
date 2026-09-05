@@ -513,20 +513,66 @@ def rename_statute_refs_only() -> None:
             print(f"rewrote {exp_dir.name}/results/nodes")
 
 
+def rename_prompt_refs_only() -> None:
+    """``--scope prompts``: the Ruling K pass. Moves the prompt files in the map and
+    rewrites the *structured* prompt references everywhere they occur — ``prompt:`` in
+    every condition YAML, the ``prompts`` sweep of every ``experiment.yaml``, and in
+    each experiment's results ``config.snapshot.yaml`` / ``invocations.jsonl``
+    (condition bindings, ``prompt_combos``), ``rows.jsonl`` / ``ledger.jsonl`` /
+    ``nodes/*.jsonl`` (``prompt_id``, ``prompts``) and ``transcript.jsonl`` ``meta``.
+    Summaries are regenerated; free text and raw payloads stay as recorded. Prompt
+    content is untouched, so the recorded ``prompt_hash`` values remain valid."""
+    rename_prompts()
+    for p in sorted((ROOT / "configs" / "conditions").glob("*.yaml")):
+        if DRY:
+            continue
+        text = p.read_text(encoding="utf-8")
+        for ov, nv in M.prompt_variants.items():
+            text = re.sub(rf"(prompt:\s*){re.escape(ov)}(?=[\s,}}\]]|$)", rf"\g<1>{nv}", text)
+        p.write_text(text, encoding="utf-8")
+    for exp_dir in sorted((ROOT / "experiments").glob("*")):
+        ey = exp_dir / "experiment.yaml"
+        if DRY or not ey.exists() or exp_dir.name.startswith("_"):
+            continue
+        exp = read_yaml(ey)
+        if isinstance(exp.get("prompts"), dict) and exp["prompts"]:
+            write_yaml(ey, fix_experiment_dict(exp), block=True)
+        results = exp_dir / "results"
+        if not results.exists():
+            continue
+        snap = results / "config.snapshot.yaml"
+        if snap.exists():
+            write_yaml(snap, fix_snapshot(read_yaml(snap)))
+        rewrite_jsonl(results / "invocations.jsonl", fix_snapshot)
+        rewrite_jsonl(results / "rows.jsonl", fix_row)
+        rewrite_jsonl(results / "ledger.jsonl", fix_row)
+        rewrite_jsonl(results / "transcript.jsonl", fix_transcript)
+        for p in sorted((results / "nodes").glob("*.jsonl")) if (results / "nodes").exists() else []:
+            rewrite_jsonl(p, fix_row)
+        regenerate_summary(exp_dir)
+        print(f"rewrote {exp_dir.name}")
+
+
 def main(argv: list[str] | None = None) -> int:
     global DRY
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
         "--scope",
-        choices=["all", "statutes"],
+        choices=["all", "statutes", "prompts"],
         default="all",
-        help="'statutes': only statute ids + clause ids (data plane and results nodes); no summaries.",
+        help="'statutes': only statute ids + clause ids (data plane and results nodes); no summaries. "
+        "'prompts': only prompt files and structured prompt references (configs and results).",
     )
     args = parser.parse_args(argv)
     DRY = args.dry_run
     if args.scope == "statutes":
         rename_statute_refs_only()
+        export_matrix()
+        print(f"{'would move' if DRY else 'moved'} {len(MOVES)} paths")
+        return 0
+    if args.scope == "prompts":
+        rename_prompt_refs_only()
         export_matrix()
         print(f"{'would move' if DRY else 'moved'} {len(MOVES)} paths")
         return 0

@@ -1,6 +1,6 @@
 # 20260903-llm-decides-on-llm-claims-partial-specification
 
-Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-llm-claims-partial-specification`.
+Generated 2026-09-05T22:04:46Z — execution `parallel`, condition `llm-decides-on-llm-claims-partial-specification`.
 
 **Question:** The architecture condition minus the solver: oracle rules, LLM-extracted claims (fused ground), looked-up facts, LLM decides on those premises.
 
@@ -13,7 +13,7 @@ Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-
 | text_term | oracle |  |  |  |  |
 | term_rule | oracle |  |  |  |  |
 | user_utterance | file |  |  |  |  |
-| utterance_term | llm | ground | ground-v1 |  | yes |
+| utterance_term | llm | ground | ground |  | yes |
 | term_claim | llm |  |  |  | yes |
 | registry_record | file |  |  |  |  |
 | record_term | oracle |  |  |  |  |

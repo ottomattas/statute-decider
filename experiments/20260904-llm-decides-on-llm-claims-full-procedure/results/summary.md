@@ -1,6 +1,6 @@
 # 20260904-llm-decides-on-llm-claims-full-procedure
 
-Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-llm-claims-full-procedure`.
+Generated 2026-09-05T22:04:48Z — execution `parallel`, condition `llm-decides-on-llm-claims-full-procedure`.
 
 **Question:** The architecture condition minus the solver, decide prompt with the staged specification (solver-inputs-full-procedure).
 
@@ -12,7 +12,7 @@ Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-
 | text_term | oracle |  |  |  |  |
 | term_rule | oracle |  |  |  |  |
 | user_utterance | file |  |  |  |  |
-| utterance_term | llm | ground | ground-v1 |  | yes |
+| utterance_term | llm | ground | ground |  | yes |
 | term_claim | llm |  |  |  | yes |
 | registry_record | file |  |  |  |  |
 | record_term | oracle |  |  |  |  |

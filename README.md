@@ -109,17 +109,18 @@ Solver inputs and outputs live in `results/nodes/premise_outcome.jsonl`
 src/statute_decider/   the package: core schemas, solvers, llm client, nodes, runner, cli
 configs/conditions/    method-per-node bindings (solver-validation, llm-only, architecture, ...)
 configs/llm/           model registry + prices
-prompts/<node>/        versioned prompt templates (new wording = new file)
+prompts/<node>/        prompt templates: one file per prompt, named for what it does; edits are
+                       commits — the `prompt_hash` in the ledger pins the wording a run saw (no -vN files)
 data/sources/legislation/  Riigi Teataja XML corpus + generated catalogue.json (sd corpus ingest / check)
 data/statutes/         statute selection spec (statute.yaml) + rendered provisions + oracle terms/rules, stored once
 data/registers/        register schemas + oracle field-to-term maps, stored once
 data/cases/            thin assemblies: utterances, registry state, scenarios, oracle values
 experiments/           one folder per run: experiment.yaml + results/ + analysis/
 docs/matrix.csv        generated experimentation matrix (sd matrix export)
-docs/refactor-v2-plan.md  the design document for this architecture
+docs/architecture-plan.md  the design document for this architecture
 docs/reference/id-aliases.md  old → new id tables (2026-09-05 renames)
 docs/reference/legislation-corpus.md  the XML corpus, catalogue schema, reference vocabulary
-tools/                 one-off authoring scripts (v1 → v2 data migration, id rename + fingerprint)
+tools/                 one-off authoring scripts (pre-rewrite data migration, id rename + fingerprint, vocabulary check)
 ```
 
 ## How to experiment

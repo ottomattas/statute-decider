@@ -48,7 +48,7 @@ condition:
     utterance_term:
       method: llm
       strategy: ground
-      prompt: ground-v1
+      prompt: ground
       solver: null
       template: null
     term_claim:

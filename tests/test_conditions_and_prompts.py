@@ -105,7 +105,7 @@ def test_condition_requires_all_nodes(tmp_path):
 
 
 def test_prompts_load_and_render(root):
-    prompt = load_prompt(root / "prompts", "utterance_term", "ground-v1", strategy="ground")
+    prompt = load_prompt(root / "prompts", "utterance_term", "ground", strategy="ground")
     assert prompt.system and prompt.sha256
     rendered = prompt.render(utterance="Tere", term_catalog="- a: A")
     assert "Tere" in rendered and "- a: A" in rendered

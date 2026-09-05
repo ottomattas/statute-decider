@@ -2,7 +2,7 @@
 
 Three symmetric chains (statute, user, register) meet in ``premise_outcome``;
 every node is independently checkable against oracle data. See README.md and
-docs/refactor-v2-plan.md.
+docs/architecture-plan.md.
 """
 
 __version__ = "2.0.0"

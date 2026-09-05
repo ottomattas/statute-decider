@@ -1,6 +1,6 @@
 """The experimentation matrix: capability registry + generated full expansion.
 
-The hand-readable table lives in docs/refactor-v2-plan.md; the full expansion
+The hand-readable table lives in docs/architecture-plan.md; the full expansion
 is generated, never hand-written: ``sd matrix export`` joins the code
 registries (nodes, methods, strategies) with ``configs/llm/models.yaml`` and
 ``prompts/`` — one row per chain x level x node x method x strategy x provider

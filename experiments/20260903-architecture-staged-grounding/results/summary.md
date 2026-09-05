@@ -1,6 +1,6 @@
 # 20260903-architecture-staged-grounding
 
-Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture-staged-grounding`.
+Generated 2026-09-05T22:04:45Z — execution `parallel`, condition `architecture-staged-grounding`.
 
 **Question:** The architecture condition with grounding staged in two calls (recognize, then value): does splitting recognition from valuation change term recall / claim accuracy / outcome?
 
@@ -13,8 +13,8 @@ Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture
 | text_term | oracle |  |  |  |  |
 | term_rule | oracle |  |  |  |  |
 | user_utterance | file |  |  |  |  |
-| utterance_term | llm | ground | ground-v1 |  |  |
-| term_claim | llm |  | value-v1 |  |  |
+| utterance_term | llm | ground | ground |  |  |
+| term_claim | llm |  | value |  |  |
 | registry_record | file |  |  |  |  |
 | record_term | oracle |  |  |  |  |
 | term_fact | lookup |  |  |  |  |
