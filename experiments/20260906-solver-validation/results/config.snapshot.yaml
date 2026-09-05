@@ -1,4 +1,4 @@
-generated_at: '2026-09-05T21:43:01Z'
+generated_at: '2026-09-05T23:06:30Z'
 experiment:
   name: 20260906-solver-validation
   question: 'After the 2026-09-05 English-only rewrite (Ruling E) and the balanced
@@ -14,6 +14,7 @@ experiment:
   repeats: 1
   temperature: 0.0
   max_output_tokens: 8192
+  max_statute_tokens: 100000
   budget_eur: 0.0
   notes: 'Re-run of 20260901-solver-validation on the 54-scenario suite (12 authored,
     5 retired 2026-09-05;

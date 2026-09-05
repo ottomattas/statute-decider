@@ -11,3 +11,10 @@ notes: |
   see docs/reference/gold-review-2026-09-05.md). Re-run 2026-09-05 evening after Ruling G: statute_text now
   renders the full act from the Riigi Teataja XML corpus (data/sources/legislation); statute ids are act slugs
   and clause ids are <act_slug>/<eId>. Solver outcomes unchanged, 54/54.
+  Re-run 2026-09-06 after Rulings H, I, J: statute_input records the official unit the row saw (whole act
+  here for every case except consumer_purchase_withdrawal, which gets the Law of Obligations Act
+  part_1__chp_2__dvs_4, §§ 52-62); stage 2 draws facts for every rule's antecedents (ADR 0006); rows carry
+  the justification entry list (ADR 0007). Outcome, state and missing-term set unchanged on all 54 rows.
+  One fired-rule set differs: building_permit_grant/deny_register_only_plan_nonconformity now fires
+  deny_plan_violation from the register (before: default DENY with no rule fired); 20 valuations are
+  fuller (deny-rule antecedents drawn).

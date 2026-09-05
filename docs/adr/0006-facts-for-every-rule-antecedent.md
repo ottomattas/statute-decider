@@ -50,9 +50,15 @@ present. `_rule_antecedents()` names the set stage 2 asks about.
 ## Consequences
 
 - `experiments/20260906-solver-validation` re-run: 54/54, macro F1 1.000; no
-  scenario changed its scored outcome, state or missing-term set. Rows now
-  carry a fuller `valuation` (deny-rule antecedents and blocked-allow-rule
-  antecedents drawn from the registers appear where they used to be absent).
+  scenario changed its scored outcome, state or missing-term set. 20 rows carry
+  a fuller `valuation` (deny-rule antecedents and blocked-allow-rule
+  antecedents drawn from the registers appear where they used to be absent),
+  and one fired-rule set changes:
+  `building_permit_grant/deny_register_only_plan_nonconformity` now fires
+  `deny_plan_violation` on the register-recorded `plan_violation=true` (before
+  this ADR it was a default DENY with no rule fired — the very case
+  `gold-review-2026-09-05.md` flagged as "a solver property worth the
+  operator's attention"). Same outcome, now for the statutory reason.
 - `tests/test_z3_semantics.py` gains three tests: the unmentioned deny ground
   fires; it fires even when the allow path is open only on a user term; a claim
   still beats a contradicting fact.
