@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8c12c4b4-dae8-48c1-8d57-60605d40ba17" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>1993-05-06</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<RTaasta>1993</RTaasta>
+				<RTnr>24</RTnr>
+				<RTartikkel>428</RTartikkel>
+				<aktViide>28487</aktViide>
+			</avaldamismarge>
+			<joustumine>1993-07-01</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT V</RTosa><avaldamineKuupaev>2026-01-05</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>5</RTartikkel><aktViide>505012026005</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-02-06</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>505012026005</globaalID>
+		<metaandmedVersioon>8</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-01-05</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Mari Peetris</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>100146</terviktekstiGrupiID><eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="ac62ba16-b618-42f2-ada4-8b39afca5cde">
+		<nimi id="f0c5bfd3-ab78-4834-8eda-031656bdb9ec">
+			<pealkiri id="ff3eb79f-7bfd-4d53-87e0-cefbc1ae9a44">Land Tax Act</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>1994-02-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1994</RTaasta>
+			<RTnr>13</RTnr>
+			<RTartikkel>231</RTartikkel>
+			<aktViide>28645</aktViide>
+		</avaldamismarge>
+		<joustumine>1994-03-05</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1994-03-24</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1994</RTaasta>
+			<RTnr>28</RTnr>
+			<RTartikkel>428</RTartikkel>
+			<aktViide>30028</aktViide>
+		</avaldamismarge>
+		<joustumine>1994-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1994-12-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1994</RTaasta>
+			<RTnr>94</RTnr>
+			<RTartikkel>1609</RTartikkel>
+			<aktViide>30499</aktViide>
+		</avaldamismarge>
+		<joustumine>1994-12-29</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1995-06-01</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1995</RTaasta>
+			<RTnr>54</RTnr>
+			<RTartikkel>884</RTartikkel>
+			<aktViide>30835</aktViide>
+		</avaldamismarge>
+		<joustumine>1996-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1996-04-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1996</RTaasta>
+			<RTnr>36</RTnr>
+			<RTartikkel>738</RTartikkel>
+			<aktViide>28543</aktViide>
+		</avaldamismarge>
+		<joustumine>1996-06-07</joustumine>
+		<tavatekst>, in part 01.01.1998</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<tavatekst>consolidated text on RT paper</tavatekst>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1996</RTaasta>
+			<RTnr>41</RTnr>
+			<RTartikkel>797</RTartikkel>
+			<aktViide>13013087</aktViide>
+		</avaldamismarge>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1996-12-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1996</RTaasta>
+			<RTnr>89</RTnr>
+			<RTartikkel>1589</RTartikkel>
+			<aktViide>31443</aktViide>
+		</avaldamismarge>
+		<joustumine>1997-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1997-11-06</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1997</RTaasta>
+			<RTnr>82</RTnr>
+			<RTartikkel>1398</RTartikkel>
+			<aktViide>74267</aktViide>
+		</avaldamismarge>
+		<joustumine>1998-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1999-02-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>27</RTnr>
+			<RTartikkel>381</RTartikkel>
+			<aktViide>77269</aktViide>
+		</avaldamismarge>
+		<joustumine>2000-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1999-12-08</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>95</RTnr>
+			<RTartikkel>840</RTartikkel>
+			<aktViide>77966</aktViide>
+		</avaldamismarge>
+		<joustumine>2000-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2000-11-23</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2000</RTaasta>
+			<RTnr>95</RTnr>
+			<RTartikkel>612</RTartikkel>
+			<aktViide>72498</aktViide>
+		</avaldamismarge>
+		<joustumine>2001-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2001-12-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>102</RTnr>
+			<RTartikkel>666</RTartikkel>
+			<aktViide>73410</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-05-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>44</RTnr>
+			<RTartikkel>284</RTartikkel>
+			<aktViide>110025</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-10-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>71</RTnr>
+			<RTartikkel>472</RTartikkel>
+			<aktViide>642738</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>587</RTartikkel>
+			<aktViide>690814</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>589</RTartikkel>
+			<aktViide>690831</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>591</RTartikkel>
+			<aktViide>690845</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2004-11-23</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2004</RTaasta>
+			<RTnr>84</RTnr>
+			<RTartikkel>572</RTartikkel>
+			<aktViide>824890</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-10-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>57</RTnr>
+			<RTartikkel>451</RTartikkel>
+			<aktViide>955779</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-11-18</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2006-11-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2006</RTaasta>
+			<RTnr>55</RTnr>
+			<RTartikkel>406</RTartikkel>
+			<aktViide>12758703</aktViide>
+		</avaldamismarge>
+		<joustumine>2007-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2008-03-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>14</RTnr>
+			<RTartikkel>94</RTartikkel>
+			<aktViide>12942034</aktViide>
+		</avaldamismarge>
+		<joustumine>2009-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2009-06-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2009</RTaasta>
+			<RTnr>33</RTnr>
+			<RTartikkel>211</RTartikkel>
+			<aktViide>13195119</aktViide>
+		</avaldamismarge>
+		<joustumine>2009-07-02</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2009-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2009</RTaasta>
+			<RTnr>65</RTnr>
+			<RTartikkel>441</RTartikkel>
+			<aktViide>13252449</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2010-04-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2010</RTaasta>
+			<RTnr>22</RTnr>
+			<RTartikkel>108</RTartikkel>
+			<aktViide>13310847</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-01-01</joustumine>
+		<tavatekst>, entry into force on the date which has been determined in the Decision of the Council of the European Union regarding the abrogation of the derogation established in respect of the Republic of Estonia on the basis provided for in Article 140 (2) of the Treaty on the Functioning of the European Union, Council Decision 2010/416/EU of 13.07.2010 (OJ L 196, 28.07.2010, pp 24-26).</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2011-06-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2011-07-08</avaldamineKuupaev>
+			<RTartikkel>7</RTartikkel>
+			<aktViide>108072011007</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-10-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-10-25</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>125102012001</aktViide>
+		</avaldamismarge>
+		<joustumine>2012-12-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-12-07</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-12-22</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>122122012001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-01-01</joustumine>
+		<tavatekst>, in part 01.01.2014 and 01.01.2015; entry into force in part changed to 01.01.2017 [RT I, 04.07.2014, 12]</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2013-05-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2013-06-01</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>101062013001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2013-05-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2013-06-07</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>107062013001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+			<RTartikkel>12</RTartikkel>
+			<aktViide>104072014012</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-01-01</joustumine>
+		<tavatekst>, in part 01.01.2017</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-06-29</avaldamineKuupaev>
+			<RTartikkel>109</RTartikkel>
+			<aktViide>129062014109</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+		<tavatekst>, the titles of ministers substituted on the basis of subsection 4 of § 107³ of the Government of the Republic Act in the wording in force as of 1 July 2014.</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-11-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>113122014001</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-01</joustumine>
+		<tavatekst>, date of entry into force changed to 01.07.2016 [RT I, 17.12.2015, 1]</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-11-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>117122015001</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-12-20</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2016-10-27</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2016-11-10</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>110112016001</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-06-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-07-04</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>104072017002</aktViide>
+		</avaldamismarge>
+		<joustumine>2018-01-01</joustumine>
+		<tavatekst>, in part 05.07.2017</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2019-01-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2019-02-22</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>122022019001</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-10-01</joustumine>
+		<tavatekst>, in part 01.01.2021</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2020-12-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>123122020005</aktViide>
+		</avaldamismarge>
+		<joustumine>2021-01-01</joustumine>
+		<tavatekst>, in part 01.01.2022 and 01.01.2023</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-02-23</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>110032022002</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-03-15</joustumine>
+		<tavatekst>, in part 01.06.2023 and 01.01.2024</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-01-01</joustumine>
+		<tavatekst>, in part 01.07.2024, 01.01.2025 and 01.03.2025</tavatekst>
+	</muutmismarge>
+	<sisu id="3f4548ce-86d2-4caa-aba6-c4e1bab099f9">
+		<paragrahv id="para1">
+			<paragrahvNr id="6a3b8e33-9e75-4784-83b4-0f355367aafd">1</paragrahvNr>
+			<kuvatavNr id="ca16cfde-66f5-48f4-9eda-3d13b0b00be1"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7037a50f-930c-408c-9f43-c4140102a0a0">Land tax</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="9134a0bb-ab9b-47f6-a8c3-5d7b946599aa">1</loigeNr>
+				<kuvatavNr id="dfaa12f6-2072-4825-9514-067b4253aab8"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d1932e61-ef79-4f28-afd2-803cbba46ef1">
+					<tavatekst id="3df0dee5-2c5e-4e67-bb6c-bacf82bab1db">Land tax is a tax based on the taxable value of land.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="612e6cde-06d4-4e13-b43f-6d400914029d">2</loigeNr>
+				<kuvatavNr id="158e6473-10d4-4172-a901-7ed352fc3651"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="035c37eb-7292-43c8-b8fe-065813a0009e">
+					<tavatekst id="3e150631-1365-4ee5-b8a5-35f53865255b">The taxable value of land is determined and the procedure for contestation thereof is established based on the Land Valuation Act. Each taxable value of land determined in the regular assessment is taken as the basis for calculation of land tax as of 1 January of the year following the year of the regular assessment.<reavahetus/>[RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="1dfd307e-11aa-4fdc-b5b7-9e4c41839440">3</loigeNr>
+				<kuvatavNr id="674968c5-722f-4eb3-9136-192e306b07e6"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="7c8da23c-de0d-4228-8943-daf3f793b44d">
+					<tavatekst id="92789cd7-f59d-45f6-b96c-173c7392d231">The Tax and Customs Board calculates land tax based on the underlying data submitted by a municipality into the land tax information system.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="c31dc63c-c61a-4ced-87c0-b3405a9c82d7">4</loigeNr>
+				<kuvatavNr id="5c4073d7-db95-4e61-a42c-4109b0b943bc"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="01138874-63d4-4913-b724-a7c3ee7dc0cb">
+					<tavatekst id="a41d6e29-dd48-4c86-894c-4ed1368ab1da">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="8aaf44a2-a9f5-4851-b0cc-4a8068215916">2</paragrahvNr>
+			<kuvatavNr id="283b6633-13e9-4157-b9f8-bc3c364c4367"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="efb6928e-79fa-4c97-a0a5-e14419383b83">Object of taxation</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="74b18996-ed73-413d-bb36-00b385f69909"/>
+				<kuvatavNr id="7888d9bb-8f65-4fa3-826d-0f94bb738873"/>
+				<sisuTekst id="bf8b974d-3ec7-4d8c-a3bc-96f231845857">
+					<tavatekst id="98dd2815-6e93-4988-8058-bac33a0aa707">All land is taxed with land tax, except the land specified in § 4 of this Act.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="310b9e8f-2657-4ca4-8c84-3ae3a1974bac">3</paragrahvNr>
+			<kuvatavNr id="8056661c-4336-4fbb-9dc1-e767a28c93f5"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e4bb6d43-dfe3-4ec9-b01b-471ad1f0bf8a">Object of tax</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="348fa854-8369-4fee-a32c-e69dea22c43e"/>
+				<kuvatavNr id="16372e1e-ac2e-4db1-bf8c-ed0381ee8345"/>
+				<sisuTekst id="536221f1-fa17-4428-a334-34b8b15f60b0">
+					<tavatekst id="e0824c49-f11f-4e26-8bfb-0db6763e4f23">Land tax is paid by the owner of land or, in the case specified in § 10 of this Act, by the user of land.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="d0c16162-f163-4d4a-8374-c7ac8d1a0a61">4</paragrahvNr>
+			<kuvatavNr id="1aaaa377-6665-49ad-9757-76bd6a49ee92"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e6556918-7152-431f-8497-0bdda2f014f8">Land exempt from tax</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="d3a73b99-a8dc-4428-8abc-b9544690bed6">1</loigeNr>
+				<kuvatavNr id="b0358c62-8511-4c10-9d2c-da7df723987a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2436b4d2-6108-4785-a1d1-6f97e42cb076">
+					<tavatekst id="e89d1f8a-e41b-4cc2-9447-c695020e44d9">Land tax is not imposed on:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr id="b98b9b97-2fd8-49d7-8659-8742f3976f5e">1</alampunktNr>
+					<kuvatavNr id="08d103b1-7018-48cb-82c6-bd8d11ba8ff6"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c83756d8-6883-437e-b728-c5a20237942e">
+						<tavatekst id="8f437b6f-b7fe-4170-ae65-4bd900da385d">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p1b1">
+					<alampunktNr id="6760ae03-155e-401d-86e9-57eac4b5662d" ylaIndeks="1">1</alampunktNr>
+					<kuvatavNr id="2b62e922-6fb4-4af5-baec-efbf1b479bfe"><![CDATA[1<sup>1</sup>) ]]></kuvatavNr>
+					<sisuTekst id="da80b0db-0db2-4d53-9fe8-032e13f3a70b">
+						<tavatekst id="f6892351-2f19-4d1e-9073-7bd39633580f">the land in the nature reserve and the target protection zone of protected areas and on the land in the target protection zone for permanent habitats;<reavahetus/>[RT I 2008, 14, 94 – entry into force 01.01.2009]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr id="0f52080e-c42d-41a8-8b2f-73900244a30f">2</alampunktNr>
+					<kuvatavNr id="7aa15fa9-d88f-4239-8d33-4ad6d675e932"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="0bb7e4c5-6242-4085-950c-5c67f6f4933e">
+						<tavatekst id="056cd9ba-1d6a-497f-8051-0e995a638ce0">the land belonging to the buildings of foreign diplomatic missions and consular posts or parts thereof;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr id="db6aaf55-c294-4fbd-ada1-c3ea868054c7">3</alampunktNr>
+					<kuvatavNr id="13c6d283-a2e2-434f-aef4-422dc771bcdf"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="c2fce871-3de3-40eb-9114-d9f4997688c3">
+						<tavatekst id="7dab3716-7d13-47da-bd72-953973362df2">the land in the use by a foreign state or an international organization on the basis of a contract entered into between the Government of the Republic and a foreign state or international organization;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p4">
+					<alampunktNr id="c3d47322-7422-41fb-a680-9c245a10d88e">4</alampunktNr>
+					<kuvatavNr id="0baaff26-1141-45f4-85c2-3b14c73dc8e1"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="7866852a-abd9-4c97-8d54-ec391c7807b3">
+						<tavatekst id="5e568bce-17c5-4dea-86bb-c504d30bde74">[Repealed – RT I, 04.07.2014, 12 – entry into force 01.01.2015]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p5">
+					<alampunktNr id="2603f62f-a91a-493c-8242-072ee2e5c249">5</alampunktNr>
+					<kuvatavNr id="e510128d-88e9-4a47-a0b8-909c6307005f"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="fcf2018e-9da0-4225-bba5-5ade775b7bef">
+						<tavatekst id="fddc0e54-e824-4eb5-8cef-40f92a5b828c">the land under the sanctuaries of churches and congregations;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p6">
+					<alampunktNr id="9611788b-7626-4361-84ee-c43921e2c6ec">6</alampunktNr>
+					<kuvatavNr id="d3084d56-4917-412e-a117-0c245a2cebd5"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="6f03b750-7514-4859-be4d-2ada0fedfaa1">
+						<tavatekst id="2c6d87df-f054-453c-81a4-d671a768535b">the municipal land within the administrative area of the corresponding municipality, except in the case prescribed in § 10 of this Act;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p7">
+					<alampunktNr id="ebc59723-995e-4e1a-a3e1-428ac79c3991">7</alampunktNr>
+					<kuvatavNr id="b8ffba22-8215-4fff-966f-94cfbfedcb03"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="eded1798-bf50-438f-b326-32ab44355da3">
+						<tavatekst id="ece4deca-5018-4dba-bb40-c8d3b1269893">the land under public water bodies and water bodies open for public use;<reavahetus/>[RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p8">
+					<alampunktNr id="ccb7aa31-f8de-45ea-b4c3-f4b1efce4312">8</alampunktNr>
+					<kuvatavNr id="0bb632e4-c777-4abb-9781-06551528f7c6"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="7ef46d1a-61ed-4be3-92ae-52b5e0596c27">
+						<tavatekst id="021d7795-e8f1-4cc0-aab6-0ad3335fc92e">the land in the use by international military headquarters in the cases provided in an international agreement;<reavahetus/>[RT I, 01.06.2013, 1 – entry into force 01.07.2013]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p9">
+					<alampunktNr id="445edd39-16ae-4205-8e8e-41f838dedf49">9</alampunktNr>
+					<kuvatavNr id="fa60eaf7-e068-4094-86e8-aa15cf1e4e7f"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="64f71e6e-b6d4-4416-a305-698bcb51b278">
+						<tavatekst id="05af2e49-4507-4cb0-95bf-baec65a1cb34"> the state-owned land intended for construction of public buildings in case this land is used by a state agency, local government authority or legal entity for the purpose specified in clause 2, 3, 5 or 8 of this subsection;<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p10">
+					<alampunktNr id="f7938f12-4f89-400d-9f76-3ed8d1d5e4bb">10</alampunktNr>
+					<kuvatavNr id="fbd5629c-0a57-4d01-9a72-9ec28dc911ff"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="dca8070b-9e1f-4374-a4b3-64e23f8637fa">
+						<tavatekst id="053fe73c-067d-4143-9930-a7fba694d36d">the land intended for public use;<reavahetus/>[RT I, 04.07.2014, 12 – entry into force 01.01.2015]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p11">
+					<alampunktNr id="1c06a3a7-1b3b-4030-baa8-e7e4087d2b4f">11</alampunktNr>
+					<kuvatavNr id="a453f043-3a8e-44b2-9c4f-403d92907c04"><![CDATA[11) ]]></kuvatavNr>
+					<sisuTekst id="d9c4b509-4916-4a7b-b1fe-39ef105c3b59">
+						<tavatekst id="be16c148-7316-4379-af89-a685599980de">the road land of a state road, local road and private road designated for public use.<reavahetus/>[RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="958c955e-350b-4fe5-8c2e-96f24a757794">2</loigeNr>
+				<kuvatavNr id="b7ece540-d24d-4aab-a848-a2ef6309338f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="24fff168-c7c3-4128-a2ab-38fbd9182750">
+					<tavatekst id="24151062-d384-4e3a-862d-2f9e55205962">Land tax in the amount of 50 per cent of the rate of land tax is paid on the land of limited management zone provided in § 31 of the Nature Conservation Act, land of limited conservation area provided in Chapter 5, land of limited management zone of permanent habitat designated on the basis of subsection 1 of § 50 and the land of limited management zone of an individual natural object provided on the basis of § 68 and on the land in the shore or coastal water protection zone provided on the basis of § 118 of the Water Act.<reavahetus/>[RT I, 22.02.2019, 1 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="04fd2073-4ef9-4a7d-b840-4e1e82a16b58">3</loigeNr>
+				<kuvatavNr id="977f92fe-6fa9-4f23-b0af-a07f0c1d0eb8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="cd618900-a963-4b3f-8a9a-6095f879bb71">
+					<tavatekst id="a3c625bc-7688-4c8c-b27c-1d850a90ce48">The tax exemption specified in clauses 1<sup>1</sup>, 7 and 11 of subsection 1 and in subsection 2 of this section is applied as of 1 January of the year following the creation of the basis for exemption. In case the basis for exemption is created on 1 January, the tax exemption is applied as of the same date.<reavahetus/>[RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="4d98ce91-593a-4747-b216-2c75a416c044">5</paragrahvNr>
+			<kuvatavNr id="93445885-2bd0-4bc0-9f84-6cd9edd09951"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="882cd5c5-9e5f-47cf-b55d-1bb707f6156d">Tax rate</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="a4ff675e-18b9-4051-9a0c-6c9e67931743">1</loigeNr>
+				<kuvatavNr id="370352c7-06bd-4c23-9c5f-bef7447d173f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e367767e-4b75-497b-ad0d-6c341e1ecca5">
+					<tavatekst id="195abca1-3fc1-470e-85b0-9147ddecfdb5">The municipal council establishes the rate of tax for each of the following group of intended use of land at the latest by 1 October of the year preceding the taxation year:<reavahetus/>[RT I, 30.06.2024, 1 – entry into force 01.07.2024]</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="f192593a-cd07-4e0c-82c8-0fcd03fed761">1</alampunktNr>
+					<kuvatavNr id="c01f94dc-5a9e-4066-be9f-6d94eabe4e25"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="ba17f76c-5337-406c-8270-30f189e1bba4">
+						<tavatekst id="24562590-80c1-43fd-b0e0-bc42fd3b7d9d">or residential land and the land use type of yard land on profit-yielding land, 0.1–1.0 per cent of the taxable value of the land per year;<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2025]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="8285f19b-526a-4216-af6f-fa294ad04006">2</alampunktNr>
+					<kuvatavNr id="e950aae2-1ed2-4dcf-99a4-f1d64f308f11"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="4b34131a-e741-4198-839d-a461b768e036">
+						<tavatekst id="5283f565-b11e-46a7-bb28-f9c001008264">for the profit-yielding land other than specified in clause 1 of this section, 0.1–0.5 per cent of the taxable value of the land per year;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr id="7b57ef43-d2b6-4f2e-a1bd-bfa8ae91922b">3</alampunktNr>
+					<kuvatavNr id="952affbc-cf2f-48f8-8536-2622f78a026d"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="1d86b605-cde6-4fea-a698-ab8a17222a0f">
+						<tavatekst id="5e40d111-946e-4f96-be1e-355088d33163">for land with intended purpose other than that not specified in clauses 1 and 2 of this section, 0.1–2.0 per cent per year of the taxable value of land.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2025]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="fa4acac2-d368-4c16-8cde-eaadac92df36">2</loigeNr>
+				<kuvatavNr id="4049f7ad-3b92-461d-b6fa-3514045f2a0d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4e6a9b8b-a98d-4a99-b3a2-f59d52be04d8">
+					<tavatekst id="21383601-b7e2-4e27-a353-a324e15e7ced">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.06.2023]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="44439b5d-5185-4a69-8894-9fe6bbbded98">3</loigeNr>
+				<kuvatavNr id="51ce0298-94bb-43dd-887b-5c4e51272a4e"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="89b2e3ba-f3d5-4e21-b3b8-f23b09c6ab84">
+					<tavatekst id="797aa7af-b4d0-4a4f-8050-57470ab94f23">Where the tax rates are amended, the municipality enters the amended land tax rates in the land tax information system by 2 October of the year preceding the taxation year. In case the amended tax rates are not entered in the land tax information system by the specified date, land tax is calculated according to the rates in force in the previous year. The tax rates are published on the web page of the Tax and Customs Board.<reavahetus/>[RT I, 30.06.2024, 1 – entry into force 01.07.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="dbcbaa4e-1b4c-4836-9b43-ad9d6ebda032">4</loigeNr>
+				<kuvatavNr id="7975f49c-4fb7-45a7-a120-4f9266904a3f"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="50526cc9-bc7e-4b9c-b016-ae2bd2beb1a8">
+					<tavatekst id="e0861b75-cc9a-4d65-8444-6b91239ff6df">[Repealed – RT I, 04.07.2014, 12 – entry into force 01.01.2017]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="2aae0184-a441-45e7-99ee-2b7208ea24aa">5</loigeNr>
+				<kuvatavNr id="018ed9ad-b37d-473c-a0fc-247de2258c97"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="ad91d93e-eeff-462a-8ef3-163f1da3129e">
+					<tavatekst id="05b9cc93-ee5c-4886-ae72-36ce27ce97a8">[Repealed – RT I, 04.07.2014, 12 – entry into force 01.01.2017]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5b1">
+			<paragrahvNr id="a681bc90-e609-4a68-8563-d15dca822787" ylaIndeks="1">5</paragrahvNr>
+			<kuvatavNr id="c89870a0-9e75-4132-8df2-56ceaad2d6bb"><![CDATA[§ 5<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="61e3eb5f-eb6d-4fe8-b20c-9d22ccaa3b17">Land tax information system</paragrahvPealkiri>
+			<loige id="para5b1lg1">
+				<loigeNr id="7787b2b3-287a-44b0-bed9-2454044a9ad4">1</loigeNr>
+				<kuvatavNr id="71957862-90e9-47fc-a78a-5060404465d4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8a70d20c-7b05-4660-895c-8821869c9e14">
+					<tavatekst id="207748d8-c7b0-4a99-9848-e07099c2ec65">The land tax information system is a database belonging to the register of taxable persons established on the basis of subsection 1 of § 17 of the Taxation Act. The procedure for maintaining the database is provided in the statutes of the register of taxable persons.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5b1lg2">
+				<loigeNr id="d3a2ba77-62a3-4d11-bb3c-c0fe782b3dbd">2</loigeNr>
+				<kuvatavNr id="2749ec27-ad7f-4a43-997c-e3664d548504"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="984c8620-b0bf-45c3-a3de-c8ec436f60b6">
+					<tavatekst id="717097ce-32f7-4f30-98a3-b3f3239a149a">[Repealed – RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5b1lg3">
+				<loigeNr id="34755fd5-aa53-415b-8a15-7f3a54b06e15">3</loigeNr>
+				<kuvatavNr id="9ee01814-7dd6-4ccc-bc46-b0172f8b2469"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="beb57eb0-6046-41d2-adc4-5209fa97a931">
+					<tavatekst id="4cdfc48e-5628-4718-b76f-b0ae00719089">The land tax information system is an electronic database whose purpose is to collect and process information necessary for calculation of land tax.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5b1lg3b1">
+				<loigeNr id="c2c8e48a-7133-4832-a74b-2223224af307" ylaIndeks="1">3</loigeNr>
+				<kuvatavNr id="4389db23-b3a2-4258-9783-1d18c118158b"><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="fe47ede8-c552-4181-9ffa-08e8bc7f97c7">
+					<tavatekst id="534b1873-127b-4a43-aa87-fb6d040064fb">A municipality submits to the Tax and Customs Board the underlying data of the land tax information system necessary for the calculation of land tax by 1 February of the taxation year.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5b1lg3b2">
+				<loigeNr id="ce373ed4-3a1f-4934-9cf4-1e0b20400f38" ylaIndeks="2">3</loigeNr>
+				<kuvatavNr id="6238a309-b3a6-4796-97c4-d388bc9ca1eb"><![CDATA[(3<sup>2</sup>)]]></kuvatavNr>
+				<sisuTekst id="14c62793-f462-417d-8779-3a1b39225840">
+					<tavatekst id="df25c18a-8137-4888-8d61-9d38a79c05b5">A municipality is required to verify the accuracy of the data in the land tax information system and, where necessary, to correct or supplement the data.<reavahetus/>[RT I, 04.07.2014, 12 – entry into force 01.01.2017]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5b1lg4">
+				<loigeNr id="0724b98c-dff6-4d0f-a3e6-e82d244c864e">4</loigeNr>
+				<kuvatavNr id="64a212e5-a119-4065-8a38-87a49e669bc0"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="f646e03d-a3fa-4208-878b-03d1fef65010">
+					<tavatekst id="866aff0d-218f-45c3-9983-37df44170406">[Repealed – RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="9c2573d1-db9a-4761-a97c-0ec7c8549bce">6</paragrahvNr>
+			<kuvatavNr id="94165158-256c-47f1-8301-2c3086e6c03e"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="012dfd01-3124-4fa6-a6ab-0c417d42c820">Receipt of tax</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="cb5c2e78-8998-42ad-8c98-f8e853b0fa5f"/>
+				<kuvatavNr id="40489311-214b-446a-83a2-91e872a294c3"/>
+				<sisuTekst id="46c236b3-5b45-4d7f-adf2-89889baf7d10">
+					<tavatekst id="339f6566-2697-4937-9710-75edefc082cd">Land tax is collected in the budget of the municipality of the location of the land.<reavahetus/>[RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="87469229-d4a3-4448-9e0e-fde6f7c90dd2">7</paragrahvNr>
+			<kuvatavNr id="d652c18b-7b29-449c-8727-2883e795784a"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="5ce13086-5b0e-438c-b381-5a88d3b2c1c3">Payment of tax</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="82dc08aa-8439-43eb-9ae4-96a855d774a9">1</loigeNr>
+				<kuvatavNr id="d882fa49-ed4c-430c-b970-2b7a33d5112d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e2a0cd8b-802c-4c5f-b23e-6b3ce9814e73">
+					<tavatekst id="76d9598c-b9fc-460c-b790-009e5383942b">Land tax up to 100 euros on any land located in the municipality is paid by 31 March. At least half of land tax, which exceeds 100 euros, is paid by 31 March, but not less than 100 euros. The remaining part of land tax is paid at the latest by 1 October.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="f5804f2f-25c9-4e47-97a7-986e9e68bddf">2</loigeNr>
+				<kuvatavNr id="2bf9ec66-db57-4ffb-ad78-a10b9bd82ede"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9b4bd41b-005a-46fb-889e-bdd0334570ce">
+					<tavatekst id="eb00203e-ac05-44de-9be6-c851b8ac1589">The Tax and Customs Board issues a tax notice to the taxpayer on the amount of land tax payable at the latest by 15 February. A land tax notice is an administrative act, on which the provisions of the Taxation Act regarding a notice of assessment are applied, unless otherwise provided by law. A tax notice need not be signed.<reavahetus/>[RT I 2009, 65, 441 – entry into force 01.01.2010]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2b1">
+				<loigeNr id="00f0fd0a-9564-409f-84be-94c15be8bdad" ylaIndeks="1">2</loigeNr>
+				<kuvatavNr id="360e8073-9fe3-465f-8205-78e7783dc508"><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="b10db51c-73dc-4658-aa22-f987622df174">
+					<tavatekst id="f50423c6-2524-4c04-8ab3-f647d1e7d23c">The minister in charge of the policy sector may, by authorisation of the Government of the Republic, enter into a contract with a legal person in private law for the performance of work related to the service of tax notices in accordance with the Administrative Cooperation Act. The aforementioned legal person in private law is deemed to be an authorised processor of the register of taxable persons within the limits of the administrative duties of the person and the provisions of the Personal Data Protection Act are applied to such a person.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2b2">
+				<loigeNr id="7a001287-df1c-461b-8e6d-4d1f095dcf71" ylaIndeks="2">2</loigeNr>
+				<kuvatavNr id="2be5a1a6-df75-45ab-b577-b7be88a70385"><![CDATA[(2<sup>2</sup>)]]></kuvatavNr>
+				<sisuTekst id="4d9a61a3-ae09-4ae6-9d09-df6b6fdb78f6">
+					<tavatekst id="bfc7c41a-6df5-438a-ae9e-9b57d7faec4e">In case a taxpayer owns several plots of land, or they use several plots of land located within the administrative territory of one municipality, the tax amounts payable on the plots of land are summed up, without taking into account the provisions of subsection 3 of this section.<reavahetus/>[RT I, 04.07.2017, 2 – entry into force 05.07.2017]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2b3">
+				<loigeNr id="b31dba16-5dff-48f5-9af3-feea8e820705" ylaIndeks="3">2</loigeNr>
+				<kuvatavNr id="16ce429b-1009-455c-9ed1-f64bde209c6a"><![CDATA[(2<sup>3</sup>)]]></kuvatavNr>
+				<sisuTekst id="b113c8a0-b0f6-4616-8b47-8e41a552f231">
+					<tavatekst id="b0f405b9-0c7a-4dfb-adfc-41fe3dcea4bc">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="25cc5afd-5054-418d-a3d2-532dfdc7830b">3</loigeNr>
+				<kuvatavNr id="4d2253e0-bbe2-4fb2-b44c-01a2a1c4a360"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d276bb29-22c3-4213-8470-1facdbdd756c">
+					<tavatekst id="ecd3a386-0c36-423a-8520-f3342dba4107">Land tax is not imposed, and a tax notice is not issued in case the amount of tax is less than 5 euros.<reavahetus/>[RT I 2010, 22, 108 – entry into force 01.01.2011]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg4">
+				<loigeNr id="49a1377f-59af-47b9-a06e-5820314c4e0e">4</loigeNr>
+				<kuvatavNr id="8567cb31-49cd-42d0-96f8-ce45a35378e2"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="55ba47d0-7580-40e5-9056-8e49dd2a14bf">
+					<tavatekst id="e226e7c1-b63f-461f-b75f-650935b8fa09">A taxpayer who has not received a land tax notice for the tax year by 25 February is required to notify the Tax and Customs Board thereof within thirty days.<reavahetus/>[RT I, 25.10.2012, 1 – entry into force 01.12.2012]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg5">
+				<loigeNr id="e19100de-28fd-488f-9fea-470070379756">5</loigeNr>
+				<kuvatavNr id="278f7e5a-46a6-4595-ae25-2e5b6c856736"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="d57dc3da-3c87-4456-8d64-695b4cac9b27">
+					<tavatekst id="00490c9f-2065-4bfd-8425-970038eb088a">In case a taxpayer has not received any land tax notices as of the entry into force of this Act, the taxpayer is required to notify the rural municipality government or city government of the location of the land in writing or electronically of the size and intended use of land in the ownership or use of the taxpayer.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg6">
+				<loigeNr id="d0aa48ed-4796-4376-afe7-d1a1550ec09e">6</loigeNr>
+				<kuvatavNr id="9f70ca96-a398-4eb0-9bc7-72b2c065bc26"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="51eb818d-597e-48ea-905c-7af2971b8a9f">
+					<tavatekst id="19827ebf-8b54-4638-8229-93a18deceb11">[Repealed – RT I, 07.06.2013, 1 – entry into force 01.07.2013]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg7">
+				<loigeNr id="b3f68228-c81f-42ee-9616-a1c49729f5f6">7</loigeNr>
+				<kuvatavNr id="b7f5b8dc-8f59-428e-84a0-3e2897e32370"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="adf56d4f-bef3-4fb1-a10d-cfd852cbc6d8">
+					<tavatekst id="8b1fa394-a4d4-467c-9024-353ec0a63979">The procedure for calculation and payment of land tax is established by a regulation of the minister in charge of the policy sector.<reavahetus/>[RT I, 04.07.2014, 12 – entry into force 01.01.2015]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7b1">
+			<paragrahvNr id="dbd0a163-a514-4bf1-9376-edd2a93af08e" ylaIndeks="1">7</paragrahvNr>
+			<kuvatavNr id="0407ac73-ad7d-40c7-ac62-f68948f0bc18"><![CDATA[§ 7<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f499dfd6-7f72-4496-b442-e173cae4bfe1">Electronic delivery of land tax notices</paragrahvPealkiri>
+			<loige id="para7b1lg1">
+				<loigeNr id="66658d20-04bf-4097-a7f8-02957d1eac44"/>
+				<kuvatavNr id="027472f2-c80e-4f09-abf1-3285d9fbb492"/>
+				<sisuTekst id="4072d17b-621d-4e2d-a8f2-43e88ae2ae6b">
+					<tavatekst id="97fb049f-65da-4577-b579-729cb193bd58">The provisions of subsections 1−3 of § 54 and clause 1 of subsection 4 of § 54 of the Taxation Act, as well as of a regulation issued by the minister in charge of the policy sector on the basis of § 45<sup>1</sup> of the Taxation Act are applied to the electronic delivery of land tax notices.<reavahetus/>[RT I, 07.06.2013, 1 – entry into force 01.07.2013]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="66efc720-0568-47c9-87cf-00e360f61789">8</paragrahvNr>
+			<kuvatavNr id="b313e771-eed8-4c39-93a0-6ed0ec34a86a"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="53e0de76-7dec-4e7a-a943-e56fe575a833">Creation of tax liability</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="372b6781-9c56-4167-be51-538fd2741944">1</loigeNr>
+				<kuvatavNr id="0fd52305-563a-4e63-b802-5ff03f7ce421"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ff0da71c-6f92-408f-9b27-9d0981f5b078">
+					<tavatekst id="acc2ef4e-4236-4f63-8ad0-1a188c8b7395">Land tax liability is created on 1 January of the current year and the tax notice is issued to a person who is the owner, superficiary or usufructuary of the immovable as at 1 January, based on the data in the land register or the successor of the immovable in accordance with the data in the succession register.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="392b1352-0fad-4e01-a615-6284120a000f">2</loigeNr>
+				<kuvatavNr id="8f439158-2437-4111-867d-8a453346d223"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7b554978-4f8a-41f2-beb6-45404448d9cd">
+					<tavatekst id="977a541d-8833-4392-8037-3e1dd70e34b7">Provisions of subsection 1 of this section are applied to the right of use provided in § 10 of this Act, not recorded in the land register, taking into account the validity of the agreement on the right of use as at 1 January of the taxation year.<reavahetus/>[RT I 2009, 65, 441 – entry into force 01.01.2010]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8b1">
+			<paragrahvNr id="d64f2174-37e9-435a-bf5f-aad236a142b8" ylaIndeks="1">8</paragrahvNr>
+			<kuvatavNr id="8b04c1d3-d00b-4bf1-ab39-448507140ae8"><![CDATA[§ 8<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="73822b64-53d2-4a53-b123-f45afc8a8432">Limit on land tax increase</paragrahvPealkiri>
+			<loige id="para8b1lg1">
+				<loigeNr id="70cc0004-0bb9-458b-8f21-a619c4e4ac2f">1</loigeNr>
+				<kuvatavNr id="389cb70d-22a1-42bc-a4c3-8cae0cfc5b9f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d8453d98-5af2-4c4f-a3f2-20b0545fb3ae">
+					<tavatekst id="9fa11ebb-79e5-4d7b-8296-28cb764c31ed">The municipal council establishes by a regulation the maximum limit on the annual increase in the amount of land tax between 10 and 100 per cent at the latest by 1 October of the year preceding the tax period.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8b1lg1b1">
+				<loigeNr ylaIndeks="1">1</loigeNr>
+				<kuvatavNr id="389cb70d-22a1-42bc-a4c3-8cae0cfc5b9f"><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="d8453d98-5af2-4c4f-a3f2-20b0545fb3ae">
+					<tavatekst id="9fa11ebb-79e5-4d7b-8296-28cb764c31ed"> In case the amount of land tax increases by more than the limit established based on subsection 1 of this section compared to the previous tax period, the land tax increases within the limit established by the council, except in the case specified in subsection 2 of this section. Whereas the tax exemptions provided in § 4 of this Act and the land tax incentives provided in § 11 are not taken into account.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8b1lg2">
+				<loigeNr id="7707acf4-ea91-49e7-86d1-2ee1b2e3bef9">2</loigeNr>
+				<kuvatavNr id="258f4785-bd1f-4caa-8d30-c4266a69f5da"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="85ac2326-9555-4612-8d65-242a31f16ca3">
+					<tavatekst id="0bb451aa-f9d4-4193-9c76-f394e0ecc183"> In case the increase in the amount of land tax calculated on the basis of subsection 1<sup>1</sup> of this section compared with the previous tax period is less than or equal to 5 euros, the amount of tax is increased by 5 euros, but not more than to the amount of land tax based on the taxable value of land and land tax rate.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8b1lg2b1">
+				<loigeNr id="455c5a04-0b88-4b02-9658-e17c38d0d13f" ylaIndeks="1">2</loigeNr>
+				<kuvatavNr id="104e8b11-1e70-4633-8a42-462dbae34dda"><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="64c61b85-d254-4e79-9774-991f235659f1">
+					<tavatekst id="822fcbe4-2bdc-4e0b-9134-015b17e2fe91">In the case of the establishment or amendment of the limit on the annual increase in the amount of land tax, the municipality enters the limit on the annual increase in the amount of land tax specified in subsection 1 of this section into the land tax information system at the latest by 2 October of the year preceding the tax period. In case the limit on the annual increase in the amount of the land tax has not been entered in the land tax information system by the specified date, the land tax is calculated according to the limit valid in the previous year.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8b1lg3">
+				<loigeNr id="63b93d4e-7501-4d19-bbfc-b98bf991aa82">3</loigeNr>
+				<kuvatavNr id="a1365df3-18fc-4a1c-a083-8710759b55b9"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="5737ae98-6e75-4ef6-922e-44b31222d91c">
+					<tavatekst id="4b7600a1-deed-4ac5-968a-a4a2ece5558b">In case a new cadastral unit is formed or the taxable value of the cadastral unit changes due to a change in the land use type, area or intended purpose, the taxable value is calculated for the cadastral unit based on the results of the regular assessment of the year 2001, it is compared with the taxable value of the land determined on the basis of the results of the last regular assessment of land, and thereafter subsection 1 and, where appropriate, subsection 2 of this section are applied to the change in the amount of land tax arising from the change in the taxable value of land.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8b1lg4">
+				<loigeNr id="2de8e209-5548-4508-b6b0-c2aa7896a102">4</loigeNr>
+				<kuvatavNr id="5cd48557-2f39-4c90-aeb3-a76d6c2dd96f"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="500e74e7-fa74-4fe8-a47f-7a11b53543fd">
+					<tavatekst id="134da56d-97e4-4675-9dde-d707dff2355a">In case, as a result of the changes in the cadastral unit specified in subsection 3 of this section, the limit on the increase of land tax specified in subsection 1 would have been applied to the taxable value of the new cadastral unit, the calculated amount of land tax amount specified in subsection 3 is increased for each tax period within the annual limit on the increase in the amount of land tax established by the municipal council and, where necessary, subsection 2 is applied.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="6beb5e14-45dc-47f7-a310-b7d53df5bde4">9</paragrahvNr>
+			<kuvatavNr id="1287072a-ce33-4089-8240-51073f6b1c6b"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3f9b7dae-706e-417f-8d67-a9b626d8513c">Supervision of payment of tax</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="ec2dde84-8a16-4ac0-8687-66429d8c361f"/>
+				<kuvatavNr id="a9865051-f05a-47a2-bbf9-86509d1901e0"/>
+				<sisuTekst id="9de5d3d0-561a-4998-bc6f-e1677e2c137f">
+					<tavatekst id="3eb6ef58-a514-4d16-9ceb-3f84d462ff44">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="14147e1b-35d0-4e7b-8288-71b6e24a37c1">10</paragrahvNr>
+			<kuvatavNr id="1592b614-9066-442e-a129-0db80dc6b8ba"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="483c65c5-f64a-4942-9921-9da84d19ca54">Tax liability of user of land</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="b02c03ef-506a-407f-a88f-eab331a01a8d">1</loigeNr>
+				<kuvatavNr id="3129cede-0a39-4c8f-9a72-0e3121f9f8ba"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8e9955a2-da31-4ac2-947b-ff2b1b591260">
+					<tavatekst id="c9bcf52b-19a9-4be7-9a77-956eff445ba3">In case the use of land is not re-registered in accordance with the procedure prescribed by the Land Reform Act, the land use is paid by the user of land.<reavahetus/>[RT I 2006, 55, 406 – entry into force 01.01.2007]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="4df05033-815e-4090-aa9c-03e0b3cb990e">2</loigeNr>
+				<kuvatavNr id="8a29e944-452b-4177-b20b-c8629e8cf90e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8963a40e-4be1-4115-a982-6325c9179dfd">
+					<tavatekst id="a60b3d1a-e09f-450e-886f-e2683d435ffc">Upon the encumbrance of land with a right of superficies or a usufruct, land tax is paid by the superficiary or usufructuary.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr id="02492666-bd3e-403b-966d-eb13d4e00432">3</loigeNr>
+				<kuvatavNr id="802f541f-e639-44c2-a3d5-6714e87296b2"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="3b1eae11-0c0a-4f36-bb91-6769469ada20">
+					<tavatekst id="86207b91-3b53-43f7-afac-54145e261058">In case an immovable in the municipal ownership is granted for the extraction of mineral reserves, land tax is paid by the person who has obtained the right to use land.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2022]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg4">
+				<loigeNr id="337907e8-bbf4-4544-84a7-8ace8a40262e">4</loigeNr>
+				<kuvatavNr id="a24de02d-0a95-4f10-b3a7-555024bcfab5"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="5fa8559a-748b-49e3-aed3-02a87abaa730">
+					<tavatekst id="32daa68f-f16e-4312-a2f2-129af69e9cbb">Upon granting a state-owned immovable for use, a person who has obtained the right to use the immovable pays land tax unless the amount of land tax has been taken into account in proportion to the scope of the right of use upon setting the usage fee for the immovable or in case the right to use the immovable arises from a contract for the establishment of a real servitude or personal right of use and it is not provided otherwise in the contract for granting for use.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2022]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="b254b40b-5625-4fd3-8093-b3262135df81">11</paragrahvNr>
+			<kuvatavNr id="3a38b3f5-7ca5-45d4-92ac-bc76b2b8e743"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="8f409210-d2e3-4a1b-99d6-2c0754d6514a">Tax incentives</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="1c2cd6af-158c-4a25-9e82-95e58e675c23">1</loigeNr>
+				<kuvatavNr id="386e477f-91d7-440b-93b4-b53d797e271a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4fcb664c-d4a1-4189-bcf7-d68342d6f25a">
+					<tavatekst id="f9fcb9a3-6df3-43be-ac87-58bcb59600ae">The municipal council may establish by a regulation, under the conditions provided in subsection 1<sup>1</sup> of this section, a tax incentive of up to 1,000 euros on the land under the home at the latest by 1 October of the year preceding the tax period.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg1b1">
+				<loigeNr ylaIndeks="1">1</loigeNr>
+				<kuvatavNr id="386e477f-91d7-440b-93b4-b53d797e271a"><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="4fcb664c-d4a1-4189-bcf7-d68342d6f25a">
+					<tavatekst id="f9fcb9a3-6df3-43be-ac87-58bcb59600ae">The land under the home is considered to be land owned by the land owner or used by the land user specified in § 10 of this Act, the intended purpose or one of the intended purposes of which is residential land, or the land use type of yard land on profit-yielding land, in case the building on this land is the residence of the land owner or user according to the residence data entered in the population register.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr id="c12766d4-1c82-429b-a747-835a6e7d193d">2</loigeNr>
+				<kuvatavNr id="1a5e6fd9-ffdf-4873-83d8-f16978ff7dc9"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="01195895-1d9d-4513-847c-3b7134959137">
+					<tavatekst id="7b42aa2e-2cc2-4894-9d3d-517edd24dbb9"> The tax incentive specified in subsection 1 of this section applies to the land of a building association, taking into account the proportional part of contributions of the members of the building association whose place of residence in accordance with the residence data entered in the population register is in the building located on this land.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg3">
+				<loigeNr id="3073d15a-6169-4950-add0-9f88c958a14b">3</loigeNr>
+				<kuvatavNr id="674b951a-b509-437c-aa7b-1310ffff6be3"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="92a69cb3-5fce-4db5-aef5-76064a83ca68">
+					<tavatekst id="32bdb462-1a41-439e-948e-ce3a54318846"> In case the land or apartment ownership is in the joint or common ownership or granted for use on the basis of subsection 2 of § 10 of this Act, the tax incentive specified in subsection 1 of this section is applied to the ownership or use of land once.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg3b1">
+				<loigeNr id="0684162d-7d36-4fa4-b9dd-008e16345ebe" ylaIndeks="1">3</loigeNr>
+				<kuvatavNr id="a539c14e-076a-49f6-b205-d67ef7f3f55b"><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="2899e8a8-43bc-4be0-a480-beafe2a3470d">
+					<tavatekst id="5277b5bc-cae6-4b98-bde1-45341afb7123">[Repealed - RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg3b2">
+				<loigeNr id="abcffea8-6f39-40b5-b2ea-f9ffdeb5ba08" ylaIndeks="2">3</loigeNr>
+				<kuvatavNr id="781b64c5-8652-49f4-ac18-f1f300b5d671"><![CDATA[(3<sup>2</sup>)]]></kuvatavNr>
+				<sisuTekst id="a830879d-2cd3-4577-b8f5-022bccea8830">
+					<tavatekst id="c99bae9f-f362-4775-87f1-7a5615e06e9c">[Repealed - RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg4">
+				<loigeNr id="a741b6d3-595e-473b-a63e-115f93a3a156">4</loigeNr>
+				<kuvatavNr id="0aacb103-db47-41c1-a865-f6299394cdf3"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="9f5b0351-fe79-475a-9cf3-f55c8197b76b">
+					<tavatekst id="be67ad92-86c1-459e-8e05-e3b716631a04">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.06.2023]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg5">
+				<loigeNr id="58e5099f-9181-40ea-a92c-8701df6d3478">5</loigeNr>
+				<kuvatavNr id="18c1b207-6ab9-46e9-8c29-9ca8c438577a"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="c2722b6d-c5db-498b-af1e-0de4d80873ce">
+					<tavatekst id="5e7e97cc-bf83-4664-973f-a1bbb99239cf">The municipal council may determine by 1 October of the year preceding the tax period at the latest, under the conditions specified in subsection 1<sup>1</sup> of this section, an additional tax incentive of up to 1,000 euros to the following target groups:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg5p1">
+					<alampunktNr id="39c48a6a-edd3-43d4-a3ab-804a61c12539">1</alampunktNr>
+					<kuvatavNr id="f69e8d08-5079-4abe-8d09-8346dab512b8"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="ba8f6bb2-a978-4d3a-b3a2-83284702fd5e">
+						<tavatekst id="d5b59db5-ee00-460a-ba5d-46b739daad48">pension recipients based on the State Pension Insurance Act;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg5p2">
+					<alampunktNr id="2b5db32f-cdf6-46ed-b43a-5ce5453d7dde">2</alampunktNr>
+					<kuvatavNr id="b3ae6d40-f1d5-4938-b8f4-4c566ffb98a7"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="15b31eaa-66d5-41f2-80d8-9d477168e750">
+						<tavatekst id="578b8b58-2a77-43d3-868d-f66bdeafc338">persons who have been established to have partial or no work ability based on the Work Ability Allowance Act.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para11lg6">
+				<loigeNr id="9d8f273a-cf3b-4a19-9c9d-0427257529da">6</loigeNr>
+				<kuvatavNr id="4c91f8d9-8559-4154-bf1b-33325d426f34"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="d0701987-643b-4d03-a3af-d2b56328d82d">
+					<tavatekst id="d83b152f-fb64-418d-8e93-cccbd2affb05">The municipal council may grant at the latest by 1 October of the year preceding the tax period, under the conditions specified in subsection 1<sup>1</sup> of this section, an additional tax incentive to a repressed person and a person treated as a repressed person for the purposes of the Act on Persons Repressed by Occupation Regimes, by fully exempting the land in their use specified in subsection 1<sup>1</sup> from land tax.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg7">
+				<loigeNr id="487d8657-e779-4525-81e6-5427b7e2bb39">7</loigeNr>
+				<kuvatavNr id="fb5b3a17-a2a4-4b65-858b-9dab3de10684"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="8de7ab8b-eb87-4fe8-b99c-496640c088e7">
+					<tavatekst id="f1c86db4-3214-4b98-b8fe-1ad0a3ad8d1a"> To receive additional tax incentive specified in subsection 5 or 6 of this section, a person who meets the conditions provided in this section submits an application to the municipality in accordance with the procedure established by the council.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg8">
+				<loigeNr id="92988d4b-2225-451e-9beb-d3f5f079aa3e">8</loigeNr>
+				<kuvatavNr id="359822c3-6b61-4aa7-8f78-e4199c810aff"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="64e33fd8-0c2a-462a-9eb6-10dfccbd4436">
+					<tavatekst id="3e507ab2-2731-43c0-ac02-79aa070dffd9"> A person entitled to receive the tax incentive specified in subsection 1 of this section and a person wishing to use the tax incentive specified in subsections 5 or 6 must meet the conditions provided in this section as at 1 January of the tax period.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg8b1">
+				<loigeNr id="8c921cfc-4ac6-4765-880b-95a1b1a74cf5" ylaIndeks="1">8</loigeNr>
+				<kuvatavNr id="a3701248-fb4e-4449-a264-08a41fd96962"><![CDATA[(8<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="70ce53ee-02fa-46d9-af05-682131c06fc4">
+					<tavatekst id="977254a0-733f-40a7-968a-b1e3148b5b65">In the case of the establishment or amendment of a tax incentive, the municipality enters the tax incentive specified in subsections 1, 5 and 6 of this section into the land tax information system at the latest by 2 October of the year preceding the tax period. In case the tax incentive has not been entered into the land tax information system by the specified date, the land tax incentive is calculated according to the rate valid in the previous year.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg9">
+				<loigeNr id="943e2696-55a3-4851-9de4-fadede6db550">9</loigeNr>
+				<kuvatavNr id="ebcc4744-af91-4f7c-8f71-ed4676bbc526"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="2e3b7460-5c83-46f2-bf2d-201d9598f1fd">
+					<tavatekst id="8dbf5ea8-e7da-4f10-9dea-b6139a59b96f">The procedure for application for land tax incentive is established by a regulation of the minister in charge of the policy sector.<reavahetus/>[RT I, 04.07.2014, 12 – entry into force 01.01.2015]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11b1">
+			<paragrahvNr id="1697ed52-f9d9-40f2-b731-02b665338551" ylaIndeks="1">11</paragrahvNr>
+			<kuvatavNr id="62ce85ba-32a0-4907-9f9d-45a5e63b0aac"><![CDATA[§ 11<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="5f35c857-d047-428f-a8f3-8496902b3f27">Calculation of tax exemptions and tax incentives</paragrahvPealkiri>
+			<loige id="para11b1lg1">
+				<loigeNr id="55fa1347-c094-4a5c-8515-7244a27d5467">1</loigeNr>
+				<kuvatavNr id="8d24c92b-5fec-482f-8b25-67f0b8700887"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a31a9fe7-7158-421b-bfab-f4d5142e579b">
+					<tavatekst id="9fe44a40-9a9b-4ab1-80b6-6b608394a658"> In case the land exempt from tax specified in subsections 1 and 2 of § 4 of this Act is less than the whole plot of land, each of such tax exemptions is calculated on the taxable value of the entire plot of land in proportion to the part of the area of land exempt from tax in the total area of the plot of land.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11b1lg2">
+				<loigeNr id="ce9bedd6-73e1-4f2a-9694-8d6e5adda191">2</loigeNr>
+				<kuvatavNr id="60fcc67f-d0a3-47fc-8c11-258407d7fdb9"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="c0ce1d54-7a51-462e-8128-0ddfde2ae1ef">
+					<tavatekst id="b5ebebdd-d040-47fb-9e9c-5077bcdec02f"> In case the tax exemption specified in subsection 1 of § 4 of this Act is related to the intended purpose of land or land use type, each of such tax exemptions is calculated on the taxable value of the whole plot of land with the respective intended purpose or land use type of the area in proportion to the part of the land exempt from tax in the whole area with the respective intended purpose or land use type.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11b1lg3">
+				<loigeNr id="1f7285a6-24bc-4ef7-b9a6-13d54b517638">3</loigeNr>
+				<kuvatavNr id="3bead91e-efdf-499a-a022-859e1e84ca6c"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="9e1c6aab-d585-44f8-8767-f0f21c7f7bc0">
+					<tavatekst id="928f3373-da0d-4c3a-90ff-19b358de8e12">In case of occurrence of several tax exemptions specified in subsections 1 and 2 of § 4 of this Act or tax incentives specified in subsections 1–3, 5 and 6 of § 11 of this Act on the same taxable plot of land, tax exemptions and tax incentives are summed up.<reavahetus/>[RT I, 22.12.2012, 1 – entry into force 01.01.2017, entry into force changed [RT I, 04.07.2014, 12]]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11b1lg4">
+				<loigeNr id="1f7285a6-24bc-4ef7-b9a6-13d54b517638">4</loigeNr>
+				<kuvatavNr id="3bead91e-efdf-499a-a022-859e1e84ca6c"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="9e1c6aab-d585-44f8-8767-f0f21c7f7bc0">
+					<tavatekst id="928f3373-da0d-4c3a-90ff-19b358de8e12"> In case the owner, superficiary or usufructuary of an immovable property, who owns or uses an immovable property located in the territory of two or more municipalities, is entitled to the land tax incentive specified in subsections 1, 5 or 6 of § 11 of this Act, the tax incentives established by the relevant municipalities are applied in proportion to the area of the immovable property located in their territory.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="1c4d2bb7-f1a4-4eab-88ae-3f24c3b9c02c">12</paragrahvNr>
+			<kuvatavNr id="66b4ef5b-4266-492a-91f3-06d2c2f1b27e"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4fce5ef6-8867-4e7b-9bcb-98c1f4356969">Liability of taxpayer</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="dd266ed9-5e7b-411c-b029-64e554e35287"/>
+				<kuvatavNr id="e30599b3-d2ef-42d6-9834-44c529a0c5e3"/>
+				<sisuTekst id="6cd51dfe-780f-4f7d-a392-6f0499100080">
+					<tavatekst id="03559e4d-520f-4e39-bc27-e3ced19685b0">[Repealed – RT I, 10.03.2022, 2 – entry into force 01.01.2024]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b1">
+			<paragrahvNr id="6c7a8417-b3e0-4c7d-9c77-8cda4e1ab762" ylaIndeks="1">12</paragrahvNr>
+			<kuvatavNr id="841268a6-5135-4273-a059-8538c7d77b5a"><![CDATA[§ 12<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="5b486c9e-2a9a-4651-9c80-b0eee6141b6c">Entry of underlying data in land tax information system</paragrahvPealkiri>
+			<loige id="para12b1lg1">
+				<loigeNr id="6fb12bcc-cc6b-4029-a6b4-a2114479725d"/>
+				<kuvatavNr id="7eaf18ee-12c5-41c7-a7ca-5c926b32d3a9"/>
+				<sisuTekst id="1a9a121e-dbac-45aa-bb75-423884cb5d6f">
+					<tavatekst id="a19fe7d7-6dcb-4435-9c31-0d00d390de31">A municipality enters the underlying data of land tax specified in the statutes for maintenance of the land tax information system into the land tax information system by 1 February 2017.<reavahetus/>[RT I, 04.07.2014, 12 – entry into force 01.01.2017]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b2">
+			<paragrahvNr id="07be97cc-f7e1-4de4-828b-acbfd37b216f" ylaIndeks="2">12</paragrahvNr>
+			<kuvatavNr id="3e02ee15-5023-4f02-ab83-048aeb79a71b"><![CDATA[§ 12<sup>2</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="1839ddf4-4021-434f-bf5f-2ff677745c15">Liquidation of land tax information system</paragrahvPealkiri>
+			<loige id="para12b2lg1">
+				<loigeNr id="429716ae-ce8f-4257-bd6a-b93092dfb0e5"/>
+				<kuvatavNr id="2600c08b-9414-4c9f-87ba-0402e218f6bc"/>
+				<sisuTekst id="02df35a8-575e-4e6d-85d7-a706adcbe232">
+					<tavatekst id="71745fc9-c1d9-4051-aec3-573eee874bd3">The land tax information system, maintained until 1 January 2021, is liquidated at the latest on 31 January 2021.<reavahetus/>[RT I, 23.12.2020, 5 – entry into force 01.01.2021]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b3">
+			<paragrahvNr id="09e896ef-42b2-45d8-85a6-5e09bc679250" ylaIndeks="3">12</paragrahvNr>
+			<kuvatavNr id="294d269a-1bcc-45b1-8f0e-32f62e22d093"><![CDATA[§ 12<sup>3</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a2d354bc-5dff-4ead-bd8f-7d03d6775fda">Exception to implementation of subsection 4 of § 8<sup>1</sup> of this Act in 2024</paragrahvPealkiri>
+			<loige id="para12b3lg1">
+				<loigeNr id="3d233efc-c5d7-4c68-bad1-2e9b22332dd5"/>
+				<kuvatavNr id="00cecca5-b573-4f3d-a85d-d3e462b49d0d"/>
+				<sisuTekst id="9a87bfca-d134-40a8-8352-8e7494298718">
+					<tavatekst id="9d15d9ab-962f-4563-a0aa-583fb5ebe896">In the case provided in subsection 4 of § 8<sup>1</sup> of this Act, the estimated amount of land tax specified in subsection 3 of the same section is increased 10 per cent in 2024 or by 5 euros in case the ten per cent increase in the amount of land tax is less than 5 euros.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2025]<reavahetus/>In the case the municipality has not entered the limit on the annual increase in the amount of land tax provided in subsection 2<sup>1</sup> of § 8<sup>1</sup> of this Act into the land tax information system at the latest by 2 October 2025, the limit on the annual increase in the amount of land tax is deemed to be 10 per cent in 2025.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b4">
+			<paragrahvNr ylaIndeks="4">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>4</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Exception to implementation of subsection 2<sup>1</sup> of § 8<sup>1</sup> of this Act in 2025</paragrahvPealkiri>
+			<loige id="para12b4lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>In the case the municipality has not entered the limit on the annual increase in the amount of land tax provided in subsection 2<sup>1</sup> of § 8<sup>1</sup> of this Act into the land tax information system at the latest by 2 October 2025, the limit on the annual increase in the amount of land tax is deemed to be 10 per cent in 2025.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.03.2025]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b5">
+			<paragrahvNr ylaIndeks="5">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>5</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Exception to implementation of subsection 4 of § 8<sup>1</sup> of this Act upon payment of land tax for 2025</paragrahvPealkiri>
+			<loige id="para12b5lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>In the case provided in subsection 4 of § 8<sup>1</sup> of this Act, the estimated amount of land tax specified in subsection 3 of the same section is increased in 2025 by 50 per cent or by 20 euros in case the fifty per cent increase in the amount of land tax is less than 20 euros.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b6">
+			<paragrahvNr ylaIndeks="6">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>6</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Implementation of subsections 5–8 of § 11 of this Act</paragrahvPealkiri>
+			<loige id="para12b6lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Subsections 5–8 of § 11 of this Act are implemented for the first time in respect of the land tax for the year 2026.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b7">
+			<paragrahvNr ylaIndeks="7">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>7</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Ex-post evaluation of impact of implementation of §§ 81 and 11 of this Act</paragrahvPealkiri>
+			<loige id="para12b7lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>The Ministry of Regional Affairs and Agriculture analyses the achievement of the objective of the changes in the annual increase limit for the amount of land tax to be established by the municipal council provided in § 81 of this Act and the establishment of tax incentives provided in § 11, by 1 January 2029 at the latest, and the impact of the implementation of the specified provisions and, where necessary, submits proposals for amendments to the relevant legislation.<reavahetus/>[RT I, 30.06.2024, 1 - entry into force 01.01.2026]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para13">
+			<paragrahvNr id="1b71109a-ba17-430d-a519-24a6a49a2c55">13</paragrahvNr>
+			<kuvatavNr id="a6eec4f0-541b-44db-85fb-83fb14d85125"><![CDATA[§ 13. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f8546f0e-990b-4714-aef6-97c1b9016cbb">Entry into force of Act</paragrahvPealkiri>
+			<loige id="para13lg1">
+				<loigeNr id="1d5fb268-afe1-42ee-be15-e12e83235304">1</loigeNr>
+				<kuvatavNr id="4dad26de-7268-4573-8db5-4b86bd5b1e87"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="57dea7f8-46c5-4b1b-ae4a-4108232c8224">
+					<tavatekst id="5cb9c3a8-99af-4560-97a2-43e5376ba849">This Act enters into force as of 1 July 1993.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para13lg2">
+				<loigeNr id="6be7edc6-b54a-4937-acec-e1a067e799c2">2</loigeNr>
+				<kuvatavNr id="23c41425-4f54-4219-93a1-4a47a01290a4"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="501690a3-91ce-4f6a-b245-5733c1cdf6d5">
+					<tavatekst id="ff0fbe4e-fe6d-467e-9a82-1c222ceba54b">[Repealed – RT I, 04.07.2014, 12 – entry into force 01.01.2015]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para13lg3">
+				<loigeNr id="b5bbbc7a-0f4b-4ac2-a3aa-8d397838bd0e">3</loigeNr>
+				<kuvatavNr id="e3938a82-a8a3-4c54-a4ba-7f50dda4b8c6"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6dd5c396-8721-41b6-9b3c-0c8f751fffa2">
+					<tavatekst id="db170edc-f1af-4c77-a368-06e0c42d97b4">Land tax for the second half of 1993 is paid at the latest by 15 November 1993.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

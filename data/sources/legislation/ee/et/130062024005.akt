@@ -1,0 +1,1857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e756e565-a443-450d-ae88-b235a53b444a" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>MaaMS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>1993-05-06</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<RTaasta>1993</RTaasta>
+				<RTnr>24</RTnr>
+				<RTartikkel>428</RTartikkel>
+				<aktViide>28487</aktViide>
+			   </avaldamismarge>
+			  <joustumine>1993-07-01</joustumine>
+	        	</vastuvoetud>
+		
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-06-30+03:00</avaldamineKuupaev>
+			<RTaasta>2024</RTaasta>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>130062024005</aktViide>
+		</avaldamismarge>
+		
+		<kehtivus>
+			<kehtivuseAlgus>2026-01-01</kehtivuseAlgus>
+		</kehtivus>
+		
+		<versioon>
+			<dokumentVersioonKuupaev>2011-07-05</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>130062024005</globaalID>
+		<metaandmedVersioon>56</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2024-06-29</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>161873</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Maamaksuseadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>1994-02-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1994</RTaasta>
+			<RTnr>13</RTnr>
+			<RTartikkel>231</RTartikkel>
+			<aktViide>28645</aktViide>
+		</avaldamismarge>
+		<joustumine>1994-03-05</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1994-03-24</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1994</RTaasta>
+			<RTnr>28</RTnr>
+			<RTartikkel>428</RTartikkel>
+			<aktViide>30028</aktViide>
+		</avaldamismarge>
+		<joustumine>1994-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1994-12-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1994</RTaasta>
+			<RTnr>94</RTnr>
+			<RTartikkel>1609</RTartikkel>
+			<aktViide>30499</aktViide>
+		</avaldamismarge>
+		<joustumine>1994-12-29</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1995-06-01</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1995</RTaasta>
+			<RTnr>54</RTnr>
+			<RTartikkel>884</RTartikkel>
+			<aktViide>30835</aktViide>
+		</avaldamismarge>
+		<joustumine>1996-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1996-04-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1996</RTaasta>
+			<RTnr>36</RTnr>
+			<RTartikkel>738</RTartikkel>
+			<aktViide>28543</aktViide>
+		</avaldamismarge>
+		<joustumine>1996-06-07</joustumine>
+		<tavatekst>, osaliselt 01.01.1998</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<tavatekst>terviktekst RT paberkandjal</tavatekst>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1996</RTaasta>
+			<RTnr>41</RTnr>
+			<RTartikkel>797</RTartikkel>
+			<aktViide>13013087</aktViide>
+		</avaldamismarge>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1996-12-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1996</RTaasta>
+			<RTnr>89</RTnr>
+			<RTartikkel>1589</RTartikkel>
+			<aktViide>31443</aktViide>
+		</avaldamismarge>
+		<joustumine>1997-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1997-11-06</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1997</RTaasta>
+			<RTnr>82</RTnr>
+			<RTartikkel>1398</RTartikkel>
+			<aktViide>74267</aktViide>
+		</avaldamismarge>
+		<joustumine>1998-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1999-02-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>27</RTnr>
+			<RTartikkel>381</RTartikkel>
+			<aktViide>77269</aktViide>
+		</avaldamismarge>
+		<joustumine>2000-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1999-12-08</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>95</RTnr>
+			<RTartikkel>840</RTartikkel>
+			<aktViide>77966</aktViide>
+		</avaldamismarge>
+		<joustumine>2000-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2000-11-23</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2000</RTaasta>
+			<RTnr>95</RTnr>
+			<RTartikkel>612</RTartikkel>
+			<aktViide>72498</aktViide>
+		</avaldamismarge>
+		<joustumine>2001-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2001-12-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>102</RTnr>
+			<RTartikkel>666</RTartikkel>
+			<aktViide>73410</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-05-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>44</RTnr>
+			<RTartikkel>284</RTartikkel>
+			<aktViide>110025</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-10-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>71</RTnr>
+			<RTartikkel>472</RTartikkel>
+			<aktViide>642738</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>587</RTartikkel>
+			<aktViide>690814</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>589</RTartikkel>
+			<aktViide>690831</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2003-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2003</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>591</RTartikkel>
+			<aktViide>690845</aktViide>
+		</avaldamismarge>
+		<joustumine>2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2004-11-23</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2004</RTaasta>
+			<RTnr>84</RTnr>
+			<RTartikkel>572</RTartikkel>
+			<aktViide>824890</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-10-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>57</RTnr>
+			<RTartikkel>451</RTartikkel>
+			<aktViide>955779</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-11-18</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2006-11-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2006</RTaasta>
+			<RTnr>55</RTnr>
+			<RTartikkel>406</RTartikkel>
+			<aktViide>12758703</aktViide>
+		</avaldamismarge>
+		<joustumine>2007-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2008-03-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>14</RTnr>
+			<RTartikkel>94</RTartikkel>
+			<aktViide>12942034</aktViide>
+		</avaldamismarge>
+		<joustumine>2009-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2009-06-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2009</RTaasta>
+			<RTnr>33</RTnr>
+			<RTartikkel>211</RTartikkel>
+			<aktViide>13195119</aktViide>
+		</avaldamismarge>
+		<joustumine>2009-07-02</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2009-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2009</RTaasta>
+			<RTnr>65</RTnr>
+			<RTartikkel>441</RTartikkel>
+			<aktViide>13252449</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2010-04-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2010</RTaasta>
+			<RTnr>22</RTnr>
+			<RTartikkel>108</RTartikkel>
+			<aktViide>13310847</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-01-01</joustumine>
+		<tavatekst> jõustub päeval, mis on kindlaks määratud Euroopa Liidu Nõukogu otsuses Eesti Vabariigi suhtes kehtestatud erandi kehtetuks tunnistamise kohta Euroopa Liidu toimimise lepingu artikli 140 lõikes 2 sätestatud alusel, Euroopa Liidu Nõukogu 13.07.2010. a otsus Nr 2010/416/EL (ELT L 196, 28.07.2010, lk 24–26).</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2011-06-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2011-07-08</avaldamineKuupaev>
+			<RTartikkel>7</RTartikkel>
+			<aktViide>108072011007</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-10-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-10-25</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>125102012001</aktViide>
+		</avaldamismarge>
+		<joustumine>2012-12-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-12-07</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-12-22</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>122122012001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-01-01</joustumine>
+		<tavatekst>, osaliselt 01.01.2014 ja 01.01.2015; jõustumine osaliselt muudetud 01.01.2017 [RT I, 04.07.2014, 12]</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2013-05-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2013-06-01</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>101062013001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2013-05-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2013-06-07</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>107062013001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+			<RTartikkel>12</RTartikkel>
+			<aktViide>104072014012</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-01-01</joustumine>
+		<tavatekst>, osaliselt 01.01.2017</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-06-29</avaldamineKuupaev>
+			<RTartikkel>109</RTartikkel>
+			<aktViide>129062014109</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 107³ lõike 4 alusel asendatud ministrite ametinimetused alates 2014. aasta 1. juulil jõus olevast redaktsioonist.</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-11-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>113122014001</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-01</joustumine>
+		<tavatekst>, jõustumisaeg muudetud 01.07.2016 [RT I, 17.12.2015, 1]</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-11-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>117122015001</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-12-20</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2016-10-27</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2016-11-10</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>110112016001</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-06-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-07-04</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>104072017002</aktViide>
+		</avaldamismarge>
+		<joustumine>2018-01-01</joustumine>
+		<tavatekst>, osaliselt 05.07.2017</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2019-01-30</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2019-02-22</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>122022019001</aktViide>
+		</avaldamismarge>
+		<joustumine>2019-10-01</joustumine>
+		<tavatekst>, osaliselt 01.01.2021</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2020-12-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>123122020005</aktViide>
+		</avaldamismarge>
+		<joustumine>2021-01-01</joustumine>
+		<tavatekst>, osaliselt 01.01.2022 ja 01.01.2023</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-02-23</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>110032022002</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-03-15</joustumine>
+		<tavatekst>, osaliselt 01.06.2023 ja 01.01.2024</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-01-01</joustumine>
+		<tavatekst>, osaliselt 01.07.2024, 01.01.2025 ja 01.03.2025</tavatekst>
+	</muutmismarge>
+	<sisu>
+		<paragrahv id="para1">
+			<paragrahvNr>1</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maamaks</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaks on maa maksustamishinnast lähtuv maks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maa maksustamishind määratakse ja selle vaidlustamise kord kehtestatakse, lähtudes maa hindamise seadusest. Iga korralisel hindamisel määratud maa maksustamishind võetakse maamaksu arvestamisel aluseks korralisest hindamisest arvates ülejärgmise aasta 1. jaanuaril.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maksu- ja Tolliamet arvutab maamaksu kohaliku omavalitsuse üksuse poolt maamaksu infosüsteemi esitatud alusandmete põhjal.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr>2</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksu objekt</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<sisuTekst>
+					<tavatekst>Maamaksuga maksustatakse kogu maa, välja arvatud käesoleva seaduse §-s 4 nimetatud maa.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr>3</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksu subjekt</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<sisuTekst>
+					<tavatekst>Maamaksu maksab maa omanik või käesoleva seaduse §-s 10 ettenähtud juhul maa kasutaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr>4</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksuvaba maa</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksu ei maksta:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>110032022002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p1b1">
+					<alampunktNr ylaIndeks="1">1</alampunktNr>
+					<kuvatavNr><![CDATA[1<sup>1</sup>) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>kaitsealade loodusreservaadi ja sihtkaitsevööndi maalt ning püsielupaikade sihtkaitsevööndi maalt;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>14</RTnr>
+							<RTartikkel>94</RTartikkel>
+							<aktViide>12942034</aktViide>
+						</avaldamismarge>
+						<joustumine>2009-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>välisriikide diplomaatiliste ja konsulaaresinduste hoonete või nende osade juurde kuuluvalt maalt;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>välisriigi või rahvusvahelise organisatsiooni kasutuses olevalt maalt Vabariigi Valitsuse ja välisriigi või rahvusvahelise organisatsiooni vahel sõlmitud lepingu alusel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p4">
+					<alampunktNr>4</alampunktNr>
+					<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>104072014012</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p5">
+					<alampunktNr>5</alampunktNr>
+					<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>kirikute ja koguduste pühakodade aluselt maalt;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p6">
+					<alampunktNr>6</alampunktNr>
+					<kuvatavNr><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>vastava omavalitsusüksuse haldusalal asuvalt munitsipaalmaalt, välja arvatud käesoleva seaduse §-s 10 ettenähtud juhul;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p7">
+					<alampunktNr>7</alampunktNr>
+					<kuvatavNr><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>avaliku veekogu ja avalikult kasutatava veekogu aluselt maalt;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>110032022002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p8">
+					<alampunktNr>8</alampunktNr>
+					<kuvatavNr><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>välislepingus sätestatud juhtudel rahvusvahelise sõjalise peakorteri kasutuses olevalt maalt;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2013-06-01</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>101062013001</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-07-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p9">
+					<alampunktNr>9</alampunktNr>
+					<kuvatavNr><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> riigi omandis olevalt ühiskondlike ehitiste maa sihtotstarbega maalt, kui seda maad kasutab riigiasutus, kohaliku omavalitsuse asutus või juriidiline isik käesoleva lõike punktis 2, 3, 5 või 8 nimetatud otstarbel;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p10">
+					<alampunktNr>10</alampunktNr>
+					<kuvatavNr><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>üldkasutatava maa sihtotstarbega maalt;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+							<RTartikkel>12</RTartikkel>
+							<aktViide>104072014012</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para4lg1p11">
+					<alampunktNr>11</alampunktNr>
+					<kuvatavNr><![CDATA[11)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>riigitee, kohaliku tee ja avalikuks kasutamiseks määratud eratee teemaalt.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>110032022002</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Looduskaitseseaduse §-s 31 sätestatud piiranguvööndimaalt, 5. peatükis sätestatud hoiualade maalt, § 50 lõike 1 alusel määratud püsielupaiga piiranguvööndi maalt ja § 68 alusel sätestatud looduse üksikobjekti piiranguvööndi maalt ning veeseaduse § 118 alusel sätestatud kalda või ranna veekaitsevööndi maalt makstakse maamaksu 50 protsenti maamaksumäärast.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2019-02-22</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>122022019001</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Käesoleva paragrahvi lõike 1 punktides 1<sup>1</sup>, 7 ja 11 ning lõikes 2 nimetatud maksuvabastust kohaldatakse vabastuse aluse tekkimisele järgneva aasta 1. jaanuarist. Kui maksuvabastuse alus tekib 1. jaanuaril, kohaldatakse maksuvabastust samast päevast.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr>5</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksumäär</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kohaliku omavalitsuse volikogu kehtestab hiljemalt maksustamisaastale eelneva aasta 1. oktoobriks igale järgmisele maa sihtotstarbegrupile maksumäära:</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-07-01</joustumine>
+				</muutmismarge>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>elamumaale ja maatulundusmaa õuemaa kõlvikule 0,1–1,0 protsenti maa maksustamishinnast aastas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>käesoleva lõike punktis 1 nimetamata maatulundusmaale 0,1–0,5 protsenti maa maksustamishinnast aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>käesoleva lõike punktides 1 ja 2 nimetamata sihtotstarbega maale 0,1–2,0 protsenti maa maksustamishinnast aastas.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-06-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maksumäärade muutmise korral sisestab kohaliku omavalitsuse üksus muudetud maamaksumäärad maamaksu infosüsteemi maksustamisaastale eelneva aasta 2. oktoobriks. Kui nimetatud tähtpäevaks ei ole muudetud maksumäärasid maamaksu infosüsteemi sisestatud, arvutatakse maamaks eelmisel aastal kehtinud määrade järgi. Maamaksumäärad avaldatakse Maksu- ja Tolliameti veebilehel.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-07-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr>5</loigeNr>
+				<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5b1">
+			<paragrahvNr ylaIndeks="1">5</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 5<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maamaksu infosüsteem</paragrahvPealkiri>
+			<loige id="para5b1lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksu infosüsteem on maksukorralduse seaduse § 17 lõike 1 alusel asutatud maksukohustuslaste registrisse kuuluv andmekogu. Andmekogu pidamise kord sätestatakse maksukohustuslaste registri põhimääruses.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5b1lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5b1lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksu infosüsteem on elektrooniline andmekogu, mille eesmärk on maamaksu arvestamiseks vajaliku teabe kogumine ja töötlemine.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5b1lg3b1">
+				<loigeNr ylaIndeks="1">3</loigeNr>
+				<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kohaliku omavalitsuse üksus esitab Maksu- ja Tolliametile maamaksu infosüsteemi maamaksu arvutamiseks vajalikud alusandmed maksustamisaasta 1. veebruariks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5b1lg3b2">
+				<loigeNr ylaIndeks="2">3</loigeNr>
+				<kuvatavNr><![CDATA[(3<sup>2</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kohaliku omavalitsuse üksus on kohustatud kontrollima maamaksu infosüsteemis olevate andmete õigsust ja vajaduse korral andmed parandama või neid täiendama.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5b1lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr>6</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksu laekumine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Maamaks laekub maa asukohajärgse kohaliku omavalitsuse üksuse eelarvesse.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr>7</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksu tasumine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kuni 100-eurone maamaks mis tahes kohaliku omavalitsuse üksuses asuvalt maalt tasutakse 31. märtsiks. Maamaksust, mis ületab 100 eurot, tasutakse 31. märtsiks vähemalt pool, kuid mitte vähem kui 100 eurot. Ülejäänud osa maamaksust tasutakse hiljemalt 1. oktoobriks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maksu- ja Tolliamet väljastab maksumaksjale maksuteate tasumisele kuuluva maamaksu summa kohta hiljemalt 15. veebruariks. Maamaksuteade on haldusakt, millele rakendatakse maksukorralduse seaduses maksuotsuse kohta sätestatut, kui seaduses ei ole sätestatud teisiti. Maksuteadet ei pea allkirjastama.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2009</RTaasta>
+						<RTnr>65</RTnr>
+						<RTartikkel>441</RTartikkel>
+						<aktViide>13252449</aktViide>
+					</avaldamismarge>
+					<joustumine>2010-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg2b1">
+				<loigeNr ylaIndeks="1">2</loigeNr>
+				<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Valdkonna eest vastutav minister võib Vabariigi Valitsuse volitusel sõlmida vastavalt halduskoostöö seadusele eraõigusliku juriidilise isikuga lepingu maksuteadete kättetoimetamisega seotud tööde tegemiseks. Eelnimetatud eraõiguslikku juriidilist isikut loetakse haldusülesande piires maksukohustuslaste registri volitatud töötlejaks ja talle laieneb isikuandmete kaitse seaduses sätestatu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2b2">
+				<loigeNr ylaIndeks="2">2</loigeNr>
+				<kuvatavNr><![CDATA[(2<sup>2</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui maksumaksjale kuulub mitu maatükki või ta kasutab mitut ühe kohaliku omavalitsuse üksuse haldusterritooriumil asuvat maatükki, summeeritakse maatükkide eest tasumisele kuuluvad maksusummad, arvestamata käesoleva paragrahvi lõikes 3 sätestatut.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2017-07-04</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>104072017002</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-07-05</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg2b3">
+				<loigeNr ylaIndeks="3">2</loigeNr>
+				<kuvatavNr><![CDATA[(2<sup>3</sup>)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksu ei määrata ja maksuteadet ei väljastata, kui maksusumma on alla 5 euro.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2010</RTaasta>
+						<RTnr>22</RTnr>
+						<RTartikkel>108</RTartikkel>
+						<aktViide>13310847</aktViide>
+					</avaldamismarge>
+					<joustumine>2011-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maksumaksja, kes ei ole maksustamisaasta maamaksuteadet 25. veebruariks kätte saanud, on kohustatud sellest 30 päeva jooksul teavitama Maksu- ja Tolliametit.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2012-10-25</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>125102012001</aktViide>
+					</avaldamismarge>
+					<joustumine>2012-12-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg5">
+				<loigeNr>5</loigeNr>
+				<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui maksumaksja ei ole saanud ühtegi maamaksuteadet, arvates käesoleva seaduse jõustumisest, on ta kohustatud kirjalikult või elektrooniliselt teatama maa asukohajärgsele valla- või linnavalitsusele enda omandis või kasutuses oleva maa suuruse ja sihtotstarbe.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg6">
+				<loigeNr>6</loigeNr>
+				<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2013-06-07</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>107062013001</aktViide>
+					</avaldamismarge>
+					<joustumine>2013-07-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg7">
+				<loigeNr>7</loigeNr>
+				<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksu arvutamise ja tasumise korra kehtestab </tavatekst>
+					<viide>
+						<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+						<viideURID>
+							<viideURI><![CDATA[./dyn=130062024005&id=121102014004]]></viideURI>
+						</viideURID>
+					</viide>
+					<tavatekst> määrusega.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2015-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7b1">
+			<paragrahvNr ylaIndeks="1">7</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 7<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maamaksuteate elektrooniline kättetoimetamine</paragrahvPealkiri>
+			<loige id="para7b1lg1">
+				<sisuTekst>
+					<tavatekst>Maamaksuteate elektroonilisele kättetoimetamisele kohaldatakse maksukorralduse seaduse § 54 lõigetes 1−3 ja lõike 4 punktis 1, samuti maksukorralduse seaduse § 45<sup>1</sup> alusel valdkonna eest vastutava ministri poolt antud määrusega sätestatut.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2013-06-07</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>107062013001</aktViide>
+					</avaldamismarge>
+					<joustumine>2013-07-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr>8</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksukohustuse tekkimine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksukohustus tekib jooksva aasta 1. jaanuaril ja maksuteade väljastatakse isikule, kes 1. jaanuari seisuga on kinnistusraamatu andmete kohaselt kinnisasja omanik, hoonestaja või kasutusvaldaja või pärimisregistri andmete kohaselt kinnisasja pärija.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kinnistusraamatus mittekajastuvale käesoleva seaduse §-s 10 sätestatud kasutusõigusele kohaldatakse käesoleva paragrahvi 1. lõikes sätestatut, arvestades kasutusõiguse kokkuleppe kehtivust maksustamisaasta 1. jaanuari seisuga.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2009</RTaasta>
+						<RTnr>65</RTnr>
+						<RTartikkel>441</RTartikkel>
+						<aktViide>13252449</aktViide>
+					</avaldamismarge>
+					<joustumine>2010-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8b1">
+			<paragrahvNr ylaIndeks="1">8</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 8<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maamaksu tõusu piirmäär</paragrahvPealkiri>
+			<loige id="para8b1lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kohaliku omavalitsuse üksuse volikogu kehtestab määrusega maamaksu aastase suurenemise maksimaalse piirmäära vahemikus 10−100 protsenti hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-03-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para8b1lg1b1">
+				<loigeNr ylaIndeks="1">1</loigeNr>
+				<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui maamaksu summa suureneb eelmise maksustamisperioodiga võrreldes rohkem kui käesoleva paragrahvi lõike 1 alusel kehtestatud piirmäär, suureneb maamaks volikogu kehtestatud piirmäära ulatuses, välja arvatud käesoleva paragrahvi lõikes 2 nimetatud juhul. Seejuures ei võeta arvesse käesoleva seaduse §-s 4 sätestatud maksuvabastusi ega §-s 11 sätestatud maamaksusoodustusi.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para8b1lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui käesoleva paragrahvi lõike 1<sup>1</sup> alusel arvutatud maamaksu summa suurenemine on võrreldes eelmise maksustamisperioodiga väiksem kui 5 eurot või sellega võrdne, suurendatakse maksusummat 5 euro võrra, kuid mitte rohkem kui maa maksustamishinnale ja maamaksumäärale tugineva maamaksu summani.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para8b1lg2b1">
+				<loigeNr ylaIndeks="1">2</loigeNr>
+				<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Maamaksu summa aastase suurenemise piirmäära kehtestamise või muutmise korral sisestab kohaliku omavalitsuse üksus käesoleva paragrahvi lõikes 1 nimetatud maamaksu summa aastase suurenemise piirmäära maamaksu infosüsteemi hiljemalt maksustamisperioodile eelneva aasta 2. oktoobriks. Kui nimetatud tähtpäevaks ei ole maamaksu summa aastase suurenemise piirmäära maamaksu infosüsteemi sisestatud, arvutatakse maamaks eelmisel aastal kehtinud piirmäära järgi.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-03-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para8b1lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui moodustatakse uus katastriüksus või katastriüksuse maksustamishind muutub kõlvikute, pindala või sihtotstarbe muutumise tõttu, arvutatakse katastriüksusele 2001. aasta korralise hindamise tulemuste põhjal maksustamishind, võrreldakse seda viimase korralise hindamise tulemuste põhjal määratava maa maksustamishinnaga ning seejärel kohaldatakse maksustamishinna muutusest tingitud maamaksusumma muutusele käesoleva paragrahvi lõiget 1 ja vajaduse korral lõiget 2.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8b1lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui käesoleva paragrahvi lõikes 3 nimetatud katastriüksuse muudatuste tulemusel arvestatud uue katastriüksuse maksustamishinna suhtes oleks rakendunud lõikes 1 nimetatud maamaksu suurenemise piirmäär, suurendatakse lõikes 3 nimetatud arvestuslikku maamaksu summat iga maksustamisperioodi kohta kohaliku omavalitsuse üksuse volikogu kehtestatud maamaksu summa aastase suurenemise piirmäära ulatuses ja kohaldatakse vajaduse korral lõiget 2.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr>9</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksu maksmise kontroll</paragrahvPealkiri>
+			<muutmismarge>
+				<tavatekst>Kehtetu - </tavatekst>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+					<RTartikkel>2</RTartikkel>
+					<aktViide>110032022002</aktViide>
+				</avaldamismarge>
+				<joustumine>2024-01-01</joustumine>
+			</muutmismarge>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr>10</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maakasutaja maksukohustus</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui maakasutus ei ole maareformi seadusega ettenähtud korras ümber vormistatud, maksab maamaksu maa kasutaja.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2006</RTaasta>
+						<RTnr>55</RTnr>
+						<RTartikkel>406</RTartikkel>
+						<aktViide>12758703</aktViide>
+					</avaldamismarge>
+					<joustumine>2007-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maa koormamisel hoonestusõiguse või kasutusvaldusega maksab maamaksu hoonestaja või kasutusvaldaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Munitsipaalomandis oleva kinnisasja maavara kaevandamiseks andmise korral maksab maamaksu maa kasutamise õiguse saanud isik.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2022-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para10lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Riigi omandis oleva kinnisasja kasutamiseks andmise korral maksab maamaksu kinnisasja kasutamise õiguse saanud isik, välja arvatud juhul, kui kinnisasja kasutustasu kujundamisel on proportsionaalselt kasutusõiguse ulatusega arvestatud maamaksu summaga või kui kinnisasja kasutamise õigus tuleneb reaalservituudi või isikliku kasutusõiguse seadmise lepingust ja kasutamiseks andmise lepingus ei ole sätestatud teisiti.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2022-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr>11</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksusoodustused</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kohaliku omavalitsuse üksuse volikogu võib määrusega kehtestada käesoleva paragrahvi lõikes 1<sup>1</sup> sätestatud tingimustel kodualuse maa maksusoodustuse kuni 1000 eurot hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-03-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg1b1">
+				<loigeNr ylaIndeks="1">1</loigeNr>
+				<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kodualuse maana käsitatakse maa omaniku omandis olevat või käesoleva seaduse §-s 10 nimetatud maa kasutaja kasutuses olevat maad, mille sihtotstarve või üks sihtotstarvetest on elamumaa, või maatulundusmaa õuemaa kõlvikut, kui sellel maal asuvas hoones on maa omaniku või kasutaja elukoht rahvastikuregistrisse kantud elukoha andmete järgi.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Käesoleva paragrahvi lõikes 1 nimetatud maksusoodustus kehtib hooneühistu maale, arvestades selliste hooneühistu liikmete osamaksude proportsiooni, kelle rahvastikuregistrijärgne elukoht on sellel maal asuvas hoones.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui maa või korteriomand on ühis- või kaasomandis või käesoleva seaduse § 10 lõike 2 alusel kasutada antud, rakendatakse käesoleva paragrahvi lõikes 1 nimetatud maksusoodustust omandile või maakasutusele üks kord.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg3b1">
+				<loigeNr ylaIndeks="1">3</loigeNr>
+				<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg3b2">
+				<loigeNr ylaIndeks="2">3</loigeNr>
+				<kuvatavNr><![CDATA[(3<sup>2</sup>)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>110032022002</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-06-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg5">
+				<loigeNr>5</loigeNr>
+				<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kohaliku omavalitsuse üksuse volikogu võib hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks käesoleva paragrahvi lõikes 1<sup>1</sup> nimetatud tingimustel määrata täiendava maksusoodustuse kuni 1000 eurot järgmistele sihtrühmadele:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg5p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> riikliku pensionikindlustuse seaduse alusel pensioni saajad;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg5p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> isikud, kellel on töövõimetoetuse seaduse alusel tuvastatud osaline või puuduv töövõime.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-03-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para11lg6">
+				<loigeNr>6</loigeNr>
+				<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kohaliku omavalitsuse üksuse volikogu võib hiljemalt maksustamisperioodile eelneva aasta 1. oktoobriks käesoleva paragrahvi lõikes 1<sup>1</sup> nimetatud tingimustel määrata täiendava maksusoodustuse represseeritule ja represseerituga võrdsustatud isikule okupatsioonirežiimide poolt represseeritud isiku seaduse tähenduses, vabastades tema kasutuses oleva lõikes 1<sup>1</sup> nimetatud maa täielikult maamaksust.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-03-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg7">
+				<loigeNr>7</loigeNr>
+				<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Käesoleva paragrahvi lõikes 5 või 6 nimetatud täiendava maksusoodustuse saamiseks esitab käesolevas paragrahvis sätestatud tingimustele vastav isik taotluse kohaliku omavalitsuse üksusele volikogu kehtestatud korra järgi.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg8">
+				<loigeNr>8</loigeNr>
+				<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Käesoleva paragrahvi lõikes 1 nimetatud maksusoodustuse saamiseks õigustatud isik ja lõikes 5 või 6 nimetatud maksusoodustust kasutada sooviv isik peavad vastama käesolevas paragrahvis sätestatud tingimustele maksustamisperioodi 1. jaanuari seisuga.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg8b1">
+				<loigeNr ylaIndeks="1">8</loigeNr>
+				<kuvatavNr><![CDATA[(8<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Maksusoodustuse kehtestamise või muutmise korral sisestab kohaliku omavalitsuse üksus käesoleva paragrahvi lõigetes 1, 5 ja 6 nimetatud maksusoodustuse maamaksu infosüsteemi hiljemalt maksustamisperioodile eelneva aasta 2. oktoobriks. Kui nimetatud tähtpäevaks ei ole maksusoodustust maamaksu infosüsteemi sisestatud, arvutatakse maamaksusoodustus eelmisel aastal kehtinud määra järgi.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-03-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11lg9">
+				<loigeNr>9</loigeNr>
+				<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Maamaksu maksusoodustuse taotlemise korra kehtestab </tavatekst>
+					<viide>
+						<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+						<viideURID>
+							<viideURI><![CDATA[./dyn=130062024005&id=121102014004]]></viideURI>
+						</viideURID>
+					</viide>
+					<tavatekst> määrusega.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2015-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11b1">
+			<paragrahvNr ylaIndeks="1">11</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 11<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksuvabastuse ja -soodustuse arvutamine</paragrahvPealkiri>
+			<loige id="para11b1lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui käesoleva seaduse § 4 lõigetes 1 ja 2 nimetatud maksuvaba maa on väiksem kui kogu maatükk, arvutatakse iga selline maksuvabastus kogu maatüki maksustamishinnast võrdeliselt selle maksuvaba maa pindala osaga kogu maatüki pindalast.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11b1lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui käesoleva seaduse § 4 lõikes 1 nimetatud maksuvabastus on seotud maa sihtotstarbe või kõlvikuga, arvutatakse iga selline maksuvabastus kogu maatüki asjaomase sihtotstarbega ala või kõlviku maksustamishinnast võrdeliselt maksuvaba maa pindala osaga kogu asjaomase sihtotstarbega ala või kõlviku pindalast.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para11b1lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Mitme käesoleva seaduse § 4 lõigetes 1 ja 2 nimetatud maksuvabastuse või § 11 lõigetes 1–3, 5 ja 6 nimetatud maksusoodustuse esinemisel samal maksustataval maatükil maksuvabastused ja -soodustused summeeritakse.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2012-12-22</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>122122012001</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-01-01</joustumine>
+					<tavatekst>, jõustumine muudetud [RT I, 04.07.2014, 12]</tavatekst>
+				</muutmismarge>
+			</loige>
+			<loige id="para11b1lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst> Kui kinnisasja omanikul, hoonestajal või kasutusvaldajal, kelle omandis või kasutuses on kahe või enama kohaliku omavalitsuse üksuse territooriumil asuv kinnisasi, on õigus käesoleva seaduse § 11 lõikes 1, 5 või 6 nimetatud maamaksusoodustusele, rakendatakse asjaomaste kohaliku omavalitsuse üksuste kehtestatud maksusoodustusi proportsionaalselt nende territooriumile jääva kinnisasja pindalaga.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr>12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maksumaksja vastutus</paragrahvPealkiri>
+			<muutmismarge>
+				<tavatekst>Kehtetu - </tavatekst>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2022-03-10</avaldamineKuupaev>
+					<RTartikkel>2</RTartikkel>
+					<aktViide>110032022002</aktViide>
+				</avaldamismarge>
+				<joustumine>2024-01-01</joustumine>
+			</muutmismarge>
+		</paragrahv>
+		<paragrahv id="para12b1">
+			<paragrahvNr ylaIndeks="1">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Alusandmete sisestamine maamaksu infosüsteemi</paragrahvPealkiri>
+			<loige id="para12b1lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Kohaliku omavalitsuse üksus sisestab maamaksu infosüsteemi pidamise põhimääruses nimetatud maamaksu alusandmed maamaksu infosüsteemi 2017. aasta 1. veebruariks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b2">
+			<paragrahvNr ylaIndeks="2">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>2</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Maamaksu infosüsteemi likvideerimine</paragrahvPealkiri>
+			<loige id="para12b2lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Kuni 2021. aasta 1. jaanuarini peetav maamaksu infosüsteem likvideeritakse hiljemalt 2021. aasta 31. jaanuaril.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2020-12-23</avaldamineKuupaev>
+						<RTartikkel>5</RTartikkel>
+						<aktViide>123122020005</aktViide>
+					</avaldamismarge>
+					<joustumine>2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b3">
+			<paragrahvNr ylaIndeks="3">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>3</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Käesoleva seaduse § 8<sup>1</sup> lõike 4 rakendamise erand 2024. aastal</paragrahvPealkiri>
+			<loige id="para12b3lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Käesoleva seaduse § 8<sup>1</sup> lõikes 4 sätestatud juhul suurendatakse sama paragrahvi lõikes 3 nimetatud arvestuslikku maamaksu summat 2024. aastal 10 protsenti või 5 euro võrra, kui maamaksu summa kümneprotsendine suurenemine on väiksem kui 5 eurot.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b4">
+			<paragrahvNr ylaIndeks="4">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>4</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Käesoleva seaduse § 8<sup>1</sup> lõike 2<sup>1</sup> rakendamise erand 2025. aastal</paragrahvPealkiri>
+			<loige id="para12b4lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Kui kohaliku omavalitsuse üksus ei ole sisestanud käesoleva seaduse § 8<sup>1</sup> lõikes 2<sup>1</sup>  nimetatud maamaksu summa aastase suurenemise piirmäära maamaksu infosüsteemi hiljemalt 2025. aasta 2. oktoobriks, loetakse maamaksu summa aastase suurenemise piirmääraks 2026. aastal 10 protsenti.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					   <avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					  </avaldamismarge>
+					  <joustumine>2025-03-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b5">
+			<paragrahvNr ylaIndeks="5">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>5</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Käesoleva seaduse § 8<sup>1</sup> lõike 4 rakendamise erand 2025. aasta eest maamaksu tasumisel</paragrahvPealkiri>
+			<loige id="para12b5lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Käesoleva seaduse § 8<sup>1</sup> lõikes 4 sätestatud juhul suurendatakse sama paragrahvi lõikes 3 nimetatud arvestuslikku maamaksu summat 2025. aastal 50 protsenti või 20 euro võrra, kui maamaksu summa viiekümneprotsendine suurenemine on väiksem kui 20 eurot.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b6">
+			<paragrahvNr ylaIndeks="6">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>6</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Käesoleva seaduse § 11 lõigete 5–8 rakendamine</paragrahvPealkiri>
+			<loige id="para12b6lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Käesoleva seaduse § 11 lõikeid 5–8 rakendatakse esimest korda 2026. aasta maamaksu suhtes.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12b7">
+			<paragrahvNr ylaIndeks="7">12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12<sup>7</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri>Käesoleva seaduse §-de 8<sup>1</sup> ja 11 rakendamise mõju järelhindamine</paragrahvPealkiri>
+			<loige id="para12b7lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>Regionaal- ja Põllumajandusministeerium analüüsib hiljemalt 2029. aasta 1. jaanuariks käesoleva seaduse §-s 8<sup>1</sup> sätestatud kohaliku omavalitsuse üksuse volikogu kehtestatava maamaksu summa aastase suurenemise piirmäära ning §-s 11 sätestatud maksusoodustuste kehtestamise muudatuste eesmärgi saavutamist ja nimetatud sätete rakendamise mõju ning esitab vajaduse korral ettepanekud asjakohaste õigusaktide muutmiseks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-06-30</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>130062024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para13">
+			<paragrahvNr>13</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 13. ]]></kuvatavNr>
+			<paragrahvPealkiri>Seaduse jõustumine</paragrahvPealkiri>
+			<loige id="para13lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Käesolev seadus jõustub 1993. aasta 1. juulist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para13lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-07-04</avaldamineKuupaev>
+						<RTartikkel>12</RTartikkel>
+						<aktViide>104072014012</aktViide>
+					</avaldamismarge>
+					<joustumine>2015-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para13lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>1993. aasta II poolaasta maamaks tasutakse hiljemalt 1993. aasta 15. novembriks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

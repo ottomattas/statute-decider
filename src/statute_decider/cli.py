@@ -107,6 +107,38 @@ def _cmd_validate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _corpus(args: argparse.Namespace):
+    from statute_decider.legislation.corpus import CORPUS_RELATIVE, Corpus
+
+    root = _find_root(Path(args.root) if args.root else None)
+    return Corpus(root / CORPUS_RELATIVE)
+
+
+def _cmd_corpus_ingest(args: argparse.Namespace) -> int:
+    corpus = _corpus(args)
+    entry = corpus.ingest(args.file, args.url, act_slug=args.slug, force=args.force)
+    print(
+        f"Ingested {entry.global_id} ({entry.language}) {entry.title!r} -> {entry.file} "
+        f"as act {entry.act_slug}; sha256 {entry.sha256[:12]}…"
+    )
+    return 0
+
+
+def _cmd_corpus_ingest_dir(args: argparse.Namespace) -> int:
+    corpus = _corpus(args)
+    entries = corpus.ingest_dir(args.dir, force=args.force)
+    for entry in entries:
+        print(f"Ingested {entry.global_id} ({entry.language}) {entry.title!r} -> {entry.file} as {entry.act_slug}")
+    print(f"{len(entries)} files; catalogue: {corpus.catalogue_path}")
+    return 0
+
+
+def _cmd_corpus_check(args: argparse.Namespace) -> int:
+    report = _corpus(args).check()
+    print(report.render())
+    return 0 if report.ok else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     parser = argparse.ArgumentParser(prog="sd", description=__doc__)
@@ -155,6 +187,23 @@ def main(argv: list[str] | None = None) -> int:
 
     validate_parser = sub.add_parser("validate", help="Validate all data files.")
     validate_parser.set_defaults(func=_cmd_validate)
+
+    corpus_parser = sub.add_parser("corpus", help="Legislation corpus (data/sources/legislation).")
+    corpus_sub = corpus_parser.add_subparsers(dest="corpus_command", required=True)
+    ingest_parser = corpus_sub.add_parser("ingest", help="Copy one Riigi Teataja XML in and catalogue it.")
+    ingest_parser.add_argument("file", help="Downloaded .akt (XML) file.")
+    ingest_parser.add_argument("--url", required=True, help="Official Riigi Teataja URL it was fetched from.")
+    ingest_parser.add_argument("--slug", default=None, help="Override the act slug (default: from the English title).")
+    ingest_parser.add_argument("--force", action="store_true", help="Replace a differing file of the same global id.")
+    ingest_parser.set_defaults(func=_cmd_corpus_ingest)
+    ingest_dir_parser = corpus_sub.add_parser(
+        "ingest-dir", help="Ingest every <jur>-<lang>-<act>.txt (URL + file name) in a directory."
+    )
+    ingest_dir_parser.add_argument("dir")
+    ingest_dir_parser.add_argument("--force", action="store_true")
+    ingest_dir_parser.set_defaults(func=_cmd_corpus_ingest_dir)
+    check_parser = corpus_sub.add_parser("check", help="Re-hash every file; report drift and validity windows.")
+    check_parser.set_defaults(func=_cmd_corpus_check)
 
     args = parser.parse_args(argv)
     return args.func(args)
