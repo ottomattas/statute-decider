@@ -1,6 +1,6 @@
 # 20260904-llm-as-solver-v2
 
-Generated 2026-09-04T18:30:08Z — execution `parallel`, condition `llm-as-solver-v2`.
+Generated 2026-09-05T06:27:28Z — execution `parallel`, condition `llm-as-solver-v2`.
 
 **Question:** LLM-as-solver with the solver's staged precedence rule stated (solver-inputs-v2). v1 misses on 3 Sep were 100% on the 13 claim/fact-conflict scenarios for the strong models.
 
@@ -29,12 +29,12 @@ Generated 2026-09-04T18:30:08Z — execution `parallel`, condition `llm-as-solve
 
 | group | n | acc | F1 ALLOW | F1 DENY | F1 NEED_MORE_INFO | macro F1 | missing P | missing R | missing F1 |
 |---|---|---|---|---|---|---|---|---|---|
-| deepseek-v4-flash | 467 | 0.632 | 0.678 | 0.522 | 0.677 | 0.626 | 0.784 | 0.767 | 0.772 |
+| deepseek-v4-flash | 470 | 0.628 | 0.678 | 0.516 | 0.671 | 0.622 | 0.779 | 0.762 | 0.767 |
 | gemini-2.5-flash | 470 | 0.983 | 0.971 | 1.000 | 0.981 | 0.984 | 0.983 | 0.967 | 0.973 |
 | gpt-5-mini | 470 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 0.985 | 0.991 |
 | haiku-4.5 | 470 | 0.651 | 0.628 | 0.462 | 0.742 | 0.611 | 0.695 | 0.662 | 0.665 |
 
-Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INFO: 207.
+Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INFO: 210.
 
 ## Failure patterns
 
@@ -57,7 +57,7 @@ Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INF
 - `land_tax_exemption/land_tax_allow_via_db` — 7 wrong rows (e.g. haiku-4.5: NEED_MORE_INFO != ALLOW)
 - `land_tax_exemption/land_tax_deny` — 10 wrong rows (e.g. haiku-4.5: NEED_MORE_INFO != DENY)
 - `land_tax_exemption/land_tax_deny_not_residential` — 4 wrong rows (e.g. haiku-4.5: NEED_MORE_INFO != DENY)
-- `land_tax_exemption/land_tax_u7_trust_only` — 17 wrong rows (e.g. haiku-4.5: DENY != NEED_MORE_INFO)
+- `land_tax_exemption/land_tax_u7_trust_only` — 20 wrong rows (e.g. haiku-4.5: DENY != NEED_MORE_INFO)
 - `personal_data_journalism/journalism_allow` — 10 wrong rows (e.g. haiku-4.5: NEED_MORE_INFO != ALLOW)
 - `personal_data_journalism/journalism_allow_via_consent` — 20 wrong rows (e.g. haiku-4.5: DENY != ALLOW)
 - `personal_data_journalism/journalism_deny` — 5 wrong rows (e.g. haiku-4.5: NEED_MORE_INFO != DENY)
@@ -71,24 +71,16 @@ Support per class (per repeat-model slice): ALLOW: 140, DENY: 120, NEED_MORE_INF
 - `section_120_demo/prompt-swap` — 3 wrong rows (e.g. haiku-4.5: DENY != ALLOW)
 - `section_120_demo/unrelated-law` — 2 wrong rows (e.g. deepseek-v4-flash: DENY != ALLOW)
 
-## Errors
-
-3 rows errored:
-
-- `land_tax_exemption/land_tax_u7_trust_only` deepseek-v4-flash: RuntimeError: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1368 (char 1367)
-- `land_tax_exemption/land_tax_u7_trust_only` deepseek-v4-flash: RuntimeError: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 3508 (char 3507)
-- `land_tax_exemption/land_tax_u7_trust_only` deepseek-v4-flash: RuntimeError: deepseek/deepseek-v4-flash failed after 5 attempts: Unterminated string starting at: line 1 column 52 (char 51)
-
 ## Cost (ledger)
 
 | model | calls | EUR |
 |---|---|---|
-| deepseek-v4-flash | 467 | 0.0468 |
+| deepseek-v4-flash | 470 | 0.0479 |
 | gemini-2.5-flash | 470 | 0.1647 |
 | gpt-5-mini | 470 | 0.8381 |
 | haiku-4.5 | 470 | 0.9897 |
 
-Total: EUR 2.0393.
+Total: EUR 2.0404.
 
 ---
 Rows: `results/rows.jsonl`; node values: `results/nodes/`; resolved config: `results/config.snapshot.yaml`.

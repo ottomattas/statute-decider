@@ -2813,3 +2813,154 @@
 2026-09-04 21:29:56,035 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 3508 (char 3507)
 2026-09-04 21:30:08,372 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Unterminated string starting at: line 1 column 52 (char 51)
 2026-09-04 21:30:08,402 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0393.
+2026-09-05 08:49:55,411 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1877 kept from a previous run, 3 to run now, parallel.
+2026-09-05 08:49:56,711 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:49:56,720 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:49:56,720 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:50:03,524 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 1994 (char 1993) — retrying in 20s
+2026-09-05 08:50:03,583 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 1441 (char 1440) — retrying in 20s
+2026-09-05 08:50:04,236 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2329 (char 2328) — retrying in 20s
+2026-09-05 08:50:24,013 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:50:24,090 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:50:24,738 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:50:30,633 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 1888 (char 1887) — retrying in 40s
+2026-09-05 08:50:32,758 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 1814 (char 1813) — retrying in 40s
+2026-09-05 08:50:32,985 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2263 (char 2262) — retrying in 40s
+2026-09-05 08:51:11,236 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:51:13,282 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:51:13,483 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:51:17,463 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 2173 (char 2172) — retrying in 60s
+2026-09-05 08:51:18,615 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 2945 (char 2944) — retrying in 60s
+2026-09-05 08:51:20,838 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 2711 (char 2710) — retrying in 60s
+2026-09-05 08:52:18,070 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:52:19,147 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:52:21,451 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:52:23,318 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2228 (char 2227) — retrying in 80s
+2026-09-05 08:52:23,713 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2618 (char 2617) — retrying in 80s
+2026-09-05 08:52:58,980 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 1429 (char 1428) — retrying in 80s
+2026-09-05 08:53:43,921 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:53:44,229 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:53:51,131 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1891 (char 1890)
+2026-09-05 08:53:55,927 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1936 (char 1935)
+2026-09-05 08:54:19,516 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:54:53,161 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 2114 (char 2113)
+2026-09-05 08:54:53,185 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0393.
+2026-09-05 08:54:53,472 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1877 kept from a previous run, 3 to run now, parallel.
+2026-09-05 08:54:54,511 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:54:54,517 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:54:54,532 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:54:59,465 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2810 (char 2809) — retrying in 20s
+2026-09-05 08:55:01,992 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2146 (char 2145) — retrying in 20s
+2026-09-05 08:55:02,204 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2322 (char 2321) — retrying in 20s
+2026-09-05 08:55:20,138 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:55:22,501 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:55:22,698 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:55:27,026 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2206 (char 2205) — retrying in 40s
+2026-09-05 08:55:28,325 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2573 (char 2572) — retrying in 40s
+2026-09-05 08:55:28,568 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2064 (char 2063) — retrying in 40s
+2026-09-05 08:56:07,543 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:56:08,847 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:56:09,102 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:56:14,110 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1304 (char 1303) — retrying in 60s
+2026-09-05 08:56:15,746 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1710 (char 1709) — retrying in 60s
+2026-09-05 08:56:16,871 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1931 (char 1930) — retrying in 60s
+2026-09-05 08:57:14,724 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:57:16,285 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:57:17,383 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:57:24,728 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2428 (char 2427) — retrying in 80s
+2026-09-05 08:57:24,988 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 1755 (char 1754) — retrying in 80s
+2026-09-05 08:57:25,958 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2173 (char 2172) — retrying in 80s
+2026-09-05 08:58:45,305 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:58:45,516 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:58:46,489 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:58:49,691 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1874 (char 1873)
+2026-09-05 08:58:52,422 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 2081 (char 2080)
+2026-09-05 08:59:23,086 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 2066 (char 2065)
+2026-09-05 08:59:23,106 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0393.
+2026-09-05 08:59:23,467 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1877 kept from a previous run, 3 to run now, parallel.
+2026-09-05 08:59:24,536 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:59:24,546 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:59:24,549 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:59:31,040 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2091 (char 2090) — retrying in 20s
+2026-09-05 08:59:42,812 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2098 (char 2097) — retrying in 20s
+2026-09-05 08:59:51,573 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 08:59:58,046 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2193 (char 2192) — retrying in 40s
+2026-09-05 09:00:03,363 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:00:11,069 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2285 (char 2284) — retrying in 40s
+2026-09-05 09:00:38,613 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:00:51,640 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:00:59,085 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 2236 (char 2235) — retrying in 60s
+2026-09-05 09:01:59,689 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:02:05,489 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2575 (char 2574) — retrying in 80s
+2026-09-05 09:03:26,294 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:03:29,661 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1082 (char 1081)
+2026-09-05 09:03:29,677 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0402.
+2026-09-05 09:03:30,006 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1879 kept from a previous run, 1 to run now, parallel.
+2026-09-05 09:03:31,015 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:03:39,082 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2319 (char 2318) — retrying in 20s
+2026-09-05 09:03:59,606 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:04:05,810 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 1892 (char 1891) — retrying in 40s
+2026-09-05 09:04:46,308 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:04:53,475 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1876 (char 1875) — retrying in 60s
+2026-09-05 09:05:54,068 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:05:58,248 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2331 (char 2330) — retrying in 80s
+2026-09-05 09:07:18,847 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:07:25,395 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1961 (char 1960)
+2026-09-05 09:07:25,424 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0402.
+2026-09-05 09:07:25,712 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1879 kept from a previous run, 1 to run now, parallel.
+2026-09-05 09:07:26,697 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:07:31,161 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 1634 (char 1633) — retrying in 20s
+2026-09-05 09:07:51,685 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:07:57,210 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 1890 (char 1889) — retrying in 40s
+2026-09-05 09:08:37,818 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:08:43,612 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1005 (char 1004) — retrying in 60s
+2026-09-05 09:09:44,122 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:09:49,800 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 1977 (char 1976) — retrying in 80s
+2026-09-05 09:11:10,310 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:11:17,003 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 2358 (char 2357)
+2026-09-05 09:11:17,018 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0402.
+2026-09-05 09:11:40,480 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1879 kept from a previous run, 1 to run now, parallel.
+2026-09-05 09:11:41,568 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:12:19,039 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2484 (char 2483) — retrying in 20s
+2026-09-05 09:12:39,630 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:12:46,083 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 972 (char 971) — retrying in 40s
+2026-09-05 09:13:26,599 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:13:34,618 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 2148 (char 2147) — retrying in 60s
+2026-09-05 09:14:35,173 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:15:14,083 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2093 (char 2092) — retrying in 80s
+2026-09-05 09:16:34,865 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:16:42,525 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1857 (char 1856)
+2026-09-05 09:16:42,545 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0402.
+2026-09-05 09:16:42,880 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1879 kept from a previous run, 1 to run now, parallel.
+2026-09-05 09:16:43,923 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:16:49,660 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 1989 (char 1988) — retrying in 20s
+2026-09-05 09:17:10,271 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:17:15,087 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 1983 (char 1982) — retrying in 40s
+2026-09-05 09:17:55,737 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:17:59,960 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1969 (char 1968) — retrying in 60s
+2026-09-05 09:19:00,478 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:19:05,663 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2045 (char 2044) — retrying in 80s
+2026-09-05 09:20:26,247 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:20:32,930 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1618 (char 1617)
+2026-09-05 09:20:32,953 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0402.
+2026-09-05 09:20:33,273 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1879 kept from a previous run, 1 to run now, parallel.
+2026-09-05 09:20:34,246 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:20:42,006 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 2471 (char 2470) — retrying in 20s
+2026-09-05 09:21:02,656 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:21:10,766 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 2337 (char 2336) — retrying in 40s
+2026-09-05 09:21:51,291 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:21:59,660 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1833 (char 1832) — retrying in 60s
+2026-09-05 09:23:00,265 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:23:07,617 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 4/5): Expecting ',' delimiter: line 1 column 2348 (char 2347) — retrying in 80s
+2026-09-05 09:24:28,200 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:24:33,432 WARNING statute_decider.runner.experiment Cell failed land_tax_exemption/land_tax_u7_trust_only deepseek-v4-flash: deepseek/deepseek-v4-flash failed after 5 attempts: Expecting ',' delimiter: line 1 column 1737 (char 1736)
+2026-09-05 09:24:33,458 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0402.
+2026-09-05 09:24:33,750 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2: 1880 cells (47 scenarios x 4 models x 1 prompt combos x 10 repeats), 1879 kept from a previous run, 1 to run now, parallel.
+2026-09-05 09:24:34,730 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:24:39,986 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 1/5): Expecting ',' delimiter: line 1 column 1731 (char 1730) — retrying in 20s
+2026-09-05 09:25:00,714 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:25:07,748 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 2/5): Expecting ',' delimiter: line 1 column 1916 (char 1915) — retrying in 40s
+2026-09-05 09:25:48,371 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:26:25,905 WARNING statute_decider.llm.client deepseek/deepseek-v4-flash failed (attempt 3/5): Expecting ',' delimiter: line 1 column 1867 (char 1866) — retrying in 60s
+2026-09-05 09:27:26,470 INFO httpx2 HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-09-05 09:27:28,727 INFO statute_decider.runner.experiment Experiment 20260904-llm-as-solver-v2 done: 1880 rows, EUR 2.0404.
