@@ -102,6 +102,18 @@ framework/venv/bin/python framework/run_experiments.py --config experiments/matr
 Outputs: `experiments/results/*.jsonl` and generated markdown tables
 (gitignored JSONL; committed summary markdown under `experiments/results/`).
 
+## Suite change 2026-09-05 (read before comparing tables)
+
+Every table below this heading was produced on the **47-scenario** suite
+(ALLOW 14 / DENY 12 / NEED_MORE_INFO 21) with Estonian-laced request texts.
+On 2026-09-05 the suite became **54 scenarios, 18/18/18**, English-only
+(five retired, twelve authored — `docs/reference/id-aliases.md` → "Retired" /
+"Authored"; hand-verification: `docs/reference/gold-review-2026-09-05.md`).
+Solver validation on the new suite: `experiments/20260906-solver-validation`
+= 54/54, macro F1 1.000. Historical rows are kept as they are; **every LLM
+cell changes** when re-run (new texts, new class prior, +7 scenarios), so do
+not splice old and new numbers into one table.
+
 ## Smoke results
 
 **SMOKE — UNVALIDATED** (generated 2026-08-21T08:18Z). Operator has not
@@ -110,7 +122,7 @@ results.**
 
 | Cell | n | Notes |
 |---|---|---|
-| runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21 |
+| runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21 (2026-09-05 suite: 54/54, 18/18/18 — see above) |
 | LLM-only 3-way | 188 = 47×4 | pooled acc **0.734**; NEED_MORE_INFO 0.536 is the miss; DENY 0.938 |
 | LLM-only by provider | 47 each | deepseek 0.787, anthropic 0.745, openai 0.723, gemini 0.681 |
 | missing-fact P/R runtime | 0.936 / 1.000 | P gap = three low-confidence `*_allow_via_db` (now `allow_register_only*`) |

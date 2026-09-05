@@ -32,12 +32,12 @@ term is not stated), `register_down` (register unavailable), `trust_only`
 
 | old | new | act |
 |---|---|---|
-| `building_permit` | `ehs_42_44` | Ehitusseadustik §§ 42, 44 |
-| `civil_service_eligibility` | `ats_14_15` | Avaliku teenistuse seadus §§ 14–15 |
-| `consumer_withdrawal` | `vos_53_56` | Võlaõigusseadus §§ 53 lg 4, 56 lg 1 |
-| `land_tax_exemption` | `mms_11` | Maamaksuseadus § 11 |
-| `personal_data_journalism` | `iks_4` | Isikuandmete kaitse seadus § 4 |
-| `section_120_demo` | `pks_120` | Perekonnaseadus § 120 |
+| `building_permit` | `ehs_42_44` | Building Code (Ehitusseadustik) §§ 42, 44 |
+| `civil_service_eligibility` | `ats_14_15` | Civil Service Act (Avaliku teenistuse seadus) §§ 14–15 |
+| `consumer_withdrawal` | `vos_53_56` | Law of Obligations Act (Võlaõigusseadus) § 53 (4), § 56 (1) |
+| `land_tax_exemption` | `mms_11` | Land Tax Act (Maamaksuseadus) § 11 |
+| `personal_data_journalism` | `iks_4` | Personal Data Protection Act (Isikuandmete kaitse seadus) § 4 |
+| `section_120_demo` | `pks_120` | Family Law Act (Perekonnaseadus), whole act; § 120 exercised |
 
 ## Cases
 
@@ -118,7 +118,7 @@ where they differ). Tags: the pre-existing tags plus those added by the rename
 | `civil_service_eligibility/civil_service_need_db` | `civil_service_admission/need_register_silent_citizenship` | NEED_REGISTER_INFO → NEED_MORE_INFO | `register_silent` | `needs-info` |
 | `civil_service_eligibility/civil_service_u3_no_register` | `civil_service_admission/unverifiable_register_down_population_registry` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `register_down` | `uncertainty`, `u3` |
 | `civil_service_eligibility/civil_service_u7_trust_only` | `civil_service_admission/unverifiable_trust_only_applicant_selfreport` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `trust_only` | `uncertainty`, `u7` |
-| `civil_service_eligibility/civil_service_u8_need_user` | `civil_service_admission/need_user_silent_conflict_declaration` | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info`, `u8` |
+| `civil_service_eligibility/civil_service_u8_need_user` | `civil_service_admission/need_user_silent_conflict_declaration` — **retired 2026-09-05** (files removed; see "Retired" below) | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info`, `u8` |
 | `consumer_withdrawal/consumer_withdrawal_allow` | `consumer_purchase_withdrawal/allow_claims_verified` | ALLOW | `claims_verified` | `positive` |
 | `consumer_withdrawal/consumer_withdrawal_allow_via_db` | `consumer_purchase_withdrawal/allow_register_only_consumer_status` | ALLOW | `register_only` | `positive`, `db-resolved`, `via_db` |
 | `consumer_withdrawal/consumer_withdrawal_deny` | `consumer_purchase_withdrawal/deny_own_admission_custom_goods` | DENY | `own_admission` | `negative` |
@@ -146,12 +146,43 @@ where they differ). Tags: the pre-existing tags plus those added by the rename
 | `section_120_demo/allow` | `child_representation_by_one_parent/allow_claims_verified_emergency` | ALLOW | `claims_verified` | `positive` |
 | `section_120_demo/deny` | `child_representation_by_one_parent/deny_own_admission_not_parent` | DENY | `own_admission` | `negative` |
 | `section_120_demo/db-then-user` | `child_representation_by_one_parent/need_user_silent_emergency_after_register_lookup` | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info`, `db-then-user` |
-| `section_120_demo/need-db` | `child_representation_by_one_parent/need_user_silent_emergency_bare_request` | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info` |
-| `section_120_demo/need-user` | `child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed` | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info` |
-| `section_120_demo/prompt-swap` | `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a` | ALLOW | `claims_verified` | `positive`, `extra`, `prompt-swap` |
-| `section_120_demo/unrelated-law` | `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b` | ALLOW | `claims_verified` | `positive`, `extra`, `unrelated-law` |
+| `section_120_demo/need-db` | `child_representation_by_one_parent/need_user_silent_emergency_bare_request` — **retired 2026-09-05** (files removed; see "Retired" below) | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info` |
+| `section_120_demo/need-user` | `child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed` — **retired 2026-09-05** (files removed; see "Retired" below) | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info` |
+| `section_120_demo/prompt-swap` | `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a` — **retired 2026-09-05** (files removed; see "Retired" below) | ALLOW | `claims_verified` | `positive`, `extra`, `prompt-swap` |
+| `section_120_demo/unrelated-law` | `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b` — **retired 2026-09-05** (files removed; see "Retired" below) | ALLOW | `claims_verified` | `positive`, `extra`, `unrelated-law` |
 
 Each scenario YAML's `provenance` ends with `renamed 2026-09-05 from <old case>/<old scenario>`.
+
+### Retired 2026-09-05 (balanced suite, 54 = 18/18/18)
+
+Files removed from `data/cases/**` on 2026-09-05; rows above kept for history. Results
+produced before that date (all `experiments/2026090[1-4]-*` folders) still carry their rows.
+
+| retired id | gold | why |
+|---|---|---|
+| `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a` | ALLOW | byte-identical inputs to `allow_claims_verified_emergency` (v1 prompt-swap probe) |
+| `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b` | ALLOW | byte-identical inputs to `allow_claims_verified_emergency` (v1 unrelated-law probe) |
+| `child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed` | NEED_USER_INFO | same gold `{emergency}` as `need_user_silent_emergency_after_register_lookup` (kept) |
+| `child_representation_by_one_parent/need_user_silent_emergency_bare_request` | NEED_USER_INFO | same gold `{emergency}` as `need_user_silent_emergency_after_register_lookup` (kept) |
+| `civil_service_admission/need_user_silent_conflict_declaration` | NEED_USER_INFO | the operator's "one more": single user-only term open after every register term resolves — the same shape as the kept § 120 scenario; the two-user-term variant survives in consumer and journalism, and civil service keeps `register_silent`, `register_down`, `trust_only` |
+
+### Authored 2026-09-05 (no old id)
+
+| id | gold | mechanism |
+|---|---|---|
+| `child_representation_by_one_parent/allow_register_only_sole_custody` | ALLOW | `register_only` |
+| `child_representation_by_one_parent/allow_alt_rule_sole_custody_overrides_register` | ALLOW | `alt_rule_claim_overrides_register` |
+| `child_representation_by_one_parent/allow_alt_rule_delegated_right_overrides_register` | ALLOW | `alt_rule_claim_overrides_register` |
+| `civil_service_admission/allow_register_only_citizenship` | ALLOW | `register_only` |
+| `journalistic_data_disclosure/allow_register_only_purpose_from_cms` | ALLOW | `register_only` |
+| `journalistic_data_disclosure/allow_register_only_consent_from_register` | ALLOW | `register_only` |
+| `building_permit_grant/deny_register_only_plan_nonconformity` | DENY | `register_only` |
+| `building_permit_grant/deny_no_allow_path_fee_unpaid` | DENY | `no_allow_path` |
+| `civil_service_admission/deny_no_allow_path_no_estonian_language` | DENY | `no_allow_path` |
+| `consumer_purchase_withdrawal/deny_no_allow_path_deadline_expired` | DENY | `no_allow_path` |
+| `journalistic_data_disclosure/deny_no_allow_path_no_public_interest` | DENY | `no_allow_path` |
+| `land_tax_home_exemption/deny_no_allow_path_municipality_not_set` | DENY | `no_allow_path` |
+
 
 ### Tag legend (history carried in `tags`)
 
@@ -166,8 +197,9 @@ Each scenario YAML's `provenance` ends with `renamed 2026-09-05 from <old case>/
 | `db-then-user` | old id of the PKS § 120 scenario the paper cites: registers resolve parent/custody, `emergency` stays open |
 | `prompt-swap`, `unrelated-law` | old ids of two v1 probes (strict prompt path; unrelated-law extraction); in v2 both are duplicates of the allow scenario |
 | `scripted-claims` | the oracle claim set did not follow from the request text as authored on 2026-09-01 (utterance said one thing, oracle claimed another); the plan's "10 scripted" set. See `docs/reference/faithful-inputs-audit-2026-09-05.md` for the fix |
-| `extra` | outside the balanced core (duplicate probes, the pensioner variant with inputs identical to `allow_claims_verified`); keep n = 47 until the re-run, filter by tag when analysing |
+| `extra` | outside the 2026-09-01 core (duplicate probes — retired 2026-09-05 — and the pensioner variant with inputs identical to `allow_claims_verified`, kept as one of the 18 ALLOW) |
 | `positive` / `negative` / `needs-info` / `uncertainty` | 2026-09-01 gold buckets (ALLOW / DENY / NEED_* / UNVERIFIABLE_*) |
+| `authored-20260905` | one of the twelve scenarios authored on 2026-09-05 to balance the suite (no old id; hand-verification sheet: `docs/reference/gold-review-2026-09-05.md`) |
 
 ## Conditions
 

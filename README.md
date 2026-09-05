@@ -45,6 +45,17 @@ old → new tables, including the `u3/u5/u7/u8` legend, are in
 produced before the rename carry the new ids in their structured fields
 and the old ids inside free-text prompt/response strings.
 
+On 2026-09-05 the suite was also rebalanced and made English-only: 54
+scenarios, 18 ALLOW / 18 DENY / 18 NEED_MORE_INFO (five near-duplicates
+retired, twelve authored; hand-verification sheet in
+[`docs/reference/gold-review-2026-09-05.md`](docs/reference/gold-review-2026-09-05.md)),
+and every string a model or reader sees — request texts, term catalogues,
+rule labels, register schemas, traces — is English, with statute texts taken
+from the official Riigi Teataja translations (currently interim snippets,
+to be replaced by deterministic slicing of the official XML). Experiment
+folders dated 2026-09-01 … 04 are 47-scenario history and are not comparable
+cell-for-cell with runs on the 54-scenario suite.
+
 Research software (Mättas / Järv / Tammet, TalTech). The current manuscript
 that uses this tool is
 [`MattasJarvTammet-2026-NeSy-Statute-Logic`](https://github.com/ottomattas/MattasJarvTammet-2026-NeSy-Statute-Logic).
@@ -66,7 +77,7 @@ The pre-rewrite (v1) tree is archived at the git tag `pre-refactor`.
 python3.12 -m venv .venv          # or: uv venv --python 3.12
 .venv/bin/pip install -e '.[dev,solvers,llm]'
 
-.venv/bin/pytest -q               # full test suite, incl. 47-scenario solver validation
+.venv/bin/pytest -q               # full test suite, incl. 54-scenario solver validation
 .venv/bin/sd validate             # data inventory + schema check
 .venv/bin/sd matrix export        # regenerate docs/matrix.csv (the experiment menu)
 

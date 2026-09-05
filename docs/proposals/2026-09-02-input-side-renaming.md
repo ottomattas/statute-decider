@@ -3,7 +3,13 @@
 Status: **Rulings A–C executed 2026-09-05** on branch `feat/rename-and-faithful-inputs`
 (`tools/rename_map.yaml`, `tools/rename_ids.py`, alias tables in
 `docs/reference/id-aliases.md`; results migrated in place, numbers byte-identical).
-Ruling D (shared registers) and § 3 (balanced suite) remain open. Original text:
+**§ 3 (balanced suite) executed 2026-09-05** as the operator's "Ruling F — balanced gold"
+(54 = 18/18/18; five retired, twelve authored; `docs/reference/gold-review-2026-09-05.md`),
+together with "Ruling E — English only" of the same brief (all model-visible and
+reader-visible strings in English; statute texts from the official Riigi Teataja
+translations, interim snippets pending XML slicing). Those two brief labels are not
+the § 2 Rulings E/F below (services source family; human+machine pairing), which
+remain proposals. Ruling D (shared registers) remains open. Original text:
 nothing renamed yet. The paper pins commit `b65d091`;
 execute this after the JURIX submission (or on a branch that does not touch
 the pinned history). Operator sign-off needed on the rename table before any

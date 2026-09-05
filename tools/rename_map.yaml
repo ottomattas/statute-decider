@@ -1,4 +1,6 @@
-# Declarative id rename map (2026-09-05). tools/rename_ids.py is driven by this
+# Declarative id rename map (2026-09-05). Five scenarios retired later that day are
+# listed only in docs/reference/id-aliases.md ("retired 2026-09-05"); their rows are gone here.
+# tools/rename_ids.py is driven by this
 # file only; docs/reference/id-aliases.md is the human-readable rendering.
 #
 # Conventions after the rename:
@@ -68,7 +70,6 @@ scenarios:
   civil_service_eligibility/civil_service_need_db: civil_service_admission/need_register_silent_citizenship
   civil_service_eligibility/civil_service_u3_no_register: civil_service_admission/unverifiable_register_down_population_registry
   civil_service_eligibility/civil_service_u7_trust_only: civil_service_admission/unverifiable_trust_only_applicant_selfreport
-  civil_service_eligibility/civil_service_u8_need_user: civil_service_admission/need_user_silent_conflict_declaration
   consumer_withdrawal/consumer_withdrawal_allow: consumer_purchase_withdrawal/allow_claims_verified
   consumer_withdrawal/consumer_withdrawal_allow_via_db: consumer_purchase_withdrawal/allow_register_only_consumer_status
   consumer_withdrawal/consumer_withdrawal_deny: consumer_purchase_withdrawal/deny_own_admission_custom_goods
@@ -96,10 +97,6 @@ scenarios:
   section_120_demo/allow: child_representation_by_one_parent/allow_claims_verified_emergency
   section_120_demo/deny: child_representation_by_one_parent/deny_own_admission_not_parent
   section_120_demo/db-then-user: child_representation_by_one_parent/need_user_silent_emergency_after_register_lookup
-  section_120_demo/need-db: child_representation_by_one_parent/need_user_silent_emergency_bare_request
-  section_120_demo/need-user: child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed
-  section_120_demo/prompt-swap: child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a
-  section_120_demo/unrelated-law: child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b
 
 conditions:
   solver-validation: solver-validation
