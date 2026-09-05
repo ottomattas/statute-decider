@@ -1,0 +1,20 @@
+name: 20260906-llm-only-cache-dry-run-warm
+question: |
+  With the per-(model, statute) warm-up gate in the parallel runner (first call of a cache group runs
+  alone, the rest fan out after it), what share of the prompt is served from the vendor cache on a cold
+  prefix? gpt-5-mini, llm-only, every scenario of the Personal Data Protection Act case (~20k tokens).
+condition: llm-only
+cases:
+- journalistic_data_disclosure
+models:
+- gpt-5-mini
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 0.3
+notes: |
+  Second half of the 2026-09-06 cache dry run (see 20260906-llm-only-cache-dry-run for the ungated
+  measurement on the Civil Service Act: 2 full misses + 1 partial among the first 4 concurrent calls,
+  70 % cached overall). A different act is used so the prefix is cold (OpenAI cache TTL would otherwise
+  make every call a hit). Same parallel execution and concurrency as the real grid.

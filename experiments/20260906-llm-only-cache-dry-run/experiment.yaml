@@ -1,0 +1,21 @@
+name: 20260906-llm-only-cache-dry-run
+question: |
+  What share of the statute prefix is actually served from the vendor prompt cache when the parallel
+  runner orders one act's scenarios as the real grid would? gpt-5-mini, llm-only, every scenario of the
+  Civil Service Act case (whole act, ~46k tokens), one repeat.
+condition: llm-only
+cases:
+- civil_service_admission
+models:
+- gpt-5-mini
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 0.5
+notes: |
+  Cost dry run, not a paper cell (open item 1 of the 2026-09-06 core-batch report: the cost plan
+  assumes 90 % cache hits on the statute prefix). Run with --execution parallel exactly as the grid
+  runs (per-provider concurrency 4, cells ordered case -> scenario -> model -> repeat). Read from the
+  ledger: cached_input_tokens / input_tokens per call, the first-call miss, the act's overall cached
+  share.

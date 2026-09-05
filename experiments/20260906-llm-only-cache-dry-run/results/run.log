@@ -1,0 +1,11 @@
+2026-09-06 02:21:12,432 INFO statute_decider.runner.experiment Experiment 20260906-llm-only-cache-dry-run: 9 cells (9 scenarios x 1 models x 1 prompt combos x 1 repeats), 0 kept from a previous run, 9 to run now, parallel.
+2026-09-06 02:21:22,976 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:27,298 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:28,699 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:29,578 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:31,770 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:39,526 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:44,410 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:44,708 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:46,304 INFO httpx2 HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-06 02:21:46,417 INFO statute_decider.runner.experiment Experiment 20260906-llm-only-cache-dry-run done: 9 rows, EUR 0.0489.
