@@ -75,7 +75,7 @@ class RenameMap:
         self.prompts: dict[str, str] = m.get("prompts") or {}
         self.tags_add: dict[str, list[str]] = m.get("tags_add") or {}
         self.scenario_fields: dict[str, dict] = m.get("scenario_fields") or {}
-        # variant-name view of the prompt map: "solver-inputs-v1" -> "solver-inputs-partial-specification"
+        # variant-name view of the prompt map: <old variant> -> <new variant> (last path segment of each side)
         self.prompt_variants = {k.rsplit("/", 1)[-1]: v.rsplit("/", 1)[-1] for k, v in self.prompts.items()}
         # per old case: old scenario -> new scenario
         self.scen_by_case: dict[str, dict[str, str]] = {}

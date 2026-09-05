@@ -17,13 +17,15 @@ the pinned history). Operator sign-off needed on the rename table before any
 
 ## 1. What is wrong today
 
-- **Case ids are opaque.** `section_120_demo` says nothing about the service;
-  `civil_service_u8_need_user` carries v1 jargon (`u3/u5/u7/u8` were utterance
-  numbering in the pre-refactor repo) that no longer means anything.
-- **Scenario ids mix outcome, mechanism, and history.** `land_tax_allow_via_db`
-  vs `land_tax_u3_no_register`: same axis, two vocabularies.
-- **Register ids duplicate reality.** `land_tax_exemption__population_registry`
-  and `civil_service_eligibility__population_registry` are the same real-world
+- **Case ids are opaque.** The v1 child-representation case was named after
+  its section number and said nothing about the service; several scenario ids
+  carried v1 utterance numbering that no longer meant anything. (The v1 names
+  are listed only in `docs/reference/id-aliases.md`.)
+- **Scenario ids mix outcome, mechanism, and history.** One scenario is named
+  for the register that resolves it, its sibling for a v1 utterance number:
+  same axis, two vocabularies.
+- **Register ids duplicate reality.** `land_tax_home_exemption__population_registry`
+  and `civil_service_admission__population_registry` are the same real-world
   register, forked per case because v1 mock DBs were case-scoped.
 - **47 scenarios is an accident of history** (v1 accumulated them), not a
   design: the outcome classes are unbalanced, which complicates per-class F1
@@ -46,15 +48,17 @@ invented, directly greppable against the law.
 **Ruling B — cases are named after the citizen's service question.** A case id
 answers "what is the person asking for": `land_tax_home_exemption`,
 `civil_service_admission`, `consumer_purchase_withdrawal`,
-`building_permit_grant`, `journalistic_data_disclosure`. (Exact table below,
-TBD confirm; `section_120_demo` needs a real service name.)
+`building_permit_grant`, `journalistic_data_disclosure`,
+`child_representation_by_one_parent`. (Confirmed 2026-09-05; the old → new
+table is `docs/reference/id-aliases.md` § Cases.)
 
 **Ruling C — scenario ids are `<outcome>_<mechanism>`.** The outcome bucket
 first, the distinguishing mechanism second: `allow_registry_confirms`,
 `allow_uncovered_claim`, `deny_own_admission`, `deny_no_allow_path`,
 `need_user_silent`, `need_register_silent`, `unverifiable_trust_only`,
-`unverifiable_register_down`. History (u-numbers, "via_db") moves to `tags`
-and `provenance`. Scenario ids are unique within a case only; global id stays
+`unverifiable_register_down`. History (v1 utterance numbers, the
+"resolved via register" id fragment) is recorded in `docs/reference/id-aliases.md`
+only; `tags` and `provenance` stay in the current vocabulary. Scenario ids are unique within a case only; global id stays
 `<case>/<scenario>`.
 
 **Ruling D — real registers become shared, first-class.** One directory per
@@ -85,16 +89,20 @@ vs generated view), and whether the pairing is enforced (a validation step
 that fails when the translation table has gaps) or advisory. Decide at the
 same sitting as the rename execution; do not block it.
 
-### Rename table (draft — confirm before executing)
+### Rename table
 
-| today | proposed | note |
-|---|---|---|
-| `section_120_demo` | TBD (name the actual service) | statute → its real act § |
-| `land_tax_exemption` | `land_tax_home_exemption` | statute → `land_tax_act` |
-| `civil_service_eligibility` | `civil_service_admission` | statute → `civil_service_act` |
-| `consumer_withdrawal` | `consumer_purchase_withdrawal` | statute → `law_of_obligations_act` |
-| `building_permit` | `building_permit_grant` | statute → `building_code` |
-| `personal_data_journalism` | `journalistic_data_disclosure` | statute → `iks_..` (confirm §) |
+Executed 2026-09-05. The old → new table for cases (and statutes, registers,
+scenarios, conditions, experiments, prompts) is kept in one place only:
+`docs/reference/id-aliases.md`. Current case → statute pairing:
+
+| case | statute |
+|---|---|
+| `child_representation_by_one_parent` | `family_law_act` |
+| `land_tax_home_exemption` | `land_tax_act` |
+| `civil_service_admission` | `civil_service_act` |
+| `consumer_purchase_withdrawal` | `law_of_obligations_act` |
+| `building_permit_grant` | `building_code` |
+| `journalistic_data_disclosure` | `personal_data_protection_act` |
 
 ## 3. Balanced scenario suite (proposed)
 

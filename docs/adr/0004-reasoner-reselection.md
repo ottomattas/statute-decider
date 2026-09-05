@@ -16,7 +16,7 @@ Two supervision discussions crystallised this mismatch:
 
 - **2026-04-10, ~36:50–37:54**: Tanel explicitly recommended against Z3 for this pipeline.
   His core argument (paraphrased): Z3 targets SMT verification problems that involve numbers
-  and quantifiers; our tasks are structurally closer to ASP ("aspi tüüpi") — defaults,
+  and quantifiers; our tasks are structurally closer to ASP (answer set programming) — defaults,
   exceptions, and abductive reasoning over incomplete information. Otto acknowledged this as
   a single-module replacement feasible within the current architecture.
 
@@ -84,27 +84,30 @@ All three may be revisited if clingo and PySAT both fail acceptance criteria.
 
 Wave 2 Stream A ran all four backends through the 15 seed scenarios
 (`framework/examples/<case>/scenarios/*.json` across the five target cases:
-civil_service_eligibility, consumer_withdrawal, land_tax_exemption,
-personal_data_journalism, building_permit). Full benchmark output lives in
+civil_service_admission, consumer_purchase_withdrawal, land_tax_home_exemption,
+journalistic_data_disclosure, building_permit_grant — ids below are the current
+vocabulary; the 2026-04-21 tree used the v1 names listed in
+`docs/reference/id-aliases.md`, and its NEED_REGISTER_INFO is today's NEED_REGISTER_INFO).
+Full benchmark output lives in
 [`framework/examples/review_runs/reasoner_benchmark/2026-04-21.md`](../../framework/examples/review_runs/reasoner_benchmark/2026-04-21.md).
 
 | scenario | case | expected | z3 | clingo | pysat | horn | agreement |
 |---|---|---|---|---|---|---|---|
-| civil_service_allow | civil_service_eligibility | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
-| civil_service_deny | civil_service_eligibility | DENY | DENY | DENY | DENY | DENY | YES |
-| civil_service_need_db | civil_service_eligibility | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | YES |
-| consumer_withdrawal_allow | consumer_withdrawal | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
-| consumer_withdrawal_deny | consumer_withdrawal | DENY | DENY | DENY | DENY | DENY | YES |
-| consumer_withdrawal_need_user | consumer_withdrawal | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | YES |
-| land_tax_allow | land_tax_exemption | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
-| land_tax_deny | land_tax_exemption | DENY | DENY | DENY | DENY | DENY | YES |
-| land_tax_need_db | land_tax_exemption | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | YES |
-| journalism_allow | personal_data_journalism | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
-| journalism_deny | personal_data_journalism | DENY | DENY | DENY | DENY | DENY | YES |
-| journalism_need_user | personal_data_journalism | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | YES |
-| building_permit_allow | building_permit | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
-| building_permit_deny | building_permit | DENY | DENY | DENY | DENY | DENY | YES |
-| building_permit_need_db | building_permit | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | NEED_DB_INFO | YES |
+| allow_claims_verified | civil_service_admission | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
+| deny_own_admission_conviction | civil_service_admission | DENY | DENY | DENY | DENY | DENY | YES |
+| need_register_silent_citizenship | civil_service_admission | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | YES |
+| allow_claims_verified | consumer_purchase_withdrawal | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
+| deny_own_admission_custom_goods | consumer_purchase_withdrawal | DENY | DENY | DENY | DENY | DENY | YES |
+| need_user_silent_deadline_and_notice | consumer_purchase_withdrawal | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | YES |
+| allow_claims_verified | land_tax_home_exemption | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
+| deny_own_admission_not_owner | land_tax_home_exemption | DENY | DENY | DENY | DENY | DENY | YES |
+| need_register_silent_municipality_exemption | land_tax_home_exemption | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | YES |
+| allow_claims_verified | journalistic_data_disclosure | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
+| deny_own_admission_excessive_harm | journalistic_data_disclosure | DENY | DENY | DENY | DENY | DENY | YES |
+| need_user_silent_editorial_judgements | journalistic_data_disclosure | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | NEED_USER_INFO | YES |
+| allow_claims_verified | building_permit_grant | ALLOW | ALLOW | ALLOW | ALLOW | ALLOW | YES |
+| deny_own_admission_plan_violation | building_permit_grant | DENY | DENY | DENY | DENY | DENY | YES |
+| need_register_silent_fee | building_permit_grant | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | NEED_REGISTER_INFO | YES |
 
 Agreement with Z3: clingo 15/15, PySAT 15/15, Horn 15/15. No divergences
 observed on the monotonic fragment exercised by the seed suite. Mean

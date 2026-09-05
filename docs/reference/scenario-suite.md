@@ -1,5 +1,10 @@
 # Scenario Suite
 
+> **Historical (v1 `framework/` tree).** This document describes the 2026-04 harness;
+> the v2 suite is `data/cases/**` (54 scenarios, `docs/reference/gold-review-2026-09-05.md`)
+> and is run through `experiments/*/experiment.yaml`. Identifiers below are shown in the
+> current vocabulary; the v1 names are kept only in `docs/reference/id-aliases.md`.
+
 ## Overview
 
 The scenario suite is a systematic harness for validating the symbolic reasoner
@@ -14,11 +19,11 @@ Plan reference: Track B in `post-17apr-research-push` plan.
 
 | Case directory | Statute | Scenarios |
 |---|---|---|
-| `civil_service_eligibility` | ATS §§ 14–15 | allow, deny, need-db |
-| `consumer_withdrawal` | Law of Obligations Act § 53 (4), § 56 (1) | allow, deny, need-user |
-| `land_tax_exemption` | MMS § 11 | allow, deny, need-db |
-| `personal_data_journalism` | IKS § 4 | allow, deny, need-user |
-| `building_permit` | EhS §§ 42, 44 | allow, deny, need-db |
+| `civil_service_admission` | Civil Service Act §§ 14–15 | ALLOW, DENY, NEED_REGISTER_INFO |
+| `consumer_purchase_withdrawal` | Law of Obligations Act § 53 (4), § 56 (1) | ALLOW, DENY, NEED_USER_INFO |
+| `land_tax_home_exemption` | Land Tax Act § 11 | ALLOW, DENY, NEED_REGISTER_INFO |
+| `journalistic_data_disclosure` | Personal Data Protection Act § 4 | ALLOW, DENY, NEED_USER_INFO |
+| `building_permit_grant` | Building Code §§ 42, 44 | ALLOW, DENY, NEED_REGISTER_INFO |
 
 ## JSON schema for one scenario
 
@@ -27,7 +32,7 @@ legacy `ScenarioDefinition` shape. Fields understood by the harness:
 
 ```json
 {
-  "name": "civil_service_allow",
+  "name": "allow_claims_verified",
   "description": "Human-readable description of the scenario.",
   "request_file": "request_allow.txt",
   "law_file": "law.txt",
@@ -77,7 +82,7 @@ source framework/venv/bin/activate
 python framework/run_scenarios.py --scenarios
 
 # Run only one scenario for debugging:
-python framework/run_scenarios.py --scenarios --scenario-id civil_service_allow
+python framework/run_scenarios.py --scenarios --scenario-id allow_claims_verified
 ```
 
 The harness exits non-zero if any scenario's actual outcome differs from
@@ -148,11 +153,11 @@ Output:
 
 | Case | Claims | Rows |
 |---|---|---|
-| `civil_service_eligibility` | 7 | _skipped_ |
-| `consumer_withdrawal` | 5 | 32 |
-| `land_tax_exemption` | 6 | 64 |
-| `personal_data_journalism` | 5 | 32 |
-| `building_permit` | 6 | 64 |
+| `civil_service_admission` | 7 | _skipped_ |
+| `consumer_purchase_withdrawal` | 5 | 32 |
+| `land_tax_home_exemption` | 6 | 64 |
+| `journalistic_data_disclosure` | 5 | 32 |
+| `building_permit_grant` | 6 | 64 |
 
 ### CI
 

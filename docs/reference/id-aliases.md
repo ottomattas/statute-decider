@@ -188,7 +188,9 @@ where they differ). Tags: the pre-existing tags plus those added by the rename
 | `section_120_demo/prompt-swap` | `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a` — **retired 2026-09-05** (files removed; see "Retired" below) | ALLOW | `claims_verified` | `positive`, `extra`, `prompt-swap` |
 | `section_120_demo/unrelated-law` | `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b` — **retired 2026-09-05** (files removed; see "Retired" below) | ALLOW | `claims_verified` | `positive`, `extra`, `unrelated-law` |
 
-Each scenario YAML's `provenance` ends with `renamed 2026-09-05 from <old case>/<old scenario>`.
+Each renamed scenario YAML's `provenance` ends with `renamed 2026-09-05 (previous id:
+docs/reference/id-aliases.md)` — the old id itself lives only in this table (vocabulary
+sweep of 2026-09-05 evening; `tools/check_vocabulary.py` enforces it).
 
 ### Retired 2026-09-05 (balanced suite, 54 = 18/18/18)
 
@@ -221,18 +223,22 @@ produced before that date (all `experiments/2026090[1-4]-*` folders) still carry
 | `land_tax_home_exemption/deny_no_allow_path_municipality_not_set` | DENY | `no_allow_path` |
 
 
-### Tag legend (history carried in `tags`)
+### Tag legend
 
-| tag | meaning |
-|---|---|
-| `u3` | v1 utterance numbering: UNVERIFIABLE_CLAIM with reason `no_register` (register unavailable) |
-| `u5` | v1: NEED_DB_INFO (now NEED_REGISTER_INFO) with no unavailability flag — the field is simply absent |
-| `u7` | v1: UNVERIFIABLE_CLAIM with reason `trust_only` (only a self-report vouches) |
-| `u8` | v1: NEED_USER_INFO — a user-only term is not stated |
-| `via_db` / `db-resolved` | old id fragment `_via_db`: the utterance carries no (or only user-only) claims; registers resolve the rest |
-| `no-basis` | DENY with no applicable rule: a positive condition is denied, no deny rule fires |
-| `db-then-user` | old id of the PKS § 120 scenario the paper cites: registers resolve parent/custody, `emergency` stays open |
-| `prompt-swap`, `unrelated-law` | old ids of two v1 probes (strict prompt path; unrelated-law extraction); in v2 both are duplicates of the allow scenario |
+The "tags" column above shows the tags as they stood on the morning of 2026-09-05. The
+evening vocabulary sweep renamed the v1-jargon tags in every scenario YAML; the table
+below gives both forms.
+
+| tag today | tag until 2026-09-05 | meaning |
+|---|---|---|
+| `register-down` | `u3` | v1 utterance numbering: UNVERIFIABLE_CLAIM with reason `no_register` (register unavailable) |
+| `register-silent` | `u5` | v1: NEED_DB_INFO (now NEED_REGISTER_INFO) with no unavailability flag — the field is simply absent |
+| `trust-only` | `u7` | v1: UNVERIFIABLE_CLAIM with reason `trust_only` (only a self-report vouches) |
+| `user-silent` | `u8` | v1: NEED_USER_INFO — a user-only term is not stated (retired scenario only) |
+| `db-resolved` | `via_db` / `db-resolved` | old id fragment `_via_db`: the utterance carries no (or only user-only) claims; registers resolve the rest (`via_db` dropped as a duplicate) |
+| `no-basis` | `no-basis` | DENY with no applicable rule: a positive condition is denied, no deny rule fires |
+| `register-then-user` | `db-then-user` | old id of the Family Law Act § 120 scenario the paper cites: registers resolve parent/custody, `emergency` stays open |
+| — | `prompt-swap`, `unrelated-law` | old ids of two v1 probes (strict prompt path; unrelated-law extraction); in v2 both were duplicates of the allow scenario (retired) |
 | `scripted-claims` | the oracle claim set did not follow from the request text as authored on 2026-09-01 (utterance said one thing, oracle claimed another); the plan's "10 scripted" set. See `docs/reference/faithful-inputs-audit-2026-09-05.md` for the fix |
 | `extra` | outside the 2026-09-01 core (duplicate probes — retired 2026-09-05 — and the pensioner variant with inputs identical to `allow_claims_verified`, kept as one of the 18 ALLOW) |
 | `positive` / `negative` / `needs-info` / `uncertainty` | 2026-09-01 gold buckets (ALLOW / DENY / NEED_* / UNVERIFIABLE_*) |
@@ -255,8 +261,12 @@ produced before that date (all `experiments/2026090[1-4]-*` folders) still carry
 ## Prompts
 
 Files renamed only; content (and therefore the `prompt_hash` recorded in every
-provenance block) is unchanged. `prompt_id` in `ledger.jsonl`, `transcript.jsonl`
+provenance block) was unchanged by the rename. `prompt_id` in `ledger.jsonl`, `transcript.jsonl`
 `meta`, `nodes/*.jsonl` provenance and the config snapshots carries the new id.
+The evening vocabulary sweep then edited the YAML front-matter `description` of the
+three `premise_outcome/decide/*` prompts below (old condition names → current); the
+`system`/body text a model sees is byte-identical, but `prompt_hash` covers the whole
+file, so hashes recorded before that commit match the files at `8fea149`.
 
 | old | new |
 |---|---|
@@ -302,9 +312,11 @@ to match. Every `experiment.yaml` got one `notes` line recording the rename.
 - `transcript.jsonl` `system` / `user` / `raw_response`; `nodes/outcome_trace.jsonl`
   `steps[].message` / `justification`; `nodes/premise_outcome.jsonl` `note`; any
   `provenance.notes`; `error` strings — the audit trail of what was sent and produced.
-- Prompt file contents (hash-stable); free text in the historical docs under
+- Prompt `system`/body text (what a model sees). The historical docs under
   `docs/adr/`, `docs/reference/scenario-suite.md`, `docs/reference/nl-extraction.md`,
-  `docs/refactor-v2-plan.md` (they describe the v1 tree and the 2026-09-01 design).
+  `docs/refactor-v2-plan.md` were left verbatim by the rename but rewritten to the
+  current vocabulary by the evening sweep (each carries a note); this file is the only
+  place the old ids remain.
 - The paper (`article.tex`) pins `0d28213`, whose tree has the old names; if the
   paper adopts the new names it must cite a post-rename commit and change the
   `db-then-user` caption to `need_user_silent_emergency_after_register_lookup`.

@@ -100,6 +100,10 @@ damage`, `home-land tax incentive`, `residential land`, `profit-yielding land`,
 capacity`). Files already in plain English (child case; `need_register_silent_citizenship`
 and its register_down / trust_only siblings) were left as they were.
 
+Authoring scripts of that day (`tools/author_faithful_inputs_20260905.py`,
+`tools/author_balance_20260905.py`) were retired to git history after use (commits
+`e2d00f4`, `a60afa1`): their literals carried the superseded mixed-language texts.
+
 **One material change** — `journalistic_data_disclosure/request_allow.txt` (used by
 `allow_claims_verified`): the clause that carried `excessive_harm=false` read "but the
 reporting is proportionate"; it now reads "and disclosure would not cause excessive damage
@@ -138,7 +142,7 @@ out.append("""
   subject's rights"; definition cites § 4, second sentence. Together with the request-text
   change above, the term no longer rests on "proportionate".
 - `building_code/site_study_provided` — label "Required site investigations have been
-  performed" (translation wording for *ehitusuuring*); id unchanged.
+  performed" (the official translation's wording); id unchanged.
 - All `clause_title` values use "§ N (subsection) clause)" (e.g. `§ 11 (5) 1)`, `§ 56 (2¹)`,
   `§ 4`); since the evening of 2026-09-05 `clause_id` values are `<act_slug>/<eId>` resolved
   against the Riigi Teataja XML (`docs/reference/legislation-corpus.md`).

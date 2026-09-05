@@ -9,10 +9,10 @@ Drop **gold / golden** everywhere.
 | Label | Means | Short form |
 |---|---|---|
 | **oracle** | Hand-authored and validated artifacts *and* the act of producing them | `oracle` |
-| **baseline** | LLM-only mechanism and its data | `baseline` |
-| **proposed architecture candidate** | The modular system under test and its data | **`candidate`** |
+| **llm-only** | LLM-only mechanism and its data | `llm-only` |
+| **proposed architecture** | The modular system under test and its data | **`architecture`** |
 
-Paper prose keeps Priit's **proposed architecture**; `candidate` is the code/config handle. Triad: **oracle → baseline → candidate**.
+Paper prose keeps Priit's **proposed architecture**; `architecture` is the code/config handle. Triad: **oracle → llm-only → architecture**. (Condition names as settled on 2026-09-05; the plan's original working labels are listed in `docs/reference/id-aliases.md`.)
 
 ## The graph — sources, epistemic types, one shared vocabulary
 
@@ -123,11 +123,11 @@ Two evaluation modes per node, both first-class:
 - **Isolation:** feed *oracle inputs*, score this node's output against its oracle dataset — measures the step itself.
 - **Propagation:** feed *produced upstream outputs* — measures the step inside a condition, error compounding included.
 
-A **condition** is then just a named binding of methods onto nodes (plus fuse declarations), and end-to-end scoring is the propagation mode of `premise_outcome`. Oracle/baseline/candidate are conditions, not extra machinery.
+A **condition** is then just a named binding of methods onto nodes (plus fuse declarations), and end-to-end scoring is the propagation mode of `premise_outcome`. Solver-validation, llm-only and architecture are conditions, not extra machinery.
 
 ### The experimentation matrix
 
-One row per chain × level × node × method — atomic cells so gaps are visible. Capability principle: **every derived node supports `oracle` and `llm`**; deterministic methods (`match`, `lookup`, `solver`, `render`, `parse`ᶠ) are the trusted-path options. Every derived node additionally supports `skip` (condition bypass; no strategy — kept out of the rows to keep gap-scanning clean). `oracle` doubles as a production binding: when a condition needs the hand-validated value as input (e.g. the candidate's statute chain), it binds `oracle` — there is no separate "hand-written config" method, because in this repo that file *is* the oracle. What a condition *binds* is config — the matrix never precludes an experiment. Strategy is the variant within a method: a prompt (llm), a backend (solver), a template (render), or the manual authoring action (oracle). ᶠ = future — in the table on purpose, so expansion slots are visible.
+One row per chain × level × node × method — atomic cells so gaps are visible. Capability principle: **every derived node supports `oracle` and `llm`**; deterministic methods (`match`, `lookup`, `solver`, `render`, `parse`ᶠ) are the trusted-path options. Every derived node additionally supports `skip` (condition bypass; no strategy — kept out of the rows to keep gap-scanning clean). `oracle` doubles as a production binding: when a condition needs the hand-validated value as input (e.g. the architecture condition's statute chain), it binds `oracle` — there is no separate "hand-written config" method, because in this repo that file *is* the oracle. What a condition *binds* is config — the matrix never precludes an experiment. Strategy is the variant within a method: a prompt (llm), a backend (solver), a template (render), or the manual authoring action (oracle). ᶠ = future — in the table on purpose, so expansion slots are visible.
 
 **Node families exist at every level**, and the wildcard side carries meaning. Two orthogonal axes drive membership: **chain = epistemic role** (who vouches: normative / asserted / warranted) and **raw form = syntax** (what shape: text / utterance / record / markupᶠ / documentᶠ). At **source** the wildcard is left (`*_text`): many sources per raw form. At **term** the family is `*_term`, keyed by **raw form, not chain** — a new member appears whenever any chain gains a new raw form (e.g. `statute_markup`ᶠ → `markup_term`ᶠ, still normative; `user_document`ᶠ → `document_term`ᶠ, still asserted — shape does not upgrade warrant). At **premise** the wildcard flips right (`term_*`): one member per epistemic type; new members are new epistemic types. **Outcome** (`*_outcome`) and **trace** (`*_trace`) are single-member families at the join — they appear once, not per chain: one node fed by all three chains, same dedupe principle as everywhere else.
 
@@ -204,7 +204,7 @@ Every line in `rows.jsonl` carries the **fully resolved coordinate vector** — 
 **Solver vs render — inference vs presentation.** The solver *decides*: it computes the outcome and, as part of `premise_outcome`'s payload, emits the machine-readable inference record (fired rules, valuation used, missing terms and why). `render` is a pure function of that record: it turns it into human-readable justification text via a template, performs no reasoning, and cannot change the outcome. The trace is a separate node because explanation is separately measurable (against oracle traces) and separately swappable (`render` vs `llm` justification) — and because an `llm`-decided outcome has no inference record, so its trace can only come from `llm`, which is itself worth measuring.
 
 ```yaml
-condition: candidate
+condition: architecture
 statute_text:      { method: file }
 text_term:         { method: oracle }
 term_rule:         { method: oracle }
@@ -226,10 +226,10 @@ logic: propositional
 Three conditions are named and committed; they are what Priit's 1 Sep questions require. Every other cell of the matrix is *expressible* as a condition YAML + experiment when we want it, and is deliberately **not** pre-specified here — extra runs to strengthen the paper or mark future avenues get defined as experiments at that moment, not planned now.
 
 1. **solver-validation** — every node `oracle`/`file`, `premise_outcome=solver`, `outcome_trace=render`. No LLM, essentially free; proves the endpoint and the oracle data agree. Row 1 of any table.
-2. **baseline** — LLM-only, source to trace: sources `file`, all derivation nodes `skip`, `premise_outcome=llm` on the raw inputs, `outcome_trace=llm`. The pure counterpart.
-3. **candidate** — the proposed architecture, run as robustly as budget allows: statute chain `oracle`, `utterance_term`+`term_claim` `llm` (fused, `ground`), `record_term=oracle`, `term_fact=lookup`, `premise_outcome=solver(z3)`, `outcome_trace=render`. Cheap-model grid × repeats, per-class F1, budget-capped.
+2. **llm-only** — source to trace: sources `file`, all derivation nodes `skip`, `premise_outcome=llm` on the raw inputs, `outcome_trace=llm`. The pure counterpart.
+3. **architecture** — the proposed architecture, run as robustly as budget allows: statute chain `oracle`, `utterance_term`+`term_claim` `llm` (fused, `ground`), `record_term=oracle`, `term_fact=lookup`, `premise_outcome=solver(z3)`, `outcome_trace=render`. Cheap-model grid × repeats, per-class F1, budget-capped.
 
-Baseline and candidate on the same scenario suite with the same models and repeats give the decision-step comparison Priit asked for today; how the numbers are framed (which rows lead, what "identical inputs" means) is a writing decision for Friday 4 Sep with the numbers on the table.
+The llm-only and architecture conditions on the same scenario suite with the same models and repeats give the decision-step comparison Priit asked for today; how the numbers are framed (which rows lead, what "identical inputs" means) is a writing decision for Friday 4 Sep with the numbers on the table.
 
 ## Data structures
 
@@ -313,8 +313,8 @@ Must have: structured output, asyncio fan-out, per-provider semaphores, retries/
 Flags — no silent defaults; one model or all:
 
 ```
-sd run --config configs/candidate.yaml --execution parallel --models haiku-4.5
-sd run --config configs/candidate.yaml --execution sequential --models all
+sd run --config configs/conditions/architecture.yaml --execution parallel --models haiku-4.5
+sd run --config configs/conditions/architecture.yaml --execution sequential --models all
 ```
 
 - `--execution {parallel,sequential}` — required, no default.
@@ -338,7 +338,7 @@ statute-decider/                    # repo + CLI name; Python import statute_dec
     runner/                         # experiment engine, scoring (isolation + propagation), reports
   configs/
     llm/                            # models.yaml, prices.yaml
-    conditions/                     # reusable graph bindings: oracle.yaml, baseline.yaml, candidate.yaml, staged-*.yaml
+    conditions/                     # reusable graph bindings: solver-validation.yaml, llm-only.yaml, architecture.yaml, architecture-staged-grounding.yaml
   prompts/
     <node>/<strategy>/<variant>.md  # versioned prompt templates, YAML frontmatter; new wording = new file
   data/
@@ -365,7 +365,7 @@ statute-decider/                    # repo + CLI name; Python import statute_dec
       scenarios/<scenario_id>.yaml  # binds sources + register state + expectations
   experiments/
     _template/                      # copy to start a new experiment
-    <YYYYMMDD>-<slug>/              # e.g. 20260903-candidate-headline
+    <YYYYMMDD>-<slug>/              # e.g. 20260903-architecture-sota
       experiment.yaml               # the definition: condition ref, cases, models, prompts, repeats, budget, question
       results/
         config.snapshot.yaml        # fully resolved config at run time (reproducibility)
@@ -391,7 +391,7 @@ Deps: `.venv` + `pip install -e '.[dev]'` (optional `.[solvers]`). Data, results
 2. Replace `framework/` with the node graph; author oracle data fresh from the validated content, each value at its determining scope (`data/statutes/`, `data/registers/`, `data/cases/`).
 3. New LLM client; solver Protocol + z3.
 4. Conditions as YAML; scoring n, Acc, per-class F1 (+ missing-term set metrics stored).
-5. Run the committed cells — solver-validation, baseline, candidate — (parallel, budget-capped). Old numbers superseded.
+5. Run the committed cells — solver-validation, llm-only, architecture — (parallel, budget-capped). Old numbers superseded.
 6. Paper rewrite. Friday 4 Sep reviews narrative even without final numbers; Tue 8 Sep reads with numbers; submit by 13 Sep AoE.
 
 Rollback = the git tag.
@@ -402,9 +402,9 @@ Rollback = the git tag.
 - Levels: source, term, **premise** (rule/claim/fact), outcome, trace.
 - Epistemic types: claim = asserted (defeasible) premise; fact = warranted premise; rule = normative premise; term = vocabulary. Warrant principle encoded in types.
 - Checkability: uniform node interface; oracle dataset per node; isolation + propagation scoring; term and premise levels separately bindable, with explicit `fuse` when one call fills both.
-- Old code: git tag only; no port, no legacy tree. Golden → oracle/baseline/candidate.
+- Old code: git tag only; no port, no legacy tree. Golden → oracle / llm-only / architecture.
 - Repo/CLI hyphen, import underscore; results in git; `.venv` + pip.
 
 ## What I need from you
 
-Nothing blocks execution: naming, levels, data shapes, layout, and the matrix are settled above; committed runs are solver-validation, baseline, and candidate, with everything else defined as experiments only when wanted. Give the go and the rewrite starts with tag `pre-refactor`.
+Nothing blocks execution: naming, levels, data shapes, layout, and the matrix are settled above; committed runs are solver-validation, llm-only, and architecture, with everything else defined as experiments only when wanted. Give the go and the rewrite starts with tag `pre-refactor`.

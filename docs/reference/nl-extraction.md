@@ -1,5 +1,10 @@
 # NL User-Input Extraction (Step 00)
 
+> **Historical (v1 `framework/` tree).** The v2 counterpart is the `utterance_term` /
+> `term_claim` chain (`docs/architecture/overview.md`). Identifiers and outcome names
+> below are shown in the current vocabulary; the v1 names are kept only in
+> `docs/reference/id-aliases.md`.
+
 ## Overview
 
 Step 00 turns short natural-language utterances from the applicant (or an
@@ -9,7 +14,7 @@ from "law → rules": start deterministic, then layer LLMs on top.
 
 The deterministic path is authoritative and must not silently deny: any
 claim the utterances do not ground is left unresolved, which the reasoner
-then surfaces as a U5 (`NEED_DB_INFO`) or U8 (`NEED_USER_INFO`) follow-up
+then surfaces as a `NEED_REGISTER_INFO` or `NEED_USER_INFO` follow-up
 rather than a default `false`.
 
 Plan reference: Track C in the `post-17apr-research-push` plan.
@@ -54,13 +59,13 @@ applies a small, auditable lexical policy:
    - `I don't know` / `no idea` / `unknown` → `value=None`,
      `needs_user_confirmation=False`, `confidence=0.0`.
    - `I think` / `maybe` / `not sure` near the cue → `value=None`,
-     `needs_user_confirmation=True`, `confidence=0.3` (the U8 trigger).
+     `needs_user_confirmation=True`, `confidence=0.3` (the `NEED_USER_INFO` trigger).
    - Negation near the cue with no affirmation → `value=False`.
    - Plain affirmation ("I am", "I have", "we did") → `value=True`.
    - Fallback cue match with no polarity signal → `value=True`,
      `confidence=0.7`.
 4. Any claim id with no matching fragment at all is listed in
-   `unresolved_claim_ids` (the U5 signal).
+   `unresolved_claim_ids` (the register-silent signal).
 
 ## LLM extractor (behind `--llm`)
 
@@ -98,19 +103,19 @@ intent = build_intent_artifact(
 
 `reasons[claim_id]` carries a `needs_user_confirmation=true` marker for
 every hedged response so the downstream reasoner or UI layer can emit a
-U8 follow-up question without re-deriving the signal.
+`NEED_USER_INFO` follow-up question without re-deriving the signal.
 
 ## CLI
 
 ```bash
 python framework/00_collect_intent.py \
-    --use-case-dir framework/examples/land_tax_exemption \
-    --utterances-file framework/examples/land_tax_exemption/user_input/utterances_allow.json \
+    --use-case-dir framework/examples/land_tax_home_exemption \
+    --utterances-file framework/examples/land_tax_home_exemption/user_input/utterances_allow.json \
     --out session.json \
     --request-text-out request.txt
 
 python framework/01_extract_intent.py \
-    --use-case-dir framework/examples/land_tax_exemption \
+    --use-case-dir framework/examples/land_tax_home_exemption \
     --text-file request.txt \
     --out intent.json
 ```
@@ -131,18 +136,18 @@ Stdout prints a short per-category summary (resolved true/false,
 unresolved_mentioned, needs_confirmation, not_mentioned). The `--llm`
 path and the deterministic path share this output shape.
 
-## U5 / U8 routing
+## Register-silent / user-silent routing
 
 Unresolved claims flow into the solver's existing uncertainty routing:
 
 - `unresolved_claim_ids` (no utterance mentioned the claim) — the reasoner
   treats them as `None` and then classifies them via
-  `framework/uncertainty_routing.py`. DB-sourced claims get U5
-  (`NEED_DB_INFO`); user-sourced claims get U8 (`NEED_USER_INFO`).
+  `framework/uncertainty_routing.py`. DB-sourced claims get
+  `NEED_REGISTER_INFO`; user-sourced claims get `NEED_USER_INFO`.
 - `needs_user_confirmation=True` responses (hedged mentions) — the intent
   artifact carries `value=None` plus a reason string starting with
   `needs_user_confirmation=true;...`, which the UI can use to prompt the
-  user for a firm yes/no. This is the explicit U8 trigger path.
+  user for a firm yes/no. This is the explicit `NEED_USER_INFO` trigger path.
 
 ## Fixtures and tests
 
@@ -151,8 +156,8 @@ fixtures under `framework/examples/<case>/user_input/`:
 
 - `utterances_allow.json` — grounds the positive path.
 - `utterances_deny.json` — grounds at least one denying claim.
-- `utterances_needs_user.json` — leaves some claims unmentioned (U5) and
-  includes at least one hedged utterance (U8).
+- `utterances_needs_user.json` — leaves some claims unmentioned (register-silent) and
+  includes at least one hedged utterance (`NEED_USER_INFO`).
 
 Two test modules (both fully offline):
 

@@ -34,7 +34,7 @@ is better than nothing and still legally wrong).
 | Slice | Scenarios | Gold |
 |---|---|---|
 | Five suite domains | 40 | `expected_outcome` + `expected_missing_facts` |
-| `child_representation_by_one_parent` (PKS § 120) | 7 | promoted overnight; audit `gold_confidence` |
+| `child_representation_by_one_parent` (Family Law Act § 120) | 7 | promoted overnight; audit `gold_confidence` |
 | Paper 3-way map | scoring layer | NEED_DB / NEED_USER / NEED_EXPERT / UN* → NEED_MORE_INFO |
 
 `gold_confidence: low` rows are solver-proposed and need operator audit before
@@ -125,12 +125,12 @@ results.**
 | runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21 (2026-09-05 suite: 54/54, 18/18/18 — see above) |
 | LLM-only 3-way | 188 = 47×4 | pooled acc **0.734**; NEED_MORE_INFO 0.536 is the miss; DENY 0.938 |
 | LLM-only by provider | 47 each | deepseek 0.787, anthropic 0.745, openai 0.723, gemini 0.681 |
-| missing-fact P/R runtime | 0.936 / 1.000 | P gap = three low-confidence `*_allow_via_db` (now `allow_register_only*`) |
+| missing-fact P/R runtime | 0.936 / 1.000 | P gap = three low-confidence `allow_register_only*` scenarios |
 | missing-fact P/R LLM-only | 0.970 / 0.785 | high precision, under-recall (they omit required facts) |
 | synthesis alignment F1 | mean **0.263** (n=11) | civil ~0.48–0.56 (audit); withdrawal 0.13–0.31; §120 ~0 |
 | spend EUR | **0.95 / 10.00** | no halt; Tue 25 €100 still almost intact |
 
-Gemini `child_representation_by_one_parent` (then `section_120_demo`) synthesis returned truncated JSON (1 failed row).
+Gemini `child_representation_by_one_parent` synthesis returned truncated JSON (1 failed row).
 `civil_service` alignments need hand audit (near-duplicate / negated labels).
 
 Low-confidence gold (audit before Tue 25):
@@ -138,8 +138,7 @@ Low-confidence gold (audit before Tue 25):
 `land_tax_home_exemption/allow_register_only_ownership_and_residence`,
 `building_permit_grant/allow_register_only`,
 `child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a`
-(pre-rename: `*_allow_via_db`, `section_120_demo/prompt-swap`; all audited
-2026-08-26, ALLOW/empty confirmed).
+(retired 2026-09-05; all four audited 2026-08-26, ALLOW/empty confirmed).
 
 Full tables: `experiments/results/SMOKE-UNVALIDATED.md`,
 `experiment_ii_llm.md`, `experiment_i.md`.

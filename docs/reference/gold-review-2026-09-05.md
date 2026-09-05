@@ -200,6 +200,10 @@ damage`, `home-land tax incentive`, `residential land`, `profit-yielding land`,
 capacity`). Files already in plain English (child case; `need_register_silent_citizenship`
 and its register_down / trust_only siblings) were left as they were.
 
+Authoring scripts of that day (`tools/author_faithful_inputs_20260905.py`,
+`tools/author_balance_20260905.py`) were retired to git history after use (commits
+`e2d00f4`, `a60afa1`): their literals carried the superseded mixed-language texts.
+
 **One material change** — `journalistic_data_disclosure/request_allow.txt` (used by
 `allow_claims_verified`): the clause that carried `excessive_harm=false` read "but the
 reporting is proportionate"; it now reads "and disclosure would not cause excessive damage
@@ -221,7 +225,7 @@ to the English wording.
 | `building_permit_grant` | `unverifiable_trust_only_designer_selfreport.txt` | `unverifiable_trust_only_designer_selfreport` | — |
 | `child_representation_by_one_parent` | `request_allow.txt` | `allow_claims_verified_emergency` | applicant_is_not_parent=F, applicant_is_parent=T, emergency=T, one_parent_unreachable=T |
 | `child_representation_by_one_parent` | `request_deny.txt` | `deny_own_admission_not_parent` | applicant_is_not_parent=T, applicant_is_parent=F, both_parents_consent=F, delegated_decision_right=F |
-| `child_representation_by_one_parent` | `request_db_then_user.txt` | `need_user_silent_emergency_after_register_lookup` | — |
+| `child_representation_by_one_parent` | `request_register_then_user.txt` | `need_user_silent_emergency_after_register_lookup` | — |
 | `civil_service_admission` | `allow_alt_rule_eu_citizen_overrides_register.txt` | `allow_alt_rule_eu_citizen_overrides_register` | criminal_conviction=F, ee_citizen=F, eu_citizen=T, full_capacity=T, no_conflict_declared=T, secondary_education=T, speaks_estonian=T |
 | `civil_service_admission` | `request_allow.txt` | `allow_claims_verified` | criminal_conviction=F, ee_citizen=T, eu_citizen=F, full_capacity=T, no_conflict_declared=T, secondary_education=T, speaks_estonian=T |
 | `civil_service_admission` | `deny_no_allow_path_no_citizenship.txt` | `deny_no_allow_path_no_citizenship` | criminal_conviction=F, ee_citizen=F, eu_citizen=F, full_capacity=T, no_conflict_declared=T, secondary_education=T, speaks_estonian=T |
@@ -265,7 +269,7 @@ to the English wording.
   subject's rights"; definition cites § 4, second sentence. Together with the request-text
   change above, the term no longer rests on "proportionate".
 - `building_code/site_study_provided` — label "Required site investigations have been
-  performed" (translation wording for *ehitusuuring*); id unchanged.
+  performed" (the official translation's wording); id unchanged.
 - All `clause_title` values use "§ N (subsection) clause)" (e.g. `§ 11 (5) 1)`, `§ 56 (2¹)`,
   `§ 4`); since the evening of 2026-09-05 `clause_id` values are `<act_slug>/<eId>` resolved
   against the Riigi Teataja XML (`docs/reference/legislation-corpus.md`).
