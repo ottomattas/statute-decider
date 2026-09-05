@@ -1,6 +1,6 @@
 """Conditions: named bindings of methods onto nodes (plus fuse declarations).
 
-Oracle, baseline, and candidate are conditions, not extra machinery. A
+Solver-validation, llm-only, and architecture are conditions, not extra machinery. A
 condition never precludes an experiment — what a condition binds is config.
 """
 

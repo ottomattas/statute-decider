@@ -10,7 +10,6 @@ register_overrides: {}
 tags:
 - positive
 - db-resolved
-- via_db
 - authored-20260905
 gold_confidence: high
 notes: ''

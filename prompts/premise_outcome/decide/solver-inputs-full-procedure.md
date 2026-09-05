@@ -1,9 +1,10 @@
 ---
 description: >
-  LLM-as-solver, second wording. v1 omitted the solver's precedence rule
-  (claims seed the valuation; facts only fill terms the claims leave open and
-  never override an assertion) and every strong model's misses on 3-4 Sep
-  fell on the 13 claim/fact-conflict scenarios. v2 states the staged
+  llm-decides-on-*-full-procedure: the second wording. The partial
+  specification omitted the solver's precedence rule (claims seed the
+  valuation; facts only fill terms the claims leave open and never override
+  an assertion) and every strong model's misses on 3-4 Sep fell on the 13
+  claim/fact-conflict scenarios. The full procedure states the staged
   semantics of solvers/z3_backend.py in full so the comparison is fair:
   identical inputs and an identical specification, only the executor differs.
 system: |

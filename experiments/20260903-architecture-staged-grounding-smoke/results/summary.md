@@ -1,8 +1,8 @@
 # 20260903-architecture-staged-grounding-smoke
 
-Generated 2026-09-05T17:46:55Z — execution `parallel`, condition `architecture-staged-grounding`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture-staged-grounding`.
 
-**Question:** Plumbing smoke for condition candidate-staged (one case, one model, one repeat).
+**Question:** Plumbing smoke for condition architecture-staged-grounding (one case, one model, one repeat).
 
 ## Bound matrix rows
 

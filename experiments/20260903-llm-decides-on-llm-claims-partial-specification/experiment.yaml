@@ -1,6 +1,6 @@
 name: 20260903-llm-decides-on-llm-claims-partial-specification
 question: |
-  Candidate minus the solver: oracle rules, LLM-extracted claims (fused ground), looked-up facts, LLM decides on those premises.
+  The architecture condition minus the solver: oracle rules, LLM-extracted claims (fused ground), looked-up facts, LLM decides on those premises.
 condition: llm-decides-on-llm-claims-partial-specification
 cases: all
 models:

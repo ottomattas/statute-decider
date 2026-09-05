@@ -4,7 +4,7 @@ label: 'Journalism: only the editorial self-report vouches'
 mechanism: trust_only
 description: Editorial self-report is trust-only; allow_journalism_basis fires once
   public-interest and ethics are pinned, but the journalistic-purpose classification
-  is unverifiable -> U7 UNVERIFIABLE_CLAIM (trust_only).
+  is unverifiable -> UNVERIFIABLE_CLAIM (trust_only).
 utterance_file: unverifiable_trust_only_editorial_selfreport.txt
 register_overrides:
   journalistic_data_disclosure__editorial_selfreport:
@@ -20,10 +20,10 @@ register_overrides:
     exclude: true
 tags:
 - uncertainty
-- u7
+- trust-only
 - utterance-rewritten-20260905
 gold_confidence: high
 notes: Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was
   request_allow.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
-provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_u7_trust_only
+provenance: 'ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

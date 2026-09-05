@@ -1,8 +1,8 @@
 # 20260904-llm-decides-on-oracle-inputs-full-procedure
 
-Generated 2026-09-05T17:46:56Z — execution `parallel`, condition `llm-decides-on-oracle-inputs-full-procedure`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-oracle-inputs-full-procedure`.
 
-**Question:** LLM-as-solver with the solver's staged precedence rule stated (solver-inputs-v2). v1 misses on 3 Sep were 100% on the 13 claim/fact-conflict scenarios for the strong models.
+**Question:** LLM decides on oracle inputs with the solver's staged precedence rule stated (solver-inputs-full-procedure). The partial-specification misses on 3 Sep were 100% on the 13 claim/fact-conflict scenarios for the strong models.
 
 
 ## Bound matrix rows

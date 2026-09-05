@@ -1,8 +1,8 @@
 # 20260901-architecture-smoke
 
-Generated 2026-09-05T17:46:52Z — execution `parallel`, condition `architecture`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture`.
 
-**Question:** Smoke: do all four providers return parseable fused ground responses under the candidate condition on one case?
+**Question:** Smoke: do all four providers return parseable fused ground responses under the architecture condition on one case?
 
 
 ## Bound matrix rows

@@ -1,8 +1,8 @@
 # 20260903-architecture-sota
 
-Generated 2026-09-05T17:46:55Z — execution `parallel`, condition `architecture`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture`.
 
-**Question:** Architecture is model-agnostic: candidate on the four SOTA models, one repeat (indicative, n=47 per model).
+**Question:** Architecture is model-agnostic: the architecture condition on the four SOTA models, one repeat (indicative, n=47 per model).
 
 
 ## Bound matrix rows

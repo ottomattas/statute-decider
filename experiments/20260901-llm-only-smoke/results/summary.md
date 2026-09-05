@@ -1,8 +1,8 @@
 # 20260901-llm-only-smoke
 
-Generated 2026-09-05T17:46:52Z — execution `parallel`, condition `llm-only`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only`.
 
-**Question:** Smoke: do all four providers return parseable decide + justify responses under the baseline condition on one case?
+**Question:** Smoke: do all four providers return parseable decide + justify responses under the llm-only condition on one case?
 
 
 ## Bound matrix rows

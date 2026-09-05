@@ -3,7 +3,7 @@ case_id: civil_service_admission
 label: 'Admission: only the applicant''s self-report vouches'
 mechanism: trust_only
 description: Citizenship and capacity resolve from a trust-only applicant self-report;
-  allow_ee_citizen fires but the supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
+  allow_ee_citizen fires but the supporting facts are unverifiable -> UNVERIFIABLE_CLAIM
   (trust_only).
 utterance_file: unverifiable_trust_only_applicant_selfreport.txt
 register_overrides:
@@ -19,10 +19,10 @@ register_overrides:
     exclude: true
 tags:
 - uncertainty
-- u7
+- trust-only
 - utterance-rewritten-20260905
 gold_confidence: high
 notes: Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was
   request_allow.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
-provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_u7_trust_only
+provenance: 'ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

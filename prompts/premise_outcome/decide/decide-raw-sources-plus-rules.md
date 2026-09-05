@@ -1,10 +1,10 @@
 ---
 description: >
-  LLM-decider cell of the 2x2: same raw sources as the llm-only condition, plus the
+  llm-only-plus-rules cell of the 2x2: same raw sources as the llm-only condition, plus the
   hand-authored (oracle) rules. The model is instructed to apply those rules
   rather than re-read the statute; where the two would differ, the rules win.
-  Ported from the v1 oracle-llm-20260901 system prompt so Friday numbers stay
-  comparable if this grid is re-run under v2.
+  Ported from the 2026-08 harness's oracle-llm-20260901 system prompt so the
+  28 Aug numbers stay comparable if this grid is re-run here.
 system: |
   You decide a statutory case by applying the REFERENCE DECISION RULES to the
   known values in the registry records and the applicant's request. The rules

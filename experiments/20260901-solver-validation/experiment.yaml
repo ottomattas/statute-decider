@@ -7,5 +7,5 @@ models: []
 repeats: 1
 budget_eur: 0.0
 notes: |
-  Committed run 1 of 3 (solver-validation, baseline, candidate).
+  Committed run 1 of 3 (solver-validation, llm-only, architecture).
   ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

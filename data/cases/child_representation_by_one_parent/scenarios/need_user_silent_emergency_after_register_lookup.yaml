@@ -3,12 +3,12 @@ case_id: child_representation_by_one_parent
 label: 'Child: registers resolve parent, emergency still open'
 mechanism: user_silent
 description: The solver first needs register facts and then still needs user input.
-utterance_file: request_db_then_user.txt
+utterance_file: request_register_then_user.txt
 register_overrides: {}
 tags:
 - needs-info
-- db-then-user
+- register-then-user
 gold_confidence: high
 notes: ''
-provenance: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). |
-  renamed 2026-09-05 from section_120_demo/db-then-user
+provenance: 'Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).
+  | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

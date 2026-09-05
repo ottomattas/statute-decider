@@ -19,7 +19,6 @@ register_overrides:
 tags:
 - positive
 - db-resolved
-- via_db
 - consent-baseline
 - authored-20260905
 gold_confidence: high

@@ -1,8 +1,8 @@
 # 20260903-llm-decides-on-llm-claims-partial-specification-smoke
 
-Generated 2026-09-05T17:46:55Z — execution `parallel`, condition `llm-decides-on-llm-claims-partial-specification`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-llm-claims-partial-specification`.
 
-**Question:** Plumbing smoke for condition llm-structured (one case, one model, one repeat).
+**Question:** Plumbing smoke for condition llm-decides-on-llm-claims-partial-specification (one case, one model, one repeat).
 
 ## Bound matrix rows
 

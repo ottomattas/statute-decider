@@ -2,7 +2,7 @@
 # LLM (fused ground), register chain deterministic lookup, decision by solver,
 # trace rendered from the inference record.
 condition: architecture
-notes: The proposed architecture — the modular system under test (formerly `candidate`).
+notes: The proposed architecture — the modular system under test.
 
 statute_text: { method: file }
 text_term: { method: oracle }

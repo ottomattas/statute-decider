@@ -1,5 +1,5 @@
 name: 20260903-architecture-staged-grounding-smoke
-question: Plumbing smoke for condition candidate-staged (one case, one model, one
+question: Plumbing smoke for condition architecture-staged-grounding (one case, one model, one
   repeat).
 condition: architecture-staged-grounding
 cases:

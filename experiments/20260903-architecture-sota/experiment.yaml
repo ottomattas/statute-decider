@@ -1,6 +1,6 @@
 name: 20260903-architecture-sota
 question: |
-  Architecture is model-agnostic: candidate on the four SOTA models, one repeat (indicative, n=47 per model).
+  Architecture is model-agnostic: the architecture condition on the four SOTA models, one repeat (indicative, n=47 per model).
 condition: architecture
 cases: all
 models:

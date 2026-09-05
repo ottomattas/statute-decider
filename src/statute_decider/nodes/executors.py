@@ -283,7 +283,7 @@ def lookup_facts(
     )
 
 
-# --- premise_outcome (llm decide: the baseline's decision on raw sources) ---
+# --- premise_outcome (llm decide: the llm-only condition's decision on raw sources) ---
 
 
 def decide_llm(
@@ -304,8 +304,8 @@ def decide_llm(
     meta: dict | None = None,
 ) -> PremiseOutcome:
     """LLM decision. The prompt's placeholders select the inputs: raw sources
-    (baseline), raw sources + oracle rules (llm-decider), or the solver's own
-    inputs — rules + claims + facts, no statute text (llm-as-solver)."""
+    (llm-only), raw sources + oracle rules (llm-only-plus-rules), or the solver's
+    own inputs — rules + claims + facts, no statute text (llm-decides-on-*)."""
     placeholders: dict[str, str] = {
         "utterance": utterance.strip() or "(no request text)",
     }

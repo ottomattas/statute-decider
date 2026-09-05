@@ -1,5 +1,5 @@
 name: 20260903-llm-decides-on-llm-claims-partial-specification-smoke
-question: Plumbing smoke for condition llm-structured (one case, one model, one repeat).
+question: Plumbing smoke for condition llm-decides-on-llm-claims-partial-specification (one case, one model, one repeat).
 condition: llm-decides-on-llm-claims-partial-specification
 cases:
 - child_representation_by_one_parent

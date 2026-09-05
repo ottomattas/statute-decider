@@ -14,5 +14,5 @@ tags:
 gold_confidence: high
 notes: Utterance rewritten 2026-09-05 to match the oracle claim set (CONTRADICTS;
   was request_deny.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
-provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from consumer_withdrawal/consumer_withdrawal_deny_not_consumer
+provenance: 'ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

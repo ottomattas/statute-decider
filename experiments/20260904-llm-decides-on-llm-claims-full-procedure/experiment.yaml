@@ -1,6 +1,6 @@
 name: 20260904-llm-decides-on-llm-claims-full-procedure
-question: Candidate minus the solver, decide prompt with the staged specification
-  (solver-inputs-v2).
+question: The architecture condition minus the solver, decide prompt with the
+  staged specification (solver-inputs-full-procedure).
 condition: llm-decides-on-llm-claims-full-procedure
 cases: all
 models:
@@ -13,5 +13,5 @@ temperature: 0.0
 max_output_tokens: 8192
 budget_eur: 8.0
 notes: |
-  v1 cost EUR 3.54 in 74 min.
+  The partial-specification run cost EUR 3.54 in 74 min.
   ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

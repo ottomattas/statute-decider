@@ -1,8 +1,8 @@
 # 20260901-llm-only
 
-Generated 2026-09-05T17:46:51Z — execution `parallel`, condition `llm-only`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only`.
 
-**Question:** Committed run 2 of 3: LLM-only source-to-trace. Raw statute text, utterance, and registry go to the model, which decides and justifies without any intermediate structure. The comparison floor for the candidate.
+**Question:** Committed run 2 of 3: LLM-only source-to-trace. Raw statute text, utterance, and registry go to the model, which decides and justifies without any intermediate structure. The comparison floor for the architecture condition.
 
 
 ## Bound matrix rows

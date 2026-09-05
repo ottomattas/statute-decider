@@ -1,8 +1,8 @@
 # 20260903-llm-decides-on-llm-claims-partial-specification
 
-Generated 2026-09-05T17:46:55Z — execution `parallel`, condition `llm-decides-on-llm-claims-partial-specification`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-llm-claims-partial-specification`.
 
-**Question:** Candidate minus the solver: oracle rules, LLM-extracted claims (fused ground), looked-up facts, LLM decides on those premises.
+**Question:** The architecture condition minus the solver: oracle rules, LLM-extracted claims (fused ground), looked-up facts, LLM decides on those premises.
 
 
 ## Bound matrix rows

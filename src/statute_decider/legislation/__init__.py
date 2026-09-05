@@ -6,7 +6,7 @@
 * ``references`` — ``<act_slug>/<eId>`` provision keys and their display form.
 * ``corpus`` — ingest / check the corpus directory (``sd corpus``).
 
-RT element ids (``para11lg5p1``) are never stored anywhere this repo writes;
+Riigi Teataja element ids are never stored anywhere this repo writes;
 the resolver recomputes them from the eId at lookup time.
 """
 

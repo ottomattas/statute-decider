@@ -1,10 +1,11 @@
 ---
 description: >
-  LLM-as-solver: the model receives exactly what the z3 solver receives —
+  llm-decides-on-oracle-inputs-partial-specification: the model receives
+  exactly what the z3 solver receives —
   the oracle rules, the claims, and the facts with their warrant — and no
   statute text. Decision-step isolation with identical inputs on both sides
   (28 Aug supervision: "correct rules fixed on both sides, who decides
-  better"). Also used with LLM-extracted claims (llm-structured).
+  better"). Also used with LLM-extracted claims (llm-decides-on-llm-claims-partial-specification).
 system: |
   You are the decision step of a statutory decision system. You receive a
   hand-authored boolean encoding of the statute (variables and rules), the

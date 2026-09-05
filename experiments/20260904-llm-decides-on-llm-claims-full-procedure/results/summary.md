@@ -1,8 +1,8 @@
 # 20260904-llm-decides-on-llm-claims-full-procedure
 
-Generated 2026-09-05T17:46:56Z — execution `parallel`, condition `llm-decides-on-llm-claims-full-procedure`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-llm-claims-full-procedure`.
 
-**Question:** Candidate minus the solver, decide prompt with the staged specification (solver-inputs-v2).
+**Question:** The architecture condition minus the solver, decide prompt with the staged specification (solver-inputs-full-procedure).
 
 ## Bound matrix rows
 

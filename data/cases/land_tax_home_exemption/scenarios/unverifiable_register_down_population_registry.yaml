@@ -3,7 +3,7 @@ case_id: land_tax_home_exemption
 label: 'Land tax: population registry unavailable'
 mechanism: register_down
 description: Population registry is unavailable, so primary-residence registration
-  cannot be verified; home-land allow rule stalls on that claim -> U3 UNVERIFIABLE_CLAIM
+  cannot be verified; home-land allow rule stalls on that claim -> UNVERIFIABLE_CLAIM
   (no_register).
 utterance_file: unverifiable_register_down_population_registry.txt
 register_overrides:
@@ -17,10 +17,10 @@ register_overrides:
         municipality_exemption_set: true
 tags:
 - uncertainty
-- u3
+- register-down
 - utterance-rewritten-20260905
 gold_confidence: high
 notes: Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was
   request_allow.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
-provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from land_tax_exemption/land_tax_u3_no_register
+provenance: 'ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

@@ -99,7 +99,7 @@ class Catalogue(BaseModel):
 
 
 def slugify_title(title: str) -> str:
-    """``"Land Tax Act"`` -> ``land_tax_act``; ``"Võlaõigusseadus"`` -> ``volaoigusseadus``."""
+    """``"Land Tax Act"`` -> ``land_tax_act``; diacritics in a source-language title are stripped (NFKD) before slugging."""
     text = unicodedata.normalize("NFKD", title)
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
     text = re.sub(r"[^A-Za-z0-9]+", "_", text).strip("_").lower()

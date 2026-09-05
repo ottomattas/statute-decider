@@ -11,9 +11,9 @@ tags:
 - utterance-rewritten-20260905
 gold_confidence: high
 notes: 'Utterance re-authored 2026-09-01: v1 reused request_allow.txt (which asserts
-  avalik huvi and ajakirjanduseetika) and scripted the claims away; the v2 variant
-  omits that sentence so the gold holds under honest extraction. | Utterance rewritten
-  2026-09-05 to match the oracle claim set (TRIMMED; was request_allow_confirmations_silent.txt);
+  public interest and journalism ethics) and scripted the claims away; the re-authored
+  variant omits that sentence so the gold holds under honest extraction. | Utterance
+  rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was request_allow_confirmations_silent.txt);
   see docs/reference/faithful-inputs-audit-2026-09-05.md.'
-provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_need_user
+provenance: 'Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

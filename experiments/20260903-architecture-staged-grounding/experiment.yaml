@@ -1,6 +1,6 @@
 name: 20260903-architecture-staged-grounding
 question: |
-  Candidate with grounding staged in two calls (recognize, then value): does splitting recognition from valuation change term recall / claim accuracy / outcome?
+  The architecture condition with grounding staged in two calls (recognize, then value): does splitting recognition from valuation change term recall / claim accuracy / outcome?
 condition: architecture-staged-grounding
 cases: all
 models:

@@ -1,6 +1,6 @@
 name: 20260901-llm-only-smoke
 question: |
-  Smoke: do all four providers return parseable decide + justify responses under the baseline condition on one case?
+  Smoke: do all four providers return parseable decide + justify responses under the llm-only condition on one case?
 condition: llm-only
 cases:
 - child_representation_by_one_parent
@@ -14,5 +14,5 @@ temperature: 0.0
 max_output_tokens: 8192
 budget_eur: 1.0
 notes: |
-  Pre-flight for the committed baseline run; not a paper cell.
+  Pre-flight for the committed llm-only run; not a paper cell.
   ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

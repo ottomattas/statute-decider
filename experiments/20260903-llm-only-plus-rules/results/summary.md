@@ -1,8 +1,8 @@
 # 20260903-llm-only-plus-rules
 
-Generated 2026-09-05T17:46:53Z — execution `parallel`, condition `llm-only-plus-rules`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only-plus-rules`.
 
-**Question:** Priit's 28 Aug missing 2x2 cell, re-run on v2: oracle rules + LLM decides from the same raw sources as the baseline. Compare to solver-validation 1.00 and to the v1 oracle-llm-20260901 numbers (0.85-0.89).
+**Question:** Priit's 28 Aug missing 2x2 cell, re-run on the v2 harness: oracle rules + LLM decides from the same raw sources as llm-only. Compare to solver-validation 1.00 and to the 2026-08 harness's oracle-llm-20260901 numbers (0.85-0.89).
 
 
 ## Bound matrix rows

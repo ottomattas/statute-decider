@@ -1,8 +1,8 @@
 # 20260903-llm-only-sota
 
-Generated 2026-09-05T17:46:55Z — execution `parallel`, condition `llm-only`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only`.
 
-**Question:** Does a frontier model close the gap to the architecture without it? LLM-only baseline on the four SOTA models, one repeat (indicative, n=47 per model).
+**Question:** Does a frontier model close the gap to the architecture without it? The llm-only condition on the four SOTA models, one repeat (indicative, n=47 per model).
 
 
 ## Bound matrix rows

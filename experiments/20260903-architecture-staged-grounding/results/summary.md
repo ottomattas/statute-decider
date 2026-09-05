@@ -1,8 +1,8 @@
 # 20260903-architecture-staged-grounding
 
-Generated 2026-09-05T17:46:52Z — execution `parallel`, condition `architecture-staged-grounding`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `architecture-staged-grounding`.
 
-**Question:** Candidate with grounding staged in two calls (recognize, then value): does splitting recognition from valuation change term recall / claim accuracy / outcome?
+**Question:** The architecture condition with grounding staged in two calls (recognize, then value): does splitting recognition from valuation change term recall / claim accuracy / outcome?
 
 
 ## Bound matrix rows

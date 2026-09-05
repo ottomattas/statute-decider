@@ -3,8 +3,7 @@ case_id: building_permit_grant
 label: 'Permit: only the designer''s self-report vouches'
 mechanism: trust_only
 description: Designer self-report (trust-only) covers competence and state-fee; allow_building_permit
-  fires via lookup but supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
-  (trust_only).
+  fires via lookup but supporting facts are unverifiable -> UNVERIFIABLE_CLAIM (trust_only).
 utterance_file: unverifiable_trust_only_designer_selfreport.txt
 register_overrides:
   building_permit_grant__designer_selfreport:
@@ -20,10 +19,10 @@ register_overrides:
     exclude: true
 tags:
 - uncertainty
-- u7
+- trust-only
 - utterance-rewritten-20260905
 gold_confidence: high
 notes: Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was
   request_allow.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
-provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from building_permit/building_permit_u7_trust_only
+provenance: 'ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

@@ -1,6 +1,6 @@
 # 20260901-solver-validation
 
-Generated 2026-09-05T17:46:52Z — execution `sequential`, condition `solver-validation`.
+Generated 2026-09-05T21:24:46Z — execution `sequential`, condition `solver-validation`.
 
 **Question:** Do the solver endpoint and the oracle data agree end to end? Every node oracle/file, decision by z3, trace rendered. No LLM; row 1 of any table.
 

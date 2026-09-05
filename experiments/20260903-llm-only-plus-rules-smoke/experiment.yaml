@@ -1,5 +1,5 @@
 name: 20260903-llm-only-plus-rules-smoke
-question: Plumbing smoke for condition llm-decider (one case, one model, one repeat).
+question: Plumbing smoke for condition llm-only-plus-rules (one case, one model, one repeat).
 condition: llm-only-plus-rules
 cases:
 - child_representation_by_one_parent

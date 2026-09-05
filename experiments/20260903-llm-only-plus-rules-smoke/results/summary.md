@@ -1,8 +1,8 @@
 # 20260903-llm-only-plus-rules-smoke
 
-Generated 2026-09-05T17:46:55Z — execution `parallel`, condition `llm-only-plus-rules`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-only-plus-rules`.
 
-**Question:** Plumbing smoke for condition llm-decider (one case, one model, one repeat).
+**Question:** Plumbing smoke for condition llm-only-plus-rules (one case, one model, one repeat).
 
 ## Bound matrix rows
 

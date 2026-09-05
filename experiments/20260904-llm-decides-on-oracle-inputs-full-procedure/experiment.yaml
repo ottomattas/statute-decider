@@ -1,6 +1,6 @@
 name: 20260904-llm-decides-on-oracle-inputs-full-procedure
 question: |
-  LLM-as-solver with the solver's staged precedence rule stated (solver-inputs-v2). v1 misses on 3 Sep were 100% on the 13 claim/fact-conflict scenarios for the strong models.
+  LLM decides on oracle inputs with the solver's staged precedence rule stated (solver-inputs-full-procedure). The partial-specification misses on 3 Sep were 100% on the 13 claim/fact-conflict scenarios for the strong models.
 condition: llm-decides-on-oracle-inputs-full-procedure
 cases: all
 models:
@@ -13,5 +13,5 @@ temperature: 0.0
 max_output_tokens: 8192
 budget_eur: 5.0
 notes: |
-  v1 cost EUR 2.01 in 14 min.
+  The partial-specification run cost EUR 2.01 in 14 min.
   ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

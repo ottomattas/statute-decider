@@ -36,7 +36,7 @@ class ValueResponse(BaseModel):
 
 
 class DecideResponse(BaseModel):
-    """LLM-only decision (baseline): three-way outcome + missing items."""
+    """Decision of the llm-only condition: three-way outcome + missing items."""
 
     outcome: Literal["ALLOW", "DENY", "NEED_MORE_INFO"]
     missing_terms: list[str] = Field(default_factory=list)

@@ -12,5 +12,5 @@ tags:
 gold_confidence: high
 notes: Utterance rewritten 2026-09-05 to match the oracle claim set (UNDERSTATED;
   was request_deny.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
-provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
-  content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_deny
+provenance: 'Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 (previous id: docs/reference/id-aliases.md)'

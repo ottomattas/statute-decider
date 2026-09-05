@@ -1,8 +1,8 @@
 # 20260904-llm-decides-on-oracle-inputs-full-procedure-sota
 
-Generated 2026-09-05T17:46:57Z — execution `parallel`, condition `llm-decides-on-oracle-inputs-full-procedure`.
+Generated 2026-09-05T21:24:46Z — execution `parallel`, condition `llm-decides-on-oracle-inputs-full-procedure`.
 
-**Question:** SOTA models as solver with the full staged specification (solver-inputs-v2), 3 repeats.
+**Question:** SOTA models as solver with the full staged specification (solver-inputs-full-procedure), 3 repeats.
 
 ## Bound matrix rows
 
