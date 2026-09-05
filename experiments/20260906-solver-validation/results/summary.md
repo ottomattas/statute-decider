@@ -1,6 +1,6 @@
 # 20260906-solver-validation
 
-Generated 2026-09-05T20:47:28Z — execution `sequential`, condition `solver-validation`.
+Generated 2026-09-05T21:43:01Z — execution `sequential`, condition `solver-validation`.
 
 **Question:** After the 2026-09-05 English-only rewrite (Ruling E) and the balanced 18/18/18 suite (Ruling F): do the solver endpoint and the oracle data still agree end to end over all 54 scenarios? Every node oracle/file, decision by z3, trace rendered. No LLM; row 1 of any table.
 
