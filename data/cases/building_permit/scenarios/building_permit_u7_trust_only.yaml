@@ -1,5 +1,7 @@
 scenario_id: building_permit_u7_trust_only
 case_id: building_permit
+label: 'Permit: only the designer''s self-report vouches'
+mechanism: trust_only
 description: Designer self-report (trust-only) covers competence and state-fee; allow_building_permit
   fires via lookup but supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
   (trust_only).

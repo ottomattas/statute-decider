@@ -1,5 +1,7 @@
 scenario_id: consumer_withdrawal_u7_trust_only
 case_id: consumer_withdrawal
+label: 'Withdrawal: only the trader''s self-report vouches'
+mechanism: trust_only
 description: Consumer status and distance-contract flag come from a trust-only trader
   self-report; allow_distance_withdrawal fires but the facts are unverifiable -> U7
   UNVERIFIABLE_CLAIM (trust_only).

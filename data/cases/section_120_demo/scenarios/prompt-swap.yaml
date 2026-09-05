@@ -1,5 +1,7 @@
 scenario_id: prompt-swap
 case_id: section_120_demo
+label: 'Child: duplicate of allow (v1 prompt-swap probe)'
+mechanism: claims_verified
 description: The same allow scenario, but with strict prompt metadata paths recorded.
 utterance_file: request_allow.txt
 register_overrides: {}

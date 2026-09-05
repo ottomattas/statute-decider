@@ -1,5 +1,7 @@
 scenario_id: allow
 case_id: section_120_demo
+label: 'Child: mother, emergency, other parent unreachable'
+mechanism: claims_verified
 description: Parent plus emergency facts resolve to ALLOW.
 utterance_file: request_allow.txt
 register_overrides: {}

@@ -1,5 +1,7 @@
 scenario_id: consumer_withdrawal_allow_via_db
 case_id: consumer_withdrawal
+label: 'Withdrawal: consumer and distance status from the CRM'
+mechanism: register_only
 description: Consumer status and distance-contract flag resolve via DB; user timely-dispatch
   facts are pinned true, so ALLOW fires via DB lookup.
 utterance_file: request_allow.txt

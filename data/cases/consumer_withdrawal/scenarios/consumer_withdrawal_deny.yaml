@@ -1,5 +1,7 @@
 scenario_id: consumer_withdrawal_deny
 case_id: consumer_withdrawal
+label: 'Withdrawal: buyer admits custom-made goods (§ 53 lg 4)'
+mechanism: own_admission
 description: Goods fall into § 53 lg 4 excluded category (custom-made), so withdrawal
   is blocked regardless of other facts.
 utterance_file: request_deny.txt

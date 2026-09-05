@@ -1,5 +1,7 @@
 scenario_id: civil_service_need_db
 case_id: civil_service_eligibility
+label: 'Admission: population registry silent on citizenship'
+mechanism: register_silent
 description: Population registry has no citizenship record; solver cannot resolve
   ee_citizen after DB lookup -> NEED_DB_INFO.
 utterance_file: request_allow.txt

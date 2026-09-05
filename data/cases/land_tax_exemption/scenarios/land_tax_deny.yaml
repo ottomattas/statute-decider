@@ -1,5 +1,7 @@
 scenario_id: land_tax_deny
 case_id: land_tax_exemption
+label: 'Land tax: applicant admits not owner, lives elsewhere'
+mechanism: own_admission
 description: Applicant is not the owner and registry does not place residence on the
   parcel, so no exemption rule fires.
 utterance_file: request_deny.txt

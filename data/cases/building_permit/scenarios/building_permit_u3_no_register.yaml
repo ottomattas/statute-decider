@@ -1,5 +1,7 @@
 scenario_id: building_permit_u3_no_register
 case_id: building_permit
+label: 'Permit: payment ledger unavailable'
+mechanism: register_down
 description: State-fee ledger is unreachable, so fee_paid cannot be verified; allow_building_permit
   stalls on that claim -> U3 UNVERIFIABLE_CLAIM (no_register).
 utterance_file: request_allow.txt

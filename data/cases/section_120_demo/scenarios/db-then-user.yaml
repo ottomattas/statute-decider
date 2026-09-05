@@ -1,5 +1,7 @@
 scenario_id: db-then-user
 case_id: section_120_demo
+label: 'Child: registers resolve parent, emergency still open'
+mechanism: user_silent
 description: The solver first needs DB facts and then still needs user input.
 utterance_file: request_db_then_user.txt
 register_overrides: {}

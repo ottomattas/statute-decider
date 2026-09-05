@@ -1,0 +1,314 @@
+# Declarative id rename map (2026-09-05). tools/rename_ids.py is driven by this
+# file only; docs/reference/id-aliases.md is the human-readable rendering.
+#
+# Conventions after the rename:
+#   statutes    <act abbreviation>_<paragraphs>           (official names)
+#   cases       the citizen's service question
+#   scenarios   <gold>_<mechanism>[_<distinguisher>], unique within a case
+#   registers   <new case>__<register>  (per-case forks kept; see id-aliases.md)
+#   conditions  who does what (architecture / llm-only / ...), never v1/v2
+#   experiments <date>-<condition>[-smoke|-sota]
+#   prompts     what the decider sees / which specification it gets
+
+statutes:
+  building_permit: ehs_42_44
+  civil_service_eligibility: ats_14_15
+  consumer_withdrawal: vos_53_56
+  land_tax_exemption: mms_11
+  personal_data_journalism: iks_4
+  section_120_demo: pks_120
+
+cases:
+  building_permit: building_permit_grant
+  civil_service_eligibility: civil_service_admission
+  consumer_withdrawal: consumer_purchase_withdrawal
+  land_tax_exemption: land_tax_home_exemption
+  personal_data_journalism: journalistic_data_disclosure
+  section_120_demo: child_representation_by_one_parent
+
+registers:
+  building_permit__building_registry: building_permit_grant__building_registry
+  building_permit__designer_registry: building_permit_grant__designer_registry
+  building_permit__designer_selfreport: building_permit_grant__designer_selfreport
+  building_permit__payment_ledger: building_permit_grant__payment_ledger
+  civil_service_eligibility__criminal_records_registry: civil_service_admission__criminal_records_registry
+  civil_service_eligibility__education_registry: civil_service_admission__education_registry
+  civil_service_eligibility__language_registry: civil_service_admission__language_registry
+  civil_service_eligibility__population_registry: civil_service_admission__population_registry
+  civil_service_eligibility__population_registry_selfreport: civil_service_admission__population_registry_selfreport
+  consumer_withdrawal__product_catalogue: consumer_purchase_withdrawal__product_catalogue
+  consumer_withdrawal__trader_crm: consumer_purchase_withdrawal__trader_crm
+  consumer_withdrawal__trader_selfreport: consumer_purchase_withdrawal__trader_selfreport
+  land_tax_exemption__applicant_selfreport: land_tax_home_exemption__applicant_selfreport
+  land_tax_exemption__land_registry: land_tax_home_exemption__land_registry
+  land_tax_exemption__municipality_records: land_tax_home_exemption__municipality_records
+  land_tax_exemption__population_registry: land_tax_home_exemption__population_registry
+  land_tax_exemption__social_insurance_registry: land_tax_home_exemption__social_insurance_registry
+  personal_data_journalism__consent_registry: journalistic_data_disclosure__consent_registry
+  personal_data_journalism__editorial_cms: journalistic_data_disclosure__editorial_cms
+  personal_data_journalism__editorial_selfreport: journalistic_data_disclosure__editorial_selfreport
+  section_120_demo__consent_service: child_representation_by_one_parent__consent_service
+  section_120_demo__custody_registry: child_representation_by_one_parent__custody_registry
+  section_120_demo__population_registry: child_representation_by_one_parent__population_registry
+
+# old_case/old_scenario -> new_case/new_scenario
+scenarios:
+  building_permit/building_permit_allow: building_permit_grant/allow_claims_verified
+  building_permit/building_permit_allow_via_db: building_permit_grant/allow_register_only
+  building_permit/building_permit_deny: building_permit_grant/deny_own_admission_plan_violation
+  building_permit/building_permit_deny_incompetent: building_permit_grant/deny_no_allow_path_designer_not_competent
+  building_permit/building_permit_deny_no_site_study: building_permit_grant/deny_no_allow_path_no_site_study
+  building_permit/building_permit_need_db: building_permit_grant/need_register_silent_fee
+  building_permit/building_permit_u3_no_register: building_permit_grant/unverifiable_register_down_payment_ledger
+  building_permit/building_permit_u7_trust_only: building_permit_grant/unverifiable_trust_only_designer_selfreport
+  civil_service_eligibility/civil_service_allow: civil_service_admission/allow_claims_verified
+  civil_service_eligibility/civil_service_allow_eu_path: civil_service_admission/allow_alt_rule_eu_citizen_overrides_register
+  civil_service_eligibility/civil_service_deny: civil_service_admission/deny_own_admission_conviction
+  civil_service_eligibility/civil_service_deny_no_citizenship: civil_service_admission/deny_no_allow_path_no_citizenship
+  civil_service_eligibility/civil_service_need_db: civil_service_admission/need_register_silent_citizenship
+  civil_service_eligibility/civil_service_u3_no_register: civil_service_admission/unverifiable_register_down_population_registry
+  civil_service_eligibility/civil_service_u7_trust_only: civil_service_admission/unverifiable_trust_only_applicant_selfreport
+  civil_service_eligibility/civil_service_u8_need_user: civil_service_admission/need_user_silent_conflict_declaration
+  consumer_withdrawal/consumer_withdrawal_allow: consumer_purchase_withdrawal/allow_claims_verified
+  consumer_withdrawal/consumer_withdrawal_allow_via_db: consumer_purchase_withdrawal/allow_register_only_consumer_status
+  consumer_withdrawal/consumer_withdrawal_deny: consumer_purchase_withdrawal/deny_own_admission_custom_goods
+  consumer_withdrawal/consumer_withdrawal_deny_not_consumer: consumer_purchase_withdrawal/deny_no_allow_path_not_consumer
+  consumer_withdrawal/consumer_withdrawal_need_user: consumer_purchase_withdrawal/need_user_silent_deadline_and_notice
+  consumer_withdrawal/consumer_withdrawal_u3_no_register: consumer_purchase_withdrawal/unverifiable_register_down_trader_crm
+  consumer_withdrawal/consumer_withdrawal_u5_need_db: consumer_purchase_withdrawal/need_register_silent_consumer_status
+  consumer_withdrawal/consumer_withdrawal_u7_trust_only: consumer_purchase_withdrawal/unverifiable_trust_only_trader_selfreport
+  land_tax_exemption/land_tax_allow: land_tax_home_exemption/allow_claims_verified
+  land_tax_exemption/land_tax_allow_pensioner: land_tax_home_exemption/allow_claims_verified_pensioner_supplement
+  land_tax_exemption/land_tax_allow_via_db: land_tax_home_exemption/allow_register_only_ownership_and_residence
+  land_tax_exemption/land_tax_deny: land_tax_home_exemption/deny_own_admission_not_owner
+  land_tax_exemption/land_tax_deny_not_residential: land_tax_home_exemption/deny_no_allow_path_not_residential
+  land_tax_exemption/land_tax_need_db: land_tax_home_exemption/need_register_silent_municipality_exemption
+  land_tax_exemption/land_tax_u3_no_register: land_tax_home_exemption/unverifiable_register_down_population_registry
+  land_tax_exemption/land_tax_u7_trust_only: land_tax_home_exemption/unverifiable_trust_only_applicant_selfreport
+  personal_data_journalism/journalism_allow: journalistic_data_disclosure/allow_claims_verified
+  personal_data_journalism/journalism_allow_via_consent: journalistic_data_disclosure/allow_alt_rule_consent_overrides_register
+  personal_data_journalism/journalism_deny: journalistic_data_disclosure/deny_own_admission_excessive_harm
+  personal_data_journalism/journalism_deny_no_basis: journalistic_data_disclosure/deny_no_allow_path_no_purpose_no_consent
+  personal_data_journalism/journalism_need_user: journalistic_data_disclosure/need_user_silent_editorial_judgements
+  personal_data_journalism/journalism_u3_no_register: journalistic_data_disclosure/unverifiable_register_down_editorial_cms
+  personal_data_journalism/journalism_u5_need_db: journalistic_data_disclosure/need_register_silent_purpose_and_consent
+  personal_data_journalism/journalism_u7_trust_only: journalistic_data_disclosure/unverifiable_trust_only_editorial_selfreport
+  section_120_demo/allow: child_representation_by_one_parent/allow_claims_verified_emergency
+  section_120_demo/deny: child_representation_by_one_parent/deny_own_admission_not_parent
+  section_120_demo/db-then-user: child_representation_by_one_parent/need_user_silent_emergency_after_register_lookup
+  section_120_demo/need-db: child_representation_by_one_parent/need_user_silent_emergency_bare_request
+  section_120_demo/need-user: child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed
+  section_120_demo/prompt-swap: child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a
+  section_120_demo/unrelated-law: child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b
+
+conditions:
+  solver-validation: solver-validation
+  baseline: llm-only
+  llm-decider: llm-only-plus-rules
+  candidate: architecture
+  candidate-staged: architecture-staged-grounding
+  llm-as-solver: llm-decides-on-oracle-inputs-partial-specification
+  llm-as-solver-v2: llm-decides-on-oracle-inputs-full-procedure
+  llm-structured: llm-decides-on-llm-claims-partial-specification
+  llm-structured-v2: llm-decides-on-llm-claims-full-procedure
+
+experiments:
+  20260901-baseline: 20260901-llm-only
+  20260901-candidate: 20260901-architecture
+  20260901-smoke-baseline: 20260901-llm-only-smoke
+  20260901-smoke-candidate: 20260901-architecture-smoke
+  20260901-solver-validation: 20260901-solver-validation
+  20260903-candidate-staged: 20260903-architecture-staged-grounding
+  20260903-llm-decider: 20260903-llm-only-plus-rules
+  20260903-llm-as-solver: 20260903-llm-decides-on-oracle-inputs-partial-specification
+  20260903-llm-structured: 20260903-llm-decides-on-llm-claims-partial-specification
+  20260903-smoke-candidate-staged: 20260903-architecture-staged-grounding-smoke
+  20260903-smoke-llm-as-solver: 20260903-llm-decides-on-oracle-inputs-partial-specification-smoke
+  20260903-smoke-llm-decider: 20260903-llm-only-plus-rules-smoke
+  20260903-smoke-llm-structured: 20260903-llm-decides-on-llm-claims-partial-specification-smoke
+  20260903-sota-baseline: 20260903-llm-only-sota
+  20260903-sota-candidate: 20260903-architecture-sota
+  20260903-sota-llm-as-solver: 20260903-llm-decides-on-oracle-inputs-partial-specification-sota
+  20260904-llm-as-solver-v2: 20260904-llm-decides-on-oracle-inputs-full-procedure
+  20260904-llm-structured-v2: 20260904-llm-decides-on-llm-claims-full-procedure
+  20260904-smoke-as-solver-v2: 20260904-llm-decides-on-oracle-inputs-full-procedure-smoke
+  20260904-sota-llm-as-solver-v2: 20260904-llm-decides-on-oracle-inputs-full-procedure-sota
+
+# Prompt variant names (files under prompts/<node>/<strategy>/). The prompt id
+# recorded in ledgers/transcripts/config snapshots is <node>/<strategy>/<variant>.
+prompts:
+  premise_outcome/decide/decide-v1: premise_outcome/decide/decide-raw-sources
+  premise_outcome/decide/oracle-rules-v1: premise_outcome/decide/decide-raw-sources-plus-rules
+  premise_outcome/decide/solver-inputs-v1: premise_outcome/decide/solver-inputs-partial-specification
+  premise_outcome/decide/solver-inputs-v2: premise_outcome/decide/solver-inputs-full-procedure
+
+# Tags appended to each scenario YAML (keyed by the OLD composite id). The
+# u3/u5/u7/u8 tags already present are kept (legend in docs/reference/id-aliases.md).
+tags_add:
+  building_permit/building_permit_allow_via_db: [via_db]
+  building_permit/building_permit_deny_incompetent: [scripted-claims]
+  building_permit/building_permit_deny_no_site_study: [scripted-claims]
+  civil_service_eligibility/civil_service_allow_eu_path: [scripted-claims]
+  civil_service_eligibility/civil_service_deny_no_citizenship: [scripted-claims]
+  consumer_withdrawal/consumer_withdrawal_allow_via_db: [via_db]
+  consumer_withdrawal/consumer_withdrawal_deny_not_consumer: [scripted-claims]
+  land_tax_exemption/land_tax_allow_pensioner: [extra]
+  land_tax_exemption/land_tax_allow_via_db: [via_db]
+  land_tax_exemption/land_tax_deny_not_residential: [scripted-claims]
+  personal_data_journalism/journalism_allow_via_consent: [scripted-claims]
+  personal_data_journalism/journalism_deny_no_basis: [scripted-claims]
+  section_120_demo/allow: [positive]
+  section_120_demo/deny: [negative]
+  section_120_demo/db-then-user: [needs-info, db-then-user]
+  section_120_demo/need-db: [needs-info]
+  section_120_demo/need-user: [needs-info]
+  section_120_demo/prompt-swap: [positive, extra, prompt-swap]
+  section_120_demo/unrelated-law: [positive, extra, unrelated-law]
+
+# Display fields written into each scenario YAML (keyed by the OLD composite id).
+# mechanism is one of the fixed vocabulary:
+#   claims_verified | register_only | alt_rule_claim_overrides_register |
+#   own_admission | no_allow_path | register_silent | user_silent |
+#   register_down | trust_only
+scenario_fields:
+  building_permit/building_permit_allow:
+    label: "Permit: all § 42 lg 1 conditions claimed and confirmed"
+    mechanism: claims_verified
+  building_permit/building_permit_allow_via_db:
+    label: "Permit: bare request, registers supply every term"
+    mechanism: register_only
+  building_permit/building_permit_deny:
+    label: "Permit: applicant admits detail-plan violation (§ 44 p 1)"
+    mechanism: own_admission
+  building_permit/building_permit_deny_incompetent:
+    label: "Permit: designer not competent, no allow path"
+    mechanism: no_allow_path
+  building_permit/building_permit_deny_no_site_study:
+    label: "Permit: no site study, no allow path"
+    mechanism: no_allow_path
+  building_permit/building_permit_need_db:
+    label: "Permit: payment ledger silent on the state fee"
+    mechanism: register_silent
+  building_permit/building_permit_u3_no_register:
+    label: "Permit: payment ledger unavailable"
+    mechanism: register_down
+  building_permit/building_permit_u7_trust_only:
+    label: "Permit: only the designer's self-report vouches"
+    mechanism: trust_only
+  civil_service_eligibility/civil_service_allow:
+    label: "Admission: Estonian citizen, § 14 lg 1 confirmed"
+    mechanism: claims_verified
+  civil_service_eligibility/civil_service_allow_eu_path:
+    label: "Admission: EU citizen via the § 14 lg 2 path"
+    mechanism: alt_rule_claim_overrides_register
+  civil_service_eligibility/civil_service_deny:
+    label: "Admission: applicant admits standing conviction (§ 15 p 1)"
+    mechanism: own_admission
+  civil_service_eligibility/civil_service_deny_no_citizenship:
+    label: "Admission: neither EE nor EU citizen, no allow path"
+    mechanism: no_allow_path
+  civil_service_eligibility/civil_service_need_db:
+    label: "Admission: population registry silent on citizenship"
+    mechanism: register_silent
+  civil_service_eligibility/civil_service_u3_no_register:
+    label: "Admission: population registry unavailable"
+    mechanism: register_down
+  civil_service_eligibility/civil_service_u7_trust_only:
+    label: "Admission: only the applicant's self-report vouches"
+    mechanism: trust_only
+  civil_service_eligibility/civil_service_u8_need_user:
+    label: "Admission: § 15 p 4 conflict declaration not given"
+    mechanism: user_silent
+  consumer_withdrawal/consumer_withdrawal_allow:
+    label: "Withdrawal: consumer, distance sale, in time, confirmed"
+    mechanism: claims_verified
+  consumer_withdrawal/consumer_withdrawal_allow_via_db:
+    label: "Withdrawal: consumer and distance status from the CRM"
+    mechanism: register_only
+  consumer_withdrawal/consumer_withdrawal_deny:
+    label: "Withdrawal: buyer admits custom-made goods (§ 53 lg 4)"
+    mechanism: own_admission
+  consumer_withdrawal/consumer_withdrawal_deny_not_consumer:
+    label: "Withdrawal: buyer is not a consumer, no allow path"
+    mechanism: no_allow_path
+  consumer_withdrawal/consumer_withdrawal_need_user:
+    label: "Withdrawal: deadline and notice not stated"
+    mechanism: user_silent
+  consumer_withdrawal/consumer_withdrawal_u3_no_register:
+    label: "Withdrawal: trader CRM unavailable"
+    mechanism: register_down
+  consumer_withdrawal/consumer_withdrawal_u5_need_db:
+    label: "Withdrawal: CRM silent on consumer status"
+    mechanism: register_silent
+  consumer_withdrawal/consumer_withdrawal_u7_trust_only:
+    label: "Withdrawal: only the trader's self-report vouches"
+    mechanism: trust_only
+  land_tax_exemption/land_tax_allow:
+    label: "Land tax: home-land conditions claimed and confirmed"
+    mechanism: claims_verified
+  land_tax_exemption/land_tax_allow_pensioner:
+    label: "Land tax: pensioner supplement, same inputs as allow"
+    mechanism: claims_verified
+  land_tax_exemption/land_tax_allow_via_db:
+    label: "Land tax: ownership and residence from registers"
+    mechanism: register_only
+  land_tax_exemption/land_tax_deny:
+    label: "Land tax: applicant admits not owner, lives elsewhere"
+    mechanism: own_admission
+  land_tax_exemption/land_tax_deny_not_residential:
+    label: "Land tax: land not residential, no allow path"
+    mechanism: no_allow_path
+  land_tax_exemption/land_tax_need_db:
+    label: "Land tax: municipality record absent, applicant unsure"
+    mechanism: register_silent
+  land_tax_exemption/land_tax_u3_no_register:
+    label: "Land tax: population registry unavailable"
+    mechanism: register_down
+  land_tax_exemption/land_tax_u7_trust_only:
+    label: "Land tax: only the applicant's self-report vouches"
+    mechanism: trust_only
+  personal_data_journalism/journalism_allow:
+    label: "Journalism: purpose, public interest, ethics confirmed"
+    mechanism: claims_verified
+  personal_data_journalism/journalism_allow_via_consent:
+    label: "Journalism: subject consent claimed, consent rule fires"
+    mechanism: alt_rule_claim_overrides_register
+  personal_data_journalism/journalism_deny:
+    label: "Journalism: editor admits excessive harm (defeater)"
+    mechanism: own_admission
+  personal_data_journalism/journalism_deny_no_basis:
+    label: "Journalism: no purpose and no consent, no allow path"
+    mechanism: no_allow_path
+  personal_data_journalism/journalism_need_user:
+    label: "Journalism: public interest and ethics not stated"
+    mechanism: user_silent
+  personal_data_journalism/journalism_u3_no_register:
+    label: "Journalism: editorial CMS unavailable"
+    mechanism: register_down
+  personal_data_journalism/journalism_u5_need_db:
+    label: "Journalism: CMS and consent registry silent"
+    mechanism: register_silent
+  personal_data_journalism/journalism_u7_trust_only:
+    label: "Journalism: only the editorial self-report vouches"
+    mechanism: trust_only
+  section_120_demo/allow:
+    label: "Child: mother, emergency, other parent unreachable"
+    mechanism: claims_verified
+  section_120_demo/deny:
+    label: "Child: aunt admits she is not a parent"
+    mechanism: own_admission
+  section_120_demo/db-then-user:
+    label: "Child: registers resolve parent, emergency still open"
+    mechanism: user_silent
+  section_120_demo/need-db:
+    label: "Child: bare request, emergency still open"
+    mechanism: user_silent
+  section_120_demo/need-user:
+    label: "Child: all but emergency claimed, emergency open"
+    mechanism: user_silent
+  section_120_demo/prompt-swap:
+    label: "Child: duplicate of allow (v1 prompt-swap probe)"
+    mechanism: claims_verified
+  section_120_demo/unrelated-law:
+    label: "Child: duplicate of allow (v1 unrelated-law probe)"
+    mechanism: claims_verified

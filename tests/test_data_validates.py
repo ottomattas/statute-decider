@@ -40,6 +40,27 @@ def test_cases_reference_shared_entities(store):
         assert set(case.register_ids) <= registers
 
 
+MECHANISMS = {
+    "claims_verified",
+    "register_only",
+    "alt_rule_claim_overrides_register",
+    "own_admission",
+    "no_allow_path",
+    "register_silent",
+    "user_silent",
+    "register_down",
+    "trust_only",
+}
+
+
+def test_scenarios_carry_display_fields(store):
+    """Every scenario has a short human label and a mechanism from the fixed vocabulary."""
+    for case_id, scenario_id in store.all_scenarios():
+        scenario = store.scenario(case_id, scenario_id)
+        assert scenario.label and len(scenario.label) <= 60, f"{case_id}/{scenario_id}"
+        assert scenario.mechanism in MECHANISMS, f"{case_id}/{scenario_id}: {scenario.mechanism!r}"
+
+
 def test_scenarios_have_oracle_outcomes(store):
     for case_id, scenario_id in store.all_scenarios():
         scenario = store.scenario(case_id, scenario_id)

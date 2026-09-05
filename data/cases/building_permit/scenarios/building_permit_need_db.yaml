@@ -1,5 +1,7 @@
 scenario_id: building_permit_need_db
 case_id: building_permit
+label: 'Permit: payment ledger silent on the state fee'
+mechanism: register_silent
 description: State-fee payment record absent from the payment ledger; solver cannot
   confirm fee_paid after DB lookup -> NEED_DB_INFO.
 utterance_file: request_allow.txt

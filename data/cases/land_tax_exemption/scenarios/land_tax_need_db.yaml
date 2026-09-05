@@ -1,5 +1,7 @@
 scenario_id: land_tax_need_db
 case_id: land_tax_exemption
+label: 'Land tax: municipality record absent, applicant unsure'
+mechanism: register_silent
 description: Municipality-level exemption record is missing from DB and intent, halting
   at NEED_DB_INFO.
 utterance_file: request_need_db.txt

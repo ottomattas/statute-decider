@@ -1,5 +1,7 @@
 scenario_id: building_permit_deny_incompetent
 case_id: building_permit
+label: 'Permit: designer not competent, no allow path'
+mechanism: no_allow_path
 description: Designer competence is false, blocking allow_building_permit; plan-violation
   is false so deny_plan_violation does not fire -> DENY with no applicable rules (§
   44 p 2 fallback).

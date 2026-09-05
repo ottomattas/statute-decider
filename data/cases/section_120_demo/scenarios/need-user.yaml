@@ -1,5 +1,7 @@
 scenario_id: need-user
 case_id: section_120_demo
+label: 'Child: all but emergency claimed, emergency open'
+mechanism: user_silent
 description: DB facts are known but the emergency fact remains open.
 utterance_file: request_need_user.txt
 register_overrides: {}

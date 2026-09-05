@@ -1,5 +1,7 @@
 scenario_id: civil_service_deny_no_citizenship
 case_id: civil_service_eligibility
+label: 'Admission: neither EE nor EU citizen, no allow path'
+mechanism: no_allow_path
 description: Applicant is neither Estonian nor EU citizen; no allow rule fires and
   there is no deny-trigger, so § 14 falls back to DENY with no applicable rules.
 utterance_file: request_deny.txt

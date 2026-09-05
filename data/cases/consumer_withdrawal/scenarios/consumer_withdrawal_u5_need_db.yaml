@@ -1,5 +1,7 @@
 scenario_id: consumer_withdrawal_u5_need_db
 case_id: consumer_withdrawal
+label: 'Withdrawal: CRM silent on consumer status'
+mechanism: register_silent
 description: DB lacks is_consumer with no source-unavailable flag; user timely-dispatch
   facts are pinned -> U5 NEED_DB_INFO.
 utterance_file: request_allow.txt

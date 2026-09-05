@@ -1,5 +1,7 @@
 scenario_id: journalism_u3_no_register
 case_id: personal_data_journalism
+label: 'Journalism: editorial CMS unavailable'
+mechanism: register_down
 description: Editorial CMS is unavailable so the journalistic-purpose classification
   cannot be verified; allow_journalism_basis stalls on it -> U3 UNVERIFIABLE_CLAIM
   (no_register).

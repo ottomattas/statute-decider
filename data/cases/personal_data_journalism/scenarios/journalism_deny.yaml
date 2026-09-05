@@ -1,5 +1,7 @@
 scenario_id: journalism_deny
 case_id: personal_data_journalism
+label: 'Journalism: editor admits excessive harm (defeater)'
+mechanism: own_admission
 description: Excessive harm defeats ethics compliance and blocks the journalism basis;
   no consent on record.
 utterance_file: request_deny.txt

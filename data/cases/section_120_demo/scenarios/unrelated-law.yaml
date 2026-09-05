@@ -1,5 +1,7 @@
 scenario_id: unrelated-law
 case_id: section_120_demo
+label: 'Child: duplicate of allow (v1 unrelated-law probe)'
+mechanism: claims_verified
 description: A strong request with an unrelated law neutral-blocks at domain extraction.
 utterance_file: request_allow.txt
 register_overrides: {}

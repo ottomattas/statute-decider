@@ -1,5 +1,7 @@
 scenario_id: land_tax_u3_no_register
 case_id: land_tax_exemption
+label: 'Land tax: population registry unavailable'
+mechanism: register_down
 description: Population registry is unavailable, so primary-residence registration
   cannot be verified; home-land allow rule stalls on that claim -> U3 UNVERIFIABLE_CLAIM
   (no_register).

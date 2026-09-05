@@ -1,5 +1,7 @@
 scenario_id: civil_service_deny
 case_id: civil_service_eligibility
+label: 'Admission: applicant admits standing conviction (§ 15 p 1)'
+mechanism: own_admission
 description: Standing conviction for an intentional crime blocks appointment under
   § 15 p 1.
 utterance_file: request_deny.txt

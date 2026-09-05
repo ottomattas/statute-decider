@@ -1,5 +1,7 @@
 scenario_id: journalism_u7_trust_only
 case_id: personal_data_journalism
+label: 'Journalism: only the editorial self-report vouches'
+mechanism: trust_only
 description: Editorial self-report is trust-only; allow_journalism_basis fires once
   public-interest and ethics are pinned, but the journalistic-purpose classification
   is unverifiable -> U7 UNVERIFIABLE_CLAIM (trust_only).

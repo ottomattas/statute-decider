@@ -1,5 +1,7 @@
 scenario_id: building_permit_deny_no_site_study
 case_id: building_permit
+label: 'Permit: no site study, no allow path'
+mechanism: no_allow_path
 description: Site-study requirement is unmet, blocking allow_building_permit; no plan-violation
   so no deny rule fires -> DENY with no applicable rules (§ 44 p 3 fallback).
 utterance_file: request_deny.txt

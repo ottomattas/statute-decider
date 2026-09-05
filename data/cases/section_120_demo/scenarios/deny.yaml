@@ -1,5 +1,7 @@
 scenario_id: deny
 case_id: section_120_demo
+label: 'Child: aunt admits she is not a parent'
+mechanism: own_admission
 description: Non-parent request resolves to DENY.
 utterance_file: request_deny.txt
 register_overrides: {}

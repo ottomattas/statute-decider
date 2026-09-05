@@ -92,6 +92,8 @@ class Scenario(BaseModel):
 
     scenario_id: str
     case_id: str
+    label: str = ""  # human display name (<= 60 chars, English); not an id
+    mechanism: str = ""  # cross-case mechanism vocabulary, see docs/reference/id-aliases.md
     description: str = ""
     utterance_file: str = ""  # relative to case sources/utterances/
     register_overrides: dict[str, RegisterOverride] = Field(default_factory=dict)

@@ -1,5 +1,7 @@
 scenario_id: building_permit_allow
 case_id: building_permit
+label: 'Permit: all § 42 lg 1 conditions claimed and confirmed'
+mechanism: claims_verified
 description: All five § 42 lg 1 positive conditions hold and no § 44 refusal ground
   fires, yielding ALLOW.
 utterance_file: request_allow.txt

@@ -1,5 +1,7 @@
 scenario_id: journalism_allow
 case_id: personal_data_journalism
+label: 'Journalism: purpose, public interest, ethics confirmed'
+mechanism: claims_verified
 description: Journalistic purpose with editorial public-interest and ethics assessment
   resolves to ALLOW.
 utterance_file: request_allow.txt

@@ -1,5 +1,7 @@
 scenario_id: building_permit_allow_via_db
 case_id: building_permit
+label: 'Permit: bare request, registers supply every term'
+mechanism: register_only
 description: Intent supplies nothing; all five positive conditions and the plan-violation
   flag resolve via DB lookup -> ALLOW via § 42 lg 1.
 utterance_file: request_allow.txt
