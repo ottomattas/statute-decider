@@ -1,0 +1,26 @@
+name: 20260906-llm-only-smoke
+question: |
+  Smoke after Rulings H and J: does every configured provider return one parseable single-call decide
+  response {steps, outcome, missing_terms, justification} under the llm-only condition on one scenario?
+condition: llm-only
+cases:
+- land_tax_home_exemption
+scenarios:
+- land_tax_home_exemption/unverifiable_trust_only_applicant_selfreport
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 0.3
+notes: |
+  Pre-flight for the 2026-09 llm-only grid; not a paper cell. One scenario (gold NEED_MORE_INFO, the
+  trust-only self-report the manuscript's Figure 3 shows), cheapest model per provider, one call each
+  (ADR 0007: decide returns steps before outcome; outcome_trace passthrough; no justify call). Checks
+  per row: justification[0].source == llm_inline, statute_input.unit.kind == act (Land Tax Act whole,
+  ADR 0005), exactly one ledger line, token fields present. Raw request/response per model are copied
+  to the ES report assets (phd3-jurix-smoke-2026-09-06).
