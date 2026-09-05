@@ -4,7 +4,7 @@ label: 'Journalism: CMS and consent registry silent'
 mechanism: register_silent
 description: DB override removes journalistic_purpose; both allow rules stall waiting
   for DB information with no source-unavailable flag -> U5 NEED_DB_INFO.
-utterance_file: request_allow.txt
+utterance_file: need_register_silent_purpose_and_consent.txt
 register_overrides:
   journalistic_data_disclosure__editorial_cms:
     remove:
@@ -17,7 +17,9 @@ register_overrides:
 tags:
 - needs-info
 - u5
+- utterance-rewritten-20260905
 gold_confidence: high
-notes: ''
+notes: Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was
+  request_allow.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
 provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
   content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_u5_need_db

@@ -4,11 +4,13 @@ label: 'Admission: applicant admits standing conviction (§ 15 p 1)'
 mechanism: own_admission
 description: Standing conviction for an intentional crime blocks appointment under
   § 15 p 1.
-utterance_file: request_deny.txt
+utterance_file: deny_own_admission_conviction.txt
 register_overrides: {}
 tags:
 - negative
+- utterance-rewritten-20260905
 gold_confidence: high
-notes: ''
+notes: Utterance rewritten 2026-09-05 to match the oracle claim set (UNDERSTATED;
+  was request_deny.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
 provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
   content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_deny

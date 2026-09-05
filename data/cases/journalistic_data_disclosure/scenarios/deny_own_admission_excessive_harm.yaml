@@ -4,11 +4,13 @@ label: 'Journalism: editor admits excessive harm (defeater)'
 mechanism: own_admission
 description: Excessive harm defeats ethics compliance and blocks the journalism basis;
   no consent on record.
-utterance_file: request_deny.txt
+utterance_file: deny_own_admission_excessive_harm.txt
 register_overrides: {}
 tags:
 - negative
+- utterance-rewritten-20260905
 gold_confidence: high
-notes: ''
+notes: Utterance rewritten 2026-09-05 to match the oracle claim set (UNDERSTATED;
+  was request_deny.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
 provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
   content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_deny

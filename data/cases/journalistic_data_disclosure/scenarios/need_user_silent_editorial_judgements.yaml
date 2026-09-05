@@ -4,13 +4,16 @@ label: 'Journalism: public interest and ethics not stated'
 mechanism: user_silent
 description: CMS confirms journalistic purpose; public_interest and ethics_ok are
   editorial judgements not yet provided -> NEED_USER_INFO.
-utterance_file: request_allow_confirmations_silent.txt
+utterance_file: need_user_silent_editorial_judgements.txt
 register_overrides: {}
 tags:
 - needs-info
+- utterance-rewritten-20260905
 gold_confidence: high
 notes: 'Utterance re-authored 2026-09-01: v1 reused request_allow.txt (which asserts
   avalik huvi and ajakirjanduseetika) and scripted the claims away; the v2 variant
-  omits that sentence so the gold holds under honest extraction.'
+  omits that sentence so the gold holds under honest extraction. | Utterance rewritten
+  2026-09-05 to match the oracle claim set (TRIMMED; was request_allow_confirmations_silent.txt);
+  see docs/reference/faithful-inputs-audit-2026-09-05.md.'
 provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
   content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_need_user

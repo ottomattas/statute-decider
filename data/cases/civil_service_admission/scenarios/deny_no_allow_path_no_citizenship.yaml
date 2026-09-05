@@ -4,13 +4,15 @@ label: 'Admission: neither EE nor EU citizen, no allow path'
 mechanism: no_allow_path
 description: Applicant is neither Estonian nor EU citizen; no allow rule fires and
   there is no deny-trigger, so § 14 falls back to DENY with no applicable rules.
-utterance_file: request_deny.txt
+utterance_file: deny_no_allow_path_no_citizenship.txt
 register_overrides: {}
 tags:
 - negative
 - no-basis
 - scripted-claims
+- utterance-rewritten-20260905
 gold_confidence: high
-notes: ''
+notes: Utterance rewritten 2026-09-05 to match the oracle claim set (CONTRADICTS;
+  was request_deny.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
 provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
   content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_deny_no_citizenship

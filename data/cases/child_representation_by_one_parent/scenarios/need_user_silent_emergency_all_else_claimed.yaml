@@ -3,11 +3,13 @@ case_id: child_representation_by_one_parent
 label: 'Child: all but emergency claimed, emergency open'
 mechanism: user_silent
 description: DB facts are known but the emergency fact remains open.
-utterance_file: request_need_user.txt
+utterance_file: need_user_silent_emergency_all_else_claimed.txt
 register_overrides: {}
 tags:
 - needs-info
+- utterance-rewritten-20260905
 gold_confidence: high
-notes: ''
+notes: Utterance rewritten 2026-09-05 to match the oracle claim set (UNDERSTATED;
+  was request_need_user.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
 provenance: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). |
   renamed 2026-09-05 from section_120_demo/need-user

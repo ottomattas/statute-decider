@@ -5,7 +5,7 @@ mechanism: trust_only
 description: Designer self-report (trust-only) covers competence and state-fee; allow_building_permit
   fires via lookup but supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
   (trust_only).
-utterance_file: request_allow.txt
+utterance_file: unverifiable_trust_only_designer_selfreport.txt
 register_overrides:
   building_permit_grant__designer_selfreport:
     warrant: trust_only
@@ -21,7 +21,9 @@ register_overrides:
 tags:
 - uncertainty
 - u7
+- utterance-rewritten-20260905
 gold_confidence: high
-notes: ''
+notes: Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was
+  request_allow.txt); see docs/reference/faithful-inputs-audit-2026-09-05.md.
 provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
   content (tag pre-refactor). | renamed 2026-09-05 from building_permit/building_permit_u7_trust_only
