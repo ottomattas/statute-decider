@@ -72,8 +72,9 @@ CAPABILITIES: list[Capability] = [
     Capability("join", "outcome", "*_outcome", "premise_outcome", "solver", ("pysat", "clingo", "horn", "hol"), future=True, implemented=False),
     Capability("join", "outcome", "*_outcome", "premise_outcome", "llm", ("decide",)),
     Capability("join", "trace", "*_trace", "outcome_trace", "oracle", ("hand-written reference trace",)),
-    Capability("join", "trace", "*_trace", "outcome_trace", "render", ("default",)),
-    Capability("join", "trace", "*_trace", "outcome_trace", "llm", ("justify",)),
+    Capability("join", "trace", "*_trace", "outcome_trace", "render", ("default",), note="solver_trace entry: deterministic rendering of the inference record"),
+    Capability("join", "trace", "*_trace", "outcome_trace", "passthrough", ("inline",), note="llm_inline entry: the steps + justification the deciding model wrote in its one call; no second call (Ruling J)"),
+    Capability("join", "trace", "*_trace", "outcome_trace", "llm", ("justify",), note="optional post-hoc justify node; appends an llm_post entry to the row's existing entries, never overwrites; not in either default pipeline"),
 ]
 
 CSV_HEADER = [

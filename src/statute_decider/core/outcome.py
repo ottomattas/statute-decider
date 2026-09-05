@@ -33,6 +33,10 @@ class PremiseOutcome(BaseModel):
     fired_rules: list[FiredRule] = Field(default_factory=list)
     valuation: dict[str, bool] = Field(default_factory=dict)  # term values the decision used
     free_missing: list[str] = Field(default_factory=list)  # non-catalog missing items (llm methods)
+    # An LLM decision reasons before it decides (Ruling J): the ordered steps it
+    # wrote, and its justification in ``note``. A solver leaves ``steps`` empty;
+    # its inference record is ``fired_rules`` + ``valuation``.
+    steps: list[str] = Field(default_factory=list)
     note: str = ""
     provenance: Provenance | None = None
 

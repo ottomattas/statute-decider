@@ -36,14 +36,22 @@ class ValueResponse(BaseModel):
 
 
 class DecideResponse(BaseModel):
-    """Decision of the llm-only condition: three-way outcome + missing items."""
+    """Decision of an LLM decide call — one structured call per scenario (Ruling J).
 
+    Field order is the schema order the model fills: ``steps`` come *before*
+    ``outcome`` so the model reasons before it decides; ``justification`` is
+    the inline justification stored on the row as an ``llm_inline`` entry.
+    """
+
+    steps: list[str] = Field(default_factory=list)
     outcome: Literal["ALLOW", "DENY", "NEED_MORE_INFO"]
     missing_terms: list[str] = Field(default_factory=list)
-    reason: str = ""
+    justification: str = ""
 
 
 class JustifyResponse(BaseModel):
+    """The optional post-hoc ``justify`` node: appended as an ``llm_post`` entry."""
+
     steps: list[str] = Field(default_factory=list)
     justification: str = ""
 

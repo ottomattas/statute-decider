@@ -49,7 +49,7 @@ from statute_decider.core.terms import (
     TermRef,
     UtteranceTerms,
 )
-from statute_decider.core.trace import OutcomeTrace, TraceStep
+from statute_decider.core.trace import JustificationEntry, OutcomeTrace
 
 __all__ = [
     "Availability",
@@ -65,6 +65,7 @@ __all__ = [
     "FactSet",
     "FieldToTerm",
     "FiredRule",
+    "JustificationEntry",
     "Level",
     "LogicLevel",
     "MissingReason",
@@ -92,7 +93,6 @@ __all__ = [
     "Term",
     "TermCatalog",
     "TermRef",
-    "TraceStep",
     "UtteranceTerms",
     "Warrant",
     "apply_register_overrides",

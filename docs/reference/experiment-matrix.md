@@ -54,7 +54,31 @@ Tue 25. They are not circular-trusted as publication gold.
 | Condition | Authority | Score |
 |---|---|---|
 | **runtime** | Deterministic solver (`z3` default) | paper 3-way accuracy; missing-fact P/R (should be ~1 on gold) |
-| **LLM-only** | No solver; structured `{outcome, missing_facts[]}` | same metrics |
+| **LLM-only** | No solver; **one** structured call returning `{steps[], outcome, missing_terms[], justification}` (Ruling J, 2026-09-06; `steps` before `outcome`) | same metrics |
+
+### Justification on every row (Ruling J, 2026-09-06)
+
+Every result row carries `justification`: a list of entries
+`{source, steps, text, model?, prompt_id?, prompt_hash?}` with `source` in
+`llm_inline` (the deciding model's own reasoning from its single decide call),
+`solver_trace` (the rendered inference record; `outcome_trace=render`), or
+`llm_post` (the optional `justify` node, `outcome_trace=llm`, which *appends*
+and never overwrites). LLM-decided conditions bind `outcome_trace=passthrough`
+and therefore make **exactly one call per scenario**; before 2026-09-06 the
+`llm-only` condition made two (decide + justify), so per-row cost for that
+cell roughly halves and older `llm-only` ledgers count 2 calls per row. The
+`justify` node is not part of either default pipeline.
+
+### Statute input (Ruling H, 2026-09-06)
+
+Prompts receive the whole act when it fits `max_statute_tokens` (default
+100 000), otherwise the smallest official structural unit (part / chapter /
+division) that contains every provision `statute.yaml` declares. On the
+current corpus only the Law of Obligations Act drops below the act (to
+`part_1__chp_2__dvs_4`, Part 1 General Part › Chapter 2 Contract ›
+Subchapter 4 Distance Contracts, §§ 52–62, ≈13k tokens instead of ≈316k);
+`sd statute-input` prints the table. Rows record
+`statute_input = {act, global_id, sha256, unit, declared_provisions, tokens_estimate}`.
 
 ## Model grid (cheap first)
 

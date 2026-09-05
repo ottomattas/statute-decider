@@ -1,8 +1,13 @@
 # Committed run 2: LLM-only, source to trace. Sources are files, every
 # derivation node is skipped, the model decides on the raw inputs and writes
-# its own justification. The pure counterpart to the architecture.
+# its own justification in the same call. The pure counterpart to the
+# architecture. Exactly ONE LLM call per scenario (Ruling J): the decide
+# prompt returns steps, outcome, missing_terms and justification; outcome_trace
+# passes that inline reasoning through as the row's llm_inline entry. Runs
+# before 2026-09-06 made a second (justify) call; their rows carry an llm_post
+# style trace under the old single-string schema.
 condition: llm-only
-notes: LLM-only mechanism and its data.
+notes: LLM-only mechanism and its data; one structured call per scenario.
 
 statute_text: { method: file }
 text_term: { method: skip }
@@ -14,5 +19,5 @@ registry_record: { method: file }
 record_term: { method: skip }
 term_fact: { method: skip }
 premise_outcome: { method: llm, strategy: decide, prompt: decide-raw-sources }
-outcome_trace: { method: llm, strategy: justify, prompt: justify }
+outcome_trace: { method: passthrough }
 logic: propositional

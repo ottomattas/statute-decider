@@ -14,6 +14,7 @@ from statute_decider.core import (
     ClaimSet,
     FactPremise,
     FactSet,
+    JustificationEntry,
     MissingReason,
     MissingTerm,
     OutcomeState,
@@ -26,7 +27,6 @@ from statute_decider.core import (
     ScoredOutcome,
     TermCatalog,
     TermRef,
-    TraceStep,
     UtteranceTerms,
 )
 from statute_decider.llm import LLMCall, LLMClient
@@ -356,12 +356,16 @@ def decide_llm(
         scored_as=ScoredOutcome(decision.outcome),
         missing_terms=missing_terms,
         free_missing=free_missing,
-        note=decision.reason,
+        steps=[step.strip() for step in decision.steps if step.strip()],
+        note=decision.justification,
         provenance=_llm_provenance("premise_outcome", "decide", prompt, result),
     )
 
 
-# --- outcome_trace (render / llm justify) ---
+# --- outcome_trace (render / passthrough / llm justify) ---
+# A row's justification is a list of entries (Ruling J): ``solver_trace`` from
+# ``render``, ``llm_inline`` from ``passthrough`` (what the deciding model wrote
+# in its one call), ``llm_post`` appended by the optional ``justify`` node.
 
 
 def render_trace(
@@ -370,11 +374,11 @@ def render_trace(
     rules: RuleSet,
     catalog: TermCatalog,
 ) -> OutcomeTrace:
+    """Deterministic rendering of a solver's inference record -> one ``solver_trace`` entry."""
     steps, justification = render_trace_text(outcome, rules, catalog)
     return OutcomeTrace(
         scenario_id=scenario_id,
-        steps=[TraceStep(step=i + 1, message=msg) for i, msg in enumerate(steps)],
-        justification=justification,
+        justification=[JustificationEntry(source="solver_trace", steps=steps, text=justification)],
         provenance=Provenance(
             node="outcome_trace",
             method="render",
@@ -382,6 +386,52 @@ def render_trace(
             consumed_artifact="render:default",
         ),
     )
+
+
+def passthrough_trace(scenario_id: str, outcome: PremiseOutcome) -> OutcomeTrace:
+    """The inline reasoning of an LLM-decided outcome -> one ``llm_inline`` entry.
+
+    No second call: the deciding model already reasoned (``steps``) and justified
+    (``note``) in the call that produced ``outcome``. Refuses a non-LLM outcome —
+    a solver's record is rendered, not passed through."""
+    prov = outcome.provenance
+    if prov is None or prov.method != "llm":
+        raise RuntimeError(
+            "outcome_trace=passthrough needs an llm-decided premise_outcome; "
+            f"got method {prov.method if prov else None!r} (use render for a solver)."
+        )
+    entry = JustificationEntry(
+        source="llm_inline",
+        steps=list(outcome.steps),
+        text=outcome.note,
+        model=prov.model,
+        prompt_id=prov.prompt_id,
+        prompt_hash=prov.prompt_hash,
+    )
+    return OutcomeTrace(
+        scenario_id=scenario_id,
+        justification=[entry],
+        provenance=Provenance(
+            node="outcome_trace",
+            method="passthrough",
+            provider="code",
+            consumed_artifact=f"premise_outcome:{prov.prompt_id}#{(prov.prompt_hash or '')[:12]}",
+        ),
+    )
+
+
+def render_existing_reasoning(trace: OutcomeTrace | None) -> str:
+    """The row's existing entries as prompt text for the ``justify`` node."""
+    if trace is None or not trace.justification:
+        return "(none)"
+    blocks: list[str] = []
+    for entry in trace.justification:
+        lines = [f"[{entry.source}]"]
+        lines.extend(f"{i + 1}. {step}" for i, step in enumerate(entry.steps))
+        if entry.text:
+            lines.append(entry.text)
+        blocks.append("\n".join(lines))
+    return "\n\n".join(blocks)
 
 
 def justify_llm(
@@ -393,19 +443,22 @@ def justify_llm(
     statute_text: str,
     utterance: str,
     outcome: PremiseOutcome,
+    existing: OutcomeTrace | None = None,
     temperature: float = 0.0,
     max_output_tokens: int = 8192,
     meta: dict | None = None,
 ) -> OutcomeTrace:
-    """LLM-written justification (the only trace an llm-decided outcome can have)."""
+    """Optional post-hoc justification, source-agnostic: reads the utterance, the
+    statute unit, the outcome and the row's existing steps/trace, and *appends*
+    one ``llm_post`` entry. Not part of either default pipeline."""
     missing = ", ".join(sorted(outcome.missing_term_ids() | set(outcome.free_missing))) or "(none)"
     user, prefix_len = prompt.render_with_prefix(
         "statute",
-        statute=statute_text.strip(),
+        statute=statute_text.strip() or "(no statute text bound)",
         utterance=utterance.strip() or "(no request text)",
         outcome=outcome.scored_as.value,
         missing_terms=missing,
-        reason=outcome.note or "(none)",
+        existing=render_existing_reasoning(existing),
     )
     result = client.complete(
         LLMCall(
@@ -419,10 +472,14 @@ def justify_llm(
             cache_prefix_len=prefix_len,
         )
     )
-    justification: JustifyResponse = result.parsed
-    return OutcomeTrace(
-        scenario_id=scenario_id,
-        steps=[TraceStep(step=i + 1, message=msg) for i, msg in enumerate(justification.steps)],
-        justification=justification.justification,
-        provenance=_llm_provenance("outcome_trace", "justify", prompt, result),
+    post: JustifyResponse = result.parsed
+    entry = JustificationEntry(
+        source="llm_post",
+        steps=[step.strip() for step in post.steps if step.strip()],
+        text=post.justification,
+        model=result.model,
+        prompt_id=prompt.prompt_id,
+        prompt_hash=prompt.sha256,
     )
+    base = existing or OutcomeTrace(scenario_id=scenario_id)
+    return base.appended(entry, _llm_provenance("outcome_trace", "justify", prompt, result))

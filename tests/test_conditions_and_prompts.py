@@ -59,7 +59,8 @@ def test_llm_only_plus_rules_binds_oracle_rules(root):
     assert condition.binding("text_term").method == "oracle"
     assert condition.binding("premise_outcome").method == "llm"
     assert condition.binding("premise_outcome").prompt == "decide-raw-sources-plus-rules"
-    assert condition.binding("outcome_trace").method == "skip"
+    # Ruling J: the decide call's inline reasoning is the row's trace; no second call.
+    assert condition.binding("outcome_trace").method == "passthrough"
     prompt = load_prompt(
         root / "prompts", "premise_outcome", "decide-raw-sources-plus-rules", strategy="decide"
     )

@@ -30,7 +30,7 @@ Every node is independently checkable: it can be bound to `oracle`
 isolation or in propagation. Conditions (`configs/conditions/`) bind a method
 to every node and are named for *who does what*: the three committed
 conditions are **solver-validation** (all-oracle trusted path), **llm-only**
-(LLM decides and justifies on raw sources), and **architecture** (the proposed
+(LLM decides and justifies on raw sources in one structured call), and **architecture** (the proposed
 architecture: LLM-extracted claims, register lookup, solver decides). Control
 conditions swap the solver for an LLM on the same inputs
 (`llm-decides-on-oracle-inputs-*`, `llm-decides-on-llm-claims-*`; the suffix
@@ -107,6 +107,10 @@ audit trail: one entry per provider call with the rendered system and user
 messages exactly as sent and the raw model response before any parsing.
 Solver inputs and outputs live in `results/nodes/premise_outcome.jsonl`
 (claims, facts, valuation, fired rules) and `results/nodes/outcome_trace.jsonl`.
+Every row carries `justification`: a list of entries `{source, steps, text,
+model?, prompt_id?, prompt_hash?}` — `llm_inline` (the deciding model's own
+reasoning), `solver_trace` (rendered inference record) or `llm_post` (the
+optional `justify` node, which appends; ADR 0007).
 
 ## Layout
 

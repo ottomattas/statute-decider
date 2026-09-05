@@ -171,8 +171,9 @@ One row per chain × level × node × method — atomic cells so gaps are visibl
 | join (all) | outcome | `*_outcome` | `premise_outcome` | `solver` | backends: `z3` · `pysat`ᶠ · `clingo`ᶠ · `horn`ᶠ · HOLᶠ |
 | join (all) | outcome | `*_outcome` | `premise_outcome` | `llm` | decide prompts |
 | join (all) | trace | `*_trace` | `outcome_trace` | `oracle` | hand-written reference trace |
-| join (all) | trace | `*_trace` | `outcome_trace` | `render` | deterministic rendering templates |
-| join (all) | trace | `*_trace` | `outcome_trace` | `llm` | justification prompts |
+| join (all) | trace | `*_trace` | `outcome_trace` | `render` | deterministic rendering of the inference record → `solver_trace` entry |
+| join (all) | trace | `*_trace` | `outcome_trace` | `passthrough` | the deciding model's inline steps + justification → `llm_inline` entry; no call (ADR 0007) |
+| join (all) | trace | `*_trace` | `outcome_trace` | `llm` | optional post-hoc `justify` node; appends an `llm_post` entry, in neither default pipeline |
 
 The matrix is symmetric where symmetry means something — three chains with identical `oracle`/`llm`/`skip` sets at term and premise levels, plus deterministic options exactly where the source is structured (`match`+`lookup` on records, `parse`ᶠ on markup; natural language offers no structure to exploit) — and deliberately asymmetric at the join, which has no chain and alone gains `solver`.
 
@@ -228,7 +229,7 @@ logic: propositional
 Three conditions are named and committed; they are what Priit's 1 Sep questions require. Every other cell of the matrix is *expressible* as a condition YAML + experiment when we want it, and is deliberately **not** pre-specified here — extra runs to strengthen the paper or mark future avenues get defined as experiments at that moment, not planned now.
 
 1. **solver-validation** — every node `oracle`/`file`, `premise_outcome=solver`, `outcome_trace=render`. No LLM, essentially free; proves the endpoint and the oracle data agree. Row 1 of any table.
-2. **llm-only** — source to trace: sources `file`, all derivation nodes `skip`, `premise_outcome=llm` on the raw inputs, `outcome_trace=llm`. The pure counterpart.
+2. **llm-only** — source to trace: sources `file`, all derivation nodes `skip`, `premise_outcome=llm` on the raw inputs in **one** structured call (steps, outcome, missing terms, justification), `outcome_trace=passthrough`. The pure counterpart.
 3. **architecture** — the proposed architecture, run as robustly as budget allows: statute chain `oracle`, `utterance_term`+`term_claim` `llm` (fused, `ground`), `record_term=oracle`, `term_fact=lookup`, `premise_outcome=solver(z3)`, `outcome_trace=render`. Cheap-model grid × repeats, per-class F1, budget-capped.
 
 The llm-only and architecture conditions on the same scenario suite with the same models and repeats give the decision-step comparison Priit asked for today; how the numbers are framed (which rows lead, what "identical inputs" means) is a writing decision for Friday 4 Sep with the numbers on the table.

@@ -16,5 +16,5 @@ registry_record: { method: file }
 record_term: { method: oracle }
 term_fact: { method: lookup }
 premise_outcome: { method: llm, strategy: decide, prompt: solver-inputs-partial-specification }
-outcome_trace: { method: skip }
+outcome_trace: { method: passthrough }  # inline steps/justification of the decide call; no extra call (Ruling J)
 logic: propositional

@@ -1,6 +1,6 @@
 # Extra cell of Priit's 28 Aug 2x2: oracle rules + LLM decides.
 # Same raw sources as llm-only; statute chain binds the oracle encoding so
-# the decide prompt can render it. Trace skipped (the 2026-08 harness scored the decision only).
+# the decide prompt can render it. Trace = the decide call's inline reasoning (Ruling J; the 2026-08 harness scored the decision only).
 condition: llm-only-plus-rules
 notes: >
   Who-decides isolation. Solver-validation is the solver side of this pair
@@ -17,5 +17,5 @@ registry_record: { method: file }
 record_term: { method: skip }
 term_fact: { method: skip }
 premise_outcome: { method: llm, strategy: decide, prompt: decide-raw-sources-plus-rules }
-outcome_trace: { method: skip }
+outcome_trace: { method: passthrough }  # inline steps/justification of the decide call; no extra call (Ruling J)
 logic: propositional

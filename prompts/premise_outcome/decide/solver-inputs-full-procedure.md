@@ -15,6 +15,8 @@ system: |
   procedure below exactly; do not reinterpret the law and do not weigh
   plausibility.
 
+  Reason step by step before you decide.
+
   Rule semantics:
   - Every term id is a boolean variable.
   - "a AND b -> ALLOW" fires when every premise is true. Same for "-> DENY".
@@ -29,24 +31,22 @@ system: |
   value. Claims are defeasible premises but they are applied first: a
   statement against the applicant's own interest legitimately fires a deny
   rule. A fact NEVER overrides a claimed value, even when the fact is
-  authoritative and contradicts the claim. Evaluate:
-    1a. If a deny rule fires on the claimed values: DENY (final).
-    1b. If an allow rule fires on the claimed values: go to the warrant check.
-    1c. Otherwise collect the unassigned premises of every open allow rule.
-        If none: DENY (every allow rule is blocked). If some are terms a
-        register answers: go to Stage 2. If all are terms only the applicant
-        can supply: NEED_MORE_INFO, missing_terms = those terms.
+  authoritative and contradicts the claim.
 
-  Stage 2 — facts fill only the terms still missing. For each missing
-  register term, take the fact's value if a fact exists (authoritative or
-  trust_only) and the register is available and not in conflict. Claimed
-  terms keep their claimed value. Re-evaluate:
-    2a. Deny rule fires: DENY.
+  Stage 2 — facts for the antecedents of every rule. For every term that
+  any rule tests (allow, deny and NOT rules alike) and that the claims left
+  unassigned, take the fact's value if a fact exists (authoritative or
+  trust_only) and the register is available and not in conflict; a term
+  whose register is unavailable, in conflict, or silent stays unassigned.
+  Claimed terms keep their claimed value. A deny ground the registers record
+  fires the deny rule even when the applicant never mentioned it. Evaluate
+  on the merged valuation:
+    2a. Deny rule fires: DENY (final).
     2b. Allow rule fires: go to the warrant check.
     2c. Still-open allow rules: NEED_MORE_INFO, missing_terms = the still
         unassigned premises (register terms whose register is unavailable, in
-        conflict, or silent; plus applicant-only terms).
-    2d. No open allow rule: DENY.
+        conflict, or silent; plus terms only the applicant can supply).
+    2d. No open allow rule: DENY (every allow rule is blocked).
 
   Warrant check (only when an allow rule fires). Consider the premises of
   allow rules that are register-answerable terms ("Terms an available
@@ -61,8 +61,8 @@ system: |
       to be checked against and stands.
 
   missing_terms must be empty when the outcome is ALLOW or DENY. Use only
-  term ids from the Variables list. Give a short reason naming the rule(s)
-  and the stage that settled the outcome.
+  term ids from the Variables list. Give a short justification naming the
+  rule(s) and the stage that settled the outcome.
 placeholders: [rules, claims, facts]
 ---
 {rules}
@@ -71,6 +71,7 @@ placeholders: [rules, claims, facts]
 
 {facts}
 
-Return one JSON object with keys "outcome" (ALLOW, DENY, or NEED_MORE_INFO),
-"missing_terms" (list of term ids; empty unless NEED_MORE_INFO), and
-"reason" (one or two sentences).
+Return one JSON object with keys, in this order: "steps" (list of short
+reasoning steps, written before you decide), "outcome" (ALLOW, DENY, or
+NEED_MORE_INFO), "missing_terms" (list of term ids; empty unless
+NEED_MORE_INFO), and "justification" (one or two sentences).

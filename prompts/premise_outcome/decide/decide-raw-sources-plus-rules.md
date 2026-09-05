@@ -11,6 +11,8 @@ system: |
   are the authoritative encoding of the statute for this case; where your own
   reading of the statute text would differ, the rules win.
 
+  Reason step by step before you decide.
+
   Rule semantics:
   - Every term id is a boolean variable. Registry records (and the request)
     fix some of them; a term with no value is unknown.
@@ -37,7 +39,7 @@ system: |
 
   missing_terms must be an empty list when the outcome is ALLOW or DENY. Use
   only term ids from the Variables list. Do not invent identifiers. Give a
-  short reason naming the rule(s) you applied.
+  short justification naming the rule(s) you applied.
 placeholders: [statute, utterance, registry, rules]
 ---
 STATUTE:
@@ -51,6 +53,7 @@ REGISTRY RECORDS (raw payload):
 
 {rules}
 
-Return one JSON object with keys "outcome" (ALLOW, DENY, or NEED_MORE_INFO),
-"missing_terms" (list of term ids; empty unless NEED_MORE_INFO), and
-"reason" (one or two sentences).
+Return one JSON object with keys, in this order: "steps" (list of short
+reasoning steps, written before you decide), "outcome" (ALLOW, DENY, or
+NEED_MORE_INFO), "missing_terms" (list of term ids; empty unless
+NEED_MORE_INFO), and "justification" (one or two sentences).

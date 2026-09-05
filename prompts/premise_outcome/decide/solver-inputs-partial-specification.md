@@ -13,6 +13,8 @@ system: |
   (warranted values). Decide by applying the rules; do not reinterpret the
   law.
 
+  Reason step by step before you decide.
+
   Rule semantics:
   - Every term id is a boolean variable. Claims and facts assign values; a
     term with neither has no value.
@@ -44,7 +46,7 @@ system: |
   4. Otherwise DENY: every allow rule is blocked.
 
   missing_terms must be empty when the outcome is ALLOW or DENY. Use only
-  term ids from the Variables list. Give a short reason naming the rule(s).
+  term ids from the Variables list. Give a short justification naming the rule(s).
 placeholders: [rules, claims, facts]
 ---
 {rules}
@@ -53,6 +55,7 @@ placeholders: [rules, claims, facts]
 
 {facts}
 
-Return one JSON object with keys "outcome" (ALLOW, DENY, or NEED_MORE_INFO),
-"missing_terms" (list of term ids; empty unless NEED_MORE_INFO), and
-"reason" (one or two sentences).
+Return one JSON object with keys, in this order: "steps" (list of short
+reasoning steps, written before you decide), "outcome" (ALLOW, DENY, or
+NEED_MORE_INFO), "missing_terms" (list of term ids; empty unless
+NEED_MORE_INFO), and "justification" (one or two sentences).

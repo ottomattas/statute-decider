@@ -321,6 +321,14 @@ def run_experiment(
                     oracle_outcome = store.oracle_value(case_id, "premise_outcome", scenario_id)
                     if oracle_outcome is not None:
                         row["score"] = score_outcome(produced_outcome, oracle_outcome)
+                trace = run.value("outcome_trace")
+                if trace is not None and not isinstance(trace, str):
+                    # Ruling J: the row's justification is a list of entries
+                    # {source, steps, text, model?, prompt_id?, prompt_hash?};
+                    # source in {llm_inline, solver_trace, llm_post}.
+                    row["justification"] = [
+                        entry.model_dump(exclude_none=True) for entry in trace.justification
+                    ]
                 produced_terms = run.value("utterance_term")
                 oracle_terms = store.oracle_value(case_id, "utterance_term", scenario_id)
                 if produced_terms is not None and oracle_terms is not None:

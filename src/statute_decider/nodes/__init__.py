@@ -12,6 +12,7 @@ from statute_decider.nodes.executors import (
     justify_llm,
     lookup_facts,
     match_record_terms,
+    passthrough_trace,
     render_trace,
     value_claims,
 )
@@ -37,6 +38,7 @@ __all__ = [
     "justify_llm",
     "lookup_facts",
     "match_record_terms",
+    "passthrough_trace",
     "render_trace",
     "value_claims",
 ]

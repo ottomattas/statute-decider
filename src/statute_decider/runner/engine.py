@@ -18,6 +18,7 @@ from statute_decider.core import (
     ClaimSet,
     DataStore,
     FactSet,
+    OutcomeTrace,
     PremiseOutcome,
     RecordTermMap,
     RegistryState,
@@ -34,6 +35,7 @@ from statute_decider.nodes import (
     justify_llm,
     lookup_facts,
     match_record_terms,
+    passthrough_trace,
     render_trace,
     value_claims,
 )
@@ -293,12 +295,30 @@ def run_scenario(
     values["premise_outcome"] = outcome
 
     # --- join: trace ---
+    # The row's justification list (Ruling J): ``render`` = solver_trace,
+    # ``passthrough`` = the llm_inline reasoning of an LLM decision (no second
+    # call), ``llm`` = the optional justify node, which first takes whatever the
+    # row already has (inline or rendered) and appends an llm_post entry.
     trace = None
     ot_binding = bind("outcome_trace")
+
+    def existing_trace() -> OutcomeTrace | None:
+        if outcome is None:
+            return None
+        if outcome.provenance is not None and outcome.provenance.method == "llm":
+            return passthrough_trace(scenario_id, outcome)
+        if ruleset is not None and catalog is not None:
+            return render_trace(scenario_id, outcome, ruleset, catalog)
+        return None
+
     if ot_binding.method == "render":
         if outcome is None or ruleset is None or catalog is None:
             raise RuntimeError("outcome_trace=render requires an inference record.")
         trace = render_trace(scenario_id, outcome, ruleset, catalog)
+    elif ot_binding.method == "passthrough":
+        if outcome is None:
+            raise RuntimeError("outcome_trace=passthrough requires premise_outcome.")
+        trace = passthrough_trace(scenario_id, outcome)
     elif ot_binding.method == "llm":
         client, model_id = services.require_llm("outcome_trace")
         if outcome is None:
@@ -312,6 +332,7 @@ def run_scenario(
             statute_text=statute_text_value or "",
             utterance=utterance,
             outcome=outcome,
+            existing=existing_trace(),
             temperature=services.temperature,
             max_output_tokens=services.max_output_tokens,
             meta=meta,

@@ -20,6 +20,7 @@ VALID_METHODS = {
     "lookup",
     "match",
     "render",
+    "passthrough",
     "parse",
     "file",
     "slice",
