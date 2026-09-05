@@ -1,10 +1,11 @@
-§ 42. Ehitusloa menetlus
+§ 42. Procedure for issuing building permits
 
-(1) Ehitusluba antakse, kui esitatud ehitusprojekt vastab õigusaktides sätestatud nõuetele, eelkõige detailplaneeringule või projekteerimistingimustele ning ehitisele ja ehitamisele esitatud nõuetele. Seaduses sätestatud juhul peab ehitis vastama riigi või kohaliku omavalitsuse eriplaneeringule.
+(1) The building permit is issued if the building design documentation that has been filed conforms to the requirements established in legislation, i.e., above all to the detailed spatial plan or design specifications and to the requirements for construction works and for building work. Where this is provided for by law, the construction work must conform to the national or municipal designated spatial plan.
 
-§ 44. Ehitusloa andmisest keeldumine
+§ 44. Refusal to issue a building permit
 
-() Pädev asutus keeldub ehitusloa andmisest, kui:
-1) kavandatav ehitis ei vasta detailplaneeringule, projekteerimistingimustele, riigi või kohaliku omavalitsuse eriplaneeringule, ehitisele või ehitamisele esitatavatele nõuetele või muudele avalik-õiguslikele kitsendustele;
-2) ehitusprojekti ei ole koostanud pädev isik või pädev isik ei ole teinud ehitusprojekti ekspertiisi;
-3) ehitusprojekt ei tugine ehitatava ehitise asukoha ehitusuuringu tulemustele või on nõutav uuring tegemata.
+The competent authority refuses to issue a building permit if:
+1) the envisaged construction work does not conform to the detailed spatial plan, design specifications, a national or municipal designated spatial plan, the requirements established for construction works or for building work, or other public-law restrictions;
+2) the building design documentation has not been created by a competent person or an expert assessment by a competent person has not been performed in respect of the building design documentation;
+3) the building design documentation does not take into account the results of the site investigations conducted at the site of the construction work to be built or the required site investigations have not been performed;
+[...]

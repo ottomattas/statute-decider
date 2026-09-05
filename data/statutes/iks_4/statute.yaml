@@ -1,6 +1,15 @@
 statute_id: iks_4
 kind: statute_text
-title: Isikuandmete kaitse seadus § 4 demo
+title: Personal Data Protection Act § 4
 jurisdiction: EE
-language: et
-notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).
+language: en
+translation_id: "519032026002"
+translation_url: https://www.riigiteataja.ee/en/tolge/text/519032026002
+translation_in_force_from: 16.03.2026
+translation_in_force_until: In force
+translation_published: 19.03.2026
+provisions: "§ 4"
+notes: >-
+  Interim English snippet (2026-09-05) from the official Riigi Teataja translation; to be
+  replaced by deterministic slicing of the official XML. Re-authored 2026-09-01 from v1
+  validated content (tag pre-refactor).

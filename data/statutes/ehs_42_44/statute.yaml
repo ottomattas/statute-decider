@@ -1,6 +1,15 @@
 statute_id: ehs_42_44
 kind: statute_text
-title: Ehitusseadustik §§ 42, 44 demo
+title: Building Code §§ 42, 44
 jurisdiction: EE
-language: et
-notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).
+language: en
+translation_id: "514052026003"
+translation_url: https://www.riigiteataja.ee/en/tolge/text/514052026003
+translation_in_force_from: 15.05.2026
+translation_in_force_until: In force
+translation_published: 14.05.2026
+provisions: "§ 42 (1); § 44 1)–3)"
+notes: >-
+  Interim English snippet (2026-09-05) from the official Riigi Teataja translation; to be
+  replaced by deterministic slicing of the official XML. Re-authored 2026-09-01 from v1
+  validated content (tag pre-refactor).

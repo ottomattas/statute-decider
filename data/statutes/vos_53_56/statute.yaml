@@ -1,6 +1,15 @@
 statute_id: vos_53_56
 kind: statute_text
-title: Võlaõigusseadus §§ 53 lg 4, 56 lg 1 demo
+title: Law of Obligations Act § 53 (4), § 56 (1)
 jurisdiction: EE
-language: et
-notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).
+language: en
+translation_id: "525112025001"
+translation_url: https://www.riigiteataja.ee/en/tolge/text/525112025001
+translation_in_force_from: 21.11.2025
+translation_in_force_until: In force
+translation_published: 25.11.2025
+provisions: "§ 53 (4) 1)–4¹); § 56 (1), (2¹), (2²)"
+notes: >-
+  Interim English snippet (2026-09-05) from the official Riigi Teataja translation; to be
+  replaced by deterministic slicing of the official XML. Re-authored 2026-09-01 from v1
+  validated content (tag pre-refactor).

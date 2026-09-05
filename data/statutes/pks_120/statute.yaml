@@ -1,6 +1,16 @@
 statute_id: pks_120
 kind: statute_text
-title: Family Law Section 120 demo
+title: Family Law Act (whole act; § 120 exercised)
 jurisdiction: EE
 language: et
-notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).
+translation_id: "516052025002"
+translation_url: https://www.riigiteataja.ee/en/tolge/text/516052025002
+translation_in_force_from: 01.01.2025
+translation_in_force_until: In force
+translation_published: 16.05.2025
+provisions: whole act
+notes: >-
+  statute.txt is still the Estonian consolidated text (RT I, 07.05.2025, 17, in force
+  01.01.2025); the English whole-act text will come from deterministic slicing of the
+  official XML (translation id recorded above). Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).

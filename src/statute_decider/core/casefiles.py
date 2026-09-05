@@ -23,8 +23,16 @@ class StatuteSidecar(BaseModel):
     title: str = ""
     act_references: list[str] = Field(default_factory=list)
     jurisdiction: str = "EE"
-    language: str = "et"
+    language: str = "en"
     version_date: str = ""
+    # Official translation the text was taken from (Riigi Teataja English
+    # translations, https://www.riigiteataja.ee/en/). Empty for original-language texts.
+    translation_id: str = ""  # Riigi Teataja translation id, e.g. "505012026005"
+    translation_url: str = ""
+    translation_in_force_from: str = ""  # header "In force from" (dd.mm.yyyy)
+    translation_in_force_until: str = ""  # header "In force until" ("In force" = open-ended)
+    translation_published: str = ""  # header "Translation published"
+    provisions: str = ""  # which §§ / subsections / clauses the slice reproduces
     notes: str = ""
 
 

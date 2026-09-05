@@ -1,6 +1,17 @@
 statute_id: ats_14_15
 kind: statute_text
-title: Avaliku teenistuse seadus §§ 14-15 demo
+title: Civil Service Act §§ 14–15
 jurisdiction: EE
-language: et
-notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).
+language: en
+translation_id: "518022026002"
+translation_url: https://www.riigiteataja.ee/en/tolge/text/518022026002
+translation_in_force_from: 13.02.2026
+translation_in_force_until: 30.06.2026
+translation_published: 18.02.2026
+provisions: "§ 14 (1)–(2); § 15 1)–4)"
+notes: >-
+  Interim English snippet (2026-09-05) from the official Riigi Teataja translation; to be
+  replaced by deterministic slicing of the official XML. The translation's header lists an
+  end date (30.06.2026) because a 01.07.2026 amendment touched other sections; §§ 14–15 are
+  unchanged in the Estonian redaction in force. Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor).
