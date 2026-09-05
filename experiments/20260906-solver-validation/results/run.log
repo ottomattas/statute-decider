@@ -1,0 +1,2 @@
+2026-09-05 22:44:57,862 INFO statute_decider.runner.experiment Experiment 20260906-solver-validation: 54 cells (54 scenarios x 1 models x 1 prompt combos x 1 repeats), 0 kept from a previous run, 54 to run now, sequential.
+2026-09-05 22:44:58,271 INFO statute_decider.runner.experiment Experiment 20260906-solver-validation done: 54 rows, EUR 0.0000.

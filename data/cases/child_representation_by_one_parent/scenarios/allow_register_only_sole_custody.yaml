@@ -1,0 +1,26 @@
+scenario_id: allow_register_only_sole_custody
+case_id: child_representation_by_one_parent
+label: 'Child: bare request, custody register shows sole custody'
+mechanism: register_only
+description: Intent supplies nothing; the population register resolves the parent
+  and the custody register records sole custody -> ALLOW via § 120 (2) 1) (allow_sole_custody).
+utterance_file: allow_register_only_sole_custody.txt
+register_overrides:
+  child_representation_by_one_parent__custody_registry:
+    exclude: false
+    availability: null
+    warrant: null
+    label: ''
+    set:
+      main:
+        sole_custody: true
+    remove: {}
+tags:
+- positive
+- db-resolved
+- via_db
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

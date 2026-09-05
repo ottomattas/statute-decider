@@ -1,7 +1,7 @@
 """The acceptance test: the trusted path reproduces every oracle outcome.
 
 Runs the solver-validation condition (every node oracle/file, z3 decision,
-rendered trace) over all 47 scenarios and requires exact agreement on the
+rendered trace) over all 54 scenarios and requires exact agreement on the
 scored outcome, the fine-grained state, and the missing-term set.
 """
 

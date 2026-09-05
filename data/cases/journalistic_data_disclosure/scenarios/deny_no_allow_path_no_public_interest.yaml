@@ -1,0 +1,18 @@
+scenario_id: deny_no_allow_path_no_public_interest
+case_id: journalistic_data_disclosure
+label: 'Journalism: no public interest, no allow path'
+mechanism: no_allow_path
+description: Journalistic purpose and ethics hold but the editor finds no public interest,
+  so allow_journalism_basis is blocked; no consent on record blocks the consent baseline;
+  no excessive harm -> DENY with no applicable rules.
+utterance_file: deny_no_allow_path_no_public_interest.txt
+register_overrides: {}
+tags:
+- negative
+- no-basis
+- scripted-claims
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

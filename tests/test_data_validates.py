@@ -4,7 +4,7 @@
 def test_inventory(store):
     assert len(store.statute_ids()) == 6
     assert len(store.case_ids()) == 6
-    assert len(store.all_scenarios()) == 47
+    assert len(store.all_scenarios()) == 54
 
 
 def test_statutes_load(store):

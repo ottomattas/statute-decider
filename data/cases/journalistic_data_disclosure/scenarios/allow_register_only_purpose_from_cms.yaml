@@ -1,0 +1,18 @@
+scenario_id: allow_register_only_purpose_from_cms
+case_id: journalistic_data_disclosure
+label: 'Journalism: CMS confirms purpose, editor supplies judgements'
+mechanism: register_only
+description: Editor supplies the user-sourced public-interest and ethics judgements
+  (and no excessive harm); the editorial CMS confirms the journalistic purpose and
+  the consent register shows no consent -> ALLOW via § 4, first sentence (allow_journalism_basis).
+utterance_file: allow_register_only_purpose_from_cms.txt
+register_overrides: {}
+tags:
+- positive
+- db-resolved
+- via_db
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

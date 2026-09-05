@@ -1,8 +1,8 @@
 scenario_id: deny_own_admission_plan_violation
 case_id: building_permit_grant
-label: 'Permit: applicant admits detail-plan violation (§ 44 p 1)'
+label: 'Permit: applicant admits plan violation (§ 44 1))'
 mechanism: own_admission
-description: Detail-plan violation under § 44 p 1 fires the deny rule, yielding DENY.
+description: Detail-plan violation under § 44 1) fires the deny rule, yielding DENY.
 utterance_file: deny_own_admission_plan_violation.txt
 register_overrides: {}
 tags:

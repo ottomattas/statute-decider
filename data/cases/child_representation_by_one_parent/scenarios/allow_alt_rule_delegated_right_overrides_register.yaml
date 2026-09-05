@@ -1,0 +1,18 @@
+scenario_id: allow_alt_rule_delegated_right_overrides_register
+case_id: child_representation_by_one_parent
+label: 'Child: parent claims § 119 power of decision'
+mechanism: alt_rule_claim_overrides_register
+description: Applicant asserts parenthood, joint custody and a court-granted power
+  of decision under § 119; the custody register does not record the delegation, but
+  the claim takes precedence and allow_delegated_right fires -> ALLOW via § 120 (2)
+  2).
+utterance_file: allow_alt_rule_delegated_right_overrides_register.txt
+register_overrides: {}
+tags:
+- positive
+- scripted-claims
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

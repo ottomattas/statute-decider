@@ -1,9 +1,9 @@
 scenario_id: allow_alt_rule_eu_citizen_overrides_register
 case_id: civil_service_admission
-label: 'Admission: EU citizen via the § 14 lg 2 path'
+label: 'Admission: EU citizen via the § 14 (2) path'
 mechanism: alt_rule_claim_overrides_register
 description: EU-citizen applicant (not Estonian) with secondary education and language
-  proficiency resolves to ALLOW via § 14 lg 2.
+  proficiency resolves to ALLOW via § 14 (2).
 utterance_file: allow_alt_rule_eu_citizen_overrides_register.txt
 register_overrides: {}
 tags:

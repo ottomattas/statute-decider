@@ -1,6 +1,6 @@
 ---
 description: >
-  LLM-decider cell of the 2x2: same raw sources as the baseline, plus the
+  LLM-decider cell of the 2x2: same raw sources as the llm-only condition, plus the
   hand-authored (oracle) rules. The model is instructed to apply those rules
   rather than re-read the statute; where the two would differ, the rules win.
   Ported from the v1 oracle-llm-20260901 system prompt so Friday numbers stay

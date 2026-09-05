@@ -3,7 +3,7 @@ case_id: consumer_purchase_withdrawal
 label: 'Withdrawal: consumer, distance sale, in time, confirmed'
 mechanism: claims_verified
 description: Consumer, distance contract, within 14 days, notice sent in time, non-excluded
-  goods -> ALLOW under § 56 lg 1.
+  goods -> ALLOW under § 56 (1).
 utterance_file: request_allow.txt
 register_overrides: {}
 tags:

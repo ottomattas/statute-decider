@@ -2,8 +2,8 @@ scenario_id: need_register_silent_consumer_status
 case_id: consumer_purchase_withdrawal
 label: 'Withdrawal: CRM silent on consumer status'
 mechanism: register_silent
-description: DB lacks is_consumer with no source-unavailable flag; user timely-dispatch
-  facts are pinned -> U5 NEED_DB_INFO.
+description: register lacks is_consumer with no source-unavailable flag; user timely-dispatch
+  facts are pinned -> U5 NEED_REGISTER_INFO.
 utterance_file: need_register_silent_consumer_status.txt
 register_overrides:
   consumer_purchase_withdrawal__trader_crm:

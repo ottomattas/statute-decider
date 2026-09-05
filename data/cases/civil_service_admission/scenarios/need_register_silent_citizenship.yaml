@@ -3,7 +3,7 @@ case_id: civil_service_admission
 label: 'Admission: population registry silent on citizenship'
 mechanism: register_silent
 description: Population registry has no citizenship record; solver cannot resolve
-  ee_citizen after DB lookup -> NEED_DB_INFO.
+  ee_citizen after register lookup -> NEED_REGISTER_INFO.
 utterance_file: need_register_silent_citizenship.txt
 register_overrides:
   civil_service_admission__population_registry:

@@ -1,0 +1,11 @@
+name: 20260906-solver-validation
+question: |
+  After the 2026-09-05 English-only rewrite (Ruling E) and the balanced 18/18/18 suite (Ruling F): do the solver endpoint and the oracle data still agree end to end over all 54 scenarios? Every node oracle/file, decision by z3, trace rendered. No LLM; row 1 of any table.
+condition: solver-validation
+cases: all
+models: []
+repeats: 1
+budget_eur: 0.0
+notes: |
+  Re-run of 20260901-solver-validation on the 54-scenario suite (12 authored, 5 retired 2026-09-05;
+  see docs/reference/gold-review-2026-09-05.md). Statute texts are interim English snippets pending XML slicing.

@@ -1,9 +1,9 @@
 scenario_id: deny_own_admission_conviction
 case_id: civil_service_admission
-label: 'Admission: applicant admits standing conviction (§ 15 p 1)'
+label: 'Admission: applicant admits standing conviction (§ 15 1))'
 mechanism: own_admission
 description: Standing conviction for an intentional crime blocks appointment under
-  § 15 p 1.
+  § 15 1).
 utterance_file: deny_own_admission_conviction.txt
 register_overrides: {}
 tags:

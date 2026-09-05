@@ -2,8 +2,8 @@ scenario_id: need_user_silent_deadline_and_notice
 case_id: consumer_purchase_withdrawal
 label: 'Withdrawal: deadline and notice not stated'
 mechanism: user_silent
-description: DB confirms consumer + distance-contract + non-excluded goods, but the
-  user-sourced 14-day/notice facts are missing -> NEED_USER_INFO halt.
+description: register confirms consumer + distance-contract + non-excluded goods,
+  but the user-sourced 14-day/notice facts are missing -> NEED_USER_INFO halt.
 utterance_file: request_need_user.txt
 register_overrides: {}
 tags:

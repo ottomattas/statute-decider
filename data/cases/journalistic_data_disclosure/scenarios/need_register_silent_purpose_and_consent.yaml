@@ -2,8 +2,8 @@ scenario_id: need_register_silent_purpose_and_consent
 case_id: journalistic_data_disclosure
 label: 'Journalism: CMS and consent registry silent'
 mechanism: register_silent
-description: DB override removes journalistic_purpose; both allow rules stall waiting
-  for DB information with no source-unavailable flag -> U5 NEED_DB_INFO.
+description: register override removes journalistic_purpose; both allow rules stall
+  waiting for register information with no source-unavailable flag -> U5 NEED_REGISTER_INFO.
 utterance_file: need_register_silent_purpose_and_consent.txt
 register_overrides:
   journalistic_data_disclosure__editorial_cms:

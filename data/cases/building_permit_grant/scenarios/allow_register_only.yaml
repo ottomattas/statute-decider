@@ -3,7 +3,7 @@ case_id: building_permit_grant
 label: 'Permit: bare request, registers supply every term'
 mechanism: register_only
 description: Intent supplies nothing; all five positive conditions and the plan-violation
-  flag resolve via DB lookup -> ALLOW via § 42 lg 1.
+  flag resolve via register lookup -> ALLOW via § 42 (1).
 utterance_file: allow_register_only.txt
 register_overrides: {}
 tags:
@@ -13,7 +13,7 @@ tags:
 - utterance-rewritten-20260905
 gold_confidence: high
 notes: 'audited 2026-08-26: ALLOW/empty confirmed; earlier solver-emitted missing
-  facts were a scoring artifact (pre-DB-lookup snapshot), fixed in paper_outcomes.missing_facts_from_solution
+  facts were a scoring artifact (pre-register-lookup snapshot), fixed in paper_outcomes.missing_facts_from_solution
   | Utterance rewritten 2026-09-05 to match the oracle claim set (TRIMMED; was request_allow.txt);
   see docs/reference/faithful-inputs-audit-2026-09-05.md.'
 provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated

@@ -1,8 +1,8 @@
 ---
 description: >
-  Baseline decide: LLM-only decision from the raw sources (statute text, user
+  LLM-only decide: decision from the raw sources alone (statute text, user
   utterance, raw registry payload). No vocabulary, no rules, no solver — the
-  pure counterpart to the candidate architecture.
+  pure counterpart to the architecture condition.
 system: >
   You decide a statutory case from the text of the statute, the applicant's
   request, and the raw records the registers returned. Choose exactly one

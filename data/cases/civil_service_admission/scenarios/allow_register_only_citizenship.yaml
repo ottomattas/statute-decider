@@ -1,0 +1,18 @@
+scenario_id: allow_register_only_citizenship
+case_id: civil_service_admission
+label: 'Admission: registers supply § 14 (1), conflict declared'
+mechanism: register_only
+description: Applicant only gives the user-sourced § 15 4) non-conflict declaration;
+  citizenship, education, language, capacity and the clean record all resolve from
+  the registers -> ALLOW via § 14 (1) (allow_ee_citizen).
+utterance_file: allow_register_only_citizenship.txt
+register_overrides: {}
+tags:
+- positive
+- db-resolved
+- via_db
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

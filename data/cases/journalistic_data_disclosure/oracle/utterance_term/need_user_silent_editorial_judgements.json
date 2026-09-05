@@ -4,11 +4,11 @@
   "term_refs": [
     {
       "term_id": "journalistic_purpose",
-      "span": "The processing is ajakirjanduslik in purpose"
+      "span": "The processing is journalistic in purpose"
     },
     {
       "term_id": "subject_consent",
-      "span": "has not granted a separate nõusolek"
+      "span": "has not granted a separate consent"
     }
   ],
   "provenance": {

@@ -2,7 +2,7 @@ scenario_id: allow_claims_verified_pensioner_supplement
 case_id: land_tax_home_exemption
 label: 'Land tax: pensioner supplement, same inputs as allow'
 mechanism: claims_verified
-description: 'Pensioner supplement path (§ 11 lg 5 p 1): all six conditions including
+description: 'Pensioner supplement path (§ 11 (5) 1)): all six conditions including
   pension status and submitted application hold -> ALLOW.'
 utterance_file: request_allow.txt
 register_overrides: {}

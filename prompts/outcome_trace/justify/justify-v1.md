@@ -1,6 +1,6 @@
 ---
 description: >
-  Baseline justify: write the human-readable justification for an LLM-decided
+  LLM-only justify: write the human-readable justification for an LLM-decided
   outcome. An llm-decided outcome has no inference record, so its trace can
   only come from an LLM — which is itself worth measuring.
 system: >

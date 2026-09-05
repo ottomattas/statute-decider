@@ -1,0 +1,23 @@
+{
+  "node": "premise_outcome",
+  "scenario_id": "allow_alt_rule_sole_custody_overrides_register",
+  "state": "ALLOW",
+  "scored_as": "ALLOW",
+  "missing_terms": [],
+  "fired_rules": [],
+  "valuation": {},
+  "free_missing": [],
+  "note": "authored 2026-09-05; solver check: fired=['allow_sole_custody']",
+  "provenance": {
+    "node": "premise_outcome",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-05T21:00:00Z",
+    "notes": "Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); see docs/reference/gold-review-2026-09-05.md."
+  }
+}

@@ -1,0 +1,30 @@
+scenario_id: deny_register_only_plan_nonconformity
+case_id: building_permit_grant
+label: 'Permit: bare request, register shows plan non-conformity'
+mechanism: register_only
+description: Intent supplies nothing; the building register records that the project
+  does not conform to the detailed spatial plan (plan_conformant false, plan_violation
+  true). The register fact plan_conformant=false closes the only allow path (§ 42
+  (1)); the solver draws register facts only for open allow-path terms, so deny_plan_violation
+  is not triggered from the register -> default DENY with no applicable rules.
+utterance_file: deny_register_only_plan_nonconformity.txt
+register_overrides:
+  building_permit_grant__building_registry:
+    exclude: false
+    availability: null
+    warrant: null
+    label: ''
+    set:
+      main:
+        plan_violation: true
+        plan_conformant: false
+    remove: {}
+tags:
+- negative
+- db-resolved
+- via_db
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

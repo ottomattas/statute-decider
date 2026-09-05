@@ -1,0 +1,18 @@
+scenario_id: deny_no_allow_path_no_estonian_language
+case_id: civil_service_admission
+label: 'Admission: language requirement unmet, no allow path'
+mechanism: no_allow_path
+description: Estonian citizen who does not meet the statutory Estonian-language requirement;
+  speaks_estonian is false in both § 14 paths, no § 15 bar fires -> DENY with no applicable
+  rules.
+utterance_file: deny_no_allow_path_no_estonian_language.txt
+register_overrides: {}
+tags:
+- negative
+- no-basis
+- scripted-claims
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md

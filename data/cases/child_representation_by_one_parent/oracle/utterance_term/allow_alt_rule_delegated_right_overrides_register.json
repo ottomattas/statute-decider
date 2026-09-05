@@ -1,0 +1,38 @@
+{
+  "node": "utterance_term",
+  "scenario_id": "allow_alt_rule_delegated_right_overrides_register",
+  "term_refs": [
+    {
+      "term_id": "applicant_is_not_parent",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "applicant_is_parent",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "delegated_decision_right",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "sole_custody",
+      "span": "",
+      "confidence": null
+    }
+  ],
+  "provenance": {
+    "node": "utterance_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-05T21:00:00Z",
+    "notes": "Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); see docs/reference/gold-review-2026-09-05.md."
+  }
+}

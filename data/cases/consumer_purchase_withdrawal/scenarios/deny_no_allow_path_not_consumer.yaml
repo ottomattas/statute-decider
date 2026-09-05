@@ -3,7 +3,7 @@ case_id: consumer_purchase_withdrawal
 label: 'Withdrawal: buyer is not a consumer, no allow path'
 mechanism: no_allow_path
 description: Counter-party is not a consumer; allow_distance_withdrawal is blocked
-  and no § 53 lg 4 exclusion applies -> DENY with no applicable rules.
+  and no § 53 (4) exclusion applies -> DENY with no applicable rules.
 utterance_file: deny_no_allow_path_not_consumer.txt
 register_overrides: {}
 tags:

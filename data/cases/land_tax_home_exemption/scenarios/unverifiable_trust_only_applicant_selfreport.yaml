@@ -2,7 +2,7 @@ scenario_id: unverifiable_trust_only_applicant_selfreport
 case_id: land_tax_home_exemption
 label: 'Land tax: only the applicant''s self-report vouches'
 mechanism: trust_only
-description: All four § 11 lg 1 conditions resolve from a trust-only applicant self-report;
+description: All four § 11 (1) conditions resolve from a trust-only applicant self-report;
   home-land rule fires but supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
   (trust_only).
 utterance_file: unverifiable_trust_only_applicant_selfreport.txt

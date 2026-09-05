@@ -1,0 +1,18 @@
+scenario_id: deny_no_allow_path_municipality_not_set
+case_id: land_tax_home_exemption
+label: 'Land tax: council has not set the exemption, no allow path'
+mechanism: no_allow_path
+description: All personal conditions hold (owner, residence, residential land, pensioner,
+  application submitted) but the municipal council has not set the § 11 (1) incentive;
+  both allow rules require municipality_exemption_set -> DENY with no applicable rules.
+utterance_file: deny_no_allow_path_municipality_not_set.txt
+register_overrides: {}
+tags:
+- negative
+- no-basis
+- scripted-claims
+- authored-20260905
+gold_confidence: high
+notes: ''
+provenance: Authored 2026-09-05 (Ruling F, balanced gold 18/18/18); hand-verified
+  in docs/reference/gold-review-2026-09-05.md
