@@ -26,6 +26,7 @@ from statute_decider.core import (
     TermCatalog,
     UtteranceTerms,
 )
+from statute_decider.legislation.units import DEFAULT_MAX_STATUTE_TOKENS
 from statute_decider.llm import LLMClient
 from statute_decider.nodes import (
     decide_llm,
@@ -50,6 +51,7 @@ class CellServices:
     model_id: str | None = None
     temperature: float = 0.0
     max_output_tokens: int = 8192
+    max_statute_tokens: int = DEFAULT_MAX_STATUTE_TOKENS  # Ruling H: statute unit budget
     prompt_overrides: dict[str, str] = field(default_factory=dict)
     solver_override: str | None = None
     meta: dict[str, Any] = field(default_factory=dict)
@@ -111,20 +113,26 @@ def run_scenario(
         return condition.binding(node)
 
     # --- sources ---
-    # statute_text: ``file`` = the full act rendered from the corpus XML (what
+    # statute_text: ``file`` = the official text rendered from the corpus XML —
+    # the whole act, or the smallest structural unit enclosing the declared
+    # provisions when the act exceeds ``max_statute_tokens`` (Ruling H; what
     # prompts receive); ``slice`` = only the provisions statute.yaml declares
-    # (the ablation). Both record document + provision provenance.
+    # (the ablation). Both record document + unit + provision provenance, and
+    # the same ``statute_input`` record rides on every ledger line via ``meta``.
     statute: StatuteText | None = None
     statute_text_value: str | None = None
     st_method = bind("statute_text").method
     if st_method == "file":
-        statute = store.statute_text(statute_id, method="full_act")
+        statute = store.statute_text(
+            statute_id, method="full_act", max_tokens=services.max_statute_tokens
+        )
     elif st_method == "slice":
         statute = store.statute_text(statute_id, method="slice")
     elif st_method != "skip":
         raise _unsupported("statute_text", st_method)
     if statute is not None:
         statute_text_value = statute.text
+        meta["statute_input"] = statute.statute_input()
     values["statute_text"] = statute
 
     utterance: str = ""

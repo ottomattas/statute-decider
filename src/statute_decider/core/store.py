@@ -19,6 +19,7 @@ from statute_decider.core.casefiles import (
     Scenario,
     StatuteSpec,
     StatuteText,
+    StatuteUnit,
     apply_register_overrides,
 )
 from statute_decider.core.outcome import PremiseOutcome
@@ -28,6 +29,11 @@ from statute_decider.core.terms import RecordTermMap, TermCatalog, UtteranceTerm
 from statute_decider.core.trace import OutcomeTrace
 from statute_decider.legislation.catalogue import CatalogueEntry
 from statute_decider.legislation.corpus import Corpus
+from statute_decider.legislation.units import (
+    DEFAULT_MAX_STATUTE_TOKENS,
+    estimate_tokens,
+    select_statute_unit,
+)
 from statute_decider.legislation.riigiteataja import Act
 
 RENDERED_FILE = "statute.rendered.txt"
@@ -93,16 +99,40 @@ class DataStore:
     def statute_act(self, statute_id: str) -> Act:
         return self.corpus.load(self.statute_entry(statute_id).global_id)
 
-    def statute_text(self, statute_id: str, method: str = "full_act") -> StatuteText:
-        """Render the statute from the corpus: the whole act (``full_act``, what
-        prompts receive) or only the declared provisions (``slice``, the ablation)."""
+    def statute_text(
+        self,
+        statute_id: str,
+        method: str = "full_act",
+        *,
+        max_tokens: int = DEFAULT_MAX_STATUTE_TOKENS,
+    ) -> StatuteText:
+        """Render the statute from the corpus.
+
+        ``full_act`` (the ``file`` method, what prompts receive): the whole act
+        when it fits ``max_tokens``, otherwise the smallest official structural
+        unit enclosing every declared provision (Ruling H; ``method`` on the
+        result then reads ``unit``). ``slice``: only the declared provisions
+        (the ablation).
+        """
         spec = self.statute_spec(statute_id)
         entry = self.statute_entry(statute_id)
         act = self.corpus.load(entry.global_id)
+        unit = StatuteUnit(kind="act", eid="act", display=act.metadata.title)
+        budget: int | None = None
         if method == "full_act":
-            text = act.render_full()
+            choice = select_statute_unit(act, spec.provisions, max_tokens=max_tokens)
+            text = choice.text
+            unit = StatuteUnit(kind=choice.kind, eid=choice.eid, display=choice.display)
+            budget = max_tokens
+            if not choice.is_whole_act:
+                method = "unit"
         elif method == "slice":
             text = act.render_slice(spec.provisions)
+            unit = StatuteUnit(
+                kind="slice",
+                eid="slice",
+                display=", ".join(act.display(e) for e in spec.provisions),
+            )
         else:
             raise ValueError(f"statute_text method {method!r} is not 'full_act' or 'slice'")
         return StatuteText(
@@ -112,14 +142,18 @@ class DataStore:
             sha256=entry.sha256,
             language=entry.language,
             method=method,  # type: ignore[arg-type]
+            unit=unit,
             provisions=list(spec.provisions),
             chars=len(text),
+            tokens_estimate=estimate_tokens(text),
+            max_tokens=budget,
             text=text,
             provenance=Provenance(
                 node="statute_text",
-                method="file" if method == "full_act" else "slice",
+                method="slice" if method == "slice" else "file",
                 provider="code",
                 consumed_artifact=f"{entry.file}#{entry.sha256[:12]}",
+                notes=f"statute input: {unit.kind} {unit.eid} ({unit.display}), ~{estimate_tokens(text)} tokens",
             ),
         )
 

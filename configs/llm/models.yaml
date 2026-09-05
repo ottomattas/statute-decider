@@ -1,5 +1,9 @@
 # Model registry: friendly id -> provider + API model id.
 # Prices live in prices.yaml (same ids). Add a model here + a price there.
+# context_tokens: the vendor-documented context window (input + output), verified
+# 2026-09-06 against the linked pages. Ruling H sizes the statute unit budget
+# (experiment max_statute_tokens, default 100000) so that budget + prompt margin +
+# max_output_tokens fits the smallest window on any grid (haiku-4.5: 200k).
 
 models:
   # --- cheap grid (the workhorse tier) ---
@@ -7,37 +11,46 @@ models:
     provider: google
     api_model: gemini-2.5-flash
     tier: cheap
+    context_tokens: 1048576  # https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash
   gpt-5-mini:
     provider: openai
     api_model: gpt-5-mini
     tier: cheap
+    context_tokens: 400000  # https://developers.openai.com/api/docs/models/gpt-5-mini
   haiku-4.5:
     provider: anthropic
     api_model: claude-haiku-4-5-20251001
     tier: cheap
+    context_tokens: 200000  # https://platform.claude.com/docs/en/models/fable-5-1/overview (comparison table)
   deepseek-v4-flash:
     provider: deepseek
     api_model: deepseek-v4-flash
     tier: cheap
+    context_tokens: 1000000  # https://api-docs.deepseek.com (Models & Pricing: 1M context)
 
   # --- SOTA slice (verified 2026-08-25) ---
   gemini-3.1-pro:
     provider: google
     api_model: gemini-3.1-pro-preview
     tier: sota
+    context_tokens: 1048576  # https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview
   gpt-5.6-sol:
     provider: openai
     api_model: gpt-5.6-sol
     tier: sota
+    context_tokens: 1050000  # https://developers.openai.com/api/docs/models/gpt-5.6-sol (2x input price above 272k input tokens)
   fable-5.1:
     provider: anthropic
     api_model: claude-fable-5-1  # released 2026-09-01; forced tool_choice is a 400 on this model
     tier: sota
+    context_tokens: 1000000  # https://platform.claude.com/docs/en/models/fable-5-1/overview
   fable-5:
     provider: anthropic
     api_model: claude-fable-5
     tier: legacy-sota  # superseded by fable-5.1 on 2026-09-03; kept for the 1 Sep ledgers
+    context_tokens: 1000000  # https://platform.claude.com/docs/en/models/fable-5-1/overview (unchanged from Fable 5)
   deepseek-v4-pro:
     provider: deepseek
     api_model: deepseek-v4-pro
     tier: sota
+    context_tokens: 1000000  # https://api-docs.deepseek.com (Models & Pricing: 1M context)

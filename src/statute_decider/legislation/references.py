@@ -10,9 +10,12 @@ Riigi Teataja schema carries::
     sec_11__subsec_5__point_1       § 11 (5) 1)
     sec_11__subsec_5__point_4_1     § 11 (5) 4¹)
     chp_3 / part_2 / dvs_1 / subdvs_1 / subsubdvs_1   structural units (headings only)
+    part_1__chp_2__dvs_4            a structural unit by its path (Part 1 › Chapter 2 › Division 4);
+                                    unit numbers restart inside a parent, so the path is the id
 
 Levels are joined with ``__``; a superscript is a ``_<n>`` suffix on the
-level's own number. The mapping to RT element ids lives in
+level's own number. A structural path descends strictly (part > chp > dvs >
+subdvs > subsubdvs) and may skip levels the act does not use. The mapping to RT element ids lives in
 ``riigiteataja.rt_id_to_eid`` / ``eid_to_rt_id`` (a bijection); this module
 never sees RT ids.
 """
@@ -60,8 +63,11 @@ def parse_eid(eid: str) -> tuple[EidPart, ...]:
         parts.append(EidPart(match.group(1), match.group(2), match.group(3)))
     levels = [p.level for p in parts]
     if levels[0] in STRUCTURAL_LEVELS:
-        if len(parts) != 1:
-            raise ValueError(f"Structural eId {eid!r} must be a single level")
+        ranks = [STRUCTURAL_LEVELS.index(lv) if lv in STRUCTURAL_LEVELS else -1 for lv in levels]
+        if any(r < 0 for r in ranks) or any(b <= a for a, b in zip(ranks, ranks[1:])):
+            raise ValueError(
+                f"Structural eId {eid!r} must descend strictly through {list(STRUCTURAL_LEVELS)}"
+            )
         return tuple(parts)
     expected = list(PROVISION_LEVELS[: len(parts)])
     if levels != expected:

@@ -16,5 +16,6 @@ prompts: {} # optional sweep, e.g. {utterance_term: [ground, ground-terse]} — 
 repeats: 1
 temperature: 0.0
 max_output_tokens: 8192
+max_statute_tokens: 100000 # Ruling H: whole act if it fits, else the smallest official unit enclosing the declared provisions
 budget_eur: 5.0
 notes: ""

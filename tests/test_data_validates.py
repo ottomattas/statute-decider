@@ -18,8 +18,15 @@ def test_statutes_load(store):
         for eid in spec.provisions:
             act.provision(eid)  # raises on a miss
         full = store.statute_text(statute_id)
-        assert full.method == "full_act" and full.text.strip() and full.chars == len(full.text)
+        # Ruling H: the whole act within the budget, else the smallest enclosing unit;
+        # in this corpus only the Law of Obligations Act (~316k tokens) drops to a unit.
+        expected_method = "unit" if statute_id == "law_of_obligations_act" else "full_act"
+        assert full.method == expected_method, (statute_id, full.method, full.tokens_estimate)
+        assert full.text.strip() and full.chars == len(full.text)
+        assert full.tokens_estimate <= full.max_tokens and full.unit.eid
         assert full.global_id == spec.source.global_id and len(full.sha256) == 64
+        for eid in spec.provisions:  # every declared provision is inside the text handed on
+            assert act.display(eid).split(" ")[1] in full.text, (statute_id, eid)
         sliced = store.statute_text(statute_id, "slice")
         assert sliced.chars < full.chars
         rendered = store.statute_rendered_path(statute_id)

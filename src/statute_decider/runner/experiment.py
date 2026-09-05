@@ -21,6 +21,7 @@ from pydantic import BaseModel, Field
 
 from statute_decider.core import DataStore
 from statute_decider.core.provenance import utc_now
+from statute_decider.legislation.units import DEFAULT_MAX_STATUTE_TOKENS
 from statute_decider.llm import BudgetGuard, LLMClient, ModelRegistry, load_dotenv
 from statute_decider.nodes import NODE_ORDER
 from statute_decider.runner.conditions import load_condition
@@ -29,6 +30,11 @@ from statute_decider.runner.report import render_summary
 from statute_decider.runner.scoring import score_claims, score_outcome, score_utterance_terms
 
 log = logging.getLogger(__name__)
+
+
+# Room for everything in a prompt that is not the statute: instructions, the
+# utterance, the term catalogue / rules, the structured-output schema.
+STATUTE_PROMPT_MARGIN_TOKENS = 8_000
 
 
 class ExperimentConfig(BaseModel):
@@ -41,6 +47,10 @@ class ExperimentConfig(BaseModel):
     repeats: int = 1
     temperature: float = 0.0
     max_output_tokens: int = 8192
+    # Ruling H: the statute text a model receives is the whole act when its token
+    # estimate fits this budget, else the smallest official structural unit that
+    # encloses the declared provisions. See legislation/units.py for the default.
+    max_statute_tokens: int = DEFAULT_MAX_STATUTE_TOKENS
     budget_eur: float = 5.0
     notes: str = ""
 
@@ -200,6 +210,22 @@ def run_experiment(
         if not specs:
             raise ValueError("Model selection resolved to an empty grid.")
         repeats = config.repeats
+        # Ruling H: the statute budget must leave room for the rest of the prompt
+        # and the reply inside the smallest context window on the grid.
+        smallest = min(specs, key=lambda s: s.context_tokens or float("inf"))
+        if smallest.context_tokens and (
+            config.max_statute_tokens + config.max_output_tokens + STATUTE_PROMPT_MARGIN_TOKENS
+            > smallest.context_tokens
+        ):
+            log.warning(
+                "max_statute_tokens=%d + max_output_tokens=%d + margin %d exceeds the %d-token "
+                "context of %s; the statute unit may not fit.",
+                config.max_statute_tokens,
+                config.max_output_tokens,
+                STATUTE_PROMPT_MARGIN_TOKENS,
+                smallest.context_tokens,
+                smallest.model_id,
+            )
     else:
         specs = [None]
         repeats = 1
@@ -273,6 +299,7 @@ def run_experiment(
                     model_id=spec.model_id if spec else None,
                     temperature=config.temperature,
                     max_output_tokens=config.max_output_tokens,
+                    max_statute_tokens=config.max_statute_tokens,
                     prompt_overrides=combo,
                     solver_override=solver,
                     meta={"experiment": config.name, "run_id": run_id, "repeat": repeat,
@@ -281,14 +308,10 @@ def run_experiment(
                 run = run_scenario(store, condition, case_id, scenario_id, services)
                 statute = run.value("statute_text")
                 if statute is not None:
-                    # Which text the model/solver saw: document + declared provisions, never RT ids.
-                    row["statute_source"] = {
-                        "global_id": statute.global_id,
-                        "sha256": statute.sha256,
-                        "method": statute.method,
-                        "provisions": list(statute.provisions),
-                        "chars": statute.chars,
-                    }
+                    # Which text the model/solver saw: document, official unit, declared
+                    # provisions, token estimate — never RT ids (Ruling H; was ``statute_source``
+                    # until 2026-09-06, rows before that keep the old key).
+                    row["statute_input"] = statute.statute_input()
                 produced_outcome = run.value("premise_outcome")
                 if produced_outcome is not None:
                     row["produced_state"] = produced_outcome.state.value

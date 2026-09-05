@@ -174,6 +174,37 @@ def _cmd_validate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_statute_input(args: argparse.Namespace) -> int:
+    """Offline: which official unit each statute resolves to under the token budget
+    (Ruling H), with every candidate's size. No LLM call."""
+    from statute_decider.core import DataStore
+    from statute_decider.legislation import DEFAULT_MAX_STATUTE_TOKENS, unit_candidates
+
+    root = _find_root(Path(args.root) if args.root else None)
+    store = DataStore(root / "data")
+    statutes = [args.statute] if args.statute else store.statute_ids()
+    if args.max_tokens is None:
+        args.max_tokens = DEFAULT_MAX_STATUTE_TOKENS
+    print(f"max_statute_tokens = {args.max_tokens}  (tokens = ceil(chars / 4))\n")
+    print(f"{'act':30s} {'chosen unit':26s} {'display':70s} {'tokens':>8s} {'chars':>9s}")
+    for statute_id in statutes:
+        text = store.statute_text(statute_id, max_tokens=args.max_tokens)
+        print(
+            f"{statute_id:30s} {text.unit.eid:26s} {text.unit.display[:70]:70s} "
+            f"{text.tokens_estimate:8d} {text.chars:9d}"
+        )
+        if args.candidates:
+            act = store.statute_act(statute_id)
+            for cand in unit_candidates(act, store.statute_spec(statute_id).provisions):
+                mark = "*" if cand.eid == text.unit.eid else " "
+                print(f"  {mark} {cand.kind:16s} {cand.eid:26s} {cand.display[:60]:60s} {cand.tokens_estimate:8d}")
+        if args.write:
+            out = Path(args.write) / f"{statute_id}.txt"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(text.text, encoding="utf-8")
+    return 0
+
+
 def _corpus(args: argparse.Namespace):
     from statute_decider.legislation.corpus import CORPUS_RELATIVE, Corpus
 
@@ -261,6 +292,22 @@ def main(argv: list[str] | None = None) -> int:
         help="Regenerate data/statutes/*/statute.rendered.txt instead of failing on drift.",
     )
     validate_parser.set_defaults(func=_cmd_validate)
+
+    unit_parser = sub.add_parser(
+        "statute-input",
+        help="Offline: the official unit each statute resolves to under the token budget (Ruling H).",
+    )
+    unit_parser.add_argument("--root", default=None)
+    unit_parser.add_argument("--statute", default=None, help="one statute id (default: all)")
+    unit_parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=None,
+        help="statute token budget (default: legislation.units.DEFAULT_MAX_STATUTE_TOKENS)",
+    )
+    unit_parser.add_argument("--candidates", action="store_true", help="list every enclosing unit with its size")
+    unit_parser.add_argument("--write", default=None, help="directory to write each chosen text into")
+    unit_parser.set_defaults(func=_cmd_statute_input)
 
     corpus_parser = sub.add_parser("corpus", help="Legislation corpus (data/sources/legislation).")
     corpus_sub = corpus_parser.add_subparsers(dest="corpus_command", required=True)

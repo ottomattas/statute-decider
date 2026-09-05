@@ -56,10 +56,14 @@ cell-for-cell with runs on the 54-scenario suite.
 
 Statute texts come from the official Riigi Teataja consolidated-text XML
 (`data/sources/legislation/`, 7 acts × {et, en}, byte-identical copies plus
-a generated `catalogue.json`). The input to the system is always the
-**full act**, rendered deterministically from the XML; each statute's
-`statute.yaml` names the act (by `global_id`) and the provisions its rules
-were written against. Statute ids are English act slugs (`land_tax_act`),
+a generated `catalogue.json`). The input to the system is the **official
+text**, rendered deterministically from the XML: the whole act when it fits
+the statute token budget (`max_statute_tokens`, default 100 000), otherwise
+the smallest official structural unit (part / chapter / division) that
+encloses every provision the statute's `statute.yaml` declares — never a
+hand-made excerpt (ADR 0005; `sd statute-input` shows the choice per act).
+Each statute's `statute.yaml` names the act (by `global_id`) and the
+provisions its rules were written against. Statute ids are English act slugs (`land_tax_act`),
 provision references are `<act_slug>/<eId>`
 (`land_tax_act/sec_11__subsec_5__point_1`, displayed as `§ 11 (5) 1)`);
 the RT element ids are never stored. Layout, catalogue schema and the
@@ -89,6 +93,7 @@ python3.12 -m venv .venv          # or: uv venv --python 3.12
 .venv/bin/pytest -q               # full test suite, incl. 54-scenario solver validation
 .venv/bin/sd validate             # data inventory + schema check + every provision resolved against the XML
 .venv/bin/sd corpus check         # re-hash the legislation corpus, report drift and validity windows
+.venv/bin/sd statute-input --candidates   # offline: which official unit each act resolves to under the token budget
 .venv/bin/sd matrix export        # regenerate docs/matrix.csv (the experiment menu)
 
 # run the free committed condition end to end

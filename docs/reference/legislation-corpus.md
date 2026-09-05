@@ -30,14 +30,26 @@ Current contents: 7 acts × {et, en} = 14 files (schema `tyviseadus_1_10.02.2010
 Building Code, Civil Service Act, Family Law Act, Land Tax Act, Law of Obligations
 Act, Personal Data Protection Act, Public Information Act (catalogue only, no case).
 
-## The input is the full act
+## The input is the official text: the act, or its smallest enclosing unit
 
 `statute_text: file` (every committed condition) loads the act named by the statute's
-`statute.yaml`, renders the **whole act** to plain text and hands that to the prompt.
-The node value / `row.statute_source` records the provenance only:
-`{global_id, sha256, language, method, provisions: [eIds], chars}`.
-`statute_text: slice` renders only the declared provisions — the ablation "full act vs
-declared provisions"; nothing committed uses it yet. Both are registered in
+`statute.yaml` and hands the prompt the **whole act** when its token estimate
+(`ceil(chars / 4)`) fits `max_statute_tokens` (experiment setting, default 100 000);
+otherwise the **smallest official structural unit** — part, chapter, division,
+subdivision, as the XML divides the act — that encloses every declared provision,
+rendered by the same renderer with the act header, a `Structural unit: …` breadcrumb
+and every heading and number as in the text (Ruling H, 2026-09-06, ADR 0005;
+`legislation/units.py`). In this corpus only the Law of Obligations Act (~316k tokens)
+drops below the act: to `part_1__chp_2__dvs_4`, "Part 1 › Chapter 2 Contract ›
+Subchapter 4 Distance Contracts" (§§ 52–62, ~13k tokens). `sd statute-input
+--candidates` prints the choice and every candidate per act.
+The node value / `row.statute_input` (also on every ledger line, in `meta`) records
+`{act, global_id, sha256, unit: {kind, eid, display}, declared_provisions, method,
+chars, tokens_estimate, max_tokens}`; rows written before 2026-09-06 carry the older
+`statute_source` key. Structural units are addressed by their path eId
+(`part_1__chp_2__dvs_4`) because level-local numbers restart inside each parent.
+`statute_text: slice` renders only the declared provisions — the ablation "official
+text vs declared provisions"; nothing committed uses it yet. Both are registered in
 `runner/matrix.py`; the `statute_markup` / `markup_term` capability cells are
 implemented by this package (XML parsing; provision resolver).
 

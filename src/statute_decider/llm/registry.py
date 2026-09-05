@@ -14,6 +14,9 @@ class ModelSpec:
     provider: str  # google | openai | anthropic | deepseek
     api_model: str
     tier: str = ""
+    # Context window (input + output) as the vendor documents it; 0 = not recorded.
+    # The runner checks the statute token budget against the smallest on a grid.
+    context_tokens: int = 0
     input_usd_per_million: float = 0.0
     output_usd_per_million: float = 0.0
     # Prompt-cache rates. When absent (0.0) the ledger prices cache hits and
@@ -62,6 +65,7 @@ class ModelRegistry:
                 provider=spec["provider"],
                 api_model=spec.get("api_model", model_id),
                 tier=spec.get("tier", ""),
+                context_tokens=int(spec.get("context_tokens", 0) or 0),
                 input_usd_per_million=float(prices.get("input_usd_per_million", 0.0)),
                 output_usd_per_million=float(prices.get("output_usd_per_million", 0.0)),
                 cached_input_usd_per_million=float(prices.get("cached_input_usd_per_million", 0.0)),
@@ -80,6 +84,12 @@ class ModelRegistry:
             raise ValueError(
                 f"Unknown model {model_id!r}. Known: {sorted(self._specs)}"
             ) from exc
+
+    def min_context_tokens(self, model_ids: list[str] | None = None) -> int:
+        """Smallest recorded context window among the given (default: all) models; 0 if none recorded."""
+        specs = [self.spec(m) for m in model_ids] if model_ids else list(self._specs.values())
+        known = [s.context_tokens for s in specs if s.context_tokens]
+        return min(known) if known else 0
 
     def resolve(self, requested: list[str]) -> list[ModelSpec]:
         """Resolve CLI/experiment model selections; 'all' means every registered model."""

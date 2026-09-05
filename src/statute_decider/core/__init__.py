@@ -11,6 +11,7 @@ from statute_decider.core.casefiles import (
     StatuteSource,
     StatuteSpec,
     StatuteText,
+    StatuteUnit,
     apply_register_overrides,
 )
 from statute_decider.core.enums import (
@@ -87,6 +88,7 @@ __all__ = [
     "StatuteSource",
     "StatuteSpec",
     "StatuteText",
+    "StatuteUnit",
     "Term",
     "TermCatalog",
     "TermRef",

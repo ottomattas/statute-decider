@@ -287,12 +287,41 @@ class Provision:
 
 @dataclass
 class Unit:
-    """A structural heading (part / chapter / division …) in document order."""
+    """A structural heading (part / chapter / division …) in document order.
+
+    ``eid`` is the level-local id (``dvs_4``); unit numbers restart inside a
+    parent, so the unit's identity is its ``path`` (``part_1__chp_2__dvs_4``).
+    """
 
     eid: str
     level: str
     display_number: str
     heading: str
+    parent: Unit | None = field(default=None, repr=False)
+    depth: int = 0
+
+    @property
+    def path(self) -> str:
+        chain: list[str] = []
+        node: Unit | None = self
+        while node is not None:
+            chain.append(node.eid)
+            node = node.parent
+        return "__".join(reversed(chain))
+
+    @property
+    def title(self) -> str:
+        """The official heading line as the text shows it (``Subchapter 4 Distance Contracts``)."""
+        return f"{self.display_number} {self.heading}".strip()
+
+    def ancestors(self) -> list[Unit]:
+        """Outermost first, excluding self."""
+        out: list[Unit] = []
+        node = self.parent
+        while node is not None:
+            out.append(node)
+            node = node.parent
+        return list(reversed(out))
 
 
 class ProvisionNotFound(KeyError):
@@ -310,7 +339,10 @@ class Act:
         self.index: dict[str, Provision] = {}
         self.footnotes: list[str] = []
         self.annexes: list[str] = []
+        self._unit_stack: list[Unit] = []
+        self.unit_of: dict[str, Unit | None] = {}  # section eid -> innermost enclosing unit
         self._build(root)
+        del self._unit_stack
 
     # -- building -----------------------------------------------------------
 
@@ -355,15 +387,18 @@ class Act:
                 sup = _child(child, f"{name}Nr")
                 sup_idx = sup.get("ylaIndeks") if sup is not None else None
                 eid = f"{level}_{number}" + (f"_{sup_idx}" if sup_idx else "")
-                self.body.append(
-                    Unit(
-                        eid=eid,
-                        level=level,
-                        display_number=_display_number(child),
-                        heading=_path_text(child, f"{name}Pealkiri"),
-                    )
+                unit = Unit(
+                    eid=eid,
+                    level=level,
+                    display_number=_display_number(child),
+                    heading=_path_text(child, f"{name}Pealkiri"),
+                    parent=self._unit_stack[-1] if self._unit_stack else None,
+                    depth=len(self._unit_stack),
                 )
+                self.body.append(unit)
+                self._unit_stack.append(unit)
                 self._walk_body(child)
+                self._unit_stack.pop()
             # anything else at body level (notes, ids) is not statute text
 
     def _add_section(self, el: ET.Element) -> None:
@@ -405,6 +440,7 @@ class Act:
             section.repealed = True
         self._register(section)
         self.body.append(section)
+        self.unit_of[section.eid] = self._unit_stack[-1] if self._unit_stack else None
 
     def _add_subsection(self, section: Provision, lg: ET.Element) -> None:
         lang = self.metadata.language
@@ -479,6 +515,61 @@ class Act:
     def provision_eids(self) -> list[str]:
         return list(self.index)
 
+    # -- structural units -------------------------------------------------------
+
+    def units(self) -> list[Unit]:
+        """Every structural unit in document order (parts, chapters, divisions …)."""
+        return [item for item in self.body if isinstance(item, Unit)]
+
+    def unit(self, path: str) -> Unit:
+        parse_eid(path)
+        for unit in self.units():
+            if unit.path == path:
+                return unit
+        raise ProvisionNotFound(
+            f"{self.metadata.title} ({self.metadata.global_id}) has no structural unit {path}"
+        )
+
+    def enclosing_units(self, eids: list[str]) -> list[Unit]:
+        """The structural units that contain *all* of ``eids``, outermost first
+        (empty when the act has no units or the provisions span the whole act)."""
+        chains: list[list[Unit]] = []
+        for eid in eids:
+            section = self.provision(eid).section
+            unit = self.unit_of.get(section.eid)
+            chains.append([*unit.ancestors(), unit] if unit is not None else [])
+        if not chains:
+            return []
+        common: list[Unit] = []
+        for level_units in zip(*chains):
+            first = level_units[0]
+            if all(u is first for u in level_units):
+                common.append(first)
+            else:
+                break
+        return common
+
+    def render_unit(self, path: str, *, strip_markers: bool = False) -> str:
+        """One structural unit with everything inside it — its own heading, the
+        headings of nested units and every section, numbered exactly as the text
+        is. Prefaced by the act header and the unit's position in the act."""
+        unit = self.unit(path)
+        crumbs = " › ".join(u.title for u in [*unit.ancestors(), unit])
+        out: list[str] = [self.header(), f"Structural unit: {crumbs}", ""]
+        inside = False
+        for item in self.body:
+            if isinstance(item, Unit):
+                if item is unit:
+                    inside = True
+                elif inside and item.depth <= unit.depth:
+                    break
+                if inside:
+                    out.extend(["", item.title, ""])
+            elif inside:
+                out.extend(self._lines(item, strip_markers, whole=True))
+                out.append("")
+        return "\n".join(out).rstrip() + "\n"
+
     def display(self, eid: str) -> str:
         """``§ 11 (5) 1)`` using the document's numbering (unnumbered subsections hidden)."""
         parts = parse_eid(eid)
@@ -529,8 +620,7 @@ class Act:
         out: list[str] = [self.header(), ""]
         for item in self.body:
             if isinstance(item, Unit):
-                head = f"{item.display_number} {item.heading}".strip()
-                out.extend(["", head, ""])
+                out.extend(["", item.title, ""])
             else:
                 out.extend(self._lines(item, strip_markers, whole=True))
                 out.append("")

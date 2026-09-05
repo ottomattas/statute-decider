@@ -33,7 +33,7 @@ class Capability:
 
 CAPABILITIES: list[Capability] = [
     # statute chain
-    Capability("statute", "source", "*_text", "statute_text", "file", ("full-act",), note="the whole act rendered from the official Riigi Teataja XML in data/sources/legislation (provenance: global_id + sha256 + declared eIds)"),
+    Capability("statute", "source", "*_text", "statute_text", "file", ("official-unit",), note="the official Riigi Teataja XML in data/sources/legislation rendered whole, or — above max_statute_tokens — as the smallest structural unit enclosing the declared eIds (Ruling H; provenance: global_id + sha256 + unit + declared eIds)"),
     Capability("statute", "source", "*_text", "statute_text", "slice", ("declared-provisions",), note="only the eIds statute.yaml declares; ablation against full-act"),
     Capability("statute", "source", "*_text", "statute_text", "live", ("statute-api",), future=True, implemented=False),
     Capability("statute", "source", "*_text", "statute_text", "generate", ("synthetic",), future=True, implemented=False),

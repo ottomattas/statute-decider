@@ -29,11 +29,14 @@ class StatuteSource(BaseModel):
 class StatuteSpec(BaseModel):
     """``data/statutes/<act_slug>/statute.yaml`` — a selection spec over the corpus.
 
-    The input to the system is always the **full act** (``scope: full_act``);
-    ``provisions`` names the eIds the rules and term catalogue were written
-    against. It drives ``statute_text: slice`` (the ablation), the committed
-    ``statute.rendered.txt`` artefact, and ``sd validate``'s resolution checks.
-    RT element ids never appear here — only ``<eId>`` values.
+    The input to the system is the official text (``scope: full_act``): the
+    whole act, or — when the act exceeds the statute token budget — the smallest
+    official structural unit enclosing every declared provision (Ruling H,
+    ``legislation.units``). ``provisions`` names the eIds the rules and term
+    catalogue were written against. It drives that unit choice,
+    ``statute_text: slice`` (the ablation), the committed ``statute.rendered.txt``
+    artefact, and ``sd validate``'s resolution checks. RT element ids never
+    appear here — only ``<eId>`` values.
     """
 
     model_config = {"extra": "forbid"}
@@ -48,12 +51,22 @@ class StatuteSpec(BaseModel):
     notes: str = ""
 
 
+class StatuteUnit(BaseModel):
+    """Which official unit of the act the text is: the act itself (``kind="act"``,
+    ``eid="act"``) or one structural unit by its path eId (``part_1__chp_2__dvs_4``)."""
+
+    kind: str  # act | part | chapter | division | subdivision | sub-subdivision
+    eid: str
+    display: str  # "Part 1 GENERAL PART › Chapter 2 CONTRACT › Subchapter 4 Distance Contracts"
+
+
 class StatuteText(BaseModel):
     """Output of ``statute_text``: the rendered text plus its provenance.
 
     ``text`` is excluded from dumps (a full act runs to a megabyte); the
     recorded node value is the provenance — document (``global_id`` +
-    ``sha256``) and the declared provision eIds — plus the size.
+    ``sha256``), the unit chosen, the declared provision eIds — plus the size
+    and the deterministic token estimate against the budget it was chosen under.
     """
 
     node: Literal["statute_text"] = "statute_text"
@@ -62,11 +75,28 @@ class StatuteText(BaseModel):
     global_id: str
     sha256: str
     language: str
-    method: Literal["full_act", "slice"]
+    method: Literal["full_act", "unit", "slice"]  # what was rendered
+    unit: StatuteUnit = Field(default_factory=lambda: StatuteUnit(kind="act", eid="act", display=""))
     provisions: list[str] = Field(default_factory=list)
     chars: int = 0
+    tokens_estimate: int = 0
+    max_tokens: int | None = None
     text: str = Field(default="", exclude=True)
     provenance: Provenance | None = None
+
+    def statute_input(self) -> dict:
+        """The ``statute_input`` record every row and ledger line carries (Ruling H)."""
+        return {
+            "act": self.act_slug,
+            "global_id": self.global_id,
+            "sha256": self.sha256,
+            "unit": self.unit.model_dump(),
+            "declared_provisions": list(self.provisions),
+            "method": self.method,
+            "chars": self.chars,
+            "tokens_estimate": self.tokens_estimate,
+            "max_tokens": self.max_tokens,
+        }
 
 
 class RegisterSchema(BaseModel):
