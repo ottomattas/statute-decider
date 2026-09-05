@@ -1,0 +1,11 @@
+case_id: journalistic_data_disclosure
+title: Isikuandmete kaitse seadus § 4 demo
+description: Lawful-basis check for processing personal data for journalistic purposes
+  without consent.
+statute_ids:
+- iks_4
+register_ids:
+- journalistic_data_disclosure__editorial_cms
+- journalistic_data_disclosure__consent_registry
+- journalistic_data_disclosure__editorial_selfreport
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

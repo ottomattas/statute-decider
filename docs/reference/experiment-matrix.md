@@ -7,6 +7,13 @@ and must not be quoted as results.
 Paper: `MattasJarvTammet-2026-NeSy-Statute-Logic`.
 Tool commit is pinned in `article.tex` after a run.
 
+> **Id rename 2026-09-05.** This document predates the v2 tree and the
+> 2026-09-05 rename. Where it names ids, the current names are used below
+> and the pre-rename names are in `docs/reference/id-aliases.md`. The
+> conditions of this matrix map to `configs/conditions/`: *runtime* →
+> `solver-validation` / `architecture`, *LLM-only* → `llm-only`; the encoding
+> experiment (i) has no committed condition yet.
+
 ## Claims under test
 
 1. **Extraction vs gold.** On one hand-auditable Estonian statute slice (five
@@ -27,7 +34,7 @@ is better than nothing and still legally wrong).
 | Slice | Scenarios | Gold |
 |---|---|---|
 | Five suite domains | 40 | `expected_outcome` + `expected_missing_facts` |
-| `section_120_demo` | 7 | promoted overnight; audit `gold_confidence` |
+| `child_representation_by_one_parent` (PKS § 120) | 7 | promoted overnight; audit `gold_confidence` |
 | Paper 3-way map | scoring layer | NEED_DB / NEED_USER / NEED_EXPERT / UN* → NEED_MORE_INFO |
 
 `gold_confidence: low` rows are solver-proposed and need operator audit before
@@ -106,17 +113,21 @@ results.**
 | runtime 3-way | 47/47 = 1.000 | ALLOW 14, DENY 12, NEED_MORE_INFO 21 |
 | LLM-only 3-way | 188 = 47×4 | pooled acc **0.734**; NEED_MORE_INFO 0.536 is the miss; DENY 0.938 |
 | LLM-only by provider | 47 each | deepseek 0.787, anthropic 0.745, openai 0.723, gemini 0.681 |
-| missing-fact P/R runtime | 0.936 / 1.000 | P gap = three low-confidence `*_allow_via_db` |
+| missing-fact P/R runtime | 0.936 / 1.000 | P gap = three low-confidence `*_allow_via_db` (now `allow_register_only*`) |
 | missing-fact P/R LLM-only | 0.970 / 0.785 | high precision, under-recall (they omit required facts) |
 | synthesis alignment F1 | mean **0.263** (n=11) | civil ~0.48–0.56 (audit); withdrawal 0.13–0.31; §120 ~0 |
 | spend EUR | **0.95 / 10.00** | no halt; Tue 25 €100 still almost intact |
 
-Gemini `section_120_demo` synthesis returned truncated JSON (1 failed row).
+Gemini `child_representation_by_one_parent` (then `section_120_demo`) synthesis returned truncated JSON (1 failed row).
 `civil_service` alignments need hand audit (near-duplicate / negated labels).
 
 Low-confidence gold (audit before Tue 25):
-`consumer_withdrawal_allow_via_db`, `land_tax_allow_via_db`,
-`building_permit_allow_via_db`, `section_120_demo/prompt-swap`.
+`consumer_purchase_withdrawal/allow_register_only_consumer_status`,
+`land_tax_home_exemption/allow_register_only_ownership_and_residence`,
+`building_permit_grant/allow_register_only`,
+`child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a`
+(pre-rename: `*_allow_via_db`, `section_120_demo/prompt-swap`; all audited
+2026-08-26, ALLOW/empty confirmed).
 
 Full tables: `experiments/results/SMOKE-UNVALIDATED.md`,
 `experiment_ii_llm.md`, `experiment_i.md`.

@@ -1,0 +1,17 @@
+name: 20260903-llm-decides-on-oracle-inputs-partial-specification-sota
+question: |
+  Do frontier models play solver correctly on identical inputs (oracle rules, oracle claims, looked-up facts with warrant, no statute text)? Three repeats.
+condition: llm-decides-on-oracle-inputs-partial-specification
+cases: all
+models:
+- gemini-3.1-pro
+- gpt-5.6-sol
+- fable-5.1
+- deepseek-v4-pro
+repeats: 3
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 8.0
+notes: |
+  Estimate ~EUR 5 (short prompts). 564 cells.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

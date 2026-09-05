@@ -1,0 +1,26 @@
+scenario_id: unverifiable_trust_only_applicant_selfreport
+case_id: civil_service_admission
+label: 'Admission: only the applicant''s self-report vouches'
+mechanism: trust_only
+description: Citizenship and capacity resolve from a trust-only applicant self-report;
+  allow_ee_citizen fires but the supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
+  (trust_only).
+utterance_file: request_allow.txt
+register_overrides:
+  civil_service_admission__population_registry_selfreport:
+    warrant: trust_only
+    availability: available
+    set:
+      main:
+        ee_citizen: true
+        eu_citizen: false
+        full_capacity: true
+  civil_service_admission__population_registry:
+    exclude: true
+tags:
+- uncertainty
+- u7
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_u7_trust_only

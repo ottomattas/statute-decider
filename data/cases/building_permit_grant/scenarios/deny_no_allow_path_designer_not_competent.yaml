@@ -1,0 +1,17 @@
+scenario_id: deny_no_allow_path_designer_not_competent
+case_id: building_permit_grant
+label: 'Permit: designer not competent, no allow path'
+mechanism: no_allow_path
+description: Designer competence is false, blocking allow_building_permit; plan-violation
+  is false so deny_plan_violation does not fire -> DENY with no applicable rules (§
+  44 p 2 fallback).
+utterance_file: request_deny.txt
+register_overrides: {}
+tags:
+- negative
+- no-basis
+- scripted-claims
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from building_permit/building_permit_deny_incompetent

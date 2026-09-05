@@ -3,7 +3,7 @@
 # its own budget_eur. Meant to be launched under launchd (survives the IDE
 # shell going away) via tools/launch_chain.sh.
 #
-#   tools/run_chain.sh 20260903-llm-as-solver 20260903-llm-decider ...
+#   tools/run_chain.sh 20260903-llm-decides-on-oracle-inputs-partial-specification 20260903-llm-only-plus-rules ...
 #
 # Logs: experiments/_chains/<timestamp>.log (plus each experiment's run.log).
 # A failing experiment does not stop the chain; the chain log records it.

@@ -1,6 +1,10 @@
 # Proposal: input-side renaming, restructure, and a balanced scenario suite
 
-Status: **plan only** — nothing renamed yet. The paper pins commit `b65d091`;
+Status: **Rulings A–C executed 2026-09-05** on branch `feat/rename-and-faithful-inputs`
+(`tools/rename_map.yaml`, `tools/rename_ids.py`, alias tables in
+`docs/reference/id-aliases.md`; results migrated in place, numbers byte-identical).
+Ruling D (shared registers) and § 3 (balanced suite) remain open. Original text:
+nothing renamed yet. The paper pins commit `b65d091`;
 execute this after the JURIX submission (or on a branch that does not touch
 the pinned history). Operator sign-off needed on the rename table before any
 `git mv`.

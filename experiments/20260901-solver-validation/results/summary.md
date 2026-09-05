@@ -1,6 +1,6 @@
 # 20260901-solver-validation
 
-Generated 2026-09-01T20:44:26Z — execution `sequential`, condition `solver-validation`.
+Generated 2026-09-05T17:46:52Z — execution `sequential`, condition `solver-validation`.
 
 **Question:** Do the solver endpoint and the oracle data agree end to end? Every node oracle/file, decision by z3, trace rendered. No LLM; row 1 of any table.
 
@@ -23,7 +23,7 @@ Generated 2026-09-01T20:44:26Z — execution `sequential`, condition `solver-val
 
 ## Data
 
-47 scenarios across 6 cases: building_permit, civil_service_eligibility, consumer_withdrawal, land_tax_exemption, personal_data_journalism, section_120_demo.
+47 scenarios across 6 cases: building_permit_grant, child_representation_by_one_parent, civil_service_admission, consumer_purchase_withdrawal, journalistic_data_disclosure, land_tax_home_exemption.
 
 ## Outcomes (three-way scored)
 

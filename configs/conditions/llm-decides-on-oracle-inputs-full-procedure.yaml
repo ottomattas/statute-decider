@@ -1,0 +1,19 @@
+# Same as llm-decides-on-oracle-inputs-partial-specification, with the decide prompt stating the solver's staged
+# precedence rule (solver-inputs-full-procedure). See that prompt's description.
+condition: llm-decides-on-oracle-inputs-full-procedure
+notes: >
+  Who decides better, given the same premises. Solver-validation is 1.00 on
+  these inputs; this cell asks the four models to play solver.
+
+statute_text: { method: file }
+text_term: { method: oracle }
+term_rule: { method: oracle }
+user_utterance: { method: file }
+utterance_term: { method: oracle }
+term_claim: { method: oracle }
+registry_record: { method: file }
+record_term: { method: oracle }
+term_fact: { method: lookup }
+premise_outcome: { method: llm, strategy: decide, prompt: solver-inputs-full-procedure }
+outcome_trace: { method: skip }
+logic: propositional

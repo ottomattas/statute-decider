@@ -2,7 +2,7 @@
 # Launch tools/run_chain.sh as a one-shot launchd user agent so it survives the
 # launching shell (Cursor terminals die with the client). Usage:
 #
-#   tools/launch_chain.sh 20260903-llm-as-solver 20260903-llm-decider
+#   tools/launch_chain.sh 20260903-llm-decides-on-oracle-inputs-partial-specification 20260903-llm-only-plus-rules
 #
 # Status:  launchctl list | grep statute-decider
 # Stop:    launchctl bootout gui/$(id -u)/com.ottomattas.statute-decider.chain

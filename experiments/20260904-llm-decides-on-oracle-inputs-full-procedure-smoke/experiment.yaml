@@ -1,0 +1,14 @@
+name: 20260904-llm-decides-on-oracle-inputs-full-procedure-smoke
+question: Does stating the staged precedence rule remove the conflict-scenario misses?
+  gpt-5-mini, 1 repeat.
+condition: llm-decides-on-oracle-inputs-full-procedure
+cases: all
+models:
+- gpt-5-mini
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 0.5
+notes: |
+  Smoke.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

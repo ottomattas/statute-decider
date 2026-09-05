@@ -1,0 +1,48 @@
+{
+  "node": "utterance_term",
+  "scenario_id": "deny_own_admission_not_owner",
+  "term_refs": [
+    {
+      "term_id": "applicant_is_owner",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "application_submitted",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "municipality_exemption_set",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "primary_residence_registered",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "receives_pension",
+      "span": "",
+      "confidence": null
+    },
+    {
+      "term_id": "residential_land",
+      "span": "",
+      "confidence": null
+    }
+  ],
+  "provenance": {
+    "node": "utterance_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

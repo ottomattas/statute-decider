@@ -1,0 +1,17 @@
+scenario_id: allow_register_only_ownership_and_residence
+case_id: land_tax_home_exemption
+label: 'Land tax: ownership and residence from registers'
+mechanism: register_only
+description: Residential status, ownership and residence resolve via DB lookup; user
+  pins municipality exemption and application -> ALLOW via home-land rule.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+- db-resolved
+- via_db
+gold_confidence: high
+notes: 'audited 2026-08-26: ALLOW/empty confirmed; earlier solver-emitted missing
+  facts were a scoring artifact (pre-DB-lookup snapshot), fixed in paper_outcomes.missing_facts_from_solution'
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from land_tax_exemption/land_tax_allow_via_db

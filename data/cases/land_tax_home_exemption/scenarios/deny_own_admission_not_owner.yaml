@@ -1,0 +1,14 @@
+scenario_id: deny_own_admission_not_owner
+case_id: land_tax_home_exemption
+label: 'Land tax: applicant admits not owner, lives elsewhere'
+mechanism: own_admission
+description: Applicant is not the owner and registry does not place residence on the
+  parcel, so no exemption rule fires.
+utterance_file: request_deny.txt
+register_overrides: {}
+tags:
+- negative
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from land_tax_exemption/land_tax_deny

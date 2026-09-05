@@ -1,0 +1,109 @@
+generated_at: '2026-09-03T19:42:26Z'
+experiment:
+  name: 20260903-architecture-staged-grounding-smoke
+  question: Plumbing smoke for condition candidate-staged (one case, one model, one
+    repeat).
+  condition: architecture-staged-grounding
+  cases:
+  - child_representation_by_one_parent
+  models:
+  - deepseek-v4-flash
+  prompts: {}
+  repeats: 1
+  temperature: 0.0
+  max_output_tokens: 8192
+  budget_eur: 0.5
+  notes: Smoke only. Delete results before committing if noisy.
+condition:
+  condition: architecture-staged-grounding
+  bindings:
+    statute_text:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    text_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_rule:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    user_utterance:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    utterance_term:
+      method: llm
+      strategy: ground
+      prompt: ground-v1
+      solver: null
+      template: null
+    term_claim:
+      method: llm
+      strategy: null
+      prompt: value-v1
+      solver: null
+      template: null
+    registry_record:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    record_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_fact:
+      method: lookup
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    premise_outcome:
+      method: solver
+      strategy: null
+      prompt: null
+      solver: z3
+      template: null
+    outcome_trace:
+      method: render
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+  fuse: []
+  logic: propositional
+  loop: 'off'
+  notes: 'Same architecture as candidate; the grounding step is split in two calls
+    so utterance_term and term_claim are measured as separate LLM outputs.
+
+    '
+execution: parallel
+models:
+- deepseek-v4-flash
+providers_filter: []
+solver_override: null
+prompt_combos:
+- {}
+repeats: 1
+scenarios:
+- child_representation_by_one_parent/allow_claims_verified_emergency
+- child_representation_by_one_parent/need_user_silent_emergency_after_register_lookup
+- child_representation_by_one_parent/deny_own_admission_not_parent
+- child_representation_by_one_parent/need_user_silent_emergency_bare_request
+- child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed
+- child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a
+- child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b
+budget_eur: 0.5

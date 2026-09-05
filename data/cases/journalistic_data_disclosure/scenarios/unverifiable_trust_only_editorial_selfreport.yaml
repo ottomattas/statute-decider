@@ -1,0 +1,27 @@
+scenario_id: unverifiable_trust_only_editorial_selfreport
+case_id: journalistic_data_disclosure
+label: 'Journalism: only the editorial self-report vouches'
+mechanism: trust_only
+description: Editorial self-report is trust-only; allow_journalism_basis fires once
+  public-interest and ethics are pinned, but the journalistic-purpose classification
+  is unverifiable -> U7 UNVERIFIABLE_CLAIM (trust_only).
+utterance_file: request_allow.txt
+register_overrides:
+  journalistic_data_disclosure__editorial_selfreport:
+    warrant: trust_only
+    availability: available
+    set:
+      main:
+        journalistic_purpose: true
+        subject_consent: false
+  journalistic_data_disclosure__editorial_cms:
+    exclude: true
+  journalistic_data_disclosure__consent_registry:
+    exclude: true
+tags:
+- uncertainty
+- u7
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_u7_trust_only

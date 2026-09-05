@@ -1,0 +1,17 @@
+name: 20260901-llm-only
+question: |
+  Committed run 2 of 3: LLM-only source-to-trace. Raw statute text, utterance, and registry go to the model, which decides and justifies without any intermediate structure. The comparison floor for the candidate.
+condition: llm-only
+cases: all
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 25.0
+notes: |
+  Cheap-model grid x 10 repeats over all 47 scenarios (1880 rows, 2 calls each: decide + justify). section_120_demo carries the full act text (~60k input tokens/call), dominating cost.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

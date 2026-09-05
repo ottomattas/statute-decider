@@ -28,9 +28,22 @@ Every node is independently checkable: it can be bound to `oracle`
 (hand-validated data), to an `llm` method, or to a deterministic method
 (`solver`, `lookup`, `match`, `render`), so any step can be tested in
 isolation or in propagation. Conditions (`configs/conditions/`) bind a method
-to every node; the three committed conditions are **solver-validation**
-(all-oracle trusted path), **baseline** (LLM-only source→trace), and
-**candidate** (the proposed architecture).
+to every node and are named for *who does what*: the three committed
+conditions are **solver-validation** (all-oracle trusted path), **llm-only**
+(LLM decides and justifies on raw sources), and **architecture** (the proposed
+architecture: LLM-extracted claims, register lookup, solver decides). Control
+conditions swap the solver for an LLM on the same inputs
+(`llm-decides-on-oracle-inputs-*`, `llm-decides-on-llm-claims-*`; the suffix
+`partial-specification` / `full-procedure` says how much of the solver's
+procedure the decide prompt states) or give the LLM the oracle rules
+(`llm-only-plus-rules`).
+
+Ids were renamed on 2026-09-05 (statutes by act and §, cases by service
+question, scenarios as `<gold>_<mechanism>`, conditions as above). The
+old → new tables, including the `u3/u5/u7/u8` legend, are in
+[`docs/reference/id-aliases.md`](docs/reference/id-aliases.md); results
+produced before the rename carry the new ids in their structured fields
+and the old ids inside free-text prompt/response strings.
 
 Research software (Mättas / Järv / Tammet, TalTech). The current manuscript
 that uses this tool is
@@ -73,7 +86,7 @@ Solver inputs and outputs live in `results/nodes/premise_outcome.jsonl`
 
 ```
 src/statute_decider/   the package: core schemas, solvers, llm client, nodes, runner, cli
-configs/conditions/    method-per-node bindings (solver-validation, baseline, candidate)
+configs/conditions/    method-per-node bindings (solver-validation, llm-only, architecture, ...)
 configs/llm/           model registry + prices
 prompts/<node>/        versioned prompt templates (new wording = new file)
 data/statutes/         statute text + oracle terms/rules, stored once
@@ -82,7 +95,8 @@ data/cases/            thin assemblies: utterances, registry state, scenarios, o
 experiments/           one folder per run: experiment.yaml + results/ + analysis/
 docs/matrix.csv        generated experimentation matrix (sd matrix export)
 docs/refactor-v2-plan.md  the design document for this architecture
-tools/                 one-off authoring scripts (e.g. v1 → v2 data migration)
+docs/reference/id-aliases.md  old → new id tables (2026-09-05 rename)
+tools/                 one-off authoring scripts (v1 → v2 data migration, id rename + fingerprint)
 ```
 
 ## How to experiment

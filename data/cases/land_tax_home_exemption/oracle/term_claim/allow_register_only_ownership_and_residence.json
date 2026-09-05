@@ -1,0 +1,36 @@
+{
+  "node": "term_claim",
+  "scenario_id": "allow_register_only_ownership_and_residence",
+  "claims": [
+    {
+      "premise_id": "claim_application_submitted",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "application_submitted",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_municipality_exemption_set",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "municipality_exemption_set",
+      "value": true,
+      "span": "",
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "term_claim",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

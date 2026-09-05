@@ -1,0 +1,10 @@
+case_id: child_representation_by_one_parent
+title: Family Law Section 120 demo
+description: File-backed Section 120 worked example for the generic framework pipeline.
+statute_ids:
+- pks_120
+register_ids:
+- child_representation_by_one_parent__population_registry
+- child_representation_by_one_parent__custody_registry
+- child_representation_by_one_parent__consent_service
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

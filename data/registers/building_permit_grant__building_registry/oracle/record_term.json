@@ -1,0 +1,42 @@
+{
+  "node": "record_term",
+  "register_id": "building_permit_grant__building_registry",
+  "mappings": [
+    {
+      "term_id": "building_requirements_met",
+      "register_id": "building_permit_grant__building_registry",
+      "field": "building_requirements_met",
+      "transform": "identity"
+    },
+    {
+      "term_id": "plan_conformant",
+      "register_id": "building_permit_grant__building_registry",
+      "field": "plan_conformant",
+      "transform": "identity"
+    },
+    {
+      "term_id": "plan_violation",
+      "register_id": "building_permit_grant__building_registry",
+      "field": "plan_violation",
+      "transform": "identity"
+    },
+    {
+      "term_id": "site_study_provided",
+      "register_id": "building_permit_grant__building_registry",
+      "field": "site_study_provided",
+      "transform": "identity"
+    }
+  ],
+  "provenance": {
+    "node": "record_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

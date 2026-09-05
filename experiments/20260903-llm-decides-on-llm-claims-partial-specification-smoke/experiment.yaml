@@ -1,0 +1,14 @@
+name: 20260903-llm-decides-on-llm-claims-partial-specification-smoke
+question: Plumbing smoke for condition llm-structured (one case, one model, one repeat).
+condition: llm-decides-on-llm-claims-partial-specification
+cases:
+- child_representation_by_one_parent
+models:
+- deepseek-v4-flash
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 0.5
+notes: |
+  Smoke only. Delete results before committing if noisy.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

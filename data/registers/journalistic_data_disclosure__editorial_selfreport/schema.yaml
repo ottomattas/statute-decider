@@ -1,0 +1,11 @@
+register_id: journalistic_data_disclosure__editorial_selfreport
+label: Editorial self-report of journalism classification and subject consent
+description: 'Stand-in for the CMS and consent registry: values are accepted on trust,
+  triggering U7 TRUST_ONLY.'
+fields:
+- journalistic_purpose
+- subject_consent
+default_warrant: trust_only
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Field
+  names mirror the vocabulary (v1 mock DBs were keyed by claim id); the mapping is
+  identity until richer field naming is authored.

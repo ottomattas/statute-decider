@@ -1,0 +1,17 @@
+name: 20260904-llm-decides-on-oracle-inputs-full-procedure-sota
+question: SOTA models as solver with the full staged specification (solver-inputs-v2),
+  3 repeats.
+condition: llm-decides-on-oracle-inputs-full-procedure
+cases: all
+models:
+- gemini-3.1-pro
+- gpt-5.6-sol
+- fable-5.1
+- deepseek-v4-pro
+repeats: 3
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 8.0
+notes: |
+  v1 cost EUR 5.22 in 4 min.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

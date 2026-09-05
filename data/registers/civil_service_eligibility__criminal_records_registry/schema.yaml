@@ -1,9 +1,0 @@
-register_id: civil_service_eligibility__criminal_records_registry
-label: Dummy criminal-records registry
-description: Holds standing-conviction status for intentional crimes.
-fields:
-- criminal_conviction
-default_warrant: authoritative
-notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Field
-  names mirror the vocabulary (v1 mock DBs were keyed by claim id); the mapping is
-  identity until richer field naming is authored.

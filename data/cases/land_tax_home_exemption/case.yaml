@@ -1,0 +1,13 @@
+case_id: land_tax_home_exemption
+title: Maamaksuseadus § 11 demo
+description: Home-land tax exemption and pensioner supplementary exemption under the
+  Land Tax Act § 11.
+statute_ids:
+- mms_11
+register_ids:
+- land_tax_home_exemption__land_registry
+- land_tax_home_exemption__population_registry
+- land_tax_home_exemption__social_insurance_registry
+- land_tax_home_exemption__applicant_selfreport
+- land_tax_home_exemption__municipality_records
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

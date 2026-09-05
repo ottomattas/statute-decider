@@ -1,0 +1,11 @@
+case_id: consumer_purchase_withdrawal
+title: Võlaõigusseadus §§ 53 lg 4, 56 lg 1 demo
+description: Consumer right of withdrawal from a distance contract under VÕS § 56
+  lg 1, with § 53 lg 4 exclusions.
+statute_ids:
+- vos_53_56
+register_ids:
+- consumer_purchase_withdrawal__trader_crm
+- consumer_purchase_withdrawal__product_catalogue
+- consumer_purchase_withdrawal__trader_selfreport
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

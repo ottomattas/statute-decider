@@ -1,0 +1,25 @@
+# The architecture with the solver swapped for an LLM: oracle rules, LLM-extracted
+# claims (fused ground, same as `architecture`), looked-up facts, LLM decides on
+# those premises. Isolates the decider inside the full architecture.
+condition: llm-decides-on-llm-claims-partial-specification
+notes: >
+  The architecture minus the solver. Same claim extraction as `architecture`;
+  the decision step is an LLM given the solver's inputs. Difference to
+  `architecture` = the value of a deterministic decider; difference to
+  llm-decides-on-oracle-inputs-partial-specification = the error contributed
+  by LLM grounding.
+
+statute_text: { method: file }
+text_term: { method: oracle }
+term_rule: { method: oracle }
+user_utterance: { method: file }
+utterance_term: { method: llm, strategy: ground, prompt: ground-v1 }
+term_claim: { method: llm }
+registry_record: { method: file }
+record_term: { method: oracle }
+term_fact: { method: lookup }
+premise_outcome: { method: llm, strategy: decide, prompt: solver-inputs-partial-specification }
+outcome_trace: { method: skip }
+fuse:
+  - [utterance_term, term_claim]
+logic: propositional

@@ -1,0 +1,17 @@
+scenario_id: allow_register_only_consumer_status
+case_id: consumer_purchase_withdrawal
+label: 'Withdrawal: consumer and distance status from the CRM'
+mechanism: register_only
+description: Consumer status and distance-contract flag resolve via DB; user timely-dispatch
+  facts are pinned true, so ALLOW fires via DB lookup.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+- db-resolved
+- via_db
+gold_confidence: high
+notes: 'audited 2026-08-26: ALLOW/empty confirmed; earlier solver-emitted missing
+  facts were a scoring artifact (pre-DB-lookup snapshot), fixed in paper_outcomes.missing_facts_from_solution'
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from consumer_withdrawal/consumer_withdrawal_allow_via_db

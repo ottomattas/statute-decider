@@ -1,0 +1,11 @@
+register_id: consumer_purchase_withdrawal__trader_selfreport
+label: Trader self-report of consumer and distance-contract status
+description: 'Stand-in for the trader CRM: consumer status and contract type are accepted
+  on trust, triggering U7 TRUST_ONLY.'
+fields:
+- distance_contract
+- is_consumer
+default_warrant: trust_only
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Field
+  names mirror the vocabulary (v1 mock DBs were keyed by claim id); the mapping is
+  identity until richer field naming is authored.

@@ -1,0 +1,18 @@
+scenario_id: need_register_silent_citizenship
+case_id: civil_service_admission
+label: 'Admission: population registry silent on citizenship'
+mechanism: register_silent
+description: Population registry has no citizenship record; solver cannot resolve
+  ee_citizen after DB lookup -> NEED_DB_INFO.
+utterance_file: request_allow.txt
+register_overrides:
+  civil_service_admission__population_registry:
+    remove:
+      main:
+      - ee_citizen
+tags:
+- needs-info
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_need_db

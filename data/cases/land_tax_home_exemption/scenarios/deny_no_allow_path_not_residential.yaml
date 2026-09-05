@@ -1,0 +1,16 @@
+scenario_id: deny_no_allow_path_not_residential
+case_id: land_tax_home_exemption
+label: 'Land tax: land not residential, no allow path'
+mechanism: no_allow_path
+description: Parcel is not residential land, blocking both home-land and pensioner
+  supplement allow rules; no deny rule exists -> DENY with no applicable rules.
+utterance_file: request_deny.txt
+register_overrides: {}
+tags:
+- negative
+- no-basis
+- scripted-claims
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from land_tax_exemption/land_tax_deny_not_residential

@@ -1,0 +1,116 @@
+generated_at: '2026-09-01T20:03:55Z'
+experiment:
+  name: 20260901-architecture-smoke
+  question: 'Smoke: do all four providers return parseable fused ground responses
+    under the candidate condition on one case?
+
+    '
+  condition: architecture
+  cases:
+  - child_representation_by_one_parent
+  models:
+  - gemini-2.5-flash
+  - gpt-5-mini
+  - haiku-4.5
+  - deepseek-v4-flash
+  prompts: {}
+  repeats: 1
+  temperature: 0.0
+  max_output_tokens: 8192
+  budget_eur: 1.0
+  notes: Pre-flight for the committed candidate run; not a paper cell.
+condition:
+  condition: architecture
+  bindings:
+    statute_text:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    text_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_rule:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    user_utterance:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    utterance_term:
+      method: llm
+      strategy: ground
+      prompt: ground-v1
+      solver: null
+      template: null
+    term_claim:
+      method: llm
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    registry_record:
+      method: file
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    record_term:
+      method: oracle
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    term_fact:
+      method: lookup
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+    premise_outcome:
+      method: solver
+      strategy: null
+      prompt: null
+      solver: z3
+      template: null
+    outcome_trace:
+      method: render
+      strategy: null
+      prompt: null
+      solver: null
+      template: null
+  fuse:
+  - - utterance_term
+    - term_claim
+  logic: propositional
+  loop: 'off'
+  notes: Proposed architecture candidate — the modular system under test.
+execution: parallel
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+providers_filter: []
+solver_override: null
+prompt_combos:
+- {}
+repeats: 1
+scenarios:
+- child_representation_by_one_parent/allow_claims_verified_emergency
+- child_representation_by_one_parent/need_user_silent_emergency_after_register_lookup
+- child_representation_by_one_parent/deny_own_admission_not_parent
+- child_representation_by_one_parent/need_user_silent_emergency_bare_request
+- child_representation_by_one_parent/need_user_silent_emergency_all_else_claimed
+- child_representation_by_one_parent/allow_claims_verified_duplicate_probe_a
+- child_representation_by_one_parent/allow_claims_verified_duplicate_probe_b
+budget_eur: 1.0

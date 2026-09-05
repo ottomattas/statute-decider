@@ -1,0 +1,13 @@
+scenario_id: deny_own_admission_not_parent
+case_id: child_representation_by_one_parent
+label: 'Child: aunt admits she is not a parent'
+mechanism: own_admission
+description: Non-parent request resolves to DENY.
+utterance_file: request_deny.txt
+register_overrides: {}
+tags:
+- negative
+gold_confidence: high
+notes: ''
+provenance: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). |
+  renamed 2026-09-05 from section_120_demo/deny

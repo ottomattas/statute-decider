@@ -13,12 +13,14 @@ from statute_decider.strategies import load_prompt
 def test_committed_conditions_load(root):
     for name in (
         "solver-validation",
-        "baseline",
-        "candidate",
-        "llm-decider",
-        "llm-as-solver",
-        "llm-structured",
-        "candidate-staged",
+        "llm-only",
+        "architecture",
+        "llm-only-plus-rules",
+        "llm-decides-on-oracle-inputs-partial-specification",
+        "llm-decides-on-oracle-inputs-full-procedure",
+        "llm-decides-on-llm-claims-partial-specification",
+        "llm-decides-on-llm-claims-full-procedure",
+        "architecture-staged-grounding",
     ):
         condition = load_condition(root / "configs" / "conditions" / f"{name}.yaml")
         assert condition.condition == name
@@ -31,7 +33,7 @@ def test_solver_inputs_prompt_renders_premises(root):
     from statute_decider.nodes.rendering import render_claims, render_facts, render_rules
 
     store = DataStore(root / "data")
-    case_id = "section_120_demo"
+    case_id = "child_representation_by_one_parent"
     case = store.case(case_id)
     scenario_id = store.all_scenarios([case_id])[0][1]
     scenario = store.scenario(case_id, scenario_id)
@@ -40,7 +42,7 @@ def test_solver_inputs_prompt_renders_premises(root):
     mappings = [store.oracle_record_term(rid) for rid in case.register_ids]
     facts = lookup_facts(scenario_id, registry, mappings)
     claims = store.oracle_value(case_id, "term_claim", scenario_id)
-    prompt = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-v1", strategy="decide")
+    prompt = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-partial-specification", strategy="decide")
     rendered = prompt.render(
         rules=render_rules(store.oracle_term_rule(statute_id), store.oracle_text_term(statute_id)),
         claims=render_claims(claims),
@@ -51,15 +53,15 @@ def test_solver_inputs_prompt_renders_premises(root):
     assert "STATUTE" not in rendered
 
 
-def test_llm_decider_binds_oracle_rules(root):
-    condition = load_condition(root / "configs" / "conditions" / "llm-decider.yaml")
+def test_llm_only_plus_rules_binds_oracle_rules(root):
+    condition = load_condition(root / "configs" / "conditions" / "llm-only-plus-rules.yaml")
     assert condition.binding("term_rule").method == "oracle"
     assert condition.binding("text_term").method == "oracle"
     assert condition.binding("premise_outcome").method == "llm"
-    assert condition.binding("premise_outcome").prompt == "oracle-rules-v1"
+    assert condition.binding("premise_outcome").prompt == "decide-raw-sources-plus-rules"
     assert condition.binding("outcome_trace").method == "skip"
     prompt = load_prompt(
-        root / "prompts", "premise_outcome", "oracle-rules-v1", strategy="decide"
+        root / "prompts", "premise_outcome", "decide-raw-sources-plus-rules", strategy="decide"
     )
     rendered = prompt.render(
         statute="Act", utterance="I apply", registry="{}", rules="Rules: parent -> ALLOW"
@@ -81,15 +83,15 @@ def test_render_oracle_rules(root):
     assert "ALLOW" in text
 
 
-def test_candidate_fuses_user_chain(root):
-    condition = load_condition(root / "configs" / "conditions" / "candidate.yaml")
+def test_architecture_fuses_user_chain(root):
+    condition = load_condition(root / "configs" / "conditions" / "architecture.yaml")
     assert condition.fused_with("utterance_term") == "term_claim"
     assert condition.binding("premise_outcome").method == "solver"
     assert condition.uses_llm()
 
 
-def test_baseline_skips_all_derivation(root):
-    condition = load_condition(root / "configs" / "conditions" / "baseline.yaml")
+def test_llm_only_skips_all_derivation(root):
+    condition = load_condition(root / "configs" / "conditions" / "llm-only.yaml")
     for node in ("text_term", "term_rule", "utterance_term", "term_claim", "record_term", "term_fact"):
         assert condition.binding(node).method == "skip"
     assert condition.binding("premise_outcome").method == "llm"
@@ -174,13 +176,13 @@ def test_cache_aware_pricing(root, tmp_path):
 
 
 def test_render_with_prefix_splits_after_statute(root):
-    prompt = load_prompt(root / "prompts", "premise_outcome", "decide-v1", strategy="decide")
+    prompt = load_prompt(root / "prompts", "premise_outcome", "decide-raw-sources", strategy="decide")
     text, n = prompt.render_with_prefix(
         "statute", statute="ACT TEXT", utterance="I apply", registry="{}"
     )
     assert text == prompt.render(statute="ACT TEXT", utterance="I apply", registry="{}")
     assert text[:n].endswith("ACT TEXT") and text[n:].lstrip().startswith("CASE REQUEST")
-    solver = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-v1", strategy="decide")
+    solver = load_prompt(root / "prompts", "premise_outcome", "solver-inputs-partial-specification", strategy="decide")
     _, n2 = solver.render_with_prefix("statute", rules="R", claims="C", facts="F")
     assert n2 == 0
 
@@ -192,7 +194,7 @@ def test_resume_and_limit_continue_a_grid(root, tmp_path):
     exp_dir.mkdir()
     (exp_dir / "experiment.yaml").write_text(
         "name: resume-test\nquestion: t\ncondition: solver-validation\n"
-        "cases: [section_120_demo]\nmodels: []\nrepeats: 1\nbudget_eur: 0\n",
+        "cases: [child_representation_by_one_parent]\nmodels: []\nrepeats: 1\nbudget_eur: 0\n",
         encoding="utf-8",
     )
     # Batch 1: three cells only.

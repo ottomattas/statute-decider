@@ -1,0 +1,17 @@
+name: 20260903-llm-only-sota
+question: |
+  Does a frontier model close the gap to the architecture without it? LLM-only baseline on the four SOTA models, one repeat (indicative, n=47 per model).
+condition: llm-only
+cases: all
+models:
+- gemini-3.1-pro
+- gpt-5.6-sol
+- fable-5.1
+- deepseek-v4-pro
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 22.0
+notes: |
+  Estimate EUR 17.4 uncached; the 64k-token statute (section_120_demo) is prompt-cached from 3 Sep, so expect well under 10. fable-5.1 (released 1 Sep) replaces fable-5. 188 cells, decide + justify.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

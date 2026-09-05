@@ -1,0 +1,16 @@
+scenario_id: allow_alt_rule_consent_overrides_register
+case_id: journalistic_data_disclosure
+label: 'Journalism: subject consent claimed, consent rule fires'
+mechanism: alt_rule_claim_overrides_register
+description: Data subject has consented; consent baseline rule fires independently
+  of the journalism basis -> ALLOW.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+- consent-baseline
+- scripted-claims
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_allow_via_consent

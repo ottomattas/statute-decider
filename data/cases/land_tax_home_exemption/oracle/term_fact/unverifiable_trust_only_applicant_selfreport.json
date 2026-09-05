@@ -1,0 +1,88 @@
+{
+  "node": "term_fact",
+  "scenario_id": "unverifiable_trust_only_applicant_selfreport",
+  "facts": [
+    {
+      "premise_id": "fact_applicant_is_owner",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "applicant_is_owner",
+      "value": true,
+      "register_id": "land_tax_home_exemption__applicant_selfreport",
+      "record_id": "main",
+      "field": "applicant_is_owner",
+      "warrant": "trust_only",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_municipality_exemption_set",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "municipality_exemption_set",
+      "value": true,
+      "register_id": "land_tax_home_exemption__applicant_selfreport",
+      "record_id": "main",
+      "field": "municipality_exemption_set",
+      "warrant": "trust_only",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_primary_residence_registered",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "primary_residence_registered",
+      "value": true,
+      "register_id": "land_tax_home_exemption__applicant_selfreport",
+      "record_id": "main",
+      "field": "primary_residence_registered",
+      "warrant": "trust_only",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_receives_pension",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "receives_pension",
+      "value": false,
+      "register_id": "land_tax_home_exemption__social_insurance_registry",
+      "record_id": "main",
+      "field": "receives_pension",
+      "warrant": "authoritative",
+      "notes": ""
+    },
+    {
+      "premise_id": "fact_residential_land",
+      "kind": "fact",
+      "epistemic": "warranted",
+      "term_id": "residential_land",
+      "value": true,
+      "register_id": "land_tax_home_exemption__applicant_selfreport",
+      "record_id": "main",
+      "field": "residential_land",
+      "warrant": "trust_only",
+      "notes": ""
+    }
+  ],
+  "unavailable_registers": [],
+  "unavailable_terms": [],
+  "conflicts": [],
+  "covered_terms": [
+    "applicant_is_owner",
+    "municipality_exemption_set",
+    "primary_residence_registered",
+    "receives_pension",
+    "residential_land"
+  ],
+  "provenance": {
+    "node": "term_fact",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-01T19:48:55Z",
+    "notes": "Re-authored 2026-09-01 from v1 validated content (tag pre-refactor)."
+  }
+}

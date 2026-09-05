@@ -1,0 +1,17 @@
+name: 20260901-architecture
+question: |
+  Committed run 3 of 3: the proposed architecture. Statute chain oracle, user chain fused LLM grounding (utterance_term + term_claim in one call), register chain deterministic lookup, decision by z3, trace rendered.
+condition: architecture
+cases: all
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 5.0
+notes: |
+  Cheap-model grid x 10 repeats over all 47 scenarios (1880 rows, one short ground call each). The only LLM surface is the fused user chain.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

@@ -1,0 +1,14 @@
+scenario_id: allow_claims_verified
+case_id: journalistic_data_disclosure
+label: 'Journalism: purpose, public interest, ethics confirmed'
+mechanism: claims_verified
+description: Journalistic purpose with editorial public-interest and ethics assessment
+  resolves to ALLOW.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from personal_data_journalism/journalism_allow

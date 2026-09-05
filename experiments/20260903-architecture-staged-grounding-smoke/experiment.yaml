@@ -1,0 +1,15 @@
+name: 20260903-architecture-staged-grounding-smoke
+question: Plumbing smoke for condition candidate-staged (one case, one model, one
+  repeat).
+condition: architecture-staged-grounding
+cases:
+- child_representation_by_one_parent
+models:
+- deepseek-v4-flash
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 0.5
+notes: |
+  Smoke only. Delete results before committing if noisy.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids

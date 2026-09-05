@@ -1,0 +1,19 @@
+# The architecture with the user chain staged instead of fused: one call recognizes
+# terms, a second assigns values. Isolates term recognition from valuation.
+condition: architecture-staged-grounding
+notes: >
+  Same as `architecture`; the grounding step is split in two calls
+  so utterance_term and term_claim are measured as separate LLM outputs.
+
+statute_text: { method: file }
+text_term: { method: oracle }
+term_rule: { method: oracle }
+user_utterance: { method: file }
+utterance_term: { method: llm, strategy: ground, prompt: ground-v1 }
+term_claim: { method: llm, prompt: value-v1 }
+registry_record: { method: file }
+record_term: { method: oracle }
+term_fact: { method: lookup }
+premise_outcome: { method: solver, solver: z3 }
+outcome_trace: { method: render }
+logic: propositional

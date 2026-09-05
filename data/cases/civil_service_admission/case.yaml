@@ -1,0 +1,13 @@
+case_id: civil_service_admission
+title: Avaliku teenistuse seadus §§ 14-15 demo
+description: Civil-servant appointment eligibility check under the Estonian Civil
+  Service Act.
+statute_ids:
+- ats_14_15
+register_ids:
+- civil_service_admission__population_registry
+- civil_service_admission__education_registry
+- civil_service_admission__language_registry
+- civil_service_admission__criminal_records_registry
+- civil_service_admission__population_registry_selfreport
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor).

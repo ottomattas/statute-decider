@@ -1,0 +1,25 @@
+scenario_id: unverifiable_trust_only_trader_selfreport
+case_id: consumer_purchase_withdrawal
+label: 'Withdrawal: only the trader''s self-report vouches'
+mechanism: trust_only
+description: Consumer status and distance-contract flag come from a trust-only trader
+  self-report; allow_distance_withdrawal fires but the facts are unverifiable -> U7
+  UNVERIFIABLE_CLAIM (trust_only).
+utterance_file: request_allow.txt
+register_overrides:
+  consumer_purchase_withdrawal__trader_selfreport:
+    warrant: trust_only
+    availability: available
+    set:
+      main:
+        is_consumer: true
+        distance_contract: true
+  consumer_purchase_withdrawal__trader_crm:
+    exclude: true
+tags:
+- uncertainty
+- u7
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from consumer_withdrawal/consumer_withdrawal_u7_trust_only

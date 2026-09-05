@@ -1,0 +1,12 @@
+register_id: civil_service_admission__population_registry_selfreport
+label: Applicant self-report of citizenship and capacity
+description: 'Stand-in for the population registry: values are taken on trust, triggering
+  U7 TRUST_ONLY resolution.'
+fields:
+- ee_citizen
+- eu_citizen
+- full_capacity
+default_warrant: trust_only
+notes: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). Field
+  names mirror the vocabulary (v1 mock DBs were keyed by claim id); the mapping is
+  identity until richer field naming is authored.

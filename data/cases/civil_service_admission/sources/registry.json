@@ -1,0 +1,63 @@
+{
+  "node": "registry_record",
+  "registers": [
+    {
+      "register_id": "civil_service_admission__population_registry",
+      "label": "Dummy population registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "ee_citizen": true,
+            "eu_citizen": false,
+            "full_capacity": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "civil_service_admission__education_registry",
+      "label": "Dummy education registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "secondary_education": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "civil_service_admission__language_registry",
+      "label": "Dummy language-proficiency registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "speaks_estonian": true
+          }
+        }
+      ]
+    },
+    {
+      "register_id": "civil_service_admission__criminal_records_registry",
+      "label": "Dummy criminal-records registry",
+      "warrant": "authoritative",
+      "availability": "available",
+      "records": [
+        {
+          "record_id": "main",
+          "fields": {
+            "criminal_conviction": false
+          }
+        }
+      ]
+    }
+  ]
+}

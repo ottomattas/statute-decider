@@ -1,0 +1,17 @@
+scenario_id: unverifiable_register_down_trader_crm
+case_id: consumer_purchase_withdrawal
+label: 'Withdrawal: trader CRM unavailable'
+mechanism: register_down
+description: Trader CRM is unreachable, so is_consumer and distance_contract cannot
+  be verified -> U3 UNVERIFIABLE_CLAIM (no_register).
+utterance_file: request_allow.txt
+register_overrides:
+  consumer_purchase_withdrawal__trader_crm:
+    availability: unavailable
+tags:
+- uncertainty
+- u3
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from consumer_withdrawal/consumer_withdrawal_u3_no_register

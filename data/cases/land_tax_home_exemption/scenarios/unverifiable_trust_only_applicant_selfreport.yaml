@@ -1,0 +1,33 @@
+scenario_id: unverifiable_trust_only_applicant_selfreport
+case_id: land_tax_home_exemption
+label: 'Land tax: only the applicant''s self-report vouches'
+mechanism: trust_only
+description: All four § 11 lg 1 conditions resolve from a trust-only applicant self-report;
+  home-land rule fires but supporting facts are unverifiable -> U7 UNVERIFIABLE_CLAIM
+  (trust_only).
+utterance_file: request_allow.txt
+register_overrides:
+  land_tax_home_exemption__applicant_selfreport:
+    warrant: trust_only
+    availability: available
+    set:
+      main:
+        residential_land: true
+        primary_residence_registered: true
+        applicant_is_owner: true
+        municipality_exemption_set: true
+  land_tax_home_exemption__social_insurance_registry:
+    set:
+      main:
+        receives_pension: false
+  land_tax_home_exemption__land_registry:
+    exclude: true
+  land_tax_home_exemption__population_registry:
+    exclude: true
+tags:
+- uncertainty
+- u7
+gold_confidence: high
+notes: ''
+provenance: ART-65 Wave 3a Stream X v2 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from land_tax_exemption/land_tax_u7_trust_only

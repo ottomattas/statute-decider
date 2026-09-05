@@ -1,0 +1,13 @@
+scenario_id: need_user_silent_emergency_bare_request
+case_id: child_representation_by_one_parent
+label: 'Child: bare request, emergency still open'
+mechanism: user_silent
+description: Sparse request needs DB-backed parent and custody facts.
+utterance_file: request_need_db.txt
+register_overrides: {}
+tags:
+- needs-info
+gold_confidence: high
+notes: ''
+provenance: Re-authored 2026-09-01 from v1 validated content (tag pre-refactor). |
+  renamed 2026-09-05 from section_120_demo/need-db

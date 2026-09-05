@@ -5,7 +5,7 @@ name: YYYYMMDD-slug
 question: >
   One sentence: what does this experiment decide?
 
-condition: candidate # configs/conditions/<name>.yaml
+condition: architecture # configs/conditions/<name>.yaml
 cases: all # or a list of case ids from data/cases/
 models: # the declared grid; --models all resolves to this list
   - gemini-2.5-flash

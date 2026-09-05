@@ -1,0 +1,14 @@
+scenario_id: allow_claims_verified
+case_id: civil_service_admission
+label: 'Admission: Estonian citizen, § 14 lg 1 confirmed'
+mechanism: claims_verified
+description: Estonian-citizen applicant with clean record and confirmed non-conflict
+  resolves to ALLOW.
+utterance_file: request_allow.txt
+register_overrides: {}
+tags:
+- positive
+gold_confidence: high
+notes: ''
+provenance: Supervisor meeting 2026-04-17 | Re-authored 2026-09-01 from v1 validated
+  content (tag pre-refactor). | renamed 2026-09-05 from civil_service_eligibility/civil_service_allow

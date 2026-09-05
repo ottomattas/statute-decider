@@ -1,0 +1,17 @@
+name: 20260903-llm-decides-on-llm-claims-partial-specification
+question: |
+  Candidate minus the solver: oracle rules, LLM-extracted claims (fused ground), looked-up facts, LLM decides on those premises.
+condition: llm-decides-on-llm-claims-partial-specification
+cases: all
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+budget_eur: 8.0
+notes: |
+  Estimate ~EUR 4 (ground call ~1.7 + decide ~2). 1880 cells, 2 calls each.
+  ids renamed 2026-09-05, see docs/reference/id-aliases.md; free-text prompt/response strings keep the pre-rename ids
