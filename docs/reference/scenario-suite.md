@@ -15,7 +15,7 @@ Plan reference: Track B in `post-17apr-research-push` plan.
 | Case directory | Statute | Scenarios |
 |---|---|---|
 | `civil_service_eligibility` | ATS §§ 14–15 | allow, deny, need-db |
-| `consumer_withdrawal` | VOS §§ 53 lg 4, 56 lg 1 | allow, deny, need-user |
+| `consumer_withdrawal` | Law of Obligations Act § 53 (4), § 56 (1) | allow, deny, need-user |
 | `land_tax_exemption` | MMS § 11 | allow, deny, need-db |
 | `personal_data_journalism` | IKS § 4 | allow, deny, need-user |
 | `building_permit` | EhS §§ 42, 44 | allow, deny, need-db |

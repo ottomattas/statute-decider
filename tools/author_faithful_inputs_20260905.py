@@ -62,7 +62,7 @@ NEW = {
     "I want to withdraw from a purchase I made 5 days ago. The 14 päeva tähtaeg is still running and I sent the taganemisavaldus to the seller yesterday.\n"),
 ("consumer_purchase_withdrawal", "deny_own_admission_custom_goods"): (
     "UNDERSTATED",
-    "I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood; the leping was sõlmitud sidevahendi abil. The product catalogue flags it as tellimustöö, so under § 53 lg 4 the taganemisõigus is excluded even though I am a tarbija, the 14-day deadline has not expired and I sent the taganemisavaldus to the seller yesterday.\n"),
+    "I ordered a custom engraved piece of furniture tailored to my isiklikud vajadused from an e-pood; the leping was sõlmitud sidevahendi abil. The product catalogue flags it as tellimustöö, so under § 53 (4) the taganemisõigus is excluded even though I am a tarbija, the 14-day deadline has not expired and I sent the taganemisavaldus to the seller yesterday.\n"),
 ("consumer_purchase_withdrawal", "deny_no_allow_path_not_consumer"): (
     "CONTRADICTS",
     "I ordered a standard catalogue office chair (not a tellimustöö) from an e-pood for my company, and the invoice is in the company's name, so I am buying as an ettevõtja and not as a tarbija. The leping was sõlmitud sidevahendi abil, the 14 päeva tähtaeg is still running, and I sent the taganemisavaldus to the seller yesterday.\n"),

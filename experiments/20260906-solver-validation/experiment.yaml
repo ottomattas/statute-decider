@@ -8,4 +8,6 @@ repeats: 1
 budget_eur: 0.0
 notes: |
   Re-run of 20260901-solver-validation on the 54-scenario suite (12 authored, 5 retired 2026-09-05;
-  see docs/reference/gold-review-2026-09-05.md). Statute texts are interim English snippets pending XML slicing.
+  see docs/reference/gold-review-2026-09-05.md). Re-run 2026-09-05 evening after Ruling G: statute_text now
+  renders the full act from the Riigi Teataja XML corpus (data/sources/legislation); statute ids are act slugs
+  and clause ids are <act_slug>/<eId>. Solver outcomes unchanged, 54/54.

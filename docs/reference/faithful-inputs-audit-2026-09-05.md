@@ -32,7 +32,7 @@ scenarios have new input text**, in 6 cases.
 
 | scenario (new id) | class | what changed | old file → new file |
 |---|---|---|---|
-| `building_permit_grant/allow_claims_verified` | FAITHFUL | six § 42 lg 1 terms asserted, all in oracle | `request_allow.txt` (kept) |
+| `building_permit_grant/allow_claims_verified` | FAITHFUL | six § 42 (1) terms asserted, all in oracle | `request_allow.txt` (kept) |
 | `building_permit_grant/allow_register_only` | TRIMMED | oracle has no claims; text asserted all six terms → bare request ("please check whether the ehitusluba can be issued") | `request_allow.txt` → `allow_register_only.txt` |
 | `building_permit_grant/deny_own_admission_plan_violation` | UNDERSTATED | oracle also claims `building_requirements_met`, `site_study_provided` = true; added "meets the ehitusnõue ... the ehitusuuring is available" | `request_deny.txt` → `deny_own_admission_plan_violation.txt` |
 | `building_permit_grant/deny_no_allow_path_designer_not_competent` | CONTRADICTS | text said plan violation + pädev isik; oracle: `plan_conformant`=t, `plan_violation`=f, `competent_designer`=f → allow text with "design was prepared by a relative who is not a pädev isik" | `request_deny.txt` → `deny_no_allow_path_designer_not_competent.txt` |
@@ -90,7 +90,7 @@ git history (`0d28213`) and inside the pre-rename transcripts.
 ## Caveats found on the way (not fixed here; oracle/catalog questions)
 
 - `civil_service_admission`: the catalog treats `ee_citizen` and `eu_citizen`
-  as exclusive (`eu_citizen` = citizen of *another* EU state for the § 14 lg 2
+  as exclusive (`eu_citizen` = citizen of *another* EU state for the § 14 (2)
   path), so the oracles claim `eu_citizen`=false for an Estonian citizen. A
   model reading "Estonian citizen" may reasonably answer `eu_citizen`=true or
   unknown. Either rename/redefine the term (`other_eu_citizen`) or accept the

@@ -87,7 +87,7 @@ class RenameMap:
             self.scen_by_case.setdefault(oc, {})[os_] = ns
 
     def statute(self, value: str) -> str:
-        """Follow the chain (land_tax_exemption -> mms_11 -> land_tax_act) to its end."""
+        """Follow the chain (v1 case name -> act abbreviation -> act slug) to its end."""
         seen: set[str] = set()
         while value in self.statutes and value not in seen:
             seen.add(value)

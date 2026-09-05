@@ -213,7 +213,7 @@ def test_reference_parsing_and_display():
     assert display_reference(ref, "Land Tax Act") == "Land Tax Act § 11 (5) 1)"
     assert is_within("sec_11__subsec_1", "sec_11") and not is_within("sec_110", "sec_11")
     with pytest.raises(ValueError):
-        parse_reference("mms_11_1")
+        parse_reference("old_style_11_1")
     with pytest.raises(ValueError):
         parse_reference("land_tax_act/para11lg1")
 

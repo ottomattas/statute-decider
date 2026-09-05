@@ -35,11 +35,13 @@ the pinned history). Operator sign-off needed on the rename table before any
 ## 2. Naming rulings (proposed)
 
 **Ruling A — official documents keep official names.** Statute directories are
-named by the Riigi Teataja act abbreviation plus paragraph, e.g. `mms_11`
-(Maamaksuseadus § 11), `ats_14` (Avaliku teenistuse seadus § 14). The
-`statute.yaml` sidecar carries the full official title and the RT link; the
-`statute.txt` is the official excerpt. Nothing invented, directly greppable
-against the law.
+named after the official act. *As proposed on 2026-09-02:* the Riigi Teataja
+abbreviation plus paragraph. *As settled on 2026-09-05 (Ruling G):* the English
+act slug (`land_tax_act`, `civil_service_act`), because the input is now the
+whole act read from the official XML corpus; provisions are cited as
+`<act_slug>/<eId>`. The `statute.yaml` spec names the catalogue entry
+(`global_id`) and the provisions the rules were written against. Nothing
+invented, directly greppable against the law.
 
 **Ruling B — cases are named after the citizen's service question.** A case id
 answers "what is the person asking for": `land_tax_home_exemption`,
@@ -88,10 +90,10 @@ same sitting as the rename execution; do not block it.
 | today | proposed | note |
 |---|---|---|
 | `section_120_demo` | TBD (name the actual service) | statute → its real act § |
-| `land_tax_exemption` | `land_tax_home_exemption` | statute → `mms_11` |
-| `civil_service_eligibility` | `civil_service_admission` | statute → `ats_14` (confirm §) |
-| `consumer_withdrawal` | `consumer_purchase_withdrawal` | statute → `vos_56` (confirm §) |
-| `building_permit` | `building_permit_grant` | statute → `ehs_..` (confirm §) |
+| `land_tax_exemption` | `land_tax_home_exemption` | statute → `land_tax_act` |
+| `civil_service_eligibility` | `civil_service_admission` | statute → `civil_service_act` |
+| `consumer_withdrawal` | `consumer_purchase_withdrawal` | statute → `law_of_obligations_act` |
+| `building_permit` | `building_permit_grant` | statute → `building_code` |
 | `personal_data_journalism` | `journalistic_data_disclosure` | statute → `iks_..` (confirm §) |
 
 ## 3. Balanced scenario suite (proposed)

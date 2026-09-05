@@ -128,19 +128,20 @@ for c, s in store.all_scenarios():
 out.append("""
 ## 5. Catalogue wording that touches gold reasoning
 
-- `ats_14_15/eu_citizen` — label "Applicant is a citizen of another EU Member State";
+- `civil_service_act/eu_citizen` — label "Applicant is a citizen of another EU Member State";
   definition now states "other than Estonia … exclusive of `ee_citizen`". This makes the
   catalogue say what every scenario already assumed (`ee_citizen=true` ↔ `eu_citizen=false`
   in all claim sets and in the population register record) and matches § 14 (2)'s "may
   **also** be employed". No gold changes; the previous report's first caveat is closed as a
   wording fix.
-- `iks_4/excessive_harm` — label "Disclosure would cause excessive damage to the data
+- `personal_data_protection_act/excessive_harm` — label "Disclosure would cause excessive damage to the data
   subject's rights"; definition cites § 4, second sentence. Together with the request-text
   change above, the term no longer rests on "proportionate".
-- `ehs_42_44/site_study_provided` — label "Required site investigations have been
+- `building_code/site_study_provided` — label "Required site investigations have been
   performed" (translation wording for *ehitusuuring*); id unchanged.
 - All `clause_title` values use "§ N (subsection) clause)" (e.g. `§ 11 (5) 1)`, `§ 56 (2¹)`,
-  `§ 4, second sentence`); `clause_id` values unchanged pending alignment to XML element ids.
+  `§ 4`); since the evening of 2026-09-05 `clause_id` values are `<act_slug>/<eId>` resolved
+  against the Riigi Teataja XML (`docs/reference/legislation-corpus.md`).
 """)
 (ROOT / "docs/reference/gold-review-2026-09-05.md").write_text("\n".join(out) + "\n", encoding="utf-8")
 print("written", n)

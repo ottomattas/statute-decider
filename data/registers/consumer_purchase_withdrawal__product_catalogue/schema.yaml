@@ -1,6 +1,6 @@
 register_id: consumer_purchase_withdrawal__product_catalogue
 label: Dummy product catalogue
-description: Holds the § 53 lg 4 excluded-category flag for the ordered goods.
+description: Holds the § 53 (4) excluded-category flag for the ordered goods.
 fields:
 - excluded_category
 default_warrant: authoritative
