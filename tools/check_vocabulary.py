@@ -43,8 +43,9 @@ Exclusions (why):
   is never rewritten; ``summary.md`` is regenerated from the current
   ``experiment.yaml`` and is checked.
 * ``experiments/_chains/**`` — gitignored raw logs.
-* ``examples/teaching/**/road_traffic_act_*.txt`` — the teaching example's
-  own official source texts (Estonian original and English translation).
+* No source-language exception anywhere else: the teaching example's Estonian
+  text (``road_traffic_act_et_full.txt``) left the repo on 2026-09-06 and is
+  archived in the ES inbox; its English translation is scanned like any file.
 * Proper nouns that are English usage (Riigi Teataja, Estonia, Tallinn,
   Tartu) and the authors' names are stripped from a line before class C runs.
 * This file and its test spell every pattern, so they skip themselves.
@@ -94,7 +95,6 @@ EXEMPT_CLASSES: dict[str, set[str]] = {
     "data/sources/legislation/catalogue.json": {"C"},
 }
 RESULTS_KEEP = {"summary.md"}
-TEACHING_SOURCE_RE = re.compile(r"^examples/teaching/.*/road_traffic_act_[a-z]+_[a-z]+\.txt$")
 
 # proper nouns and names that are English usage; removed before class C
 ALLOWED_PHRASES = [
@@ -207,9 +207,11 @@ ESTONIAN_WORDS = [
     "soodustus", "isiklikud", "vajadused", "sidevahendi", "ülemäära", "tüüpi",
     "jõust", "kehtetu", "terviktekst", "loige", "alampunkt", "peatykk", "jaotis",
 ]
-# stems that collide with English once a suffix is allowed (lapse/lapses, nous) —
-# matched as whole words only
-ESTONIAN_EXACT_WORDS = ["lapse", "vastab", "nõus", "abil"]
+# stems that collide with English once a suffix is allowed (nous) — matched as
+# whole words only. ``lapse`` (genitive of "child") was dropped 2026-09-06: it is
+# also the English noun ("lapse of the suspension" in the Road Traffic Act
+# translation) and the texts it guarded against are gone.
+ESTONIAN_EXACT_WORDS = ["vastab", "nõus", "abil"]
 _TRANSLIT = str.maketrans("õäöüšž", "oaousz")
 
 
@@ -259,8 +261,6 @@ def iter_files(root: Path) -> Iterator[Path]:
         if path.suffix.lower() in SKIP_SUFFIXES:
             continue
         if rel in SKIP_FILES or rel.startswith(SKIP_PREFIXES):
-            continue
-        if TEACHING_SOURCE_RE.match(rel):
             continue
         if len(parts) >= 3 and parts[0] == "experiments" and parts[2] == "results" and path.name not in RESULTS_KEEP:
             continue

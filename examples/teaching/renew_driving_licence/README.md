@@ -71,9 +71,8 @@ oracle files.
 
 ```
 full act, English (text) .. data/statutes/driving_licence_renewal/road_traffic_act_en_full.txt
-full act, Estonian (text) . data/statutes/driving_licence_renewal/road_traffic_act_et_full.txt
 full act, marked .......... data/statutes/driving_licence_renewal/road_traffic_act_en_marked.txt
-official PDFs ............. road_traffic_act_en.pdf / road_traffic_act_et.pdf (download from Riigi Teataja, see below)
+official PDF .............. road_traffic_act_en.pdf (download from Riigi Teataja, see below)
 verbatim excerpts ......... data/statutes/driving_licence_renewal/statute.txt (+ terms + rules in oracle/)
 term-catalogue method ..... term-catalogue-guide.md
 human service page ........ data/services/renew_driving_licence/service-description.md
@@ -87,21 +86,23 @@ runnable demo ............. run_demo.py
 The `data/` tree uses exactly the same layout and schemas as the main
 benchmark (`data/` at the repo root), so everything transfers 1:1.
 
-### Official PDFs
+### Official PDF
 
-Riigi Teataja serves downloads only to a real browser, so fetch the two
-PDFs manually and drop them into
-`data/statutes/driving_licence_renewal/` as `road_traffic_act_en.pdf` and
-`road_traffic_act_et.pdf`:
+Riigi Teataja serves downloads only to a real browser, so fetch the PDF of
+the English translation manually and drop it into
+`data/statutes/driving_licence_renewal/` as `road_traffic_act_en.pdf`:
 
 - English translation: <https://www.riigiteataja.ee/en/eli/527072026001>
   (use the *Download* link on the page)
-- Estonian consolidated text: <https://www.riigiteataja.ee/akt/111072026044>
-  (use the *Laadi alla* link on the page)
 
 For the classroom, extract the pages containing § 96–98 and § 101 and
 highlight the marked provisions — `road_traffic_act_en_marked.txt` tells
 you exactly which paragraphs.
+
+The repo is English-only: the pack quotes and ships the official English
+translation. The legally binding consolidated text in the source language
+is linked above for anyone who wants to check the translation; a copy of
+it, as the pack carried it until 2026-09-06, is archived outside this repo.
 
 ## From one seed file to all artifacts
 

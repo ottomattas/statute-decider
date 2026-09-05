@@ -10,5 +10,7 @@ version_date: "2026-07-11"
 notes: >-
   Teaching example. Verbatim excerpts (sections 96 (7) and (9), 97 (7),
   98 (1)-(3), 101 (1) and (8)) from the official English translation. Full act
-  texts: road_traffic_act_en_full.txt and road_traffic_act_et_full.txt;
+  text: road_traffic_act_en_full.txt (official English translation);
   road_traffic_act_en_marked.txt marks the used provisions in the full text.
+  The source-language consolidated text left the repo on 2026-09-06 (English-only
+  ruling) and is archived outside it.
