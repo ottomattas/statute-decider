@@ -7,6 +7,7 @@ question: >
 
 condition: architecture # configs/conditions/<name>.yaml
 cases: all # or a list of case ids from data/cases/
+scenarios: [] # optional narrowing: case_id/scenario_id entries (smoke runs); empty = every scenario of the cases
 models: # the declared grid; --models all resolves to this list
   - gemini-2.5-flash
   - gpt-5-mini

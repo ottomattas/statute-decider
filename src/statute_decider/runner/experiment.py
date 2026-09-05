@@ -42,6 +42,10 @@ class ExperimentConfig(BaseModel):
     question: str = ""
     condition: str
     cases: list[str] | str = "all"
+    # Optional narrowing inside the selected cases: ``case_id/scenario_id``
+    # entries. Empty = every scenario of every selected case. Smoke runs use
+    # it to hit one named scenario per provider instead of a whole case.
+    scenarios: list[str] = Field(default_factory=list)
     models: list[str] = Field(default_factory=list)
     prompts: dict[str, list[str]] = Field(default_factory=dict)  # node -> variants (sweep)
     repeats: int = 1
@@ -234,6 +238,12 @@ def run_experiment(
 
     case_ids = None if config.cases == "all" else list(config.cases)
     pairs = store.all_scenarios(case_ids)
+    if config.scenarios:
+        wanted = set(config.scenarios)
+        pairs = [(case, scen) for case, scen in pairs if f"{case}/{scen}" in wanted]
+        unknown = wanted - {f"{case}/{scen}" for case, scen in pairs}
+        if unknown:
+            raise ValueError(f"experiment.yaml scenarios not found in the selected cases: {sorted(unknown)}")
     combos = _prompt_combos(config.prompts)
 
     rows_writer = _JsonlWriter(results_dir / "rows.jsonl", append=resume)

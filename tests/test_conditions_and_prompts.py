@@ -211,3 +211,78 @@ def test_resume_and_limit_continue_a_grid(root, tmp_path):
     run_experiment(root, exp_dir, execution="sequential", models=["all"], resume=True)
     assert (results / "rows.jsonl").read_text().count("\n") == 6
     assert (results / "invocations.jsonl").read_text().count("\n") == 3
+
+
+def test_parallel_runner_warms_each_cache_group_first(root):
+    """Parallel: the first unit of a (model, statute) group finishes before any
+    other unit of that group starts; other groups and providers are not held."""
+    import threading
+    import time
+
+    from statute_decider.llm import LLMClient
+
+    registry = ModelRegistry(root / "configs" / "llm" / "models.yaml")
+    client = LLMClient(registry, provider_concurrency=4)
+    events: list[tuple[str, str, float]] = []
+    lock = threading.Lock()
+
+    def unit(name: str, group: str, sleep_s: float):
+        def run():
+            with lock:
+                events.append(("start", f"{group}:{name}", time.monotonic()))
+            time.sleep(sleep_s)
+            with lock:
+                events.append(("end", f"{group}:{name}", time.monotonic()))
+            return name
+
+        return run
+
+    units = [
+        ("openai", "g1", unit("a", "g1", 0.2)),
+        ("openai", "g1", unit("b", "g1", 0.01)),
+        ("openai", "g1", unit("c", "g1", 0.01)),
+        ("openai", "g2", unit("d", "g2", 0.01)),
+        ("anthropic", "g3", unit("e", "g3", 0.01)),
+        ("openai", unit("f", "nogroup", 0.01)),  # two-tuple form still accepted
+    ]
+    results = client.run_units(units, execution="parallel")
+    assert results == ["a", "b", "c", "d", "e", "f"]
+    when = {(kind, who): t for kind, who, t in events}
+    for follower in ("b", "c"):
+        assert when[("start", f"g1:{follower}")] >= when[("end", "g1:a")]
+    # g2, g3 and the ungrouped unit start while g1's warm-up is still running.
+    for other in ("g2:d", "g3:e", "nogroup:f"):
+        assert when[("start", other)] < when[("end", "g1:a")]
+    # Sequential ignores groups and keeps order.
+    events.clear()
+    assert client.run_units(units, execution="sequential") == ["a", "b", "c", "d", "e", "f"]
+    starts = [who for kind, who, _ in events if kind == "start"]
+    assert starts == ["g1:a", "g1:b", "g1:c", "g2:d", "g3:e", "nogroup:f"]
+
+
+def test_scenarios_filter_narrows_the_grid(root, tmp_path):
+    import pytest
+
+    from statute_decider.runner.experiment import run_experiment
+
+    exp_dir = tmp_path / "exp"
+    exp_dir.mkdir()
+    yaml_head = (
+        "name: scenario-filter-test\nquestion: t\ncondition: solver-validation\n"
+        "cases: [land_tax_home_exemption]\nmodels: []\nrepeats: 1\nbudget_eur: 0\n"
+    )
+    (exp_dir / "experiment.yaml").write_text(
+        yaml_head + "scenarios: [land_tax_home_exemption/unverifiable_trust_only_applicant_selfreport]\n",
+        encoding="utf-8",
+    )
+    results = run_experiment(root, exp_dir, execution="sequential", models=["all"])
+    rows = [json.loads(l) for l in (results / "rows.jsonl").read_text().splitlines() if l.strip()]
+    assert [(r["case_id"], r["scenario_id"]) for r in rows] == [
+        ("land_tax_home_exemption", "unverifiable_trust_only_applicant_selfreport")
+    ]
+    # A scenario outside the selected cases (or misspelt) is an error, not a silent empty grid.
+    (exp_dir / "experiment.yaml").write_text(
+        yaml_head + "scenarios: [land_tax_home_exemption/no_such_scenario]\n", encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="no_such_scenario"):
+        run_experiment(root, exp_dir, execution="sequential", models=["all"])

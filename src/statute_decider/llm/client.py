@@ -176,33 +176,66 @@ class LLMClient:
         return self._semaphores[provider]
 
     async def _run_unit(
-        self, provider: str, unit: Callable[[], Any], *, sequential_lock: asyncio.Lock | None
+        self,
+        provider: str,
+        unit: Callable[[], Any],
+        *,
+        sequential_lock: asyncio.Lock | None,
+        warm: asyncio.Event | None = None,
+        warms: asyncio.Event | None = None,
     ) -> Any:
         if sequential_lock is not None:
             async with sequential_lock:
                 return await asyncio.to_thread(unit)
-        async with self._semaphore(provider):
-            return await asyncio.to_thread(unit)
+        if warm is not None:
+            await warm.wait()
+        try:
+            async with self._semaphore(provider):
+                return await asyncio.to_thread(unit)
+        finally:
+            if warms is not None:
+                warms.set()
 
     def run_units(
         self,
-        units: list[tuple[str, Callable[[], Any]]],
+        units: list[tuple[str, Callable[[], Any]] | tuple[str, str | None, Callable[[], Any]]],
         *,
         execution: str,
     ) -> list[Any]:
-        """Run (provider, thunk) work units; parallel fans out with per-provider
-        semaphores, sequential preserves order one at a time. Exceptions are
-        returned in place of results."""
+        """Run work units ``(provider, thunk)`` or ``(provider, group, thunk)``.
+
+        ``parallel`` fans out with per-provider semaphores; ``sequential``
+        preserves order one at a time. A ``group`` names the calls that share
+        one prompt-cache prefix (model + statute unit): in parallel mode the
+        first unit of a group runs alone and the rest of the group waits for
+        it to finish, so the prefix is written once and every later call can
+        read it (measured 2026-09-06: without the gate the first
+        ``provider_concurrency`` calls of an act all miss). Groups on
+        different providers still run concurrently. Exceptions are returned
+        in place of results.
+        """
         if execution not in {"parallel", "sequential"}:
             raise ValueError("--execution must be 'parallel' or 'sequential' (no default).")
+        normalized: list[tuple[str, str | None, Callable[[], Any]]] = [
+            (item[0], None, item[1]) if len(item) == 2 else item  # type: ignore[misc]
+            for item in units
+        ]
 
         async def runner() -> list[Any]:
             self._semaphores = {}
             lock = asyncio.Lock() if execution == "sequential" else None
-            tasks = [
-                self._run_unit(provider, unit, sequential_lock=lock)
-                for provider, unit in units
-            ]
+            warm_events: dict[str, asyncio.Event] = {}
+            tasks = []
+            for provider, group, unit in normalized:
+                warm = warms = None
+                if lock is None and group is not None:
+                    if group in warm_events:
+                        warm = warm_events[group]  # wait for the group's first call
+                    else:
+                        warms = warm_events[group] = asyncio.Event()  # this call warms it
+                tasks.append(
+                    self._run_unit(provider, unit, sequential_lock=lock, warm=warm, warms=warms)
+                )
             return await asyncio.gather(*tasks, return_exceptions=True)
 
         return asyncio.run(runner())
