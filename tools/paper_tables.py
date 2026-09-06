@@ -101,14 +101,10 @@ def analyse(folder: Path, mechanisms: dict[str, str]) -> list[dict]:
         gold_allow = [r for r in scored if r["score"]["expected_scored_as"] == "ALLOW"]
         allow_as = Counter(r["score"]["produced_scored_as"] for r in gold_allow)
         trust = [
-            r
-            for r in scored
-            if mechanisms.get(f"{r['case_id']}/{r['scenario_id']}") == "trust_only"
+            r for r in scored if mechanisms.get(f"{r['case_id']}/{r['scenario_id']}") == "trust_only"
         ]
         trust_decided = Counter(
-            r["score"]["produced_scored_as"]
-            for r in trust
-            if r["score"]["produced_scored_as"] != "NEED_MORE_INFO"
+            r["score"]["produced_scored_as"] for r in trust if r["score"]["produced_scored_as"] != "NEED_MORE_INFO"
         )
         exact_missing = sum(1 for r in scored if r["score"]["missing_f1"] == 1.0)
         out.append(
@@ -181,9 +177,7 @@ def print_tex(results: list[dict], labels: dict[str, str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("experiments", nargs="+", help="experiment folders")
     parser.add_argument("--tex", action="store_true", help="also print LaTeX tabular rows")
     parser.add_argument(
