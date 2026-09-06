@@ -1,0 +1,22 @@
+name: 20260906-llm-only-sota
+question: Does a frontier model close the gap to the architecture without it? LLM-only single call, SOTA
+  x 1, indicative.
+condition: llm-only
+cases: all
+scenarios: []
+models:
+- gemini-3.1-pro
+- gpt-5.6-sol
+- fable-5.1
+- deepseek-v4-pro
+prompts: {}
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 14.0
+notes: 'Per-case-balanced 54-scenario suite (6 x 3/3/3, gold approved 2026-09-06), main 98e9911: English
+  official-translation corpus, Ruling H statute units, Ruling I stage 2 over every rule, Ruling J single-call
+  decide with justification on every row, Ruling K prompt ids. Supersedes the 2026-09-0[1-4] run of the
+  same condition (47-scenario suite, retired ids). Calibration 20260906-llm-only-calibration: 54 gpt-5-mini
+  calls EUR 0.20, cached share 0.82, ~1 050 output tokens per decide call.'

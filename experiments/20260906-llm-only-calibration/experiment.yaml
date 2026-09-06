@@ -1,0 +1,23 @@
+name: 20260906-llm-only-calibration
+question: |
+  Calibration pass before the paid grids on the per-case-balanced 54-scenario suite (gold approved
+  2026-09-06 15:10): does the single-call llm-only baseline (Ruling J) parse and score cleanly on every
+  case with the warm-up gate, what is the real cached share and cost per (model, act), and does the
+  n = 1 Civil Service Act DENY -> ALLOW pattern from the smoke run hold? gpt-5-mini, one repeat.
+condition: llm-only
+cases: all
+scenarios: []
+models:
+- gpt-5-mini
+prompts: {}
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 0.6
+notes: |
+  First LLM run on the 3/3/3-per-case suite (main = 98e9911). Parallel execution with the per-(model,
+  statute) warm-up gate (6c6d0f2). Projected ≈ EUR 0.30 gated. Its ledger calibrates the grid cost
+  plan in the ES smoke report before the cheap ×10 grids and the SOTA cells are launched.
+  Operator ruling 2026-09-06: the baseline's missing-term P/R is reported as n/a in the paper (no shared
+  vocabulary); the columns here are diagnostic only.

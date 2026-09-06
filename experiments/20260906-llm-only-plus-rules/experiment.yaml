@@ -1,0 +1,22 @@
+name: 20260906-llm-only-plus-rules
+question: Does adding the oracle rules to the raw-sources prompt close the gap without a solver? Single
+  structured call (Ruling J). Cheap grid x 10.
+condition: llm-only-plus-rules
+cases: all
+scenarios: []
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+prompts: {}
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 15.0
+notes: 'Per-case-balanced 54-scenario suite (6 x 3/3/3, gold approved 2026-09-06), main 98e9911: English
+  official-translation corpus, Ruling H statute units, Ruling I stage 2 over every rule, Ruling J single-call
+  decide with justification on every row, Ruling K prompt ids. Supersedes the 2026-09-0[1-4] run of the
+  same condition (47-scenario suite, retired ids). Calibration 20260906-llm-only-calibration: 54 gpt-5-mini
+  calls EUR 0.20, cached share 0.82, ~1 050 output tokens per decide call.'
