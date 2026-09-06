@@ -50,6 +50,9 @@ from statute_decider.llm.base import (
 T = TypeVar("T", bound=BaseModel)
 
 _NO_TEMPERATURE_PREFIXES = ("gpt-5", "o1", "o3", "o4")
+# GPT-5.6 and later place the implicit cache breakpoint at the end of the latest
+# message; the shared statute prefix needs an explicit one (see OpenAIAdapter).
+_EXPLICIT_BREAKPOINT_PREFIXES = ("gpt-5.6", "gpt-5.7", "gpt-6")
 
 
 class GoogleAdapter:
@@ -83,7 +86,7 @@ class GoogleAdapter:
             temperature=temperature,
             max_output_tokens=max_output_tokens,
             response_mime_type="application/json",
-            response_json_schema=response_model.model_json_schema(),
+            response_json_schema=strict_json_schema(response_model),
         )
         started = time.monotonic()
         response = client.models.generate_content(model=api_model, contents=user, config=config)
@@ -139,10 +142,25 @@ class OpenAIAdapter:
         }
         if not api_model.startswith(_NO_TEMPERATURE_PREFIXES):
             kwargs["temperature"] = temperature
-        if cache_prefix_len > 0:
+        if 0 < cache_prefix_len < len(user):
             # Same key for every call sharing this (system, statute) prefix so
-            # they land on the same cache; caching itself is automatic.
+            # they land on the same cache. On GPT-5.6+ the implicit breakpoint
+            # sits at the end of the *whole* user message, which differs per
+            # scenario, so the shared statute block is never matched (6 Sep:
+            # 6 962 cached of 1.57 M tokens); an explicit breakpoint after the
+            # statute block restores the prefix match. Earlier models ignore
+            # the marker and keep their interval breakpoints.
+            # https://developers.openai.com/api/docs/guides/prompt-caching
             kwargs["prompt_cache_key"] = _prefix_key(system, user[:cache_prefix_len])
+            if api_model.startswith(_EXPLICIT_BREAKPOINT_PREFIXES):
+                kwargs["input"][1]["content"] = [
+                    {
+                        "type": "input_text",
+                        "text": user[:cache_prefix_len],
+                        "prompt_cache_breakpoint": {"mode": "explicit"},
+                    },
+                    {"type": "input_text", "text": user[cache_prefix_len:]},
+                ]
         started = time.monotonic()
         response = client.responses.create(**kwargs)
         latency_ms = int((time.monotonic() - started) * 1000)
@@ -286,7 +304,7 @@ class DeepSeekAdapter:
             base_url="https://api.deepseek.com",
             timeout=call_timeout_s(),
         )
-        schema_text = json.dumps(response_model.model_json_schema())
+        schema_text = json.dumps(strict_json_schema(response_model))
         system_out = (
             f"{system}\n\nReturn a JSON object that matches this JSON schema:\n{schema_text}"
         )

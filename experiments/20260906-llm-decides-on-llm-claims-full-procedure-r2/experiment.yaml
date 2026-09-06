@@ -1,0 +1,37 @@
+name: 20260906-llm-decides-on-llm-claims-full-procedure-r2
+question: 'The architecture minus the solver: LLM-extracted claims, decide prompt with the full procedure.
+  Cheap grid x 10.'
+condition: llm-decides-on-llm-claims-full-procedure
+cases: all
+scenarios: []
+models:
+- gemini-2.5-flash
+- gpt-5-mini
+- haiku-4.5
+- deepseek-v4-flash
+prompts: {}
+repeats: 10
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 9.0
+notes: 'Re-run of 20260906-llm-decides-on-llm-claims-full-procedure after two runner fixes, with the prompt
+  wording unchanged. (1) The pydantic docstring of DecideResponse (''steps come before outcome so the
+  model reasons before it decides'') was being sent to every provider as the JSON-schema ''description'';
+  Claude Fable 5.1''s safety classifier refused 57/60 llm-only calls as reasoning_extraction because of
+  it (verified 6 Sep 20:30: with the description dropped the identical prompt passes 3/3; with it, prose
+  or structured justification variants were refused as well). strict_json_schema now drops ''description''
+  for every provider (Gemini and DeepSeek previously received the raw pydantic schema). (2) GPT-5.6''s
+  implicit cache breakpoint sits at the end of the whole user message, so the shared statute prefix never
+  matched (6 962 cached of 1.57 M tokens on 6 Sep); the OpenAI adapter now marks an explicit breakpoint
+  after the statute block (settled-call cache 99-100 percent in pre-flight). Because the schema on the
+  wire changed for every model, every decide cell is re-run so that the paper''s rows come from one configuration.
+  Pre-flight (tools/preflight.py): 2 cells + 1 settled cell per model checked for parse, refusal and cache
+  read before the grid continues.
+
+
+  Per-case-balanced 54-scenario suite (6 x 3/3/3, gold approved 2026-09-06), main 98e9911: English official-translation
+  corpus, Ruling H statute units, Ruling I stage 2 over every rule, Ruling J single-call decide with justification
+  on every row, Ruling K prompt ids. Supersedes the 2026-09-0[1-4] run of the same condition (47-scenario
+  suite, retired ids). Calibration 20260906-llm-only-calibration: 54 gpt-5-mini calls EUR 0.20, cached
+  share 0.82, ~1 050 output tokens per decide call.'

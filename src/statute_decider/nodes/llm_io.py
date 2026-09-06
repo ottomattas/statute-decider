@@ -41,6 +41,12 @@ class DecideResponse(BaseModel):
     Field order is the schema order the model fills: ``steps`` come *before*
     ``outcome`` so the model reasons before it decides; ``justification`` is
     the inline justification stored on the row as an ``llm_inline`` entry.
+
+    This docstring is developer text: ``strict_json_schema`` drops the schema
+    ``description`` it would otherwise become. Until 6 Sep 2026 it reached the
+    providers inside the JSON schema, and Claude Fable 5.1's safety classifier
+    read "reasons before it decides" as a reasoning-extraction request and
+    refused 57/60 llm-only calls; the prompt wording itself passes.
     """
 
     steps: list[str] = Field(default_factory=list)

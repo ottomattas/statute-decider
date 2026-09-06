@@ -145,7 +145,11 @@ def _strictify(node: Any) -> Any:
     if not isinstance(node, dict):
         return node
     node = dict(node)
-    for drop in ("title", "default", "examples"):
+    # ``description`` is the pydantic class/field docstring: developer notes, not
+    # prompt. It reached the provider until 6 Sep 2026, when Claude Fable 5.1's
+    # safety classifier refused decide calls as reasoning extraction because the
+    # DecideResponse docstring talked about the model "reasoning before it decides".
+    for drop in ("title", "default", "examples", "description"):
         node.pop(drop, None)
     if "properties" in node:
         node["type"] = node.get("type") or "object"
