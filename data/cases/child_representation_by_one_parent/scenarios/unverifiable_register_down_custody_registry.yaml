@@ -1,0 +1,20 @@
+scenario_id: unverifiable_register_down_custody_registry
+case_id: child_representation_by_one_parent
+label: 'Child: custody register unavailable'
+mechanism: register_down
+description: A parent states that the matter is not urgent and the other parent is reachable;
+  the custody register is unavailable, so neither sole custody nor a transferred power of
+  decision (§ 120 (2)) can be verified, and the consent service records no joint consent ->
+  UNVERIFIABLE_CLAIM (no_register) on {delegated_decision_right, sole_custody}.
+utterance_file: unverifiable_register_down_custody_registry.txt
+register_overrides:
+  child_representation_by_one_parent__custody_registry:
+    availability: unavailable
+tags:
+- uncertainty
+- register-down
+- authored-20260906
+gold_confidence: high
+notes: ''
+provenance: 'Authored 2026-09-06 (operator ruling: 3 ALLOW / 3 DENY / 3 NEED_MORE_INFO per
+  case); hand-verification sheet docs/reference/gold-review-2026-09-06.md'

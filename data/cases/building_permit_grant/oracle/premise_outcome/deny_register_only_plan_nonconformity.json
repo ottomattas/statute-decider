@@ -7,7 +7,7 @@
   "fired_rules": [],
   "valuation": {},
   "free_missing": [],
-  "note": "authored 2026-09-05; solver check: fired=[]",
+  "note": "authored 2026-09-05; solver check: fired=[] (before Ruling I); since 2026-09-06 (ADR 0006) fired=['deny_plan_violation'] — the register-recorded § 44 1) ground is drawn at stage 2",
   "provenance": {
     "node": "premise_outcome",
     "method": "oracle",

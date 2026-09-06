@@ -202,14 +202,14 @@ def test_resume_and_limit_continue_a_grid(root, tmp_path):
     results = run_experiment(root, exp_dir, execution="sequential", models=["all"], limit=3)
     rows = [json.loads(l) for l in (results / "rows.jsonl").read_text().splitlines() if l.strip()]
     assert len(rows) == 3
-    # Resume: the remaining three run (the case has six scenarios since 2026-09-05), the first three are kept, none duplicated.
+    # Resume: the remaining six run (the case has nine scenarios since 2026-09-06), the first three are kept, none duplicated.
     run_experiment(root, exp_dir, execution="sequential", models=["all"], resume=True)
     rows = [json.loads(l) for l in (results / "rows.jsonl").read_text().splitlines() if l.strip()]
-    assert len(rows) == 6
-    assert len({(r["scenario_id"], r["repeat"]) for r in rows}) == 6
+    assert len(rows) == 9
+    assert len({(r["scenario_id"], r["repeat"]) for r in rows}) == 9
     # Resume again: nothing pending, rows unchanged; every invocation recorded.
     run_experiment(root, exp_dir, execution="sequential", models=["all"], resume=True)
-    assert (results / "rows.jsonl").read_text().count("\n") == 6
+    assert (results / "rows.jsonl").read_text().count("\n") == 9
     assert (results / "invocations.jsonl").read_text().count("\n") == 3
 
 

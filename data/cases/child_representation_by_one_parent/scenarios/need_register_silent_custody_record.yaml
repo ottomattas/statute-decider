@@ -1,0 +1,23 @@
+scenario_id: need_register_silent_custody_record
+case_id: child_representation_by_one_parent
+label: 'Child: custody register silent on the basis to act alone'
+mechanism: register_silent
+description: A parent states that the matter is not urgent and the other parent is reachable;
+  the custody register record carries neither sole_custody nor delegated_decision_right (fields
+  absent, register available) and the consent service records no joint consent, so § 120 (2)
+  1) and 2) stay open on register terms -> NEED_REGISTER_INFO {delegated_decision_right, sole_custody}.
+utterance_file: need_register_silent_custody_record.txt
+register_overrides:
+  child_representation_by_one_parent__custody_registry:
+    remove:
+      main:
+      - sole_custody
+      - delegated_decision_right
+tags:
+- needs-info
+- register-silent
+- authored-20260906
+gold_confidence: high
+notes: ''
+provenance: 'Authored 2026-09-06 (operator ruling: 3 ALLOW / 3 DENY / 3 NEED_MORE_INFO per
+  case); hand-verification sheet docs/reference/gold-review-2026-09-06.md'

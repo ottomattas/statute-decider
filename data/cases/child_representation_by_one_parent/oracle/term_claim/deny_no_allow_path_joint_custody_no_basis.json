@@ -1,0 +1,81 @@
+{
+  "node": "term_claim",
+  "scenario_id": "deny_no_allow_path_joint_custody_no_basis",
+  "claims": [
+    {
+      "premise_id": "claim_applicant_is_not_parent",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "applicant_is_not_parent",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_applicant_is_parent",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "applicant_is_parent",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_both_parents_consent",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "both_parents_consent",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_delegated_decision_right",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "delegated_decision_right",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_emergency",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "emergency",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_one_parent_unreachable",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "one_parent_unreachable",
+      "value": false,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_sole_custody",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "sole_custody",
+      "value": false,
+      "span": "",
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "term_claim",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-06T11:00:00Z",
+    "notes": "Authored 2026-09-06 (per-case balance 3/3/3); see docs/reference/gold-review-2026-09-06.md."
+  }
+}

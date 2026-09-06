@@ -5,8 +5,8 @@ mechanism: register_only
 description: Intent supplies nothing; the building register records that the project
   does not conform to the detailed spatial plan (plan_conformant false, plan_violation
   true). The register fact plan_conformant=false closes the only allow path (§ 42
-  (1)); the solver draws register facts only for open allow-path terms, so deny_plan_violation
-  is not triggered from the register -> default DENY with no applicable rules.
+  (1)) and, since Ruling I (2026-09-06, ADR 0006), stage 2 also draws the § 44 1) ground
+  from the register, so deny_plan_violation fires -> DENY.
 utterance_file: deny_register_only_plan_nonconformity.txt
 register_overrides:
   building_permit_grant__building_registry:

@@ -1,0 +1,24 @@
+scenario_id: deny_register_only_not_parent
+case_id: child_representation_by_one_parent
+label: 'Child: bare request, population register shows non-parent'
+mechanism: register_only
+description: 'Intent supplies nothing; the population register records that the requester
+  is not a parent of the child (applicant_is_parent false, applicant_is_not_parent true).
+  Every allow path is closed on applicant_is_parent and the register-recorded deny ground
+  fires deny_non_parent (§ 120 (1); Ruling I: facts are drawn for deny-rule antecedents too)
+  -> DENY.'
+utterance_file: deny_register_only_not_parent.txt
+register_overrides:
+  child_representation_by_one_parent__population_registry:
+    set:
+      main:
+        applicant_is_parent: false
+        applicant_is_not_parent: true
+tags:
+- negative
+- db-resolved
+- authored-20260906
+gold_confidence: high
+notes: ''
+provenance: 'Authored 2026-09-06 (operator ruling: 3 ALLOW / 3 DENY / 3 NEED_MORE_INFO per
+  case); hand-verification sheet docs/reference/gold-review-2026-09-06.md'

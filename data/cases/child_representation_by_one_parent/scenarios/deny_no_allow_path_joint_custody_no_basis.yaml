@@ -1,0 +1,19 @@
+scenario_id: deny_no_allow_path_joint_custody_no_basis
+case_id: child_representation_by_one_parent
+label: 'Child: joint custody, no basis to act alone'
+mechanism: no_allow_path
+description: A parent with joint custody states that no court has granted sole custody or
+  transferred the power of decision (§ 120 (2)), that the matter is not urgent and the other
+  parent is reachable (§ 120 (3)), and that the other parent has not consented (§ 118 (1),
+  § 120 (1)); every allow rule is blocked and deny_non_parent does not fire -> DENY with no
+  applicable rules.
+utterance_file: deny_no_allow_path_joint_custody_no_basis.txt
+register_overrides: {}
+tags:
+- negative
+- no-basis
+- authored-20260906
+gold_confidence: high
+notes: ''
+provenance: 'Authored 2026-09-06 (operator ruling: 3 ALLOW / 3 DENY / 3 NEED_MORE_INFO per
+  case); hand-verification sheet docs/reference/gold-review-2026-09-06.md'

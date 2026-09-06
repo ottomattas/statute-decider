@@ -1,0 +1,54 @@
+{
+  "node": "term_claim",
+  "scenario_id": "allow_register_only_catalogue_clears_exclusion",
+  "claims": [
+    {
+      "premise_id": "claim_distance_contract",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "distance_contract",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_is_consumer",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "is_consumer",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_notice_sent_in_time",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "notice_sent_in_time",
+      "value": true,
+      "span": "",
+      "notes": ""
+    },
+    {
+      "premise_id": "claim_within_14_days",
+      "kind": "claim",
+      "epistemic": "asserted",
+      "term_id": "within_14_days",
+      "value": true,
+      "span": "",
+      "notes": ""
+    }
+  ],
+  "provenance": {
+    "node": "term_claim",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-06T11:00:00Z",
+    "notes": "Authored 2026-09-06 (per-case balance 3/3/3); see docs/reference/gold-review-2026-09-06.md."
+  }
+}

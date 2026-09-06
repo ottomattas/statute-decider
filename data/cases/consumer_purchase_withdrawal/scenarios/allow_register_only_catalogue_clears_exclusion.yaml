@@ -1,0 +1,18 @@
+scenario_id: allow_register_only_catalogue_clears_exclusion
+case_id: consumer_purchase_withdrawal
+label: 'Withdrawal: § 56 (1) claimed, catalogue clears § 53 (4)'
+mechanism: register_only
+description: Applicant states the four § 56 (1) terms (consumer, distance contract, period
+  still running, notice dispatched in time) and says nothing about the kind of goods; the
+  product catalogue records excluded_category=false, so the § 53 (4) deny ground is cleared
+  from the register -> ALLOW via allow_distance_withdrawal.
+utterance_file: allow_register_only_catalogue_clears_exclusion.txt
+register_overrides: {}
+tags:
+- positive
+- db-resolved
+- authored-20260906
+gold_confidence: high
+notes: ''
+provenance: 'Authored 2026-09-06 (operator ruling: 3 ALLOW / 3 DENY / 3 NEED_MORE_INFO per
+  case); hand-verification sheet docs/reference/gold-review-2026-09-06.md'

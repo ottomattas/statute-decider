@@ -1,0 +1,23 @@
+{
+  "node": "utterance_term",
+  "scenario_id": "allow_register_only_design_conformity",
+  "term_refs": [
+    {
+      "term_id": "fee_paid",
+      "span": "",
+      "confidence": null
+    }
+  ],
+  "provenance": {
+    "node": "utterance_term",
+    "method": "oracle",
+    "strategy": null,
+    "provider": "human",
+    "model": "operator",
+    "prompt_id": null,
+    "prompt_hash": null,
+    "consumed_artifact": null,
+    "timestamp": "2026-09-06T11:00:00Z",
+    "notes": "Authored 2026-09-06 (per-case balance 3/3/3); see docs/reference/gold-review-2026-09-06.md."
+  }
+}
