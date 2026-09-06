@@ -136,7 +136,11 @@ On 2026-09-05 the suite became **54 scenarios, 18/18/18**, English-only
 Solver validation on the new suite: `experiments/20260906-solver-validation`
 = 54/54, macro F1 1.000. Historical rows are kept as they are; **every LLM
 cell changes** when re-run (new texts, new class prior, +7 scenarios), so do
-not splice old and new numbers into one table.
+not splice old and new numbers into one table. On 2026-09-06 (afternoon) the
+balance was made to hold **per case** — six cases × 3/3/3 = 54 (six dropped,
+six authored; `docs/reference/gold-review-2026-09-06.md`); the total stays
+18/18/18, but 12 of the 54 rows differ from the morning's suite, so
+`20260906-*` LLM folders written before that are not cell-comparable either.
 
 ## Smoke results
 

@@ -50,9 +50,14 @@ scenarios, 18 ALLOW / 18 DENY / 18 NEED_MORE_INFO (five near-duplicates
 retired, twelve authored; hand-verification sheet in
 [`docs/reference/gold-review-2026-09-05.md`](docs/reference/gold-review-2026-09-05.md)),
 and every string a model or reader sees — request texts, term catalogues,
-rule labels, register schemas, traces — is English. Experiment
-folders dated 2026-09-01 … 04 are 47-scenario history and are not comparable
-cell-for-cell with runs on the 54-scenario suite.
+rule labels, register schemas, traces — is English. On 2026-09-06 the balance
+was made to hold per case as well: six cases × (3 ALLOW / 3 DENY / 3
+NEED_MORE_INFO) = 54 (six scenarios dropped, six authored; sheet in
+[`docs/reference/gold-review-2026-09-06.md`](docs/reference/gold-review-2026-09-06.md)).
+Experiment folders dated 2026-09-01 … 04 are 47-scenario history and are not
+comparable cell-for-cell with runs on the 54-scenario suite; the
+`20260906-*` folders written before the afternoon of 2026-09-06 saw the
+per-total-only 54.
 
 Statute texts come from the official Riigi Teataja consolidated-text XML
 (`data/sources/legislation/`, 7 acts × {et, en}, byte-identical copies plus

@@ -144,7 +144,7 @@ where they differ). Tags: the pre-existing tags plus those added by the rename
 | `building_permit/building_permit_allow_via_db` | `building_permit_grant/allow_register_only` | ALLOW | `register_only` | `positive`, `db-resolved`, `via_db` |
 | `building_permit/building_permit_deny` | `building_permit_grant/deny_own_admission_plan_violation` | DENY | `own_admission` | `negative` |
 | `building_permit/building_permit_deny_incompetent` | `building_permit_grant/deny_no_allow_path_designer_not_competent` | DENY | `no_allow_path` | `negative`, `no-basis`, `scripted-claims` |
-| `building_permit/building_permit_deny_no_site_study` | `building_permit_grant/deny_no_allow_path_no_site_study` | DENY | `no_allow_path` | `negative`, `no-basis`, `scripted-claims` |
+| `building_permit/building_permit_deny_no_site_study` | `building_permit_grant/deny_no_allow_path_no_site_study` — **dropped 2026-09-06** (files removed; see "Dropped 2026-09-06" below) | DENY | `no_allow_path` | `negative`, `no-basis`, `scripted-claims` |
 | `building_permit/building_permit_need_db` | `building_permit_grant/need_register_silent_fee` | NEED_REGISTER_INFO → NEED_MORE_INFO | `register_silent` | `needs-info` |
 | `building_permit/building_permit_u3_no_register` | `building_permit_grant/unverifiable_register_down_payment_ledger` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `register_down` | `uncertainty`, `u3` |
 | `building_permit/building_permit_u7_trust_only` | `building_permit_grant/unverifiable_trust_only_designer_selfreport` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `trust_only` | `uncertainty`, `u7` |
@@ -162,7 +162,7 @@ where they differ). Tags: the pre-existing tags plus those added by the rename
 | `consumer_withdrawal/consumer_withdrawal_deny_not_consumer` | `consumer_purchase_withdrawal/deny_no_allow_path_not_consumer` | DENY | `no_allow_path` | `negative`, `no-basis`, `scripted-claims` |
 | `consumer_withdrawal/consumer_withdrawal_need_user` | `consumer_purchase_withdrawal/need_user_silent_deadline_and_notice` | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info` |
 | `consumer_withdrawal/consumer_withdrawal_u3_no_register` | `consumer_purchase_withdrawal/unverifiable_register_down_trader_crm` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `register_down` | `uncertainty`, `u3` |
-| `consumer_withdrawal/consumer_withdrawal_u5_need_db` | `consumer_purchase_withdrawal/need_register_silent_consumer_status` | NEED_REGISTER_INFO → NEED_MORE_INFO | `register_silent` | `needs-info`, `u5` |
+| `consumer_withdrawal/consumer_withdrawal_u5_need_db` | `consumer_purchase_withdrawal/need_register_silent_consumer_status` — **dropped 2026-09-06** (files removed; see "Dropped 2026-09-06" below) | NEED_REGISTER_INFO → NEED_MORE_INFO | `register_silent` | `needs-info`, `u5` |
 | `consumer_withdrawal/consumer_withdrawal_u7_trust_only` | `consumer_purchase_withdrawal/unverifiable_trust_only_trader_selfreport` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `trust_only` | `uncertainty`, `u7` |
 | `land_tax_exemption/land_tax_allow` | `land_tax_home_exemption/allow_claims_verified` | ALLOW | `claims_verified` | `positive` |
 | `land_tax_exemption/land_tax_allow_pensioner` | `land_tax_home_exemption/allow_claims_verified_pensioner_supplement` | ALLOW | `claims_verified` | `positive`, `pensioner`, `extra` |
@@ -177,7 +177,7 @@ where they differ). Tags: the pre-existing tags plus those added by the rename
 | `personal_data_journalism/journalism_deny` | `journalistic_data_disclosure/deny_own_admission_excessive_harm` | DENY | `own_admission` | `negative` |
 | `personal_data_journalism/journalism_deny_no_basis` | `journalistic_data_disclosure/deny_no_allow_path_no_purpose_no_consent` | DENY | `no_allow_path` | `negative`, `no-basis`, `scripted-claims` |
 | `personal_data_journalism/journalism_need_user` | `journalistic_data_disclosure/need_user_silent_editorial_judgements` | NEED_USER_INFO → NEED_MORE_INFO | `user_silent` | `needs-info` |
-| `personal_data_journalism/journalism_u3_no_register` | `journalistic_data_disclosure/unverifiable_register_down_editorial_cms` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `register_down` | `uncertainty`, `u3` |
+| `personal_data_journalism/journalism_u3_no_register` | `journalistic_data_disclosure/unverifiable_register_down_editorial_cms` — **dropped 2026-09-06** (files removed; see "Dropped 2026-09-06" below) | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `register_down` | `uncertainty`, `u3` |
 | `personal_data_journalism/journalism_u5_need_db` | `journalistic_data_disclosure/need_register_silent_purpose_and_consent` | NEED_REGISTER_INFO → NEED_MORE_INFO | `register_silent` | `needs-info`, `u5` |
 | `personal_data_journalism/journalism_u7_trust_only` | `journalistic_data_disclosure/unverifiable_trust_only_editorial_selfreport` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `trust_only` | `uncertainty`, `u7` |
 | `section_120_demo/allow` | `child_representation_by_one_parent/allow_claims_verified_emergency` | ALLOW | `claims_verified` | `positive` |
@@ -210,18 +210,60 @@ produced before that date (all `experiments/2026090[1-4]-*` folders) still carry
 | id | gold | mechanism |
 |---|---|---|
 | `child_representation_by_one_parent/allow_register_only_sole_custody` | ALLOW | `register_only` |
-| `child_representation_by_one_parent/allow_alt_rule_sole_custody_overrides_register` | ALLOW | `alt_rule_claim_overrides_register` |
+| `child_representation_by_one_parent/allow_alt_rule_sole_custody_overrides_register` — **dropped 2026-09-06** | ALLOW | `alt_rule_claim_overrides_register` |
 | `child_representation_by_one_parent/allow_alt_rule_delegated_right_overrides_register` | ALLOW | `alt_rule_claim_overrides_register` |
 | `civil_service_admission/allow_register_only_citizenship` | ALLOW | `register_only` |
 | `journalistic_data_disclosure/allow_register_only_purpose_from_cms` | ALLOW | `register_only` |
-| `journalistic_data_disclosure/allow_register_only_consent_from_register` | ALLOW | `register_only` |
+| `journalistic_data_disclosure/allow_register_only_consent_from_register` — **dropped 2026-09-06** | ALLOW | `register_only` |
 | `building_permit_grant/deny_register_only_plan_nonconformity` | DENY | `register_only` |
-| `building_permit_grant/deny_no_allow_path_fee_unpaid` | DENY | `no_allow_path` |
+| `building_permit_grant/deny_no_allow_path_fee_unpaid` — **dropped 2026-09-06** | DENY | `no_allow_path` |
 | `civil_service_admission/deny_no_allow_path_no_estonian_language` | DENY | `no_allow_path` |
 | `consumer_purchase_withdrawal/deny_no_allow_path_deadline_expired` | DENY | `no_allow_path` |
 | `journalistic_data_disclosure/deny_no_allow_path_no_public_interest` | DENY | `no_allow_path` |
 | `land_tax_home_exemption/deny_no_allow_path_municipality_not_set` | DENY | `no_allow_path` |
 
+### Dropped 2026-09-06 (per-case balance: 3 ALLOW / 3 DENY / 3 NEED_MORE_INFO in every case)
+
+Operator ruling of 2026-09-06 13:45: the 18/18/18 total must also hold per case (9 per
+case, 54 total). Files removed from `data/cases/**`; rows above kept for history; results
+produced before that date (`experiments/2026090[1-6]-*`) still carry their rows. Drop rule:
+surplus scenarios of a mechanism the case still has another instance of; no mechanism was
+removed from the suite (`register_silent`, `register_down`, `trust_only`, `user_silent`,
+`alt_rule_claim_overrides_register`, `own_admission`, `no_allow_path`, `register_only`,
+`claims_verified` all survive); the paper's Figure 2/3 scenario
+`land_tax_home_exemption/unverifiable_trust_only_applicant_selfreport` is untouched.
+Hand-verification sheet: `docs/reference/gold-review-2026-09-06.md`.
+
+| dropped id | gold | why |
+|---|---|---|
+| `building_permit_grant/deny_no_allow_path_no_site_study` | DENY | building had three `no_allow_path` DENYs on the one § 42 (1) rule; the kept `deny_no_allow_path_designer_not_competent` (v1 lineage, longest results history) covers the mechanism |
+| `building_permit_grant/deny_no_allow_path_fee_unpaid` | DENY | as above; authored 2026-09-05 only to reach the 18 DENY total, now surplus |
+| `child_representation_by_one_parent/allow_alt_rule_sole_custody_overrides_register` | ALLOW | second `alt_rule_claim_overrides_register` in the case; `sole_custody` is still exercised by `allow_register_only_sole_custody`, and the § 119 variant `allow_alt_rule_delegated_right_overrides_register` keeps the mechanism |
+| `consumer_purchase_withdrawal/need_register_silent_consumer_status` | NEED_REGISTER_INFO | same claim set and request text as the kept `unverifiable_register_down_trader_crm`, which takes the same register (trader CRM) offline for both of its terms; `register_silent` stays at five instances (building, civil, journalism, land, child) |
+| `journalistic_data_disclosure/allow_register_only_consent_from_register` | ALLOW | second `register_only` ALLOW in the case; the consent basis is still exercised by `allow_alt_rule_consent_overrides_register`, the journalism basis by the kept `allow_register_only_purpose_from_cms` |
+| `journalistic_data_disclosure/unverifiable_register_down_editorial_cms` | UNVERIFIABLE_CLAIM | same claim set and request text as the kept `need_register_silent_purpose_and_consent`, which covers both registers; `register_down` stays at five instances (building, civil, consumer, land, child) |
+
+Files removed per scenario: the scenario YAML, the four oracle JSONs and the request
+text (each was used only by its scenario). `tools/rename_map.yaml` lost the three rows
+that had a v1 id (`building_permit_deny_no_site_study`, `consumer_withdrawal_u5_need_db`,
+`journalism_u3_no_register`), as on 2026-09-05.
+
+### Authored 2026-09-06 (no old id; tag `authored-20260906`)
+
+| id | gold | mechanism |
+|---|---|---|
+| `building_permit_grant/allow_register_only_design_conformity` | ALLOW | `register_only` |
+| `consumer_purchase_withdrawal/allow_register_only_catalogue_clears_exclusion` | ALLOW | `register_only` |
+| `child_representation_by_one_parent/deny_no_allow_path_joint_custody_no_basis` | DENY | `no_allow_path` |
+| `child_representation_by_one_parent/deny_register_only_not_parent` | DENY | `register_only` |
+| `child_representation_by_one_parent/need_register_silent_custody_record` | NEED_REGISTER_INFO → NEED_MORE_INFO | `register_silent` |
+| `child_representation_by_one_parent/unverifiable_register_down_custody_registry` | UNVERIFIABLE_CLAIM → NEED_MORE_INFO | `register_down` |
+
+Per case after both days: every case 3/3/3; ALLOW mechanisms per case
+`claims_verified` + `register_only` + (`alt_rule_claim_overrides_register` where the act
+has a second allow rule, else a second `register_only` variant on different terms); DENY
+`own_admission` + `no_allow_path` + (`register_only` in building and child, a second
+`no_allow_path` on a different term elsewhere); NEED three different mechanisms in every case.
 
 ### Tag legend
 
@@ -243,6 +285,7 @@ below gives both forms.
 | `extra` | outside the 2026-09-01 core (duplicate probes — retired 2026-09-05 — and the pensioner variant with inputs identical to `allow_claims_verified`, kept as one of the 18 ALLOW) |
 | `positive` / `negative` / `needs-info` / `uncertainty` | 2026-09-01 gold buckets (ALLOW / DENY / NEED_* / UNVERIFIABLE_*) |
 | `authored-20260905` | one of the twelve scenarios authored on 2026-09-05 to balance the suite (no old id; hand-verification sheet: `docs/reference/gold-review-2026-09-05.md`) |
+| `authored-20260906` | one of the six scenarios authored on 2026-09-06 for the per-case 3/3/3 balance (no old id; hand-verification sheet: `docs/reference/gold-review-2026-09-06.md`) |
 
 ## Conditions
 

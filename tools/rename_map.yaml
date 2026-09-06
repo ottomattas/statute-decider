@@ -1,5 +1,6 @@
-# Declarative id rename map (2026-09-05). Five scenarios retired later that day are
-# listed only in docs/reference/id-aliases.md ("retired 2026-09-05"); their rows are gone here.
+# Declarative id rename map (2026-09-05). Five scenarios retired later that day and three
+# more dropped on 2026-09-06 (per-case balance) are listed only in
+# docs/reference/id-aliases.md ("retired 2026-09-05", "dropped 2026-09-06"); their rows are gone here.
 # tools/rename_ids.py is driven by this
 # file only; docs/reference/id-aliases.md is the human-readable rendering.
 #
@@ -94,7 +95,6 @@ scenarios:
   building_permit/building_permit_allow_via_db: building_permit_grant/allow_register_only
   building_permit/building_permit_deny: building_permit_grant/deny_own_admission_plan_violation
   building_permit/building_permit_deny_incompetent: building_permit_grant/deny_no_allow_path_designer_not_competent
-  building_permit/building_permit_deny_no_site_study: building_permit_grant/deny_no_allow_path_no_site_study
   building_permit/building_permit_need_db: building_permit_grant/need_register_silent_fee
   building_permit/building_permit_u3_no_register: building_permit_grant/unverifiable_register_down_payment_ledger
   building_permit/building_permit_u7_trust_only: building_permit_grant/unverifiable_trust_only_designer_selfreport
@@ -111,7 +111,6 @@ scenarios:
   consumer_withdrawal/consumer_withdrawal_deny_not_consumer: consumer_purchase_withdrawal/deny_no_allow_path_not_consumer
   consumer_withdrawal/consumer_withdrawal_need_user: consumer_purchase_withdrawal/need_user_silent_deadline_and_notice
   consumer_withdrawal/consumer_withdrawal_u3_no_register: consumer_purchase_withdrawal/unverifiable_register_down_trader_crm
-  consumer_withdrawal/consumer_withdrawal_u5_need_db: consumer_purchase_withdrawal/need_register_silent_consumer_status
   consumer_withdrawal/consumer_withdrawal_u7_trust_only: consumer_purchase_withdrawal/unverifiable_trust_only_trader_selfreport
   land_tax_exemption/land_tax_allow: land_tax_home_exemption/allow_claims_verified
   land_tax_exemption/land_tax_allow_pensioner: land_tax_home_exemption/allow_claims_verified_pensioner_supplement
@@ -126,7 +125,6 @@ scenarios:
   personal_data_journalism/journalism_deny: journalistic_data_disclosure/deny_own_admission_excessive_harm
   personal_data_journalism/journalism_deny_no_basis: journalistic_data_disclosure/deny_no_allow_path_no_purpose_no_consent
   personal_data_journalism/journalism_need_user: journalistic_data_disclosure/need_user_silent_editorial_judgements
-  personal_data_journalism/journalism_u3_no_register: journalistic_data_disclosure/unverifiable_register_down_editorial_cms
   personal_data_journalism/journalism_u5_need_db: journalistic_data_disclosure/need_register_silent_purpose_and_consent
   personal_data_journalism/journalism_u7_trust_only: journalistic_data_disclosure/unverifiable_trust_only_editorial_selfreport
   section_120_demo/allow: child_representation_by_one_parent/allow_claims_verified_emergency

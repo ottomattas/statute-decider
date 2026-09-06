@@ -1,9 +1,11 @@
 # Scenario Suite
 
 > **Historical (v1 `framework/` tree).** This document describes the 2026-04 harness;
-> the v2 suite is `data/cases/**` (54 scenarios, `docs/reference/gold-review-2026-09-05.md`)
-> and is run through `experiments/*/experiment.yaml`. Identifiers below are shown in the
-> current vocabulary; the v1 names are kept only in `docs/reference/id-aliases.md`.
+> the v2 suite is `data/cases/**` (54 scenarios, six cases × 3 ALLOW / 3 DENY / 3
+> NEED_MORE_INFO since 2026-09-06; `docs/reference/gold-review-2026-09-06.md`, predecessor
+> `gold-review-2026-09-05.md`) and is run through `experiments/*/experiment.yaml`.
+> Identifiers below are shown in the current vocabulary; the v1 names are kept only in
+> `docs/reference/id-aliases.md`.
 
 ## Overview
 
