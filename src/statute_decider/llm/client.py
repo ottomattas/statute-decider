@@ -19,7 +19,7 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
-from statute_decider.llm.base import LLMResult
+from statute_decider.llm.base import LLMResult, ProviderResponseError
 from statute_decider.llm.budget import BudgetExceeded, BudgetGuard
 from statute_decider.llm.providers import get_adapter
 from statute_decider.llm.registry import ModelRegistry, ModelSpec
@@ -143,14 +143,27 @@ class LLMClient:
                 raise
             except Exception as exc:  # noqa: BLE001 - provider errors are heterogeneous
                 last_error = exc
+                billed = isinstance(exc, ProviderResponseError)
                 self._record_transcript(
                     call,
                     spec,
                     attempt=attempt + 1,
-                    raw_text=None,
+                    raw_text=exc.raw_text if billed else None,
                     error=str(exc),
                     latency_ms=None,
                 )
+                if billed and self.budget is not None:
+                    # The provider answered and charged for it: the ledger records
+                    # the tokens of the failed attempt like any other call.
+                    self.budget.record(
+                        spec,
+                        exc.usage,
+                        {**call.meta, "failed_attempt": attempt + 1, "error": str(exc)[:200]},
+                    )
+                if billed and attempt >= 1:
+                    # Two billed, unusable answers in a row is a model/config
+                    # problem, not a blip: stop paying for repeats of it.
+                    break
                 if attempt < self.max_retries:
                     wait = self.retry_backoff_s * (attempt + 1)
                     log.warning(

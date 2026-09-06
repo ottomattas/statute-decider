@@ -81,9 +81,7 @@ class ModelRegistry:
         try:
             return self._specs[model_id]
         except KeyError as exc:
-            raise ValueError(
-                f"Unknown model {model_id!r}. Known: {sorted(self._specs)}"
-            ) from exc
+            raise ValueError(f"Unknown model {model_id!r}. Known: {sorted(self._specs)}") from exc
 
     def min_context_tokens(self, model_ids: list[str] | None = None) -> int:
         """Smallest recorded context window among the given (default: all) models; 0 if none recorded."""

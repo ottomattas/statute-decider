@@ -86,6 +86,42 @@ def call_timeout_s() -> float:
         return 120.0
 
 
+class ProviderResponseError(RuntimeError):
+    """The provider answered (and billed) but the answer is unusable.
+
+    Carries the reported ``usage`` so the ledger can record a failed attempt at
+    the transport boundary, the ``raw_text`` for the transcript, and a
+    ``detail`` string (stop reason, block types) for diagnosis.
+    """
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        usage: Usage | None = None,
+        raw_text: str | None = None,
+        detail: str | None = None,
+    ) -> None:
+        super().__init__(message if not detail else f"{message} [{detail}]")
+        self.usage = usage or Usage()
+        self.raw_text = raw_text
+        self.detail = detail
+
+
+def parse_or_raise[M: BaseModel](
+    response_model: type[M], raw_text: str, usage: Usage, detail: str | None = None
+) -> M:
+    """``parse_model_json`` that attaches the already-billed usage to any failure."""
+    try:
+        return parse_model_json(response_model, raw_text)
+    except ProviderResponseError:
+        raise
+    except Exception as exc:  # json / pydantic / empty all mean "billed, unusable"
+        raise ProviderResponseError(
+            str(exc), usage=usage, raw_text=raw_text, detail=detail
+        ) from exc
+
+
 def parse_model_json[M: BaseModel](response_model: type[M], raw_text: str) -> M:
     text = (raw_text or "").strip()
     if not text:

@@ -42,7 +42,7 @@ from statute_decider.llm.base import (
     Usage,
     call_timeout_s,
     env,
-    parse_model_json,
+    parse_or_raise,
     schema_name,
     strict_json_schema,
 )
@@ -89,13 +89,15 @@ class GoogleAdapter:
         response = client.models.generate_content(model=api_model, contents=user, config=config)
         latency_ms = int((time.monotonic() - started) * 1000)
         raw_text = response.text or ""
-        parsed = parse_model_json(response_model, raw_text)
         meta = getattr(response, "usage_metadata", None)
         usage = Usage(
             input_tokens=int(getattr(meta, "prompt_token_count", 0) or 0),
             output_tokens=int(getattr(meta, "candidates_token_count", 0) or 0),
             cached_input_tokens=int(getattr(meta, "cached_content_token_count", 0) or 0),
         )
+        candidates = getattr(response, "candidates", None) or []
+        finish = getattr(candidates[0], "finish_reason", None) if candidates else None
+        parsed = parse_or_raise(response_model, raw_text, usage, f"finish_reason={finish}")
         return LLMResult(parsed, raw_text, usage, self.name, api_model, latency_ms)
 
 
@@ -145,7 +147,6 @@ class OpenAIAdapter:
         response = client.responses.create(**kwargs)
         latency_ms = int((time.monotonic() - started) * 1000)
         raw_text = getattr(response, "output_text", None) or ""
-        parsed = parse_model_json(response_model, raw_text)
         usage_obj = getattr(response, "usage", None)
         details = getattr(usage_obj, "input_tokens_details", None) if usage_obj else None
         usage = Usage(
@@ -153,6 +154,9 @@ class OpenAIAdapter:
             output_tokens=int(getattr(usage_obj, "output_tokens", 0) or 0) if usage_obj else 0,
             cached_input_tokens=int(getattr(details, "cached_tokens", 0) or 0) if details else 0,
         )
+        incomplete = getattr(response, "incomplete_details", None)
+        detail = f"status={getattr(response, 'status', None)} incomplete={incomplete}"
+        parsed = parse_or_raise(response_model, raw_text, usage, detail)
         return LLMResult(parsed, raw_text, usage, self.name, api_model, latency_ms)
 
 
@@ -217,7 +221,6 @@ class AnthropicAdapter:
             )
         latency_ms = int((time.monotonic() - started) * 1000)
         raw_text = _anthropic_raw_text(message)
-        parsed = parse_model_json(response_model, raw_text)
         usage_obj = getattr(message, "usage", None)
         usage = Usage(
             input_tokens=int(getattr(usage_obj, "input_tokens", 0) or 0) if usage_obj else 0,
@@ -232,6 +235,18 @@ class AnthropicAdapter:
         # Anthropic's input_tokens excludes cached/written tokens; normalize to
         # the full-prompt convention the other vendors and the ledger use.
         usage.input_tokens += usage.cached_input_tokens + usage.cache_write_input_tokens
+        blocks = [getattr(b, "type", "?") for b in getattr(message, "content", None) or []]
+        stop_reason = getattr(message, "stop_reason", None)
+        detail = (
+            f"stop_reason={stop_reason} "
+            f"stop_details={getattr(message, 'stop_details', None)} "
+            f"blocks={blocks} output_tokens={usage.output_tokens}"
+        )
+        if stop_reason == "refusal" and not blocks:
+            # A classifier refusal before any output is not charged (usage is
+            # reported, not billed): https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
+            usage = Usage()
+        parsed = parse_or_raise(response_model, raw_text, usage, detail)
         return LLMResult(parsed, raw_text, usage, self.name, api_model, latency_ms)
 
 
@@ -295,17 +310,16 @@ class DeepSeekAdapter:
         latency_ms = int((time.monotonic() - started) * 1000)
         choice = response.choices[0]
         raw_text = getattr(getattr(choice, "message", None), "content", None) or ""
-        parsed = parse_model_json(response_model, raw_text)
         usage_obj = getattr(response, "usage", None)
         usage = Usage(
             input_tokens=int(getattr(usage_obj, "prompt_tokens", 0) or 0) if usage_obj else 0,
-            output_tokens=int(getattr(usage_obj, "completion_tokens", 0) or 0)
-            if usage_obj
-            else 0,
+            output_tokens=int(getattr(usage_obj, "completion_tokens", 0) or 0) if usage_obj else 0,
             cached_input_tokens=int(getattr(usage_obj, "prompt_cache_hit_tokens", 0) or 0)
             if usage_obj
             else 0,
         )
+        detail = f"finish_reason={getattr(choice, 'finish_reason', None)}"
+        parsed = parse_or_raise(response_model, raw_text, usage, detail)
         return LLMResult(parsed, raw_text, usage, self.name, api_model, latency_ms)
 
 
