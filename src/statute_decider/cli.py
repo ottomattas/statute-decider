@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import shutil
 import sys
 from pathlib import Path
 
@@ -237,6 +238,88 @@ def _cmd_corpus_check(args: argparse.Namespace) -> int:
     return 0 if report.ok else 1
 
 
+def _resolve_results_dir(root: Path, experiment: str) -> Path:
+    raw = Path(experiment)
+    if raw.is_file():
+        return raw.parent
+    if raw.is_dir():
+        if (raw / "results").is_dir():
+            return raw / "results"
+        return raw
+    named = root / "experiments" / experiment
+    if named.is_dir():
+        return named / "results"
+    raise SystemExit(f"experiment not found: {experiment}")
+
+
+def _cmd_transcript_cat(args: argparse.Namespace) -> int:
+    from statute_decider.results import find_transcript, open_text
+
+    root = _find_root(Path(args.root) if args.root else None)
+    path = find_transcript(_resolve_results_dir(root, args.experiment))
+    if path is None:
+        print(f"no transcript under {args.experiment}", file=sys.stderr)
+        return 1
+    with open_text(path, "rt") as handle:
+        shutil.copyfileobj(handle, sys.stdout)
+    return 0
+
+
+def _cmd_transcript_extract(args: argparse.Namespace) -> int:
+    from statute_decider.results import find_transcript, open_text
+
+    root = _find_root(Path(args.root) if args.root else None)
+    path = find_transcript(_resolve_results_dir(root, args.experiment))
+    if path is None:
+        print(f"no transcript under {args.experiment}", file=sys.stderr)
+        return 1
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with open_text(path, "rt") as src, out.open("w", encoding="utf-8") as dest:
+        shutil.copyfileobj(src, dest)
+    print(f"wrote {out}")
+    return 0
+
+
+def _cmd_transcript_compress(args: argparse.Namespace) -> int:
+    from statute_decider.results import TRANSCRIPT_PLAIN, compress_plain
+
+    root = _find_root(Path(args.root) if args.root else None)
+    if args.all:
+        plains = sorted(root.glob(f"experiments/*/results/{TRANSCRIPT_PLAIN}"))
+    elif args.experiment:
+        plains = [_resolve_results_dir(root, args.experiment) / TRANSCRIPT_PLAIN]
+    else:
+        print("pass an experiment or --all", file=sys.stderr)
+        return 2
+    found = False
+    for plain in plains:
+        if not plain.exists():
+            if not args.all:
+                print(f"no plain transcript at {plain}", file=sys.stderr)
+                return 1
+            continue
+        found = True
+        gz = compress_plain(plain, delete_plain=args.delete_plain)
+        print(f"compressed {plain} -> {gz}")
+    if args.all and not found:
+        print("no plain transcripts")
+    return 0
+
+
+def _cmd_transcript_check(args: argparse.Namespace) -> int:
+    from statute_decider.results import check_tree
+
+    root = _find_root(Path(args.root) if args.root else None)
+    problems = check_tree(root)
+    if problems:
+        for problem in problems:
+            print(f"FAIL {problem}", file=sys.stderr)
+        return 1
+    print("OK: transcripts gzip-only, tracked files under 90 MB")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     parser = argparse.ArgumentParser(prog="sd", description=__doc__)
@@ -325,6 +408,31 @@ def main(argv: list[str] | None = None) -> int:
     ingest_dir_parser.set_defaults(func=_cmd_corpus_ingest_dir)
     check_parser = corpus_sub.add_parser("check", help="Re-hash every file; report drift and validity windows.")
     check_parser.set_defaults(func=_cmd_corpus_check)
+
+    transcript_parser = sub.add_parser("transcript", help="Inspect or compress results/transcript.jsonl.gz.")
+    transcript_sub = transcript_parser.add_subparsers(dest="transcript_command", required=True)
+    cat_parser = transcript_sub.add_parser("cat", help="Stream decompressed transcript lines to stdout.")
+    cat_parser.add_argument("experiment", help="Experiment folder name, path, or results dir.")
+    cat_parser.set_defaults(func=_cmd_transcript_cat)
+    extract_parser = transcript_sub.add_parser(
+        "extract", help="Write a plain transcript copy outside the repo."
+    )
+    extract_parser.add_argument("experiment")
+    extract_parser.add_argument("--out", required=True, help="Destination path for the plain JSONL.")
+    extract_parser.set_defaults(func=_cmd_transcript_extract)
+    compress_parser = transcript_sub.add_parser(
+        "compress", help="Gzip a plain transcript.jsonl and verify a sha256 round-trip."
+    )
+    compress_parser.add_argument("experiment", nargs="?", default=None)
+    compress_parser.add_argument("--all", action="store_true", help="Every experiments/*/results/transcript.jsonl.")
+    compress_parser.add_argument(
+        "--delete-plain", action="store_true", help="Remove the plain file after a verified compress."
+    )
+    compress_parser.set_defaults(func=_cmd_transcript_compress)
+    transcript_check = transcript_sub.add_parser(
+        "check", help="Fail on a leftover plain transcript, a corrupt .gz, or a tracked file > 90 MB."
+    )
+    transcript_check.set_defaults(func=_cmd_transcript_check)
 
     args = parser.parse_args(argv)
     return args.func(args)

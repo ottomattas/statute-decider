@@ -24,6 +24,7 @@ from statute_decider.core.provenance import utc_now
 from statute_decider.legislation.units import DEFAULT_MAX_STATUTE_TOKENS
 from statute_decider.llm import BudgetGuard, LLMClient, ModelRegistry, load_dotenv
 from statute_decider.nodes import NODE_ORDER
+from statute_decider.results import TRANSCRIPT, TRANSCRIPT_PLAIN, transcript_path
 from statute_decider.runner.conditions import load_condition
 from statute_decider.runner.engine import CellServices, node_value_dump, run_scenario
 from statute_decider.runner.report import render_summary
@@ -156,6 +157,8 @@ def run_experiment(
     # instead of truncating; the budget guard starts from what the ledger
     # already spent. Without --resume a rerun overwrites rows and nodes but
     # the ledger still appends — so never rerun a finished experiment blind.
+    # Pending is computed before any file write so a no-op resume (0 cells)
+    # leaves the result sidecars untouched.
     previous_rows: list[dict] = []
     done_keys: set[tuple] = set()
     if resume:
@@ -165,40 +168,9 @@ def run_experiment(
         else:
             done_keys = {_cell_key(r) for r in previous_rows if not r.get("error")}
             previous_rows = [r for r in previous_rows if not r.get("error")]
-        # Rewrite rows.jsonl to the kept set so a dropped error row is not
-        # duplicated by its rerun.
-        with (results_dir / "rows.jsonl").open("w", encoding="utf-8") as handle:
-            for r in previous_rows:
-                handle.write(json.dumps(r, ensure_ascii=False, default=str) + "\n")
-
-    file_handler = logging.FileHandler(
-        results_dir / "run.log", mode="a" if resume else "w", encoding="utf-8"
-    )
-    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
-    logging.getLogger().addHandler(file_handler)
-    logging.getLogger().setLevel(logging.INFO)
 
     registry = ModelRegistry(
         root / "configs" / "llm" / "models.yaml", root / "configs" / "llm" / "prices.yaml"
-    )
-    budget = BudgetGuard(
-        cap_eur=config.budget_eur,
-        ledger_path=results_dir / "ledger.jsonl",
-        usd_to_eur=registry.usd_to_eur,
-    )
-    if resume:
-        budget.spent_eur = _ledger_spent(results_dir / "ledger.jsonl")
-    elif (results_dir / "ledger.jsonl").exists():
-        (results_dir / "ledger.jsonl").unlink()  # fresh run: fresh ledger, no double count
-    # 5 attempts with 20/40/60/80 s backoff: a multi-minute network blip (3 Sep
-    # 23:18 lost 33 cells to DNS failures under 3 x 5 s) must not cost rows.
-    # Budget and vendor 4xx errors still surface after the last attempt.
-    client = LLMClient(
-        registry,
-        budget,
-        max_retries=4,
-        retry_backoff_s=20.0,
-        transcript_path=results_dir / "transcript.jsonl",
     )
 
     # Resolve the model grid. 'all' means the experiment's declared list (or the
@@ -246,13 +218,93 @@ def run_experiment(
             raise ValueError(f"experiment.yaml scenarios not found in the selected cases: {sorted(unknown)}")
     combos = _prompt_combos(config.prompts)
 
+    all_cells = [
+        (case_id, scenario_id, spec, combo, repeat)
+        for (case_id, scenario_id) in pairs
+        for spec in specs
+        for combo in combos
+        for repeat in range(1, repeats + 1)
+    ]
+    pending = [
+        cell
+        for cell in all_cells
+        if _cell_key(
+            {
+                "case_id": cell[0],
+                "scenario_id": cell[1],
+                "model": cell[2].model_id if cell[2] else None,
+                "prompts": cell[3],
+                "repeat": cell[4],
+            }
+        )
+        not in done_keys
+    ]
+    if limit is not None:
+        pending = pending[: max(0, limit)]
+
+    run_now_msg = (
+        "Experiment %s: %d cells (%d scenarios x %d models x %d prompt combos x %d repeats), "
+        "%d kept from a previous run, %d to run now%s, %s."
+    )
+    run_now_args = (
+        config.name,
+        len(all_cells),
+        len(pairs),
+        len(specs),
+        len(combos),
+        repeats,
+        len(previous_rows),
+        len(pending),
+        f" (limit {limit})" if limit is not None else "",
+        execution,
+    )
+    if resume and not pending:
+        log.info(run_now_msg, *run_now_args)
+        return results_dir
+
+    if resume:
+        # Rewrite rows.jsonl to the kept set so a dropped error row is not
+        # duplicated by its rerun.
+        with (results_dir / "rows.jsonl").open("w", encoding="utf-8") as handle:
+            for r in previous_rows:
+                handle.write(json.dumps(r, ensure_ascii=False, default=str) + "\n")
+
+    file_handler = logging.FileHandler(
+        results_dir / "run.log", mode="a" if resume else "w", encoding="utf-8"
+    )
+    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
+    logging.getLogger().addHandler(file_handler)
+    logging.getLogger().setLevel(logging.INFO)
+
+    budget = BudgetGuard(
+        cap_eur=config.budget_eur,
+        ledger_path=results_dir / "ledger.jsonl",
+        usd_to_eur=registry.usd_to_eur,
+    )
+    if resume:
+        budget.spent_eur = _ledger_spent(results_dir / "ledger.jsonl")
+    elif (results_dir / "ledger.jsonl").exists():
+        (results_dir / "ledger.jsonl").unlink()  # fresh run: fresh ledger, no double count
+    if not resume:
+        for leftover in (results_dir / TRANSCRIPT, results_dir / TRANSCRIPT_PLAIN):
+            if leftover.exists():
+                leftover.unlink()  # client appends; fresh run starts clean
+    # 5 attempts with 20/40/60/80 s backoff: a multi-minute network blip (3 Sep
+    # 23:18 lost 33 cells to DNS failures under 3 x 5 s) must not cost rows.
+    # Budget and vendor 4xx errors still surface after the last attempt.
+    client = LLMClient(
+        registry,
+        budget,
+        max_retries=4,
+        retry_backoff_s=20.0,
+        transcript_path=transcript_path(results_dir),
+    )
+
     rows_writer = _JsonlWriter(results_dir / "rows.jsonl", append=resume)
     node_writers = {
         node: _JsonlWriter(results_dir / "nodes" / f"{node}.jsonl", append=resume)
         for node in NODE_ORDER
     }
-    if not resume and (results_dir / "transcript.jsonl").exists():
-        (results_dir / "transcript.jsonl").unlink()  # client appends; fresh run starts clean
 
     snapshot = {
         "generated_at": utc_now(),
@@ -371,44 +423,8 @@ def run_experiment(
         provider = spec.provider if spec else "code"
         return provider, unit
 
-    all_cells = [
-        (case_id, scenario_id, spec, combo, repeat)
-        for (case_id, scenario_id) in pairs
-        for spec in specs
-        for combo in combos
-        for repeat in range(1, repeats + 1)
-    ]
-    pending = [
-        cell
-        for cell in all_cells
-        if _cell_key(
-            {
-                "case_id": cell[0],
-                "scenario_id": cell[1],
-                "model": cell[2].model_id if cell[2] else None,
-                "prompts": cell[3],
-                "repeat": cell[4],
-            }
-        )
-        not in done_keys
-    ]
-    if limit is not None:
-        pending = pending[: max(0, limit)]
     units = [make_unit(*cell) for cell in pending]
-    log.info(
-        "Experiment %s: %d cells (%d scenarios x %d models x %d prompt combos x %d repeats), "
-        "%d kept from a previous run, %d to run now%s, %s.",
-        config.name,
-        len(all_cells),
-        len(pairs),
-        len(specs),
-        len(combos),
-        repeats,
-        len(previous_rows),
-        len(units),
-        f" (limit {limit})" if limit is not None else "",
-        execution,
-    )
+    log.info(run_now_msg, *run_now_args)
     if units:
         client.run_units(units, execution=execution)
 
@@ -421,5 +437,6 @@ def run_experiment(
     )
     (results_dir / "summary.md").write_text(summary, encoding="utf-8")
     log.info("Experiment %s done: %d rows, EUR %.4f.", config.name, len(rows), budget.spent_eur)
+    client.close_transcript()
     logging.getLogger().removeHandler(file_handler)
     return results_dir

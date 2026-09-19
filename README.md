@@ -107,12 +107,12 @@ python3.12 -m venv .venv          # or: uv venv --python 3.12
 
 LLM experiments are budget-capped and parallel by default; every run writes
 `results/rows.jsonl`, per-node recordings, a cost ledger, and `summary.md`
-into its experiment folder. `results/transcript.jsonl` is the full LLM
+into its experiment folder. `results/transcript.jsonl.gz` is the full LLM
 audit trail: one entry per provider call with the rendered system and user
 messages exactly as sent and the raw model response before any parsing.
-Statute-carrying cells repeat the whole act in every call, so a transcript
-that would exceed GitHub's 100 MB file limit is committed gzip-compressed
-(`transcript.jsonl.gz`; `gunzip -k` to read). Solver inputs and outputs live in `results/nodes/premise_outcome.jsonl`
+`sd transcript cat <experiment>` streams the decompressed lines (`| head`,
+`| jq`); `sd transcript extract <experiment> --out PATH` writes a plain
+copy outside the repo. Solver inputs and outputs live in `results/nodes/premise_outcome.jsonl`
 (claims, facts, valuation, fired rules) and `results/nodes/outcome_trace.jsonl`.
 Every row carries `justification`: a list of entries `{source, steps, text,
 model?, prompt_id?, prompt_hash?}` — `llm_inline` (the deciding model's own

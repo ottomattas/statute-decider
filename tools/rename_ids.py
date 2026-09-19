@@ -13,10 +13,11 @@ What it touches (see docs/reference/id-aliases.md for the full table):
 * results plane, per experiment — folder renamed; ``experiment.yaml``,
   ``config.snapshot.yaml``, ``invocations.jsonl``, ``rows.jsonl``,
   ``nodes/*.jsonl``, ``ledger.jsonl`` rewritten in their *structured* id
-  fields; ``transcript.jsonl`` ``meta.*`` only. Free text (``system``,
-  ``user``, ``raw_response``, ``justification``, ``message``, ``note``,
-  ``run.log``) is never rewritten. ``summary.md`` is regenerated through
-  ``render_summary``; ``docs/matrix.csv`` through ``sd matrix export``.
+  fields; ``transcript.jsonl.gz`` (or a leftover plain ``transcript.jsonl``)
+  ``meta.*`` only. Free text (``system``, ``user``, ``raw_response``,
+  ``justification``, ``message``, ``note``, ``run.log``) is never rewritten.
+  ``summary.md`` is regenerated through ``render_summary``;
+  ``docs/matrix.csv`` through ``sd matrix export``.
 
 Numbers never change: every rewrite is a key/value substitution on ids.
 Prove it with ``tools/fingerprint_results.py --compare``.
@@ -49,6 +50,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+
+from statute_decider.results import find_transcript, open_text
 
 MAP_PATH = ROOT / "tools" / "rename_map.yaml"
 RENAME_NOTE = (
@@ -165,15 +168,20 @@ def rewrite_jsonl(p: Path, fix) -> None:
     if not p.exists():
         return
     out_lines = []
-    for n, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            continue
-        row = json.loads(line)
-        if jsonl_line(row) != line:
-            raise RuntimeError(f"{p}:{n} does not round-trip through json.dumps; refusing to rewrite")
-        out_lines.append(jsonl_line(fix(row)))
+    with open_text(p, "rt") as handle:
+        for n, line in enumerate(handle, 1):
+            line = line.rstrip("\n")
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            if jsonl_line(row) != line:
+                raise RuntimeError(
+                    f"{p}:{n} does not round-trip through json.dumps; refusing to rewrite"
+                )
+            out_lines.append(jsonl_line(fix(row)))
     if not DRY:
-        p.write_text("".join(l + "\n" for l in out_lines), encoding="utf-8")
+        with open_text(p, "wt") as handle:
+            handle.write("".join(l + "\n" for l in out_lines))
 
 
 def map_register_fields(obj, scenario_map: dict[str, str] | None = None):
@@ -478,7 +486,9 @@ def rename_experiments() -> None:
         rewrite_jsonl(results / "invocations.jsonl", fix_snapshot)
         rewrite_jsonl(results / "rows.jsonl", fix_row)
         rewrite_jsonl(results / "ledger.jsonl", fix_row)
-        rewrite_jsonl(results / "transcript.jsonl", fix_transcript)
+        transcript = find_transcript(results)
+        if transcript is not None:
+            rewrite_jsonl(transcript, fix_transcript)
         for p in sorted((results / "nodes").glob("*.jsonl")) if (results / "nodes").exists() else []:
             rewrite_jsonl(p, fix_row)
         regenerate_summary(exp_dir)
@@ -519,7 +529,7 @@ def rename_prompt_refs_only() -> None:
     every condition YAML, the ``prompts`` sweep of every ``experiment.yaml``, and in
     each experiment's results ``config.snapshot.yaml`` / ``invocations.jsonl``
     (condition bindings, ``prompt_combos``), ``rows.jsonl`` / ``ledger.jsonl`` /
-    ``nodes/*.jsonl`` (``prompt_id``, ``prompts``) and ``transcript.jsonl`` ``meta``.
+    ``nodes/*.jsonl`` (``prompt_id``, ``prompts``) and transcript ``meta``.
     Summaries are regenerated; free text and raw payloads stay as recorded. Prompt
     content is untouched, so the recorded ``prompt_hash`` values remain valid."""
     rename_prompts()
@@ -546,7 +556,9 @@ def rename_prompt_refs_only() -> None:
         rewrite_jsonl(results / "invocations.jsonl", fix_snapshot)
         rewrite_jsonl(results / "rows.jsonl", fix_row)
         rewrite_jsonl(results / "ledger.jsonl", fix_row)
-        rewrite_jsonl(results / "transcript.jsonl", fix_transcript)
+        transcript = find_transcript(results)
+        if transcript is not None:
+            rewrite_jsonl(transcript, fix_transcript)
         for p in sorted((results / "nodes").glob("*.jsonl")) if (results / "nodes").exists() else []:
             rewrite_jsonl(p, fix_row)
         regenerate_summary(exp_dir)

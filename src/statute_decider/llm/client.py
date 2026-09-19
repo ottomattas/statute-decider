@@ -8,9 +8,7 @@ explicit, never a silent default) and choose ``--execution
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
-import threading
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -23,6 +21,7 @@ from statute_decider.llm.base import LLMResult, ProviderResponseError
 from statute_decider.llm.budget import BudgetExceeded, BudgetGuard
 from statute_decider.llm.providers import get_adapter
 from statute_decider.llm.registry import ModelRegistry, ModelSpec
+from statute_decider.results import TranscriptWriter
 
 T = TypeVar("T", bound=BaseModel)
 log = logging.getLogger(__name__)
@@ -58,6 +57,7 @@ class LLMClient:
         retry_backoff_s: float = 5.0,
         provider_concurrency: int = DEFAULT_PROVIDER_CONCURRENCY,
         transcript_path: Path | str | None = None,
+        transcript: TranscriptWriter | None = None,
     ) -> None:
         self.registry = registry
         self.budget = budget
@@ -65,7 +65,12 @@ class LLMClient:
         self.retry_backoff_s = retry_backoff_s
         self.provider_concurrency = provider_concurrency
         self.transcript_path = Path(transcript_path) if transcript_path else None
-        self._transcript_lock = threading.Lock()
+        if transcript is not None:
+            self._transcript = transcript
+        elif self.transcript_path is not None:
+            self._transcript = TranscriptWriter(self.transcript_path)
+        else:
+            self._transcript = None
         self._semaphores: dict[str, asyncio.Semaphore] = {}
 
     def _record_transcript(
@@ -84,25 +89,28 @@ class LLMClient:
         system and user messages as transmitted, and the raw model output before
         any parsing or filtering.
         """
-        if self.transcript_path is None:
+        if self._transcript is None:
             return
-        entry = {
-            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "provider": spec.provider,
-            "model": spec.model_id,
-            "api_model": spec.api_model,
-            "attempt": attempt,
-            "meta": call.meta,
-            "response_schema": call.response_model.__name__,
-            "system": call.system,
-            "user": call.user,
-            "raw_response": raw_text,
-            "error": error,
-            "latency_ms": latency_ms,
-        }
-        line = json.dumps(entry, ensure_ascii=False, default=str)
-        with self._transcript_lock, self.transcript_path.open("a", encoding="utf-8") as handle:
-            handle.write(line + "\n")
+        self._transcript.write(
+            {
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "provider": spec.provider,
+                "model": spec.model_id,
+                "api_model": spec.api_model,
+                "attempt": attempt,
+                "meta": call.meta,
+                "response_schema": call.response_model.__name__,
+                "system": call.system,
+                "user": call.user,
+                "raw_response": raw_text,
+                "error": error,
+                "latency_ms": latency_ms,
+            }
+        )
+
+    def close_transcript(self) -> None:
+        if self._transcript is not None:
+            self._transcript.close()
 
     # --- synchronous single call (used inside one pipeline pass) ---
 

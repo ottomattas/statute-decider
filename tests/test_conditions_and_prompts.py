@@ -207,10 +207,10 @@ def test_resume_and_limit_continue_a_grid(root, tmp_path):
     rows = [json.loads(l) for l in (results / "rows.jsonl").read_text().splitlines() if l.strip()]
     assert len(rows) == 9
     assert len({(r["scenario_id"], r["repeat"]) for r in rows}) == 9
-    # Resume again: nothing pending, rows unchanged; every invocation recorded.
+    # Resume again: nothing pending, rows and invocation log unchanged.
     run_experiment(root, exp_dir, execution="sequential", models=["all"], resume=True)
     assert (results / "rows.jsonl").read_text().count("\n") == 9
-    assert (results / "invocations.jsonl").read_text().count("\n") == 3
+    assert (results / "invocations.jsonl").read_text().count("\n") == 2
 
 
 def test_parallel_runner_warms_each_cache_group_first(root):

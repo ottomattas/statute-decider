@@ -123,8 +123,8 @@ framework/venv/bin/python framework/run_scenarios.py --scenarios
 framework/venv/bin/python framework/run_experiments.py --config experiments/matrix.yaml
 ```
 
-Outputs: `experiments/results/*.jsonl` and generated markdown tables
-(gitignored JSONL; committed summary markdown under `experiments/results/`).
+Outputs: `experiments/<run>/results/` — committed `rows.jsonl`, per-node
+recordings, `summary.md`, and gzip transcripts (`transcript.jsonl.gz`).
 
 ## Suite change 2026-09-05 (read before comparing tables)
 

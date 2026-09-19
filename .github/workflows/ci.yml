@@ -31,6 +31,9 @@ jobs:
       - name: Run tests (includes full solver-validation over all scenarios)
         run: .venv/bin/pytest -q
 
+      - name: Guard transcript format and size
+        run: .venv/bin/sd transcript check
+
       - name: Validate data and export matrix
         run: |
           .venv/bin/sd validate
