@@ -1,11 +1,13 @@
 #!/bin/zsh
-# Launch tools/run_chain.sh as a one-shot launchd user agent so it survives the
-# launching shell (Cursor terminals die with the client). Usage:
+# Last-resort host one-shot: run tools/run_chain.sh under a macOS LaunchAgent
+# so it survives the IDE shell. Prefer a cloud/HPC/CI runner when the work
+# does not need this machine. run_chain.sh uninstalls this job when the
+# chain ends; an interrupted leftover is tools/unload_chain.sh.
 #
 #   tools/launch_chain.sh 20260903-llm-decides-on-oracle-inputs-partial-specification 20260903-llm-only-plus-rules
 #
-# Status:  launchctl list | grep statute-decider
-# Stop:    launchctl bootout gui/$(id -u)/com.ottomattas.statute-decider.chain
+# Status:  launchctl print gui/$(id -u)/com.ottomattas.statute-decider.chain
+# Stop:    tools/unload_chain.sh
 # Log:     tail -f experiments/_chains/*.log
 
 set -eu
@@ -41,3 +43,4 @@ launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
 launchctl bootstrap "gui/$(id -u)" "$PLIST"
 echo "launched $LABEL with: $*"
 echo "log dir: $REPO/experiments/_chains"
+echo "WARN: host-persistent one-shot. It must uninstall at chain end; leftover → tools/unload_chain.sh"
