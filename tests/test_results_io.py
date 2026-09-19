@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import gzip
 
+import pytest
+
 from statute_decider.results import (
     TranscriptWriter,
+    compress_plain,
     find_transcript,
     iter_jsonl,
     open_text,
@@ -42,6 +45,27 @@ def test_find_transcript_prefers_gz(tmp_path):
         handle.write('{"gz": true}\n')
     assert find_transcript(tmp_path) == gz
     assert find_transcript(tmp_path / "missing") is None
+
+
+def test_compress_plain_leaves_matching_gz(tmp_path):
+    plain = tmp_path / "transcript.jsonl"
+    plain.write_text('{"n": 1}\n', encoding="utf-8")
+    gz = compress_plain(plain)
+    first = gz.read_bytes()
+    again = compress_plain(plain, delete_plain=True)
+    assert again == gz
+    assert gz.read_bytes() == first
+    assert not plain.exists()
+
+
+def test_compress_plain_rejects_mismatch(tmp_path):
+    plain = tmp_path / "transcript.jsonl"
+    plain.write_text('{"n": 1}\n', encoding="utf-8")
+    gz = compress_plain(plain)
+    plain.write_text('{"n": 2}\n', encoding="utf-8")
+    with pytest.raises(RuntimeError, match="does not match"):
+        compress_plain(plain)
+    assert gz.exists()
 
 
 def test_open_text_plain(tmp_path):

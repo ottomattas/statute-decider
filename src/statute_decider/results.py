@@ -80,19 +80,29 @@ def sha256_bytes(data: bytes) -> str:
 
 
 def compress_plain(plain: Path, *, delete_plain: bool = False) -> Path:
-    """Gzip ``transcript.jsonl`` → ``transcript.jsonl.gz``; verify a round-trip."""
+    """Gzip ``transcript.jsonl`` → ``transcript.jsonl.gz``; verify a round-trip.
+
+    If the ``.gz`` already exists, leave it and only check that it decodes to
+    the same bytes as the plain file (the r2 hand-gzips at pin ``20a3a60``).
+    """
     plain = Path(plain)
     if not plain.exists():
         raise FileNotFoundError(plain)
     gz = Path(str(plain) + ".gz")
     raw = plain.read_bytes()
-    with gzip.open(gz, "wb") as handle:
-        handle.write(raw)
-    with gzip.open(gz, "rb") as handle:
-        roundtrip = handle.read()
-    if sha256_bytes(raw) != sha256_bytes(roundtrip):
-        gz.unlink(missing_ok=True)
-        raise RuntimeError(f"gzip round-trip sha256 mismatch for {plain}")
+    if gz.exists():
+        with gzip.open(gz, "rb") as handle:
+            existing = handle.read()
+        if sha256_bytes(raw) != sha256_bytes(existing):
+            raise RuntimeError(f"existing {gz} does not match {plain}")
+    else:
+        with gzip.open(gz, "wb") as handle:
+            handle.write(raw)
+        with gzip.open(gz, "rb") as handle:
+            roundtrip = handle.read()
+        if sha256_bytes(raw) != sha256_bytes(roundtrip):
+            gz.unlink(missing_ok=True)
+            raise RuntimeError(f"gzip round-trip sha256 mismatch for {plain}")
     if delete_plain:
         plain.unlink()
     return gz
