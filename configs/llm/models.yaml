@@ -54,3 +54,12 @@ models:
     api_model: deepseek-v4-pro
     tier: sota
     context_tokens: 1000000  # https://api-docs.deepseek.com (Models & Pricing: 1M context)
+
+  # Opt-in. Not included in "all" or in the capability matrix.
+  # Requires SD_OPEN_WEIGHT_BASE_URL. Optional: SD_OPEN_WEIGHT_API_KEY,
+  # SD_OPEN_WEIGHT_MODEL.
+  open-weight:
+    provider: openweight
+    api_model: open-weight
+    tier: open
+    context_tokens: 0  # unknown until the endpoint is named; 0 = not recorded

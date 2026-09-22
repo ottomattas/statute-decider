@@ -286,3 +286,71 @@ def test_scenarios_filter_narrows_the_grid(root, tmp_path):
     )
     with pytest.raises(ValueError, match="no_such_scenario"):
         run_experiment(root, exp_dir, execution="sequential", models=["all"])
+
+
+def test_open_weight_is_opt_in(root, monkeypatch):
+    from pydantic import BaseModel
+
+    from statute_decider.llm.providers import get_adapter
+
+    registry = ModelRegistry(
+        root / "configs" / "llm" / "models.yaml", root / "configs" / "llm" / "prices.yaml"
+    )
+    spec = registry.spec("open-weight")
+    assert spec.provider == "openweight"
+    assert spec.tier == "open"
+    assert all(item.tier != "open" for item in registry.resolve(["all"]))
+    assert registry.resolve(["open-weight"])[0].model_id == "open-weight"
+
+    monkeypatch.delenv("SD_OPEN_WEIGHT_BASE_URL", raising=False)
+    monkeypatch.delenv("SD_OPEN_WEIGHT_MODEL", raising=False)
+    adapter = get_adapter("openweight")
+    assert adapter.available() is False
+    monkeypatch.setenv("SD_OPEN_WEIGHT_BASE_URL", "http://127.0.0.1:9/v1")
+    monkeypatch.setenv("SD_OPEN_WEIGHT_MODEL", "llama-test")
+    assert adapter.available() is True
+
+    class _Out(BaseModel):
+        outcome: str
+
+    captured: dict = {}
+
+    class _Completions:
+        def create(self, **kwargs):
+            captured.update(kwargs)
+
+            class _Usage:
+                prompt_tokens = 4
+                completion_tokens = 1
+                prompt_cache_hit_tokens = 0
+
+            class _Message:
+                content = '{"outcome": "ALLOW"}'
+
+            class _Choice:
+                message = _Message()
+                finish_reason = "stop"
+
+            class _Response:
+                choices = [_Choice()]
+                usage = _Usage()
+
+            return _Response()
+
+    class _Client:
+        def __init__(self, **kwargs):
+            captured["client"] = kwargs
+            self.chat = type("Chat", (), {"completions": _Completions()})()
+
+    monkeypatch.setattr("openai.OpenAI", _Client)
+    result = adapter.complete(
+        api_model="open-weight",
+        system="Decide.",
+        user="case",
+        response_model=_Out,
+    )
+    assert result.parsed.outcome == "ALLOW"
+    assert captured["model"] == "llama-test"
+    assert captured["client"]["base_url"] == "http://127.0.0.1:9/v1"
+    assert captured["response_format"] == {"type": "json_object"}
+    assert "JSON" in captured["messages"][0]["content"]

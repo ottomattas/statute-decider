@@ -57,6 +57,12 @@ models:
     cache_write_usd_per_million: 12.50
     output_usd_per_million: 50.00
     source: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+  open-weight:
+    # Zero until the endpoint is named. A zero rate ledgers the call at
+    # EUR 0; replace these when the host publishes a price.
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    source: local open-weight endpoint (SD_OPEN_WEIGHT_BASE_URL); price not set
   deepseek-v4-pro:
     # Peak rates; off-peak is half.
     input_usd_per_million: 1.32

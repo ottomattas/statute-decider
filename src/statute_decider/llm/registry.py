@@ -11,7 +11,7 @@ import yaml
 @dataclass(frozen=True)
 class ModelSpec:
     model_id: str
-    provider: str  # google | openai | anthropic | deepseek
+    provider: str  # google | openai | anthropic | deepseek | openweight
     api_model: str
     tier: str = ""
     # Context window (input + output) as the vendor documents it; 0 = not recorded.
@@ -92,5 +92,10 @@ class ModelRegistry:
     def resolve(self, requested: list[str]) -> list[ModelSpec]:
         """Resolve CLI/experiment model selections; 'all' means every registered model."""
         if any(item == "all" for item in requested):
-            return [self._specs[mid] for mid in self.model_ids()]
+            # tier "open" is an explicit id only. It is not on the hosted grid.
+            return [
+                self._specs[mid]
+                for mid in self.model_ids()
+                if self._specs[mid].tier != "open"
+            ]
         return [self.spec(mid) for mid in requested]

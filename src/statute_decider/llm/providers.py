@@ -5,6 +5,7 @@ API shapes verified 2026-08-20 in v1 and kept:
 - OpenAI Responses: ``client.responses.create`` + ``text.format`` json_schema strict
 - Anthropic Messages: ``output_config.format.type=json_schema`` (tool-call fallback)
 - DeepSeek: OpenAI-compatible Chat Completions JSON mode at ``https://api.deepseek.com``
+- Open-weight: the same Chat Completions shape at ``SD_OPEN_WEIGHT_BASE_URL`` (opt-in id ``open-weight``)
 
 Vendor quirks that cost debugging time once, kept explicit:
 - GPT-5-family and o-series reject a custom temperature on the Responses API.
@@ -279,6 +280,79 @@ def _anthropic_raw_text(message: Any) -> str:
     return "".join(texts)
 
 
+class OpenWeightAdapter:
+    """OpenAI-compatible Chat Completions for one open-weight endpoint.
+
+    Not on the ``all`` grid. The connection is environment, not a code edit:
+    ``SD_OPEN_WEIGHT_BASE_URL`` (required before ``available`` is true),
+    ``SD_OPEN_WEIGHT_API_KEY`` (optional; local servers often ignore it),
+    ``SD_OPEN_WEIGHT_MODEL`` (optional override of the registry ``api_model``).
+    JSON mode is requested and retried once without it, because local servers
+    disagree on ``response_format``.
+    """
+
+    name = "openweight"
+
+    def available(self) -> bool:
+        return bool(env("SD_OPEN_WEIGHT_BASE_URL"))
+
+    def complete(
+        self,
+        *,
+        api_model: str,
+        system: str,
+        user: str,
+        response_model: type[T],
+        temperature: float = 0.0,
+        max_output_tokens: int = 8192,
+        cache_prefix_len: int = 0,
+    ) -> LLMResult:
+        del cache_prefix_len  # the endpoint's own cache, if any, is not requested
+        from openai import OpenAI
+
+        base_url = env("SD_OPEN_WEIGHT_BASE_URL").rstrip("/")
+        model = env("SD_OPEN_WEIGHT_MODEL") or api_model
+        client = OpenAI(
+            api_key=env("SD_OPEN_WEIGHT_API_KEY") or "local",
+            base_url=base_url,
+            timeout=call_timeout_s(),
+        )
+        schema_text = json.dumps(strict_json_schema(response_model))
+        system_out = (
+            f"{system}\n\nReturn a JSON object that matches this JSON schema:\n{schema_text}"
+        )
+        create_kwargs: dict[str, Any] = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system_out},
+                {"role": "user", "content": user},
+            ],
+            "response_format": {"type": "json_object"},
+            "temperature": temperature,
+            "max_tokens": max_output_tokens,
+        }
+        started = time.monotonic()
+        try:
+            response = client.chat.completions.create(**create_kwargs)
+        except Exception:  # noqa: BLE001 - local servers reject response_format in different ways
+            create_kwargs.pop("response_format", None)
+            response = client.chat.completions.create(**create_kwargs)
+        latency_ms = int((time.monotonic() - started) * 1000)
+        choice = response.choices[0]
+        raw_text = getattr(getattr(choice, "message", None), "content", None) or ""
+        usage_obj = getattr(response, "usage", None)
+        usage = Usage(
+            input_tokens=int(getattr(usage_obj, "prompt_tokens", 0) or 0) if usage_obj else 0,
+            output_tokens=int(getattr(usage_obj, "completion_tokens", 0) or 0) if usage_obj else 0,
+            cached_input_tokens=int(getattr(usage_obj, "prompt_cache_hit_tokens", 0) or 0)
+            if usage_obj
+            else 0,
+        )
+        detail = f"finish_reason={getattr(choice, 'finish_reason', None)} model={model}"
+        parsed = parse_or_raise(response_model, raw_text, usage, detail)
+        return LLMResult(parsed, raw_text, usage, self.name, model, latency_ms)
+
+
 class DeepSeekAdapter:
     name = "deepseek"
 
@@ -350,6 +424,7 @@ ADAPTERS: dict[str, type] = {
     "openai": OpenAIAdapter,
     "anthropic": AnthropicAdapter,
     "deepseek": DeepSeekAdapter,
+    "openweight": OpenWeightAdapter,
 }
 
 

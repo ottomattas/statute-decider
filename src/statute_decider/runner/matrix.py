@@ -141,6 +141,8 @@ def expand_rows(root: Path, registry: ModelRegistry) -> list[dict[str, str]]:
                 selected = [v for v in variants if f"{cap.node}/{strategy}/" in v] or variants
                 for spec_id in registry.model_ids():
                     spec = registry.spec(spec_id)
+                    if spec.tier == "open":
+                        continue
                     for variant in selected:
                         add(cap, strategy, spec.provider, spec.model_id, variant)
         elif cap.method == "solver":
