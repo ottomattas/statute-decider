@@ -63,3 +63,17 @@ models:
     api_model: open-weight
     tier: open
     context_tokens: 0  # unknown until the endpoint is named; 0 = not recorded
+
+  # Named model@path rows for the open-weight adapter, so a row says which weights
+  # and which machine answered. Endpoint still comes from SD_OPEN_WEIGHT_BASE_URL,
+  # one at a time. context_tokens is the served --max-model-len, not the card maximum.
+  qwen3.8-27b@taltech-hpc:
+    provider: openweight
+    api_model: Qwen/Qwen3.8-27B
+    tier: open
+    context_tokens: 163840  # https://huggingface.co/Qwen/Qwen3.8-27B (262144 native)
+  muse-glimmer-30b@taltech-hpc:
+    provider: openweight
+    api_model: meta-models/Muse-Glimmer-30B
+    tier: open
+    context_tokens: 131072  # https://huggingface.co/meta-models/Muse-Glimmer-30B

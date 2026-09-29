@@ -63,6 +63,16 @@ models:
     input_usd_per_million: 0
     output_usd_per_million: 0
     source: local open-weight endpoint (SD_OPEN_WEIGHT_BASE_URL); price not set
+  qwen3.8-27b@taltech-hpc:
+    # Billed by the cluster per GPU-hour (0.62 EUR), not per token.
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    source: https://docs.hpc.taltech.ee/ (GPU-hour price)
+  muse-glimmer-30b@taltech-hpc:
+    # Billed by the cluster per GPU-hour (0.62 EUR), not per token.
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    source: https://docs.hpc.taltech.ee/ (GPU-hour price)
   deepseek-v4-pro:
     # Peak rates; off-peak is half.
     input_usd_per_million: 1.32
