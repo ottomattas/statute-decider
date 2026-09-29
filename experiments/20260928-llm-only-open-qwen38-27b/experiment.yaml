@@ -1,0 +1,22 @@
+name: 20260928-llm-only-open-qwen38-27b
+question: Does a self-hosted open-weight model close the gap to the architecture without it? LLM-only
+  single call, open x 1, indicative.
+condition: llm-only
+cases: all
+scenarios: []
+models:
+- qwen3.8-27b@taltech-hpc
+prompts: {}
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 3.0
+notes: 'Same cell as 20260906-llm-only-sota-r2 (wire schema without description), with the open-weight
+  row qwen3.8-27b@taltech-hpc. Endpoint: Qwen/Qwen3.8-27B, BF16, vLLM v0.28.0, one A100-80 on TalTech HPC (portifig.hpc),
+  --max-model-len 163840, --reasoning-parser qwen3, --generation-config auto.
+  SD_OPEN_WEIGHT_MODEL=Qwen/Qwen3.8-27B. Temperature 0.0 and 8192 output tokens (reasoning included)
+  match the hosted SOTA cells and the paper rule, temperature 0 where the provider accepts it,
+  although the Qwen3.8 card advises against greedy decoding in thinking mode. GPU-hours are billed by
+  the cluster, not by this ledger.
+  First 4 rows ran at the default SD_LLM_TIMEOUT_S=120; the rest resumed at 900 because calls took 2 to 4 minutes (the timeout changes no answer). 6 cells failed on finish_reason=length. Job 984664. Ledger EUR is 0 because the cluster bills GPU-hours (ENT-415).'

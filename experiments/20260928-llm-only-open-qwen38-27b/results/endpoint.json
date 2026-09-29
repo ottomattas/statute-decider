@@ -1,0 +1,24 @@
+{
+  "path": "taltech-hpc",
+  "runtime": "hpc",
+  "server": "vllm",
+  "model": "Qwen/Qwen3.8-27B",
+  "gres": "gpu:A100:1",
+  "constraint": "A100-80",
+  "image": "docker://vllm/vllm-openai:v0.28.0",
+  "vllm_args": [
+    "--max-model-len",
+    "163840",
+    "--reasoning-parser",
+    "qwen3",
+    "--generation-config",
+    "auto"
+  ],
+  "partition": "gpu",
+  "wall": "04:00:00",
+  "account": "user_otmatt",
+  "job_id": "984664",
+  "node": "amp2",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "started_at": "2026-09-29T00:09:42+0300"
+}

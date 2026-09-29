@@ -1,0 +1,115 @@
+2026-09-29 00:10:53,165 INFO statute_decider.runner.experiment Experiment 20260928-llm-only-open-qwen38-27b: 54 cells (54 scenarios x 1 models x 1 prompt combos x 1 repeats), 0 kept from a previous run, 54 to run now, parallel.
+2026-09-29 00:12:41,919 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:12:53,878 INFO openai._base_client Retrying request in 0.465152 seconds
+2026-09-29 00:12:53,879 INFO openai._base_client Retrying request in 0.401505 seconds
+2026-09-29 00:12:53,879 INFO openai._base_client Retrying request in 0.466483 seconds
+2026-09-29 00:14:31,539 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:14:41,964 INFO openai._base_client Retrying request in 0.417953 seconds
+2026-09-29 00:14:54,359 INFO openai._base_client Retrying request in 0.811296 seconds
+2026-09-29 00:14:54,359 INFO openai._base_client Retrying request in 0.782217 seconds
+2026-09-29 00:15:26,184 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:16:42,391 INFO openai._base_client Retrying request in 0.901672 seconds
+2026-09-29 00:17:26,229 INFO openai._base_client Retrying request in 0.394033 seconds
+2026-09-29 00:18:55,159 INFO openai._base_client Retrying request in 0.381149 seconds
+2026-09-29 00:18:55,185 INFO openai._base_client Retrying request in 0.387189 seconds
+2026-09-29 00:19:26,636 INFO openai._base_client Retrying request in 0.956331 seconds
+2026-09-29 00:20:43,310 INFO openai._base_client Retrying request in 0.463032 seconds
+2026-09-29 00:20:55,550 INFO openai._base_client Retrying request in 0.915179 seconds
+2026-09-29 00:20:55,583 INFO openai._base_client Retrying request in 0.850733 seconds
+2026-09-29 00:22:43,784 INFO openai._base_client Retrying request in 0.923402 seconds
+2026-09-29 00:22:56,469 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Request timed out. — retrying in 20s
+2026-09-29 00:22:56,491 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Request timed out. — retrying in 20s
+2026-09-29 00:23:27,616 INFO openai._base_client Retrying request in 0.427116 seconds
+2026-09-29 00:24:44,736 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Request timed out. — retrying in 20s
+2026-09-29 00:25:16,485 INFO openai._base_client Retrying request in 0.417176 seconds
+2026-09-29 00:25:16,503 INFO openai._base_client Retrying request in 0.382729 seconds
+2026-09-29 00:25:28,056 INFO openai._base_client Retrying request in 0.767821 seconds
+2026-09-29 00:27:04,755 INFO openai._base_client Retrying request in 0.416544 seconds
+2026-09-29 00:27:16,892 INFO openai._base_client Retrying request in 0.961035 seconds
+2026-09-29 00:27:16,911 INFO openai._base_client Retrying request in 0.757820 seconds
+2026-09-29 00:27:28,865 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Request timed out. — retrying in 20s
+2026-09-29 00:29:05,184 INFO openai._base_client Retrying request in 0.992774 seconds
+2026-09-29 00:29:15,238 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:29:48,887 INFO openai._base_client Retrying request in 0.431783 seconds
+2026-09-29 00:31:15,288 INFO openai._base_client Retrying request in 0.376691 seconds
+2026-09-29 00:31:17,692 INFO openai._base_client Retrying request in 0.468418 seconds
+2026-09-29 00:31:49,333 INFO openai._base_client Retrying request in 0.960396 seconds
+2026-09-29 00:33:06,200 INFO openai._base_client Retrying request in 0.377106 seconds
+2026-09-29 00:33:15,674 INFO openai._base_client Retrying request in 0.949237 seconds
+2026-09-29 00:33:18,171 INFO openai._base_client Retrying request in 0.850105 seconds
+2026-09-29 00:35:06,588 INFO openai._base_client Retrying request in 0.816064 seconds
+2026-09-29 00:35:19,061 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 2/5): Request timed out. — retrying in 40s
+2026-09-29 00:35:45,406 INFO statute_decider.runner.experiment Experiment 20260928-llm-only-open-qwen38-27b: 54 cells (54 scenarios x 1 models x 1 prompt combos x 1 repeats), 4 kept from a previous run, 50 to run now, parallel.
+2026-09-29 00:38:01,221 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:39:21,144 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:40:08,326 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:41:23,778 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:41:35,361 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:41:41,859 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:41:56,263 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:42:22,887 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:42:43,444 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:43:47,667 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:44:14,494 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:46:18,757 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:46:45,827 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:47:53,241 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:48:14,186 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:49:55,101 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:50:14,918 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:50:14,967 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 00:52:17,654 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:53:17,336 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:54:57,644 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:56:19,596 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:56:19,622 WARNING statute_decider.runner.experiment Cell failed civil_service_admission/allow_alt_rule_eu_citizen_overrides_register qwen3.8-27b@taltech-hpc: openweight/qwen3.8-27b@taltech-hpc failed after 5 attempts: Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B]
+2026-09-29 00:57:09,897 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:57:11,613 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:57:28,535 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:57:51,727 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:58:09,825 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:58:34,564 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:58:52,516 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:59:42,348 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 00:59:54,605 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:01:34,545 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:02:03,113 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:02:08,657 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:02:23,892 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:02:43,438 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:03:08,387 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:03:19,921 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:03:27,613 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:03:27,634 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:03:37,460 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:04:04,491 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:05:40,932 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:07:39,314 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:07:39,350 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:08:11,298 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:09:18,668 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:09:18,694 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:10:51,936 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:10:51,955 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:12:29,643 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:13:09,776 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:13:09,810 WARNING statute_decider.runner.experiment Cell failed journalistic_data_disclosure/deny_no_allow_path_no_purpose_no_consent qwen3.8-27b@taltech-hpc: openweight/qwen3.8-27b@taltech-hpc failed after 5 attempts: Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B]
+2026-09-29 01:14:47,783 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:14:47,793 WARNING statute_decider.runner.experiment Cell failed land_tax_home_exemption/allow_claims_verified qwen3.8-27b@taltech-hpc: openweight/qwen3.8-27b@taltech-hpc failed after 5 attempts: Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B]
+2026-09-29 01:16:20,382 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:16:20,408 WARNING statute_decider.runner.experiment Cell failed land_tax_home_exemption/allow_claims_verified_pensioner_supplement qwen3.8-27b@taltech-hpc: openweight/qwen3.8-27b@taltech-hpc failed after 5 attempts: Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B]
+2026-09-29 01:17:37,045 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:17:37,056 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:18:16,500 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:18:16,507 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:19:13,110 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:19:53,889 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:19:53,900 WARNING statute_decider.llm.client openweight/qwen3.8-27b@taltech-hpc failed (attempt 1/5): Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B] — retrying in 20s
+2026-09-29 01:21:33,633 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:21:37,422 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:23:39,955 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:23:39,964 WARNING statute_decider.runner.experiment Cell failed land_tax_home_exemption/deny_no_allow_path_not_residential qwen3.8-27b@taltech-hpc: openweight/qwen3.8-27b@taltech-hpc failed after 5 attempts: Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B]
+2026-09-29 01:23:53,927 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:25:13,222 INFO httpx2 HTTP Request: POST http://127.0.0.1:8000/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 01:25:13,245 WARNING statute_decider.runner.experiment Cell failed land_tax_home_exemption/deny_own_admission_not_owner qwen3.8-27b@taltech-hpc: openweight/qwen3.8-27b@taltech-hpc failed after 5 attempts: Empty model response. [finish_reason=length model=Qwen/Qwen3.8-27B]
+2026-09-29 01:25:13,253 INFO statute_decider.runner.experiment Experiment 20260928-llm-only-open-qwen38-27b done: 54 rows, EUR 0.0000.

@@ -1,0 +1,19 @@
+name: 20260928-llm-only-open-muse-glimmer-30b
+question: Does a self-hosted open-weight model close the gap to the architecture without it? LLM-only
+  single call, open x 1, indicative.
+condition: llm-only
+cases: all
+scenarios: []
+models:
+- muse-glimmer-30b@taltech-hpc
+prompts: {}
+repeats: 1
+temperature: 0.0
+max_output_tokens: 8192
+max_statute_tokens: 100000
+budget_eur: 3.0
+notes: 'Same cell as 20260906-llm-only-sota-r2 (wire schema without description), with the open-weight
+  row muse-glimmer-30b@taltech-hpc. Endpoint: meta-models/Muse-Glimmer-30B, BF16, vLLM v0.28.0, one
+  A100-80 on TalTech HPC (portifig.hpc), --max-model-len 131072, --reasoning-parser muse_glimmer,
+  --generation-config auto. Temperature 0.0 and 8192 output tokens (reasoning included) match the hosted SOTA cells and the paper rule, temperature 0 where the provider accepts it, even though the checkpoint default is 1.0. GPU-hours are billed by the cluster, not by this ledger.
+  Ran with SD_LLM_TIMEOUT_S=900 on job 984686. Ledger EUR is 0 because the cluster bills GPU-hours (ENT-415).'
