@@ -307,6 +307,45 @@ def _cmd_transcript_compress(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_list(args: argparse.Namespace) -> int:
+    """Cases, scenario counts and the gold outcome distribution. No results, no models."""
+    from collections import Counter
+
+    from statute_decider.core import DataStore
+
+    root = _find_root(Path(args.root) if args.root else None)
+    store = DataStore(root / "data")
+    coarse = ("ALLOW", "DENY", "NEED_MORE_INFO")
+    totals: Counter[str] = Counter()
+    case_ids = store.case_ids()
+    for case_id in case_ids:
+        case = store.case(case_id)
+        counts: Counter[str] = Counter()
+        scenario_ids = store.scenario_ids(case_id)
+        for scenario_id in scenario_ids:
+            scenario = store.scenario(case_id, scenario_id)
+            gold = store.oracle_value(case_id, "premise_outcome", scenario_id)
+            if gold is None or not getattr(gold, "scored_as", None):
+                print(
+                    f"no premise_outcome gold for {case_id}/{scenario_id}",
+                    file=sys.stderr,
+                )
+                return 1
+            scored = gold.scored_as.value
+            counts[scored] += 1
+            if args.scenarios:
+                tags = ",".join(scenario.tags)
+                print(f"{case_id}\t{scenario_id}\t{tags}\t{scored}")
+        totals.update(counts)
+        if not args.scenarios:
+            statute = ",".join(case.statute_ids)
+            parts = " ".join(f"{name} {counts[name]}" for name in coarse)
+            print(f"{case_id}\t{statute}\t{len(scenario_ids)}\t{parts}")
+    summary = "/".join(str(totals[name]) for name in coarse)
+    print(f"{len(case_ids)} cases, {sum(totals.values())} scenarios, {summary}")
+    return 0
+
+
 def _cmd_transcript_check(args: argparse.Namespace) -> int:
     from statute_decider.results import check_tree
 
@@ -433,6 +472,16 @@ def main(argv: list[str] | None = None) -> int:
         "check", help="Fail on a leftover plain transcript, a corrupt .gz, or a tracked file > 90 MB."
     )
     transcript_check.set_defaults(func=_cmd_transcript_check)
+
+    list_parser = sub.add_parser(
+        "list", help="List cases, scenario counts and the gold outcome distribution."
+    )
+    list_parser.add_argument(
+        "--scenarios",
+        action="store_true",
+        help="One row per scenario: case, id, tags, gold scored_as.",
+    )
+    list_parser.set_defaults(func=_cmd_list)
 
     args = parser.parse_args(argv)
     return args.func(args)
